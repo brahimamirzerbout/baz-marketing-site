@@ -31,7 +31,13 @@ export type EventName =
   | 'search'
   | 'ai_demo_run'
   | 'canva_export_png'
-  | 'canva_export_svg';
+  | 'canva_export_svg'
+  | 'analytics_attribution_export'
+  | 'analytics_adstock_apply'
+  | 'analytics_rfm_sample'
+  | 'analytics_rfm_upload'
+  | 'analytics_rfm_export'
+  | 'analytics_budget_export';
 
 type EventPayload = Record<string, string | number | boolean | undefined>;
 

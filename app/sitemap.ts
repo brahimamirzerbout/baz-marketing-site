@@ -54,6 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...postRoutes,
     ...industryRoutes,
     { url: `${base}/admin/canva`, lastModified: now, changeFrequency: 'monthly', priority: 0.2 },
+    { url: `${base}/admin/analytics`, lastModified: now, changeFrequency: 'monthly', priority: 0.2 },
     { url: `${base}/admin/monitors`, lastModified: now, changeFrequency: 'always', priority: 0.1 },
   ];
 }
