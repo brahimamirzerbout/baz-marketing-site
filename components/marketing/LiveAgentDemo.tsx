@@ -55,16 +55,16 @@ export function LiveAgentDemo() {
         const r = await fetch(`${api}/api/ai`, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ agent: active, prompt }),
+          body: JSON.stringify({ kind: active, prompt }),
         });
         const j = await r.json();
         out = {
           agent: active,
-          output: j.output ?? j.text ?? JSON.stringify(j),
+          output: j.text ?? j.output ?? j.error ?? JSON.stringify(j),
           provider: j.provider ?? 'unknown',
           model: j.model ?? 'unknown',
-          tokens: j.tokens,
-          ms: Math.round(performance.now() - start),
+          tokens: (j.tokens_in ?? 0) + (j.tokens_out ?? 0),
+          ms: j.latency_ms ?? Math.round(performance.now() - start),
         };
       } catch {
         out = simulate(active, prompt, start);
