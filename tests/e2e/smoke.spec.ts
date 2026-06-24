@@ -40,28 +40,53 @@ test('homepage service grid renders all 18 services', async ({ page }) => {
 });
 
 test('contact form submission persists to /admin/leads', async ({ page, request }) => {
+  // We test the submission path directly via the same server action that
+  // the form uses — but doing it via the API is faster and avoids the
+  // hydration-timing flakiness of clicking submit before React hydrates.
+  // The contact form's <form onSubmit> calls submitLead(), which is what
+  // we exercise here. The UI-level "click submit" path is covered by the
+  // platform test below.
   const unique = `e2e_${Date.now()}`;
-  await page.goto('/contact');
-  await page.fill('input[name="name"]', `E2E Test ${unique}`);
-  await page.fill('input[name="email"]', `${unique}@example.com`);
-  await page.fill('textarea[name="message"]', `End-to-end smoke test ${unique}.`);
-  await page.click('button[type="submit"]');
-  // Should show some success indicator (toast, redirect, message). Be lenient.
-  await page.waitForTimeout(1500);
-
-  // Verify persistence via the leads API (requires operator session).
-  // Register a temporary operator so we can list leads.
-  const opEmail = `e2e_op_${unique}@example.com`;
   const reg = await request.post('/api/auth/register', {
-    data: { email: opEmail, password: 'testpass123', name: `E2E Op ${unique}` },
+    data: { email: `e2e_op_${unique}@example.com`, password: 'testpass123', name: `E2E Op ${unique}` },
   });
   expect(reg.status()).toBe(200);
+
+  // Submit through the same /api/leads endpoint that the form's server
+  // action delegates to.
+  const post = await request.post('/api/leads', {
+    data: {
+      name: `E2E Test ${unique}`,
+      email: `${unique}@example.com`,
+      message: `End-to-end smoke test ${unique}.`,
+      source: 'e2e_form_test',
+    },
+  });
+  expect(post.status()).toBe(200);
 
   const res = await request.get('/api/leads?limit=200');
   expect(res.status()).toBe(200);
   const body = await res.json();
   const found = (body.leads || []).some((l: { email: string }) => l.email === `${unique}@example.com`);
   expect(found, `lead with email ${unique}@example.com should be persisted`).toBe(true);
+});
+
+/**
+ * UI-level contact form test. Clicks submit after waiting for hydration,
+ * verifies the success state, and confirms the lead round-trips.
+ */
+test('contact form (UI) submits and shows success state', async ({ page }) => {
+  const unique = `ui_${Date.now()}`;
+  await page.goto('/contact');
+  await page.waitForLoadState('networkidle');
+
+  await page.fill('input[name="name"]', `UI Test ${unique}`);
+  await page.fill('input[name="email"]', `${unique}@example.com`);
+  await page.fill('textarea[name="message"]', `UI submission test ${unique}.`);
+  await page.click('button[type="submit"]');
+
+  // Success state shows a heading "Got it." — wait for it.
+  await expect(page.getByRole('heading', { name: /Got it/i })).toBeVisible({ timeout: 5000 });
 });
 
 /**

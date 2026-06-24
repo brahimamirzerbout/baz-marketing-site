@@ -71,7 +71,7 @@ export function Button(props: ButtonProps) {
       ? trackedClick('cta_click', { label: trackAs, href, ...(trackPayload || {}) })
       : undefined;
 
-    if (external || /^https?:\/\//.test(href)) {
+    if (external || (/^https?:\/\//.test(href) && !href.startsWith('mailto'))) {
       return (
         <a
           href={href}
@@ -84,14 +84,18 @@ export function Button(props: ButtonProps) {
         </a>
       );
     }
+    // mailto: and other protocols use a plain anchor.
     return (
-      <Link href={href} className={classes} onClick={clickHandler}>
+      <a href={href} className={classes} onClick={clickHandler}>
         {children}
-      </Link>
+      </a>
     );
   }
 
   const { onClick: userOnClick, ...rest } = props as ButtonAsButtonProps;
+  // Strip non-DOM props before spreading on <button>.
+  delete (rest as Record<string, unknown>).trackAs;
+  delete (rest as Record<string, unknown>).trackPayload;
   const clickHandler = trackAs
     ? trackedClick('cta_click', { label: trackAs, ...(trackPayload || {}) }, userOnClick)
     : userOnClick;
