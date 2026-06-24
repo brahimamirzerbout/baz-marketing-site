@@ -17,10 +17,11 @@ export function ServicesOverview() {
       <div className="grid lg:grid-cols-12 gap-10 mb-14">
         <div className="lg:col-span-7">
           <Eyebrow>What we do</Eyebrow>
-          <SectionHeading>Nine services. One senior team.</SectionHeading>
+          <SectionHeading>Eighteen services. One senior team.</SectionHeading>
           <SectionLede>
-            Strategy, execution, and reporting in one tightly integrated system — across your
-            website, content, search, paid, lifecycle, analytics, and AI workflows.
+            Every type of marketing agency — strategy, performance, SEO, content, brand, CRO, lifecycle,
+            CRM, analytics, AI search, social, influencer, video, partnerships, ABM, PR, research, and
+            internationalization. One tightly integrated system. One senior team.
           </SectionLede>
         </div>
         <div className="lg:col-span-5 flex items-end lg:justify-end">
@@ -40,7 +41,7 @@ export function ServicesOverview() {
             <Link
               key={s.slug}
               href={`/services/${s.slug}`}
-              className="reveal group block bg-white rounded-2xl p-6 md:p-7 border border-ink-100 hover:border-ink-900 hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
+              className="reveal group block bg-paper-50 rounded-2xl p-6 md:p-7 border border-ink-100 hover:border-ink-900 hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className="flex items-center justify-between mb-8">

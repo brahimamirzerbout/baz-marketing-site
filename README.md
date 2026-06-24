@@ -1,5 +1,8 @@
 # BAZ Marketing Agency — Site (Next.js)
 
+> **The one BAZ project.** From June 23, 2026, this is the only BAZ repository to work on.
+> Earlier generations (`baz/`, `baz-marketing/`, `baz-agency-v1/`) were archived to `~/archive/baz-legacy-{v1,v4,v6}/` on the same date.
+
 Production-ready marketing site for **BAZ Marketing Agency**, built per the S-tier master prompt. Inspired by Power Digital's data-first growth model and Baz Marketing's outsourced-partner positioning, original to BAZ.
 
 - **Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS · Google Fonts (Inter + Fraunces + JetBrains Mono)
@@ -71,21 +74,30 @@ Copy `.env.example` to `.env.local` and fill in what you need:
 
 ---
 
-## Service pillars (9)
+## Service pillars (18)
 
-The brief asked for nine offers across owned/earned/paid/data/platform:
+The catalog covers every recognized agency discipline, ordered by how a CMO buys: strategy → execution → measurement & systems → earned media & audience → scale plays.
 
 1. **Strategy & Growth Consulting** — `strategy-consulting`
-2. **Paid Media** — `paid-media`
+2. **Performance Marketing** — `performance-marketing`
 3. **SEO & Organic Growth** — `seo-organic`
-4. **Website Design & Development** — `web-design-development`
-5. **Content Strategy & Copywriting** — `content-copywriting`
-6. **Analytics & Tracking** — `analytics-tracking`
-7. **AI Search Optimization & Automation** — `ai-search-automation`
-8. **CRM & Lifecycle Marketing** — `crm-lifecycle`
-9. **Creative & CRO** — `creative-cro`
+4. **Content & Editorial Engine** — `content-engine`
+5. **Brand & Identity** — `brand-identity`
+6. **Conversion Rate Optimization (CRO)** — `cro-experimentation`
+7. **Lifecycle, Email & SMS Automation** — `lifecycle-email-sms`
+8. **CRM & Marketing Operations** — `crm-mops`
+9. **Analytics, Tracking & Attribution** — `analytics-attribution`
+10. **AI Search Optimization (GEO & AEO)** — `ai-search-optimization`
+11. **Social Media & Community** — `social-media`
+12. **Influencer & Creator Marketing** — `influencer-marketing`
+13. **Video Production & Podcast Studio** — `video-production`
+14. **Affiliate, Partnership & Referral Programs** — `affiliate-partnerships`
+15. **ABM & B2B Demand Generation** — `abm-b2b-demand`
+16. **Public Relations & Earned Media** — `public-relations`
+17. **Market Research & Category Design** — `market-research`
+18. **Internationalization & Market Entry** — `internationalization`
 
-Each entry in `content/services.ts` is the full payload that drives its detail page: hero, who, deliverables, KPIs, process, proof, FAQs, CTA.
+Each entry in `content/services.ts` is the full payload that drives its detail page: hero, who, deliverables, KPIs, process (5 steps), proof (3 case studies), FAQs (3 questions), CTA.
 
 ---
 
@@ -162,7 +174,7 @@ The brief explicitly forbids fake clients and false metrics. We follow this:
 ## Project structure
 
 ```
-baz-site-next/
+baz/                              # ← this repo (the only BAZ project)
 ├── app/                          # Next.js App Router
 │   ├── layout.tsx                # Root layout: header/footer, fonts, JSON-LD
 │   ├── page.tsx                  # Home
@@ -171,14 +183,17 @@ baz-site-next/
 │   ├── robots.ts                 # /robots.txt
 │   ├── globals.css               # Tailwind + base styles
 │   ├── about/                    # /about
-│   ├── services/                 # /services + /services/[slug]
+│   ├── services/                 # /services + /services/[slug] (18 services)
 │   ├── case-studies/             # /case-studies + /case-studies/[slug]
-│   ├── insights/                 # /insights + /insights/[slug]
+│   ├── insights/                 # /insights + /insights/[slug] (11 articles)
 │   ├── industries/               # /industries + /industries/[slug]
+│   ├── brandbook/                # /brandbook (logo · color · type · voice · templates)
 │   ├── contact/                  # /contact
 │   ├── book/                     # /book → redirects to booking URL
 │   ├── privacy/                  # /privacy
-│   └── terms/                    # /terms
+│   ├── terms/                    # /terms
+│   └── admin/                    # /admin (leads · analytics · canva · monitors)
+│       └── dashboard/            # /dashboard (operations)
 ├── components/
 │   ├── ui/                       # Button, Card, Badge, Section primitives
 │   ├── layout/                   # Header, Footer, CookieBanner
@@ -186,12 +201,12 @@ baz-site-next/
 │   ├── sections/                 # Home page section compositions
 │   └── analytics/                # GA4 + GTM bootstrap
 ├── content/
-│   ├── services.ts               # 9 service payloads
+│   ├── services.ts               # 18 service payloads (every recognized agency type)
 │   ├── case-studies.ts           # 6 case study payloads
 │   ├── industries.ts             # 6 industry payloads
 │   ├── testimonials.ts           # 5 testimonial payloads
 │   ├── team.ts                   # 6 partner bios
-│   └── posts.ts                  # 6 long-form articles
+│   └── posts.ts                  # 11 long-form articles
 ├── lib/
 │   ├── site.ts                   # Site config (URL, name, stats, social)
 │   ├── seo.ts                    # Metadata + JSON-LD builders
@@ -217,33 +232,62 @@ baz-site-next/
 
 ## Deployment
 
-### Vercel (recommended)
+Three deployment paths are supported.
+
+### 1. Vercel (recommended — fastest)
 
 ```bash
 vercel link
 vercel env add NEXT_PUBLIC_SITE_URL production
 vercel env add NEXT_PUBLIC_BOOKING_URL production
-vercel --prod
+vercel env add ADMIN_TOKEN production
+./scripts/deploy.sh vercel
 ```
 
-### Docker / self-hosted
+### 2. Docker (one command)
+
+```bash
+cp .env.production.example .env.production  # fill in real values
+docker compose up -d --build
+```
+
+The image is multi-stage, runs as non-root, exposes `:3000`, and persists leads to a named volume (`baz-data`). Override the image with `DOCKER_IMAGE=ghcr.io/you/baz:v1`.
+
+### 3. Self-hosted Node (standalone build)
+
+The build emits `.next/standalone/` — a self-contained Node server with no need for `node_modules` at runtime.
 
 ```bash
 npm run build
-npm start          # serves on :3000
+node .next/standalone/server.js        # listens on :3000
 ```
 
-The build emits a self-contained Node server. Set `PORT` to override.
+To deploy to a remote host:
 
-### Static export
-
-If you want to serve as static files (no Node runtime), add to `next.config.mjs`:
-
-```js
-const nextConfig = { output: 'export', images: { unoptimized: true } };
+```bash
+./scripts/deploy.sh selfhost deploy@baz.agency
 ```
 
-Then `npm run build` produces an `out/` directory you can drop on any CDN. Note: `app/book` (the redirect to the booking URL) won't work in a static export — change it to a plain link.
+Then on the host, edit `.env.production` with real values and run under your process manager of choice (systemd, pm2, supervisord).
+
+### Build output summary
+
+```
+First Load JS shared by all   87.1 kB
+Total routes                   36  (28 static + 6 SSG + 4 dynamic)
+Image formats                  AVIF, WebP
+Security headers               X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy
+Font cache                     1 year immutable (`/fonts/*`)
+```
+
+### Lead pipeline (production)
+
+The lead flow persists every submission to `data/leads.jsonl` (append-only, line-delimited). On top of that:
+
+- **Email** — set `RESEND_API_KEY` + `NOTIFY_EMAIL` to forward each lead to your inbox via Resend.
+- **Slack / CRM webhook** — set `LEAD_INTAKE_URL` to a Slack Incoming Webhook or Pipedrive/HubSpot endpoint.
+- **Admin UI** — set `ADMIN_TOKEN` to enable `/admin/leads` reading from the same store. Generate with: `node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"`.
+- **API** — `POST /api/leads` (public) writes. `GET /api/leads` (with `x-admin-token` header) reads. The full server-action chain is in `lib/actions.ts`.
 
 ---
 
@@ -259,19 +303,34 @@ Then `npm run build` produces an `out/` directory you can drop on any CDN. Note:
 
 ## Pre-launch checklist
 
-Run through these before pointing the real domain:
+**Done by default:**
 
-- [ ] Replace placeholder client names + metrics in `content/case-studies.ts`
-- [ ] Replace testimonial authors + quotes in `content/testimonials.ts`
-- [ ] Replace KPI stats in `lib/site.ts` (`brandsScaled`, `countriesServed`, etc.)
-- [ ] Replace team bios in `content/team.ts` with real partners
-- [ ] Set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_BOOKING_URL`, `LEAD_INTAKE_URL`
-- [ ] Add real Open Graph image (`public/og/default.svg` is a placeholder)
-- [ ] Set up GA4 property and add ID
-- [ ] Add a `sitemap.xml` image extension if you publish client logos
-- [ ] Wire `LEAD_INTAKE_URL` to your CRM (HubSpot, Pipedrive, etc.)
-- [ ] `npm run audit:placeholder` should exit clean (replace TODOs)
-- [ ] Lighthouse: aim for ≥95 Performance, ≥95 Accessibility, ≥95 SEO, ≥95 Best Practices on `/` and `/services/[slug]`
+- [x] Open Graph image replaced with branded PNG at `public/og/default.png`
+- [x] Lead pipeline persists to `data/leads.jsonl` + Resend email + admin UI (wired and tested)
+- [x] Lighthouse-ready production build (87 kB shared JS, all pages SSG, AVIF/WebP)
+- [x] Playwright e2e suite (9 tests covering critical routes + lead persistence)
+- [x] Dark mode across every page (toggle, system-pref aware, persisted)
+- [x] Brandbook at `/brandbook` with share/download
+- [x] 18 services cataloging every agency type
+- [x] TypeScript clean (`npm run typecheck`)
+- [x] Placeholder case studies + testimonials flagged with "Demo" badges
+- [x] WCAG AA contrast on red hero (5.4:1)
+- [x] Multi-stage Dockerfile + docker-compose + deploy.sh script
+
+**Replace before launch (real data, not placeholders):**
+
+- [ ] Real client names + metrics in `content/case-studies.ts` (currently 6 demo, all flagged)
+- [ ] Real testimonial quotes + authors in `content/testimonials.ts` (currently 5 demo, all flagged)
+- [ ] Real KPI stats: set `NEXT_PUBLIC_BRANDS_SCALED`, `NEXT_PUBLIC_COUNTRIES_SERVED`, `NEXT_PUBLIC_TEAM_SIZE` (or leave empty to hide)
+- [ ] Real team bios in `content/team.ts`
+- [ ] Set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_BOOKING_URL`
+- [ ] Set `RESEND_API_KEY` + `NOTIFY_EMAIL` for lead email forwarding
+- [ ] Set `ADMIN_TOKEN` to enable `/admin/leads`
+- [ ] Set `NEXT_PUBLIC_GA4_ID` once you have a GA4 property
+- [ ] (Optional) Set `LEAD_INTAKE_URL` to a Slack/CRM webhook for real-time alerts
+- [ ] Run `npm run audit:placeholder` — should exit clean
+- [ ] Run `npm test` — all Playwright tests should pass
+- [ ] Run Lighthouse on `/` and `/services/<slug>` — aim ≥95 across all four categories
 
 ---
 

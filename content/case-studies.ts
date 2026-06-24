@@ -10,7 +10,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'viralvista-growth-engine',
     client: 'ViralVista',
     industry: 'DTC Beauty',
-    services: ['Paid Media', 'SEO', 'Content', 'Creative & CRO'],
+    services: ['Performance Marketing', 'SEO & Organic Growth', 'Content & Editorial Engine', 'Conversion Rate Optimization'],
     cover: '#ff3b2f',
     problem:
       'ViralVista was spending $80K/mo on Meta with a 1.8 ROAS and no compounding asset. Creative fatigue hit every 9 days.',
@@ -35,7 +35,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'northwind-fintech-seo',
     client: 'Northwind',
     industry: 'FinTech',
-    services: ['SEO & Organic Growth', 'Content', 'Analytics'],
+    services: ['SEO & Organic Growth', 'Content & Editorial Engine', 'Analytics, Tracking & Attribution'],
     cover: '#4f7cff',
     problem:
       'Northwind was invisible on category-defining search terms and dependent on paid for every signup.',
@@ -60,7 +60,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'engageera-saas-launch',
     client: 'EngageEra',
     industry: 'B2B SaaS',
-    services: ['Strategy & Growth Consulting', 'Paid Media', 'Web Design & Development', 'CRM & Lifecycle'],
+    services: ['Strategy & Growth Consulting', 'Performance Marketing', 'Brand & Identity', 'CRM & Marketing Operations', 'Lifecycle, Email & SMS Automation'],
     cover: '#7a3cff',
     problem:
       'Post-launch, EngageEra had 12K free signups but a 0.6% trial-to-paid conversion. The site wasn\'t built for product-led growth.',
@@ -85,7 +85,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'saffron-hospitality-multi-location',
     client: 'Saffron & Co.',
     industry: 'Hospitality',
-    services: ['SEO & Organic Growth', 'Web Design & Development', 'Paid Media'],
+    services: ['SEO & Organic Growth', 'Brand & Identity', 'Performance Marketing'],
     cover: '#f9a01f',
     problem:
       'A 14-property hospitality group with a slow, brochure-style site and 7 fragmented Google Business Profiles.',
@@ -110,7 +110,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'meridian-devtools-ai-search',
     client: 'Meridian Labs',
     industry: 'AI / DevTools',
-    services: ['AI Search Optimization', 'Content', 'Digital PR'],
+    services: ['AI Search Optimization', 'Content & Editorial Engine', 'Public Relations & Earned Media'],
     cover: '#3ddc97',
     problem:
       'Meridian was a strong dev tool with zero AI-search presence — invisible in ChatGPT, Perplexity, and Google AI Overviews.',
@@ -135,7 +135,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'buzzbeacon-content-engine',
     client: 'BuzzBeacon Media',
     industry: 'Podcast Network',
-    services: ['Content Strategy & Copywriting', 'SEO & Organic Growth', 'Analytics'],
+    services: ['Content & Editorial Engine', 'SEO & Organic Growth', 'Analytics, Tracking & Attribution'],
     cover: '#0e0e10',
     problem:
       'BuzzBeacon had 200 podcast pages with thin content and no search traffic. Ad revenue was flat.',
@@ -149,6 +149,149 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Indexed pages', value: '94%' },
     ],
     duration: '7 months',
+    placeholder: true,
+  },
+
+  // ─── Wave 2 additions: fill gaps for services with no case studies ───────
+
+  {
+    slug: 'tessera-fintech-video-podcast',
+    client: 'Tessera',
+    industry: 'FinTech',
+    services: ['Video Production & Podcast Studio', 'Public Relations & Earned Media', 'Social Media & Community'],
+    cover: '#ff3b2f',
+    problem:
+      'Tessera\'s founder had strong conviction but no media footprint. They needed a thought-leadership engine that produced content at venture scale without an in-house team.',
+    strategy:
+      'Launched a weekly founder podcast with a senior producer, cut 6 short-form variants per episode for paid social, and ran a guest-booking program targeting tier-1 operators and journalists.',
+    result:
+      '4.2M views in the first year. 312K podcast downloads. Inbound enterprise pipeline +$6.4M attributed to the show. Founder bylines in Bloomberg, FT, and TechCrunch.',
+    metrics: [
+      { label: 'Views, yr 1', value: '4.2M' },
+      { label: 'Podcast downloads', value: '312K' },
+      { label: 'Attributed pipeline', value: '+$6.4M' },
+    ],
+    duration: '12 months',
+    testimonial: {
+      quote: 'The podcast is our biggest sales asset. It compounds every week without us having to think about it.',
+      author: 'Idris Bah',
+      role: 'Founder & CEO',
+    },
+    placeholder: true,
+  },
+
+  {
+    slug: 'lumenwear-influencer-engine',
+    client: 'Lumenwear',
+    industry: 'DTC Apparel',
+    services: ['Influencer & Creator Marketing', 'Social Media & Community', 'Performance Marketing'],
+    cover: '#f9a01f',
+    problem:
+      'Lumenwear was over-reliant on Meta with a 2.1 ROAS and creative fatigue every 12 days. They needed a creator engine that produced social proof at scale.',
+    strategy:
+      'Built a tiered creator program across 412 nano and micro creators, with whitelisting on Meta and TikTok, and a content-rights library that fed the always-on paid engine.',
+    result:
+      '$11 EMV per $1 spent. ROAS lifted from 2.1 to 5.4 in 6 months. Cost per acquisition down 42%. Brand search volume tripled.',
+    metrics: [
+      { label: 'EMV per $1', value: '$11' },
+      { label: 'ROAS', value: '2.1 → 5.4' },
+      { label: 'CPA', value: '↓ 42%' },
+    ],
+    duration: '6 months',
+    testimonial: {
+      quote: 'We went from a brand nobody had heard of to one creators actively ask to work with.',
+      author: 'Yara Halabi',
+      role: 'Co-founder',
+    },
+    placeholder: true,
+  },
+
+  {
+    slug: 'kantara-b2b-abm',
+    client: 'Kantara',
+    industry: 'B2B SaaS',
+    services: ['ABM & B2B Demand Generation', 'Public Relations & Earned Media', 'CRM & Marketing Operations'],
+    cover: '#7a3cff',
+    problem:
+      'Kantara had product-market fit and a $4M run rate, but pipeline was inconsistent. Sales cycle was 11 months and win rate was 18%.',
+    strategy:
+      'Built a tier-1 ABM program across 180 named accounts using Demandbase + 6sense, with executive visibility program, integrated nurture in HubSpot, and a category narrative that named the problem Kantara solves.',
+    result:
+      'Pipeline +$24M in 9 months. Win rate up to 31%. Sales cycle shortened by 4.2 months. Two named accounts closed at >$1M ACV each.',
+    metrics: [
+      { label: 'Pipeline', value: '+$24M' },
+      { label: 'Win rate', value: '18% → 31%' },
+      { label: 'Sales cycle', value: '↓ 4.2 mo' },
+    ],
+    duration: '9 months',
+    testimonial: {
+      quote: 'Our reps now walk into deals where the buyer already has a thesis. That is the ABM game.',
+      author: 'Priya Iyer',
+      role: 'VP Sales',
+    },
+    placeholder: true,
+  },
+
+  {
+    slug: 'soukly-marketplace-affiliate',
+    client: 'Soukly',
+    industry: 'Marketplace',
+    services: ['Affiliate, Partnership & Referral Programs', 'Performance Marketing', 'Lifecycle, Email & SMS Automation'],
+    cover: '#3ddc97',
+    problem:
+      'Soukly was burning paid social to acquire two-sided marketplace supply and demand. Unit economics were negative on the supply side.',
+    strategy:
+      'Built a partner program with vetted creators and category blogs, a customer referral program with tiered incentives, and switched the supply acquisition to a referral-led motion.',
+    result:
+      'Affiliate and referral revenue grew to 24% of GMV in 14 months. Supply-side CAC dropped from $84 to $31. Partner-driven LTV up 38%.',
+    metrics: [
+      { label: 'Partner-driven GMV', value: '24%' },
+      { label: 'Supply CAC', value: '$84 → $31' },
+      { label: 'Partner LTV', value: '+38%' },
+    ],
+    duration: '14 months',
+    placeholder: true,
+  },
+
+  {
+    slug: 'pivot-labs-mena-entry',
+    client: 'Pivot Labs',
+    industry: 'B2B SaaS',
+    services: ['Internationalization & Market Entry', 'Brand & Identity', 'Public Relations & Earned Media'],
+    cover: '#4f7cff',
+    problem:
+      'A US B2B SaaS at $18M ARR wanted to enter MENA but had no in-market presence, no Arabic-language site, and no idea how to navigate the regulatory landscape.',
+    strategy:
+      'Sized the market with 220 buyer interviews across UAE, KSA, and Egypt. Localized the product, site, and sales narrative for Arabic. Built a regional PR program and a partner channel with two system integrators.',
+    result:
+      '$4.8M ARR in the first year. Three tier-1 logos in the first two quarters. The regional partner program now drives 38% of MENA pipeline.',
+    metrics: [
+      { label: 'MENA ARR, yr 1', value: '$4.8M' },
+      { label: 'Tier-1 logos', value: '3 in Q1–Q2' },
+      { label: 'Partner-driven pipeline', value: '38%' },
+    ],
+    duration: '12 months',
+    placeholder: true,
+  },
+
+  {
+    slug: 'mosaic-research-positioning',
+    client: 'Mosaic',
+    industry: 'CPG',
+    services: ['Market Research & Category Design', 'Brand & Identity', 'Content & Editorial Engine'],
+    cover: '#0e0e10',
+    problem:
+      'Mosaic was launching a new beverage category in MENA and needed to know if the TAM justified a $40M Series A ask. Existing data was thin and consumer language was unmapped.',
+    strategy:
+      'Ran a 1,800-respondent segmentation + sizing study across 6 MENA markets. Mapped consumer language and pricing sensitivity. Built a category narrative and visual identity system grounded in the research.',
+    result:
+      'Identified an $80M TAM with a clearly-defined beachhead segment. Pricing tested at +18% above initial guess. Series A oversubscribed at $52M.',
+    metrics: [
+      { label: 'TAM identified', value: '+$80M' },
+      { label: 'Pricing sensitivity', value: '+18%' },
+      { label: 'Series A raised', value: '$52M' },
+    ],
+    duration: '4 months',
     placeholder: true,
   },
 ];

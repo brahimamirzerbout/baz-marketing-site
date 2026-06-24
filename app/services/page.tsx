@@ -8,15 +8,16 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
   title: 'Services',
-  description: 'Nine senior-team services across owned, earned, paid, and data channels — strategy, execution, and reporting in one system.',
+  description: 'Eighteen senior-team services across every recognized agency discipline — strategy, execution, and reporting in one system.',
   path: '/services',
 });
 
 const pillars = [
-  { id: 'owned', name: 'Owned', desc: 'Website, content, social, listings.' },
-  { id: 'earned', name: 'Earned', desc: 'SEO, authority, citations.' },
-  { id: 'paid', name: 'Paid', desc: 'Search, social, programmatic.' },
-  { id: 'data', name: 'Data', desc: 'Tracking, attribution, reporting.' },
+  { id: 'owned', name: 'Owned', desc: 'Website, content, social, brand, lifecycle.' },
+  { id: 'earned', name: 'Earned', desc: 'SEO, authority, citations, PR, creators.' },
+  { id: 'paid', name: 'Paid', desc: 'Search, social, programmatic, partnerships.' },
+  { id: 'data', name: 'Data', desc: 'Tracking, attribution, CRO, research.' },
+  { id: 'platform', name: 'Platform', desc: 'CRM, MOPS, and global market entry.' },
 ];
 
 export default function ServicesIndexPage() {
@@ -27,20 +28,21 @@ export default function ServicesIndexPage() {
         <div className="max-w-4xl">
           <Eyebrow>Services</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
-            Nine services. One senior team.
+            Eighteen services. One senior team.
           </h1>
           <p className="mt-6 text-lg md:text-2xl text-ink-600 leading-relaxed max-w-3xl">
-            Strategy, execution, and reporting in one tightly integrated system. Pick a single
-            service or engage BAZ across the full growth stack.
+            Every type of marketing agency — strategy, performance, SEO, content, brand, CRO, lifecycle,
+            CRM, analytics, AI search, social, influencer, video, partnerships, ABM, PR, research, and
+            internationalization. Pick one service or engage BAZ across the full stack.
           </p>
         </div>
       </Section>
 
       {pillars.map((p) => {
-        const list = services.filter((s) => s.pillar === p.id || (p.id === 'owned' && s.pillar === 'platform'));
+        const list = services.filter((s) => s.pillar === p.id);
         if (list.length === 0) return null;
         return (
-          <section key={p.id} id={p.id} className="py-12 md:py-16 bg-white border-t border-ink-100">
+          <section key={p.id} id={p.id} className="py-12 md:py-16 bg-paper-50 border-t border-ink-100">
             <div className="container mx-auto">
               <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
                 <div>
