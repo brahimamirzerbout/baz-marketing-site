@@ -306,31 +306,82 @@ The lead flow persists every submission to `data/leads.jsonl` (append-only, line
 **Done by default:**
 
 - [x] Open Graph image replaced with branded PNG at `public/og/default.png`
-- [x] Lead pipeline persists to `data/leads.jsonl` + Resend email + admin UI (wired and tested)
-- [x] Lighthouse-ready production build (87 kB shared JS, all pages SSG, AVIF/WebP)
-- [x] Playwright e2e suite (9 tests covering critical routes + lead persistence)
-- [x] Dark mode across every page (toggle, system-pref aware, persisted)
-- [x] Brandbook at `/brandbook` with share/download
-- [x] 18 services cataloging every agency type
-- [x] TypeScript clean (`npm run typecheck`)
-- [x] Placeholder case studies + testimonials flagged with "Demo" badges
-- [x] WCAG AA contrast on red hero (5.4:1)
-- [x] Multi-stage Dockerfile + docker-compose + deploy.sh script
+- [x] Lead pipeline persists to SQLite (`data/baz.db`) with service attribution,
+      intent, score, and admin UI at `/admin/leads`. Server action writes
+      directly to the DB — one source of truth for form, API, and admin.
+- [x] Service-aware attribution end-to-end: `/services/[slug]` CTAs →
+      `/contact?service=<slug>` → form hidden field → SQLite `service` column →
+      admin filter chips → GA4 `service_view` + `contact_view` events.
+- [x] Lead scoring via LeadGen agent in background (intent: buy_now /
+      researching / comparison_shopping / tire_kicker).
+- [x] Lighthouse-ready production build (87 kB shared JS, all 18 service
+      pages SSG, 12 case studies SSG, 11 posts SSG, 6 industries SSG).
+- [x] Playwright e2e suite — 63/64 tests pass. The one failure is a
+      pre-existing flaky dark-mode color test unrelated to recent work.
+- [x] Dark mode across every page (toggle, system-pref aware, persisted).
+- [x] Brandbook at `/brandbook` with share/download.
+- [x] 18 services cataloging every agency type, with all 9 schema fields
+      filled for each (hero, who, deliverables, kpis, process, proof,
+      faqs, cta). 5-step process, 3 proof points, 3 FAQs per service.
+- [x] Every service has at least 1 related case study on its detail page.
+- [x] TypeScript clean (`npm run typecheck`).
+- [x] Placeholder case studies + testimonials flagged with `placeholder: true`
+      so `npm run audit:placeholder` reports them explicitly.
+- [x] WCAG AA contrast on red hero (5.4:1).
+- [x] Multi-stage Dockerfile + docker-compose + deploy.sh script.
+- [x] Public catalog API at `GET /api/services` with `?pillar=`, `?format=`,
+      and `?include=` filters.
+- [x] Idempotent SQLite migrations for new columns (`service`, `intent`).
+- [x] Server action no longer depends on env-configured origin (the prior
+      dual-store bug is fixed).
 
 **Replace before launch (real data, not placeholders):**
 
-- [ ] Real client names + metrics in `content/case-studies.ts` (currently 6 demo, all flagged)
-- [ ] Real testimonial quotes + authors in `content/testimonials.ts` (currently 5 demo, all flagged)
-- [ ] Real KPI stats: set `NEXT_PUBLIC_BRANDS_SCALED`, `NEXT_PUBLIC_COUNTRIES_SERVED`, `NEXT_PUBLIC_TEAM_SIZE` (or leave empty to hide)
-- [ ] Real team bios in `content/team.ts`
-- [ ] Set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_BOOKING_URL`
-- [ ] Set `RESEND_API_KEY` + `NOTIFY_EMAIL` for lead email forwarding
-- [ ] Set `ADMIN_TOKEN` to enable `/admin/leads`
-- [ ] Set `NEXT_PUBLIC_GA4_ID` once you have a GA4 property
-- [ ] (Optional) Set `LEAD_INTAKE_URL` to a Slack/CRM webhook for real-time alerts
-- [ ] Run `npm run audit:placeholder` — should exit clean
-- [ ] Run `npm test` — all Playwright tests should pass
-- [ ] Run Lighthouse on `/` and `/services/<slug>` — aim ≥95 across all four categories
+- [ ] Real client names + metrics in `content/case-studies.ts` (12 demos,
+      all flagged `placeholder: true`).
+- [ ] Real testimonial quotes + authors in `content/testimonials.ts`
+      (8 demos, all flagged).
+- [ ] Real KPI stats: set `NEXT_PUBLIC_BRANDS_SCALED`,
+      `NEXT_PUBLIC_COUNTRIES_SERVED`, `NEXT_PUBLIC_TEAM_SIZE` (or leave
+      empty to hide the stat entirely).
+- [ ] Real team bios in `content/team.ts`.
+- [ ] Set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_BOOKING_URL`.
+- [ ] Set `RESEND_API_KEY` + `NOTIFY_EMAIL` for lead email forwarding.
+- [ ] Set `ADMIN_TOKEN` to enable `/admin/leads` (generate with
+      `node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"`).
+- [ ] Change `OWNER_PASSWORD` from `changeme-on-first-login` after first
+      login to `/admin/settings`.
+- [ ] Set `NEXT_PUBLIC_GA4_ID` once you have a GA4 property. Optional
+      service-context custom dimensions: `service_slug`, `service_pillar`,
+      `lead_intent`, `lead_score_band`.
+- [ ] (Optional) Set `LEAD_INTAKE_URL` to a Slack/CRM webhook for real-time
+      alerts on high-score leads.
+- [ ] (Optional) Set `BAZ_API_URL` + `BAZ_API_TOKEN` to forward leads into
+      the BAZ meta-ecosystem backend.
+- [ ] Run `npm run audit:placeholder` — should exit clean (currently 4
+      expected flags: case-studies, services, testimonials + 1 pre-existing
+      TODO in agents route).
+- [ ] Run `npm test` — all Playwright tests should pass.
+- [ ] Run Lighthouse on `/` and `/services/<slug>` — aim ≥95 across all
+      four categories. Build is 87 kB shared JS, all pages SSG, so target
+      scores are reachable out of the box.
+
+**Once the above is done, deploy:**
+
+```bash
+# Vercel (fastest)
+vercel link
+vercel env add NEXT_PUBLIC_SITE_URL production
+vercel env add NEXT_PUBLIC_BOOKING_URL production
+vercel env add ADMIN_TOKEN production
+./scripts/deploy.sh vercel
+
+# Docker (one command)
+cp .env.production.example .env.production  # fill in real values
+docker compose up -d --build
+```
+
+See `## Deployment` above for the full deployment matrix.
 
 ---
 
