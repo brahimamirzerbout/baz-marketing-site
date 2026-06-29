@@ -1,4 +1,4 @@
-import { Hero, PillarGrid, PerformanceFeature, ServicesOverview, HowWeWork, KpiBand, Framework, CaseStudies, LogoMarquee, Testimonials, InsightsPreview, FinalCta } from '@/components/sections';
+import { Hero, PillarGrid, PerformanceFeature, ServicesOverview, HowWeWork, KpiBand, Framework, CaseStudies, LogoMarquee, Testimonials, InsightsPreview, FinalCta, MarketingHubBanner, ProofNumbers } from '@/components/sections';
 import { buildMetadata, jsonLd, professionalServiceLd } from '@/lib/seo';
 
 export const metadata = buildMetadata({
@@ -11,6 +11,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <MarketingHubBanner />
+      <ProofNumbers />
       <LogoMarquee />
       <PerformanceFeature />
       <PillarGrid />

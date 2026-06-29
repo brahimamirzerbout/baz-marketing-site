@@ -14,7 +14,8 @@ const nav = [
   { href: '/case-studies', label: 'Case studies' },
   { href: '/industries', label: 'Industries' },
   { href: '/insights', label: 'Insights' },
-  { href: '/brandbook', label: 'Brandbook' },
+  { href: '/loop', label: 'The Loop' },
+  { href: '/pulse', label: 'Live Pulse' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/become-an-operator', label: 'Operators' },
   { href: '/about', label: 'About' },
@@ -57,9 +58,18 @@ export function Header() {
           >
             B
           </span>
-          <span className="font-display font-bold text-xl tracking-[-0.02em]">
-            BAZ
-            <span className="ml-1.5 text-ink-400 font-normal text-sm hidden sm:inline">Marketing Agency</span>
+          <span className="font-display font-bold text-xl tracking-[-0.02em] whitespace-nowrap flex flex-col leading-none">
+            <span className="flex items-baseline gap-1.5">
+              <span>BAZ</span>
+              <span
+                aria-hidden
+                className="font-serif italic font-light text-[15px] text-accent -rotate-3 origin-bottom-left translate-y-[-1px] tracking-tight"
+                style={{ fontFamily: '"Cormorant Garamond", "Playfair Display", Georgia, serif' }}
+              >
+                ventures
+              </span>
+            </span>
+            <span className="text-ink-400 font-normal text-[10px] tracking-[0.18em] uppercase mt-1">Marketing Agency</span>
           </span>
         </Link>
 
@@ -123,12 +133,12 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block py-3 text-2xl font-display tracking-[-0.02em] border-b border-ink-100"
+              className="block py-3 text-2xl font-display tracking-[-0.02em] border-b border-ink-100 dark:border-paper-200"
             >
               {item.label}
             </Link>
           ))}
-          <details className="py-3 border-b border-ink-100">
+          <details className="py-3 border-b border-ink-100 dark:border-paper-200">
             <summary className="text-2xl font-display tracking-[-0.02em] list-none cursor-pointer flex items-center justify-between">
               Services <span aria-hidden className="text-ink-400 text-base">+</span>
             </summary>

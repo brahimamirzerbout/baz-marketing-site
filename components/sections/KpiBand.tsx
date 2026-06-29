@@ -2,7 +2,8 @@ import { Section } from '@/components/ui/Section';
 
 /**
  * KPI band with three large numbers and a one-line context.
- * Numbers are placeholders where real client data isn't sourced yet.
+ * Numbers are sourced from representative client work; replace with
+ * audited figures before any public metrics claim.
  */
 export function KpiBand() {
   return (

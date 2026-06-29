@@ -5,9 +5,9 @@ type Tone = 'paper' | 'white' | 'ink' | 'accent';
 type Size = 'sm' | 'md' | 'lg' | 'xl';
 
 const tones: Record<Tone, string> = {
-  paper: 'bg-paper text-ink-900',
-  white: 'bg-paper-50 text-ink-900',
-  ink: 'bg-ink-900 text-paper',
+  paper: 'bg-paper text-ink-900 dark:bg-ink-900 dark:text-paper',
+  white: 'bg-paper-50 text-ink-900 dark:bg-ink-950 dark:text-paper',
+  ink: 'bg-ink-900 text-paper dark:bg-paper dark:text-ink-900',
   accent: 'bg-accent text-white',
 };
 
@@ -72,7 +72,7 @@ export function SectionHeading({
   return (
     <Tag
       className={cn(
-        'font-display text-display-lg font-medium tracking-[-0.03em] leading-[1.05] max-w-3xl',
+        'font-display text-display-lg font-medium tracking-[-0.03em] leading-[1.05] max-w-3xl text-ink-900 dark:text-paper',
         className
       )}
     >
@@ -89,7 +89,7 @@ export function SectionLede({
   className?: string;
 }) {
   return (
-    <p className={cn('text-lg md:text-xl text-ink-600 max-w-2xl mt-5 leading-relaxed', className)}>
+    <p className={cn('text-lg md:text-xl text-ink-600 dark:text-paper-300 max-w-2xl mt-5 leading-relaxed', className)}>
       {children}
     </p>
   );

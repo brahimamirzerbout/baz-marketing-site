@@ -24,7 +24,7 @@ export function LogoMarquee() {
   if (logos.length === 0) return null;
   const doubled = [...logos, ...logos];
   return (
-    <section className="bg-paper-50 py-10 border-y border-ink-100 marquee-mask overflow-hidden">
+    <section className="bg-paper-50 py-10 border-y border-ink-100 dark:border-paper-200 marquee-mask overflow-hidden">
       <div className="flex animate-marquee gap-12 whitespace-nowrap">
         {doubled.map((l, i) => (
           <span

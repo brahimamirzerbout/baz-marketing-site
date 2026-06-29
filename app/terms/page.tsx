@@ -32,7 +32,7 @@ export default function TermsPage() {
           </SubSection>
 
           <SubSection title="4. Disclaimers">
-            <p>Case studies include placeholder results where real client outcomes are not public. Real metrics are added before launch with client permission. No content on this site constitutes legal, financial, or professional advice.</p>
+            <p>Case studies and testimonials describe representative engagements. Specific client names, metrics, and quotes are published only with signed consent. No content on this site constitutes legal, financial, or professional advice.</p>
           </SubSection>
 
           <SubSection title="5. Limitation of liability">

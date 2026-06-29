@@ -41,7 +41,7 @@ export function ServicesOverview() {
             <Link
               key={s.slug}
               href={`/services/${s.slug}`}
-              className="reveal group block bg-paper-50 rounded-2xl p-6 md:p-7 border border-ink-100 hover:border-ink-900 hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
+              className="reveal group block bg-paper-50 rounded-2xl p-6 md:p-7 border border-ink-100 dark:border-paper-200 hover:border-ink-900 dark:hover:border-paper-50 hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className="flex items-center justify-between mb-8">

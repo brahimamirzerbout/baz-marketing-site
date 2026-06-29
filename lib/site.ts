@@ -11,19 +11,34 @@ export const site = {
   phone: '',
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || '',
   // Stats for the trust strip. Read from env when available, otherwise
-  // null. The homepage hides a stat entirely when its value is null —
-  // we'd rather show nothing than a fabricated number.
+  // fall back to dev-only defaults. The homepage hides a stat entirely
+  // when its value is null — we'd rather show nothing than a fabricated
+  // number. Set the env vars in .env.local for production.
   stats: {
-    brandsScaled: process.env.NEXT_PUBLIC_BRANDS_SCALED || null,
-    countriesServed: process.env.NEXT_PUBLIC_COUNTRIES_SERVED || null,
-    seniorOnly: process.env.NEXT_PUBLIC_SENIOR_ONLY || null,
-    teamSize: process.env.NEXT_PUBLIC_TEAM_SIZE || null,
+    brandsScaled:
+      process.env.NEXT_PUBLIC_BRANDS_SCALED ||
+      (process.env.NODE_ENV !== 'production' ? '240+' : null),
+    countriesServed:
+      process.env.NEXT_PUBLIC_COUNTRIES_SERVED ||
+      (process.env.NODE_ENV !== 'production' ? '12' : null),
+    seniorOnly:
+      process.env.NEXT_PUBLIC_SENIOR_ONLY ||
+      (process.env.NODE_ENV !== 'production' ? '100%' : null),
+    teamSize:
+      process.env.NEXT_PUBLIC_TEAM_SIZE ||
+      (process.env.NODE_ENV !== 'production' ? '14' : null),
   },
   social: {
     linkedin: 'https://www.linkedin.com/company/baz-agency',
     twitter: 'https://twitter.com/bazagency',
     github: 'https://github.com/baz-agency',
   },
+  // Partner tools BAZ actually uses. Env-overridable for white-label
+  // deployments. Default is the public BAZ stack.
+  stack: (process.env.NEXT_PUBLIC_STACK || 'Ollama,GitHub,Vercel,Linear,Stripe,Resend')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean),
 
   /**
    * What "Book a growth call" buttons should link to.

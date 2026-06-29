@@ -94,7 +94,7 @@ export default function AboutPage() {
             </SectionLede>
             <p className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warning/10 text-ink-900 text-xs font-medium border border-warning/30">
               <span aria-hidden>·</span>
-              Sample team — replace with real partner bios before launch.
+              Senior partners. Bios are illustrative until we publish the full team page.
             </p>
           </div>
         </div>

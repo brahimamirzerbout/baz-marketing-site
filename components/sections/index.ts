@@ -8,6 +8,8 @@ export { Testimonials } from './Testimonials';
 export { InsightsPreview } from './InsightsPreview';
 export { FinalCta } from './FinalCta';
 export { LogoMarquee } from './LogoMarquee';
+export { MarketingHubBanner } from './MarketingHubBanner';
+export { ProofNumbers } from './ProofNumbers';
 export { Breadcrumb } from './Breadcrumb';
 export { StatRow } from './StatRow';
 export { PillarGrid } from './PillarGrid';

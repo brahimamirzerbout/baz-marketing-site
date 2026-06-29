@@ -40,6 +40,8 @@ export function Footer() {
               <li><Link href="/industries" className="hover:text-white">Industries</Link></li>
               <li><Link href="/insights" className="hover:text-white">Insights</Link></li>
               <li><Link href="/brandbook" className="hover:text-white">Brandbook</Link></li>
+              <li><Link href="/loop" className="hover:text-white">The Loop</Link></li>
+              <li><Link href="/pulse" className="hover:text-white">Live Pulse</Link></li>
               <li><Link href="/become-an-operator" className="hover:text-white">Become an Operator</Link></li>
               <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
             </ul>
@@ -73,6 +75,20 @@ export function Footer() {
               </li>
               <li>
                 <a href="https://twitter.com/bazagency" target="_blank" rel="noopener noreferrer" className="hover:text-white">Twitter / X</a>
+              </li>
+            </ul>
+          </div>
+        <div className="md:col-span-2">
+            <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/60 mb-4">Build</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a href={site.social.github} target="_blank" rel="noopener noreferrer" className="hover:text-white">View source →</a>
+              </li>
+              <li>
+                <Link href="/feed.xml" className="hover:text-white">RSS</Link>
+              </li>
+              <li>
+                <Link href="/sitemap.xml" className="hover:text-white">Sitemap</Link>
               </li>
             </ul>
           </div>

@@ -19,13 +19,13 @@ export function Hero() {
           </p>
 
           <h1 className="font-display text-display-2xl font-medium text-ink-900 reveal">
-            Make growth <em className="not-italic text-gradient">predictable.</em>
+            Add <span className="not-italic text-gradient">$200K+</span> to pipeline in 90 days — or pay nothing for month four.
           </h1>
 
           <p className="mt-6 md:mt-8 text-lg md:text-2xl text-ink-600 max-w-3xl leading-relaxed reveal">
-            BAZ is a <span className="font-medium text-ink-900">senior-only growth partner</span> that builds and manages your{' '}
-            <span className="font-medium text-ink-900">owned, earned, paid, and data</span> channels. One team. One plan.
-            Every metric tied to revenue.
+            BAZ is a <span className="font-medium text-ink-900">senior-only growth partner</span> that runs your
+            <span className="font-medium text-ink-900"> owned, earned, paid, and data</span> channels on the BAZ Marketing Hub —
+            an autonomous system that scores leads, runs sales cadences, and reports attribution without a junior in sight.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3 reveal">
@@ -43,10 +43,26 @@ export function Hero() {
             </Button>
           </div>
 
+          {/* Outcome strip — 4 quantified, specific promises */}
+          <div className="mt-10 reveal grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 border-t border-ink-100 dark:border-paper-200 pt-8">
+            {[
+              { v: '$200K+',  l: 'Pipeline in 90 days',  sub: 'or month 4 free' },
+              { v: '4×',      l: 'Pipeline coverage',    sub: '≥ 3× target' },
+              { v: '60s',     l: 'Loop tick',             sub: 'score → route → close' },
+              { v: '100%',    l: 'Senior team',           sub: 'no juniors, ever' },
+            ].map((s) => (
+              <div key={s.l}>
+                <p className="font-display text-2xl md:text-3xl font-medium tracking-[-0.02em]">{s.v}</p>
+                <p className="mt-1 text-sm font-medium text-ink-900">{s.l}</p>
+                <p className="text-xs text-ink-500">{s.sub}</p>
+              </div>
+            ))}
+          </div>
+
           {/* Trust strip — partner tools BAZ actually uses (env-overridable) */}
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-ink-500 reveal">
             <span className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400">Stack</span>
-            {['Ollama', 'GitHub', 'Vercel', 'Linear', 'Stripe', 'Resend'].map((name, i, arr) => (
+            {site.stack.map((name, i, arr) => (
               <span key={name} className="flex items-center gap-x-8">
                 <span className="font-display font-semibold text-ink-700">{name}</span>
                 {i < arr.length - 1 && <span className="opacity-30">·</span>}
@@ -65,7 +81,7 @@ export function Hero() {
           ].filter((s) => s.v != null && s.v !== '');
           if (stats.length === 0) return null;
           return (
-            <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink-100 rounded-2xl overflow-hidden border border-ink-100 reveal">
+            <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink-100 dark:bg-paper-200 rounded-2xl overflow-hidden border border-ink-100 dark:border-paper-200 reveal">
               {stats.map((s) => (
                 <div key={s.l} className="bg-paper p-6 md:p-8">
                   <p className="font-display text-3xl md:text-5xl font-medium tracking-[-0.03em]">{s.v}</p>

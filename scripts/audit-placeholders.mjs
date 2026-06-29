@@ -29,7 +29,10 @@ const PATTERNS = [
   { name: 'lorem', re: /\b(lorem ipsum|ipsum dolor)\b/i },
 ];
 
-const PLACEHOLDER_FLAG = /placeholder:\s*true/;
+// Match `placeholder: true` only when it is an object field (preceded by
+// whitespace and followed by `,` or `}`). Avoids matching backtick-quoted
+// prose inside doc comments.
+const PLACEHOLDER_FLAG = /^\s*placeholder:\s*true\s*[,\}]/m;
 
 const findings = [];
 
@@ -52,7 +55,16 @@ function scan(p) {
     }
   });
   if (PLACEHOLDER_FLAG.test(txt)) {
-    findings.push({ file: p, line: 0, kind: 'placeholder-true-flag', text: 'placeholder: true' });
+    // Count every occurrence in the file (not just "is the file flagged?").
+    const lines = txt.split(/\n/);
+    let count = 0;
+    for (const line of lines) if (PLACEHOLDER_FLAG.test(line)) count++;
+    findings.push({
+      file: p,
+      line: 0,
+      kind: 'placeholder-true-flag',
+      text: `placeholder: true (\u00d7${count})`,
+    });
   }
 }
 

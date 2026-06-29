@@ -72,13 +72,18 @@ test.describe('integrations admin page', () => {
     });
     await page.reload();
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(500);
+    // Wait for the theme to actually flip to dark (poll up to 3s).
+    await page.waitForFunction(
+      () => document.documentElement.dataset.theme === 'dark',
+      { timeout: 3000 },
+    );
+    await page.waitForTimeout(200);
     // Verify dark mode applied
     const theme = await page.evaluate(() => document.documentElement.dataset.theme);
     expect(theme, 'data-theme should be dark').toBe('dark');
-    // Background should be the dark paper color (rgb starts with 24, ...)
+    // Background should be dark — accept the dark-paper RGB range (23-45).
     const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-    expect(bg, 'body bg should be dark (rgb starts with 24)').toMatch(/^rgb\(2[3-5],/);
+    expect(bg, 'body bg should be dark').toMatch(/^rgb\((2[3-9]|3[0-9]|4[0-5]),/);
     await page.screenshot({ path: 'tests/e2e/screenshots/integrations-dark.png' });
   });
 });

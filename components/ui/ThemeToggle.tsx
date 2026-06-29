@@ -24,6 +24,9 @@ export function ThemeToggle() {
     setTheme(next);
     document.documentElement.dataset.theme = next;
     localStorage.setItem('baz:theme', next);
+    // Mirror to a cookie so the server can apply the same theme on next render.
+    // Max-age: 1 year. path=/ so every route sees it.
+    document.cookie = `baz:theme=${next}; path=/; max-age=31536000; SameSite=Lax`;
   };
 
   return (

@@ -12,7 +12,7 @@ export function StatRow({
   const labelColor = tone === 'ink' ? 'text-paper-300' : 'text-ink-500';
   const subColor = tone === 'ink' ? 'text-paper-400' : 'text-ink-600';
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink-100 rounded-2xl overflow-hidden border border-ink-100">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink-100 dark:bg-paper-200 rounded-2xl overflow-hidden border border-ink-100 dark:border-paper-200 dark:border-paper-200 dark:border-paper-200">
       {items.map((s) => (
         <div key={s.label} className={tone === 'ink' ? 'bg-ink-900' : 'bg-paper'}>
           <div className="p-5 md:p-6">

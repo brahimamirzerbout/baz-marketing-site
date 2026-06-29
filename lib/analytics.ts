@@ -33,6 +33,7 @@ export type EventName =
   | 'outbound_link'
   | 'search'
   | 'ai_demo_run'
+  | 'ai_demo_capture'
   | 'canva_export_png'
   | 'canva_export_svg'
   | 'analytics_attribution_export'

@@ -1,6 +1,6 @@
 export function Faq({ items }: { items: { q: string; a: string }[] }) {
   return (
-    <div className="grid gap-px bg-ink-100 rounded-2xl overflow-hidden border border-ink-100">
+    <div className="grid gap-px bg-ink-100 dark:bg-paper-200 rounded-2xl overflow-hidden border border-ink-100 dark:border-paper-200 dark:border-paper-200 dark:border-paper-200">
       {items.map((item, i) => (
         <details
           key={i}
@@ -12,7 +12,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
             </span>
             <span
               aria-hidden
-              className="shrink-0 mt-1 grid place-items-center w-9 h-9 rounded-full border border-ink-200 group-open:bg-ink-900 group-open:text-paper group-open:border-ink-900 transition-colors text-ink-500"
+              className="shrink-0 mt-1 grid place-items-center w-9 h-9 rounded-full border border-ink-200 dark:border-paper-300 group-open:bg-ink-900 group-open:text-paper group-open:border-ink-900 transition-colors text-ink-500"
             >
               <span className="relative w-3.5 h-3.5 block">
                 <span className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-current" />

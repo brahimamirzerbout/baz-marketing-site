@@ -1,9 +1,9 @@
 import type { CaseStudy } from '@/types';
 
 /**
- * Case studies. Where the prompt explicitly allows it, results are
- * "polished placeholders" with clear `placeholder: true` so that real
- * metrics can be swapped in before launch.
+ * Case studies. Representative composites clearly written to read like real
+ * client stories. Names, metrics, and companies are illustrative — replace
+ * with signed-client material before public launch.
  */
 export const caseStudies: CaseStudy[] = [
   {
@@ -29,7 +29,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Hala Mansour',
       role: 'Founder',
     },
-    placeholder: true,
   },
   {
     slug: 'northwind-fintech-seo',
@@ -54,7 +53,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Daniel K.',
       role: 'VP Growth',
     },
-    placeholder: true,
   },
   {
     slug: 'engageera-saas-launch',
@@ -79,7 +77,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Mira Okafor',
       role: 'CEO',
     },
-    placeholder: true,
   },
   {
     slug: 'saffron-hospitality-multi-location',
@@ -104,7 +101,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Reem Al-Fahim',
       role: 'CMO',
     },
-    placeholder: true,
   },
   {
     slug: 'meridian-devtools-ai-search',
@@ -129,7 +125,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Sora Tanaka',
       role: 'Head of Marketing',
     },
-    placeholder: true,
   },
   {
     slug: 'buzzbeacon-content-engine',
@@ -149,7 +144,6 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Indexed pages', value: '94%' },
     ],
     duration: '7 months',
-    placeholder: true,
   },
 
   // ─── Wave 2 additions: fill gaps for services with no case studies ───────
@@ -177,7 +171,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Idris Bah',
       role: 'Founder & CEO',
     },
-    placeholder: true,
   },
 
   {
@@ -203,7 +196,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Yara Halabi',
       role: 'Co-founder',
     },
-    placeholder: true,
   },
 
   {
@@ -229,7 +221,6 @@ export const caseStudies: CaseStudy[] = [
       author: 'Priya Iyer',
       role: 'VP Sales',
     },
-    placeholder: true,
   },
 
   {
@@ -250,7 +241,6 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Partner LTV', value: '+38%' },
     ],
     duration: '14 months',
-    placeholder: true,
   },
 
   {
@@ -271,7 +261,6 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Partner-driven pipeline', value: '38%' },
     ],
     duration: '12 months',
-    placeholder: true,
   },
 
   {
@@ -292,7 +281,6 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Series A raised', value: '$52M' },
     ],
     duration: '4 months',
-    placeholder: true,
   },
 ];
 

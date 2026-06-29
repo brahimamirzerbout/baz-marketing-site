@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/cn';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { track } from '@/lib/analytics';
+import Link from 'next/link';
 
 type Agent = 'leadgen' | 'content' | 'analytics' | 'general';
 
@@ -34,6 +35,13 @@ export function LiveAgentDemo() {
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<DemoResult | null>(null);
   const [history, setHistory] = useState<DemoResult[]>([]);
+  const [showCapture, setShowCapture] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [score, setScore] = useState<{ score: number; intent: string; action: string } | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submittedId, setSubmittedId] = useState<string | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
@@ -77,10 +85,43 @@ export function LiveAgentDemo() {
     setResult(out);
     setHistory((h) => [out!, ...h].slice(0, 5));
     setBusy(false);
+    if (history.length === 0) {
+      // Show the inline capture form the first time someone gets a result.
+      setTimeout(() => setShowCapture(true), 800);
+    }
+  };
+
+  const submitLead = async () => {
+    if (!email || submitting) return;
+    setSubmitting(true);
+    track('ai_demo_capture', { agent: active });
+    try {
+      const r = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name: name || 'Anonymous',
+          email,
+          company,
+          message: `Ran the ${active} agent on: "${prompt.slice(0, 200)}"`,
+          source: 'live_agent_demo',
+          service: active,
+          demoCompleted: true,
+          agentRuns: history.length + 1,
+        }),
+      });
+      const j = await r.json();
+      if (j.ok) {
+        setSubmittedId(j.id);
+        setScore({ score: j.score, intent: j.intent, action: j.action });
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <div className="rounded-3xl border border-ink-100 bg-paper overflow-hidden shadow-soft">
+    <div className="rounded-3xl border border-ink-100 dark:border-paper-200 bg-paper overflow-hidden shadow-soft">
       {/* Header bar (terminal-style) */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-ink-100 bg-paper-50">
         <div className="flex items-center gap-1.5">
@@ -142,7 +183,7 @@ export function LiveAgentDemo() {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               rows={3}
-              className="w-full rounded-xl bg-white border border-ink-200 px-4 py-3 text-[15px] focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 resize-y"
+              className="w-full rounded-xl bg-white border border-ink-200 dark:border-paper-300 px-4 py-3 text-[15px] focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 resize-y"
             />
           </label>
 
@@ -206,11 +247,99 @@ export function LiveAgentDemo() {
                     key={i}
                     type="button"
                     onClick={() => setResult(h)}
-                    className="text-xs px-3 py-1.5 rounded-full bg-white border border-ink-200 hover:border-ink-900 transition-colors"
+                    className="text-xs px-3 py-1.5 rounded-full bg-white border border-ink-200 dark:border-paper-300 hover:border-ink-900 dark:hover:border-paper-50 transition-colors"
                   >
                     {h.agent} · {h.ms}ms
                   </button>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Inline lead capture — appears after the first run */}
+          {showCapture && !submittedId && (
+            <div className="border-t border-ink-100 pt-5 mt-1" data-cursor="auto">
+              {score?.score !== undefined && false ? null : (
+                <div className="rounded-2xl border border-accent/30 bg-accent/[0.04] p-5">
+                  <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">
+                    Want us to actually run this?
+                  </p>
+                  <p className="text-sm text-ink-700 leading-relaxed mb-4">
+                    Drop your email. We&apos;ll score your prompt, route it to a senior, and send back a tailored plan within 24 hours.
+                  </p>
+                  <div className="grid sm:grid-cols-3 gap-2 mb-3">
+                    <input
+                      type="text"
+                      placeholder="Your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="rounded-lg bg-white border border-ink-200 dark:border-paper-300 px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30"
+                    />
+                    <input
+                      type="email"
+                      placeholder="you@company.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="rounded-lg bg-white border border-ink-200 dark:border-paper-300 px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 sm:col-span-2"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Company (optional)"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    className="w-full rounded-lg bg-white border border-ink-200 dark:border-paper-300 px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 mb-3"
+                  />
+                  <button
+                    type="button"
+                    onClick={submitLead}
+                    disabled={!email || submitting}
+                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 h-11 rounded-full bg-ink-900 hover:bg-ink-800 text-white text-sm font-medium transition-colors disabled:opacity-50"
+                  >
+                    {submitting ? 'Sending…' : 'Send my plan →'}
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* After submit: show the score + portal link */}
+          {submittedId && score && (
+            <div className="border-t border-ink-100 pt-5 mt-1">
+              <div className="rounded-2xl bg-ink-900 text-paper p-5 md:p-6">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-paper-400 mb-2">
+                      Your lead score
+                    </p>
+                    <p className="font-display text-5xl md:text-6xl font-medium tracking-[-0.03em]">
+                      {score.score}
+                    </p>
+                    <p className="text-sm text-paper-300 mt-1">
+                      out of 100 · intent: <span className="text-accent">{score.intent}</span>
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-paper-400 mb-2">
+                      Action
+                    </p>
+                    <p className="font-display text-lg font-medium">{score.action.replace(/_/g, ' ')}</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3 pt-4 border-t border-paper/15">
+                  <Link
+                    href={`/portal/${submittedId}`}
+                    className="inline-flex items-center gap-2 px-5 h-11 rounded-full bg-accent hover:bg-accent-600 text-white text-sm font-medium transition-colors"
+                  >
+                    See your routing plan →
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-5 h-11 rounded-full bg-transparent border border-paper/30 hover:bg-paper/10 text-paper text-sm font-medium transition-colors"
+                  >
+                    Skip to contact
+                  </Link>
+                </div>
               </div>
             </div>
           )}

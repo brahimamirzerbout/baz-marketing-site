@@ -3,6 +3,7 @@ import { complete, llmStatus } from '@/lib/llm';
 import { AGENTS, getAgent, type AgentId } from '@/lib/agents';
 import { readSessionFromCookies } from '@/lib/auth';
 import { getDb, id } from '@/lib/db';
+import { rateLimit, rateLimitHeaders } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -23,11 +24,16 @@ export async function GET() {
  * Body: { kind: AgentId, prompt: string, input?: string }
  *
  * Uses the agent's system prompt + the user prompt. Tracks usage in ai_jobs.
- * Auth optional — anonymous calls allowed but rate-limited (TODO).
+ * Auth optional — anonymous calls are allowed but rate-limited per IP.
  */
 export async function POST(req: NextRequest) {
   let body: { kind?: AgentId; prompt?: string; input?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 }); }
+
+  const guard = rateLimit(req, { key: 'agents-run', limit: 20, windowMs: 60_000 });
+  if (!guard.ok) {
+    return NextResponse.json({ ok: false, error: 'rate_limited' }, { status: 429, headers: rateLimitHeaders(guard) });
+  }
 
   const { user } = await readSessionFromCookies();
   const kind = body.kind || 'general';

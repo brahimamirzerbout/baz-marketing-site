@@ -50,7 +50,7 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
 
   if (success) {
     return (
-      <div className="bg-paper rounded-2xl border border-ink-100 p-8 md:p-10 text-center">
+      <div className="bg-paper dark:bg-paper-50 rounded-2xl border border-ink-100 dark:border-paper-200 p-8 md:p-10 text-center">
         <div className="inline-grid place-items-center w-12 h-12 rounded-full bg-accent text-white text-2xl mb-5">✓</div>
         <h3 className="font-display text-3xl md:text-4xl font-medium tracking-[-0.02em]">Got it.</h3>
         <p className="mt-3 text-ink-600 max-w-md mx-auto">
@@ -68,7 +68,7 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
   }
 
   return (
-    <form onSubmit={onSubmit} className="bg-paper rounded-2xl border border-ink-100 p-6 md:p-8 space-y-5" noValidate>
+    <form onSubmit={onSubmit} className="bg-paper dark:bg-paper-50 rounded-2xl border border-ink-100 dark:border-paper-200 p-6 md:p-8 space-y-5" noValidate>
       <input type="hidden" name="source" value={source} />
       {service && <input type="hidden" name="service" value={service} />}
       {/* Honeypot — hidden from users, catches naive bots */}
@@ -100,7 +100,7 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
           {budgets.map((b) => (
             <label key={b.v} className="cursor-pointer">
               <input type="radio" name="budget" value={b.v} className="peer sr-only" />
-              <span className="block px-3 py-2.5 rounded-xl border border-ink-200 text-sm text-center bg-white hover:border-ink-900 peer-checked:border-accent peer-checked:bg-accent-soft peer-checked:text-accent-700 transition-all">
+              <span className="block px-3 py-2.5 rounded-xl border border-ink-200 dark:border-paper-300 text-sm text-center bg-white dark:bg-paper-100 hover:border-ink-900 dark:hover:border-paper-200 peer-checked:border-accent peer-checked:bg-accent-soft peer-checked:text-accent-700 transition-all">
                 {b.l}
               </span>
             </label>
@@ -158,8 +158,8 @@ function Field({
 
 function inputCls(error?: string) {
   return cn(
-    'block w-full rounded-xl bg-white border px-4 h-12 text-[15px] text-ink-900 placeholder:text-ink-300 transition-colors',
+    'block w-full rounded-xl bg-white dark:bg-paper-100 border px-4 h-12 text-[15px] text-ink-900 dark:text-paper placeholder:text-ink-300 dark:placeholder:text-ink-500 transition-colors',
     'focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent',
-    error ? 'border-accent' : 'border-ink-200 hover:border-ink-300'
+    error ? 'border-accent' : 'border-ink-200 dark:border-paper-300 hover:border-ink-300 dark:hover:border-paper-200'
   );
 }

@@ -91,7 +91,7 @@ export function PerformanceFeature() {
       </div>
 
       {/* Proof strip */}
-      <div className="mt-16 pt-10 border-t border-ink-100">
+      <div className="mt-16 pt-10 border-t border-ink-100 dark:border-paper-200">
         <div className="flex flex-wrap items-baseline justify-between gap-4 mb-6">
           <Eyebrow>Selected outcomes</Eyebrow>
           <Link href="/case-studies" className="text-sm font-medium text-ink-900 hover:text-accent transition-colors">
@@ -128,7 +128,7 @@ export function PerformanceFeature() {
 
 function KpiBlock({ value, label, sub }: { value: string; label: string; sub: string }) {
   return (
-    <div className="bg-paper rounded-2xl border border-ink-100 p-5">
+    <div className="bg-paper rounded-2xl border border-ink-100 dark:border-paper-200 p-5">
       <p className="font-display text-3xl md:text-4xl font-medium tracking-[-0.03em] text-ink-900">
         {value}
       </p>
@@ -152,7 +152,7 @@ function FunnelStep({
   metric: string;
 }) {
   return (
-    <li className="bg-paper rounded-2xl border border-ink-100 p-5 md:p-6 flex flex-wrap items-start gap-4 md:gap-6 hover:border-ink-900 transition-colors">
+    <li className="bg-paper rounded-2xl border border-ink-100 dark:border-paper-200 p-5 md:p-6 flex flex-wrap items-start gap-4 md:gap-6 hover:border-ink-900 dark:hover:border-paper-50 transition-colors">
       <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent min-w-[80px]">
         {week}
       </span>
@@ -185,7 +185,7 @@ function ProofCard({
   return (
     <Link
       href={href}
-      className="block bg-paper rounded-2xl border border-ink-100 p-5 md:p-6 hover:border-ink-900 hover:-translate-y-0.5 hover:shadow-lift transition-all duration-200"
+      className="block bg-paper rounded-2xl border border-ink-100 dark:border-paper-200 p-5 md:p-6 hover:border-ink-900 dark:hover:border-paper-50 hover:-translate-y-0.5 hover:shadow-lift transition-all duration-200"
     >
       <div className="flex items-baseline justify-between mb-3">
         <div>

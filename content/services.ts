@@ -7,8 +7,8 @@ import type { Service } from '@/types';
  * systems → earned media & audience → scale plays.
  *
  * Each entry is the full payload that drives its service detail page.
- * `placeholder: true` flags content that uses representative copy without
- * real client metrics. Real metrics must replace these before public launch.
+ * Entries use representative copy without real client metrics. Real
+ * metrics must replace these before public launch.
  *
  * Each service follows the same operator-grade structure:
  *   - Pillar (owned / earned / paid / data / platform)

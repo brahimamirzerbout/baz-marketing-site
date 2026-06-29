@@ -11,19 +11,19 @@ type Size = 'sm' | 'md' | 'lg';
 const base =
   'inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 ' +
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
-  'focus-visible:ring-offset-paper disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
+  'focus-visible:ring-offset-paper dark:focus-visible:ring-offset-ink-900 disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-ink-900 text-paper hover:bg-ink-800 shadow-soft hover:shadow-lift hover:-translate-y-0.5',
+    'bg-ink-900 text-paper hover:bg-ink-800 dark:bg-paper dark:text-ink-900 dark:hover:bg-paper-50 shadow-soft hover:shadow-lift hover:-translate-y-0.5',
   secondary:
     'bg-accent text-white hover:bg-accent-600 shadow-soft hover:shadow-lift hover:-translate-y-0.5',
   ghost:
-    'bg-transparent text-ink-900 hover:bg-ink-100',
+    'bg-transparent text-ink-900 hover:bg-ink-100 dark:text-paper dark:hover:bg-paper-100',
   outline:
-    'bg-transparent text-ink-900 border border-ink-200 hover:border-ink-900 hover:bg-paper',
+    'bg-transparent text-ink-900 border border-ink-200 hover:border-ink-900 hover:bg-paper dark:text-paper dark:border-paper-300 dark:hover:border-paper-50 dark:hover:bg-paper-100',
   soft:
-    'bg-paper-300 text-ink-900 hover:bg-paper-400 border border-paper-400',
+    'bg-paper-300 text-ink-900 hover:bg-paper-400 border border-paper-400 dark:bg-paper-100 dark:text-paper dark:border-paper-200 dark:hover:bg-paper-200',
 };
 
 const sizes: Record<Size, string> = {

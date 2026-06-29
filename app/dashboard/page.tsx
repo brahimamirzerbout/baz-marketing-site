@@ -1,10 +1,18 @@
 import Link from 'next/link';
+import nextDynamic from 'next/dynamic';
 import { Section, Eyebrow } from '@/components/ui/Section';
 import { StatusButtons } from '@/components/dashboard/StatusButtons';
-import { AgencyGraph } from '@/components/dashboard/AgencyGraph';
 import { getLeadStats, readLeadsWithStatus } from '@/lib/leads-store';
 import { site } from '@/lib/site';
 import { cn } from '@/lib/cn';
+
+// AgencyGraph uses framer-motion which emits inline <style> tags during SSR
+// that don't match the client output (escaped vs raw quotes). Skipping SSR
+// here eliminates the hydration mismatch without changing the UI.
+const AgencyGraph = nextDynamic(
+  () => import('@/components/dashboard/AgencyGraph').then((m) => m.AgencyGraph),
+  { ssr: false, loading: () => <div className="aspect-[4/3] rounded-2xl bg-paper-50 border border-ink-100 animate-pulse" /> }
+);
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';

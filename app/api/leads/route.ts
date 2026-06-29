@@ -67,30 +67,53 @@ export async function POST(req: NextRequest) {
          body.phone?.toString().slice(0, 64), body.budget?.toString().slice(0, 64), message, source, service);
   audit(null, 'lead.create', leadId, { source, service });
 
-  // Fire-and-forget: kick off LeadGen agent in background to score
+  // Always run deterministic scoring — it's free and works without LLM.
+  // Layer LLM scoring on top if configured.
+  const { scoreLead } = await import('@/lib/scoring');
+  const baseScore = scoreLead({
+    message, budget: body.budget, company: body.company, website: body.website,
+    source, service, demoCompleted: !!body.demoCompleted,
+    agentRuns: typeof body.agentRuns === 'number' ? body.agentRuns : undefined,
+    timeOnPageSec: typeof body.timeOnPageSec === 'number' ? body.timeOnPageSec : undefined,
+    scrollDepth: typeof body.scrollDepth === 'number' ? body.scrollDepth : undefined,
+    isRepeat: !!body.isRepeat,
+  });
+  db.prepare('UPDATE leads SET score = ?, intent = ? WHERE id = ?').run(baseScore.score, baseScore.intent, leadId);
+  audit(null, 'lead.score', leadId, { score: baseScore.score, intent: baseScore.intent, reasons: baseScore.reasons });
+
+  // Fire-and-forget: layer LLM scoring on top if available.
   if (process.env.LEAD_SCORING !== 'off') {
     scoreLeadInBackground(leadId, message).catch(() => {});
   }
 
-  return NextResponse.json({ ok: true, id: leadId });
+  return NextResponse.json({
+    ok: true,
+    id: leadId,
+    score: baseScore.score,
+    intent: baseScore.intent,
+    action: baseScore.recommendedAction,
+  });
 }
 
 async function scoreLeadInBackground(leadId: string, message: string) {
   const { complete } = await import('@/lib/llm');
   const result = await complete({
-    prompt: `Score this lead message:\n\n${message.slice(0, 2000)}`,
-    system: `You are BAZ LeadGen Agent. Score the lead 0-100 and return JSON: {"score": <int>, "intent": "<buy_now|researching|comparison_shopping|tire_kicker>"}`,
-    maxTokens: 300,
+    prompt: `Refine the lead score (currently 0-100 baseline) based on this message. Return JSON {"adjust": <int between -20 and +20>, "intent": "<buy_now|researching|comparison_shopping|tire_kicker>"}.\\n\\nMessage:\\n${message.slice(0, 2000)}`,
+    system: `You are BAZ LeadGen Agent. Adjust the deterministic lead score by -20 to +20 based on subtleties. Return strict JSON only.`,
+    maxTokens: 200,
     temperature: 0.2,
   });
   if (!result.ok || !result.text) return;
   try {
     const parsed = JSON.parse(result.text.match(/\{[\s\S]*\}/)?.[0] ?? '{}');
-    const score = Math.max(0, Math.min(100, parseInt(parsed.score, 10) || 0));
+    const adjust = Math.max(-20, Math.min(20, parseInt(parsed.adjust, 10) || 0));
     const intent = String(parsed.intent || '').slice(0, 32);
-    if (score > 0 || intent) {
+    if (adjust !== 0 || intent) {
       const db = getDb();
-      db.prepare('UPDATE leads SET score = ?, intent = ? WHERE id = ?').run(score, intent, leadId);
+      const row = db.prepare('SELECT score FROM leads WHERE id = ?').get(leadId) as { score: number } | undefined;
+      const base = row?.score ?? 0;
+      const final = Math.max(0, Math.min(100, base + adjust));
+      db.prepare('UPDATE leads SET score = ?, intent = ? WHERE id = ?').run(final, intent || undefined, leadId);
     }
   } catch {
     // ignore parse errors
