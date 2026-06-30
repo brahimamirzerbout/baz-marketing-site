@@ -1,0 +1,7 @@
+# Centered Market Table CTA
+
+Create a CTA section as one vertical stack inside a centered page container with comfortable side padding. At the very top, place a centered primary heading on its own line.
+
+Below the heading, place a five-column data table whose rows are separated by thin horizontal rules only (no vertical dividers inside the table body). Each row contains, in column order: a first column stacking a primary line label on top with a smaller secondary ticker line directly beneath it (the two lines read as one compound cell); a second column showing a single numeric price value; a third column showing a signed percentage change (positive or negative); a fourth column showing a large numeric market-cap style value; a fifth column holding a compact inline sparkline chart whose slope direction matches the sign of the change value in that row (rising slope for positive change, falling slope for negative change).
+
+Below the table, leave generous vertical space, then place a full-width band whose interior carries a subtle rectilinear grid motif with sparse small square accents distributed across the surface so the band reads as a decorated field. Inside that band, center a vertical stack containing, in order: a large heading on its own line; a single supporting sentence directly beneath the heading; one pill-shaped primary button centered horizontally beneath the supporting line. Keep the band's internal padding generous so the copy and button breathe within the patterned surface.

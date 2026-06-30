@@ -121,25 +121,25 @@ export function LiveAgentDemo() {
   };
 
   return (
-    <div className="rounded-3xl border border-ink-100 dark:border-paper-200 bg-paper overflow-hidden shadow-soft">
+    <div className="rounded-3xl border border-border dark:border-border bg-background overflow-hidden shadow-soft">
       {/* Header bar (terminal-style) */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-ink-100 bg-paper-50">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-card">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-accent/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-warning/80" />
           <span className="w-2.5 h-2.5 rounded-full bg-success/80" />
         </div>
-        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">
           baz://agents · live
         </p>
-        <p className="font-mono text-[11px] text-ink-400 hidden md:block">
+        <p className="font-mono text-[11px] text-muted-foreground/60 hidden md:block">
           {history.length > 0 ? `${history.length} run${history.length === 1 ? '' : 's'} this session` : 'idle'}
         </p>
       </div>
 
       <div className="grid md:grid-cols-[220px_1fr]">
         {/* Agent rail */}
-        <ul className="border-b md:border-b-0 md:border-r border-ink-100 bg-paper-50 p-2 md:p-3 flex md:flex-col gap-1.5 overflow-x-auto md:overflow-visible">
+        <ul className="border-b md:border-b-0 md:border-r border-border bg-card p-2 md:p-3 flex md:flex-col gap-1.5 overflow-x-auto md:overflow-visible">
           {agents.map((a) => (
             <li key={a.id}>
               <button
@@ -148,14 +148,14 @@ export function LiveAgentDemo() {
                 aria-pressed={active === a.id}
                 className={cn(
                   'w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-colors',
-                  active === a.id ? 'bg-ink-900 text-paper' : 'hover:bg-paper-300 text-ink-700'
+                  active === a.id ? 'bg-primary text-foreground' : 'hover:bg-muted/70 text-foreground'
                 )}
               >
                 <span
                   aria-hidden
                   className={cn(
                     'inline-grid place-items-center w-7 h-7 rounded-lg text-sm font-mono',
-                    active === a.id ? 'bg-paper/10' : 'bg-paper-300'
+                    active === a.id ? 'bg-background/10' : 'bg-muted/70'
                   )}
                   style={{ color: active === a.id ? a.color : undefined }}
                 >
@@ -163,7 +163,7 @@ export function LiveAgentDemo() {
                 </span>
                 <span className="flex-1 min-w-0">
                   <span className="block text-sm font-medium leading-tight">{a.name}</span>
-                  <span className={cn('block text-[11px] truncate', active === a.id ? 'text-paper/60' : 'text-ink-400')}>
+                  <span className={cn('block text-[11px] truncate', active === a.id ? 'text-foreground/60' : 'text-muted-foreground/60')}>
                     {a.role}
                   </span>
                 </span>
@@ -175,7 +175,7 @@ export function LiveAgentDemo() {
         {/* Prompt + output */}
         <div className="p-5 md:p-7 flex flex-col gap-4 min-h-[420px]">
           <label className="block">
-            <span className="block font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-2">
+            <span className="block font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
               Prompt
             </span>
             <textarea
@@ -183,12 +183,12 @@ export function LiveAgentDemo() {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               rows={3}
-              className="w-full rounded-xl bg-paper border border-ink-200 dark:border-paper-300 px-4 py-3 text-[15px] focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 resize-y"
+              className="w-full rounded-xl bg-background border border-border dark:border-border px-4 py-3 text-[15px] focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 resize-y"
             />
           </label>
 
           <div className="flex items-center justify-between">
-            <p className="font-mono text-[11px] text-ink-400">
+            <p className="font-mono text-[11px] text-muted-foreground/60">
               {process.env.NEXT_PUBLIC_API_URL ? '→ /api/ai' : 'simulated (no API configured)'}
             </p>
             <Magnetic strength={0.25}>
@@ -201,7 +201,7 @@ export function LiveAgentDemo() {
               >
                 {busy ? (
                   <>
-                    <span className="w-1.5 h-1.5 bg-paper rounded-full animate-pulse-dot" />
+                    <span className="w-1.5 h-1.5 bg-background rounded-full animate-pulse-dot" />
                     Running…
                   </>
                 ) : (
@@ -211,12 +211,12 @@ export function LiveAgentDemo() {
             </Magnetic>
           </div>
 
-          <div className="rounded-2xl bg-ink-900 text-paper p-5 md:p-6 font-mono text-[13px] leading-relaxed min-h-[180px] overflow-x-auto">
+          <div className="rounded-2xl bg-primary text-foreground p-5 md:p-6 font-mono text-[13px] leading-relaxed min-h-[180px] overflow-x-auto">
             {!result && !busy && (
-              <p className="text-paper/50">{'// output appears here'}</p>
+              <p className="text-foreground/50">{'// output appears here'}</p>
             )}
             {busy && (
-              <p className="text-paper/70">
+              <p className="text-foreground/70">
                 <span className="text-accent">▍</span> thinking
                 <span className="ml-1 inline-block animate-pulse-dot">.</span>
                 <span className="ml-1 inline-block animate-pulse-dot" style={{ animationDelay: '.2s' }}>.</span>
@@ -225,7 +225,7 @@ export function LiveAgentDemo() {
             )}
             {result && !busy && (
               <div>
-                <div className="flex items-center gap-3 text-paper/50 text-[11px] uppercase tracking-[0.16em] mb-3">
+                <div className="flex items-center gap-3 text-foreground/50 text-[11px] uppercase tracking-[0.16em] mb-3">
                   <span>{result.agent}</span>
                   <span>·</span>
                   <span>{result.provider}/{result.model}</span>
@@ -233,21 +233,21 @@ export function LiveAgentDemo() {
                   <span>{result.ms}ms</span>
                   {result.tokens ? <><span>·</span><span>{result.tokens} tok</span></> : null}
                 </div>
-                <pre className="whitespace-pre-wrap font-mono text-paper text-[13px] leading-relaxed">{result.output}</pre>
+                <pre className="whitespace-pre-wrap font-mono text-foreground text-[13px] leading-relaxed">{result.output}</pre>
               </div>
             )}
           </div>
 
           {history.length > 1 && (
-            <div className="border-t border-ink-100 pt-4">
-              <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-2">Recent</p>
+            <div className="border-t border-border pt-4">
+              <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">Recent</p>
               <div className="flex flex-wrap gap-2">
                 {history.slice(1).map((h, i) => (
                   <button
                     key={i}
                     type="button"
                     onClick={() => setResult(h)}
-                    className="text-xs px-3 py-1.5 rounded-full bg-paper border border-ink-200 dark:border-paper-300 hover:border-ink-900 dark:hover:border-paper-50 transition-colors"
+                    className="text-xs px-3 py-1.5 rounded-full bg-background border border-border dark:border-border hover:border-foreground dark:hover:border-border transition-colors"
                   >
                     {h.agent} · {h.ms}ms
                   </button>
@@ -258,13 +258,13 @@ export function LiveAgentDemo() {
 
           {/* Inline lead capture — appears after the first run */}
           {showCapture && !submittedId && (
-            <div className="border-t border-ink-100 pt-5 mt-1" data-cursor="auto">
+            <div className="border-t border-border pt-5 mt-1" data-cursor="auto">
               {score?.score !== undefined && false ? null : (
                 <div className="rounded-2xl border border-accent/30 bg-accent/[0.04] p-5">
                   <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">
                     Want us to actually run this?
                   </p>
-                  <p className="text-sm text-ink-700 leading-relaxed mb-4">
+                  <p className="text-sm text-foreground leading-relaxed mb-4">
                     Drop your email. We&apos;ll score your prompt, route it to a senior, and send back a tailored plan within 24 hours.
                   </p>
                   <div className="grid sm:grid-cols-3 gap-2 mb-3">
@@ -273,14 +273,14 @@ export function LiveAgentDemo() {
                       placeholder="Your name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="rounded-lg bg-paper border border-ink-200 dark:border-paper-300 px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30"
+                      className="rounded-lg bg-background border border-border dark:border-border px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30"
                     />
                     <input
                       type="email"
                       placeholder="you@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="rounded-lg bg-paper border border-ink-200 dark:border-paper-300 px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 sm:col-span-2"
+                      className="rounded-lg bg-background border border-border dark:border-border px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 sm:col-span-2"
                     />
                   </div>
                   <input
@@ -288,13 +288,13 @@ export function LiveAgentDemo() {
                     placeholder="Company (optional)"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full rounded-lg bg-paper border border-ink-200 dark:border-paper-300 px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 mb-3"
+                    className="w-full rounded-lg bg-background border border-border dark:border-border px-3 h-10 text-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 mb-3"
                   />
                   <button
                     type="button"
                     onClick={submitLead}
                     disabled={!email || submitting}
-                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 h-11 rounded-full bg-ink-900 hover:bg-ink-800 text-white text-sm font-medium transition-colors disabled:opacity-50"
+                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 h-11 rounded-full bg-primary hover:bg-primary/90 text-white text-sm font-medium transition-colors disabled:opacity-50"
                   >
                     {submitting ? 'Sending…' : 'Send my plan →'}
                   </button>
@@ -305,37 +305,37 @@ export function LiveAgentDemo() {
 
           {/* After submit: show the score + portal link */}
           {submittedId && score && (
-            <div className="border-t border-ink-100 pt-5 mt-1">
-              <div className="rounded-2xl bg-ink-900 text-paper p-5 md:p-6">
+            <div className="border-t border-border pt-5 mt-1">
+              <div className="rounded-2xl bg-primary text-foreground p-5 md:p-6">
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <div>
-                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-paper-400 mb-2">
+                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
                       Your lead score
                     </p>
                     <p className="font-display text-5xl md:text-6xl font-medium tracking-[-0.03em]">
                       {score.score}
                     </p>
-                    <p className="text-sm text-paper-300 mt-1">
+                    <p className="text-sm text-muted-foreground mt-1">
                       out of 100 · intent: <span className="text-accent">{score.intent}</span>
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-paper-400 mb-2">
+                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
                       Action
                     </p>
                     <p className="font-display text-lg font-medium">{score.action.replace(/_/g, ' ')}</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3 pt-4 border-t border-paper/15">
+                <div className="flex flex-wrap gap-3 pt-4 border-t border-border/60">
                   <Link
                     href={`/portal/${submittedId}`}
-                    className="inline-flex items-center gap-2 px-5 h-11 rounded-full bg-accent hover:bg-accent-600 text-white text-sm font-medium transition-colors"
+                    className="inline-flex items-center gap-2 px-5 h-11 rounded-full bg-accent hover:bg-primary/90 text-white text-sm font-medium transition-colors"
                   >
                     See your routing plan →
                   </Link>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-5 h-11 rounded-full bg-transparent border border-paper/30 hover:bg-paper/10 text-paper text-sm font-medium transition-colors"
+                    className="inline-flex items-center gap-2 px-5 h-11 rounded-full bg-transparent border border-border hover:bg-background/10 text-foreground text-sm font-medium transition-colors"
                   >
                     Skip to contact
                   </Link>

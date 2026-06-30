@@ -14,7 +14,7 @@ const pillarTone: Record<string, 'accent' | 'info' | 'success' | 'warning'> = {
 
 export function ServiceHero({ service }: { service: Service }) {
   return (
-    <section className="relative bg-paper overflow-hidden">
+    <section className="relative bg-background overflow-hidden">
       <div aria-hidden className="absolute inset-0 bg-grid opacity-50 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
       <div className="container mx-auto relative pt-12 pb-16 md:pt-16 md:pb-24">
         <Breadcrumb items={[
@@ -24,10 +24,10 @@ export function ServiceHero({ service }: { service: Service }) {
         ]} />
         <div className="max-w-4xl">
           <Badge variant={pillarTone[service.pillar]} className="mb-6">{service.hero.eyebrow}</Badge>
-          <h1 className="font-display text-display-2xl font-medium text-ink-900 tracking-[-0.04em]">
+          <h1 className="font-display text-display-2xl font-medium text-foreground tracking-[-0.04em]">
             {service.hero.headline}
           </h1>
-          <p className="mt-6 text-lg md:text-2xl text-ink-600 leading-relaxed max-w-3xl">
+          <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
             {service.hero.sub}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-3">

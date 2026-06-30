@@ -15,23 +15,23 @@ export function Framework() {
       <div className="grid lg:grid-cols-12 gap-10 mb-14">
         <div className="lg:col-span-7">
           <Eyebrow tone="light">Our operating principles</Eyebrow>
-          <SectionHeading className="text-paper">The way we work — not the way we pitch.</SectionHeading>
-          <SectionLede className="text-paper-300">
+          <SectionHeading className="text-foreground">The way we work — not the way we pitch.</SectionHeading>
+          <SectionLede className="text-muted-foreground">
             Six principles that shape every engagement. They aren't slogans; they're how we
             decide what to ship and what to cut.
           </SectionLede>
         </div>
       </div>
-      <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-paper/10 rounded-2xl overflow-hidden border border-paper/10">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-background/10 rounded-2xl overflow-hidden border border-border/50">
         {principles.map((p, i) => (
-          <li key={p.t} className="bg-ink-900 text-paper p-6 md:p-8 dark:bg-ink-800 dark:text-paper">
+          <li key={p.t} className="bg-primary text-foreground p-6 md:p-8 dark:bg-primary/90 dark:text-foreground">
             <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent dark:text-accent mb-4">
               {String(i + 1).padStart(2, '0')}
             </div>
-            <h3 className="font-display text-2xl md:text-[26px] font-medium tracking-[-0.02em] text-paper dark:text-paper">
+            <h3 className="font-display text-2xl md:text-[26px] font-medium tracking-[-0.02em] text-foreground dark:text-foreground">
               {p.t}
             </h3>
-            <p className="mt-3 text-paper-300 leading-relaxed dark:text-paper-300">{p.d}</p>
+            <p className="mt-3 text-muted-foreground leading-relaxed dark:text-muted-foreground">{p.d}</p>
           </li>
         ))}
       </ul>

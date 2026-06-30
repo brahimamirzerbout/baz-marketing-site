@@ -53,37 +53,37 @@ export default function PostDetailPage({ params }: Params) {
         <article className="max-w-3xl">
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <Badge variant={cat.tone}>{cat.name}</Badge>
-            <span className="text-sm text-ink-500">
+            <span className="text-sm text-muted-foreground">
               {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </span>
-            <span className="text-sm text-ink-400">·</span>
-            <span className="text-sm text-ink-500">{post.readingMin} min read</span>
+            <span className="text-sm text-muted-foreground/60">·</span>
+            <span className="text-sm text-muted-foreground">{post.readingMin} min read</span>
           </div>
           <h1 className="font-display text-display-xl font-medium tracking-[-0.035em] leading-[1.0]">
             {post.title}
           </h1>
-          <p className="mt-6 text-xl text-ink-600 leading-relaxed">
+          <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
             {post.excerpt}
           </p>
-          <div className="mt-8 flex items-center gap-3 pb-8 border-b border-ink-100">
-            <span className="grid place-items-center w-10 h-10 rounded-full bg-ink-900 text-paper font-display font-bold">
+          <div className="mt-8 flex items-center gap-3 pb-8 border-b border-border">
+            <span className="grid place-items-center w-10 h-10 rounded-full bg-primary text-foreground font-display font-bold">
               {post.author.split(' ').map((s) => s.charAt(0)).slice(0, 2).join('')}
             </span>
             <div>
-              <p className="font-medium text-ink-900">{post.author}</p>
-              <p className="text-sm text-ink-500">BAZ Marketing Agency</p>
+              <p className="font-medium text-foreground">{post.author}</p>
+              <p className="text-sm text-muted-foreground">BAZ Marketing Agency</p>
             </div>
           </div>
           <div className="mt-10 prose prose-lg max-w-none">
             {paragraphs.map((p, i) => (
-              <p key={i} className="text-lg leading-[1.75] text-ink-700 mb-6">{p}</p>
+              <p key={i} className="text-lg leading-[1.75] text-foreground mb-6">{p}</p>
             ))}
           </div>
         </article>
       </Section>
 
       <Section tone="white" size="lg">
-        <div className="bg-paper rounded-2xl border border-ink-100 p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6">
+        <div className="bg-background rounded-2xl border border-border p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6">
           <div className="flex-1">
             <Eyebrow>Like this? Read with us.</Eyebrow>
             <h2 className="font-display text-2xl md:text-3xl font-medium tracking-[-0.02em] leading-snug mt-2">

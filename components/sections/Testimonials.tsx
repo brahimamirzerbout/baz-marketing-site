@@ -18,17 +18,17 @@ export function Testimonials() {
         {testimonials.slice(0, 6).map((t, i) => (
           <figure
             key={i}
-            className="reveal flex flex-col bg-paper rounded-2xl p-6 md:p-7 border border-ink-100 dark:border-paper-200 dark:border-paper-200"
+            className="reveal flex flex-col bg-background rounded-2xl p-6 md:p-7 border border-border dark:border-border dark:border-border"
             style={{ animationDelay: `${i * 80}ms` }}
           >
             <span aria-hidden className="font-display text-5xl text-accent leading-none mb-3">&ldquo;</span>
-            <blockquote className="font-display text-xl md:text-2xl tracking-[-0.02em] leading-snug text-ink-900">
+            <blockquote className="font-display text-xl md:text-2xl tracking-[-0.02em] leading-snug text-foreground">
               {t.quote}
             </blockquote>
-            <figcaption className="mt-6 pt-4 border-t border-ink-100 dark:border-paper-200 flex items-center justify-between">
+            <figcaption className="mt-6 pt-4 border-t border-border dark:border-border flex items-center justify-between">
               <div>
-                <p className="font-medium text-ink-900">{t.author}</p>
-                <p className="text-sm text-ink-500">{t.role} · {t.company}</p>
+                <p className="font-medium text-foreground">{t.author}</p>
+                <p className="text-sm text-muted-foreground">{t.role} · {t.company}</p>
               </div>
               {t.metric && (
                 <span className="text-xs font-mono uppercase tracking-[0.15em] text-accent">

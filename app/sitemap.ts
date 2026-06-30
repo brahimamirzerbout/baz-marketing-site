@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/industries', '/contact', '/privacy', '/terms',
     '/methodology', '/our-story', '/stance', '/vs-others',
     '/loop', '/pulse', '/marketing-hub', '/brandbook', '/become-an-operator',
+    '/hub', '/hub/cockpit', '/hub/triangle', '/hub/nova',
   ].map((p) => ({
     url: `${base}${p}`,
     lastModified: now,

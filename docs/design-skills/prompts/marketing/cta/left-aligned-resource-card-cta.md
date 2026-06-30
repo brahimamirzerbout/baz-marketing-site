@@ -1,0 +1,7 @@
+# Left-Aligned Resource Card CTA
+
+Create a CTA section as one vertical stack inside a centered page container with comfortable side padding. At the top, place a left-aligned copy block containing, in order from top to bottom: a large heading on its own line; a first supporting paragraph directly beneath the heading at a comfortable reading width; a second supporting paragraph directly beneath the first (the two paragraphs are separate elements, not one merged block); a short bold sub-heading on its own line that introduces the interactive card area below (for example a "see more" style label).
+
+Below the copy block, leave clear vertical space, then place a two-column by two-row grid of horizontal resource cards on large 1280 px width breakpoints. Each card is laid out as a single horizontal row containing, from left to right: a small square brand mark (icon or logo glyph) flush to the left edge of the card; a middle vertical stack pairing a bold title line on top with a smaller description paragraph directly beneath it; a trailing rightward arrow affordance flush to the right edge of the card indicating navigation. One card may use a filled surface treatment (subtle background tint) so it reads as featured or hovered, while the remaining cards stay bordered with a light surface. Give every card thin outer borders, softly rounded corners, and consistent internal padding.
+
+On narrow viewports, collapse the grid to a single column and stack the four cards in their original reading order (top-left, top-right, bottom-left, bottom-right).

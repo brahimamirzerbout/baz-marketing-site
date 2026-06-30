@@ -32,7 +32,7 @@ export default function AboutPage() {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
             The boutique growth partner for ambitious brands.
           </h1>
-          <p className="mt-6 text-lg md:text-2xl text-ink-600 leading-relaxed max-w-3xl">
+          <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
             BAZ was founded on a simple bet: that a small, senior-only team can outperform a
             generalist agency pod — if it ships strategy, execution, and measurement as one
             tightly integrated system.
@@ -70,14 +70,14 @@ export default function AboutPage() {
             </SectionLede>
           </div>
         </div>
-        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-ink-100 rounded-2xl overflow-hidden border border-ink-100">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-muted rounded-2xl overflow-hidden border border-border">
           {beliefs.map((b, i) => (
-            <li key={b.t} className="reveal bg-paper-50 p-6 md:p-7" style={{ animationDelay: `${i * 60}ms` }}>
+            <li key={b.t} className="reveal bg-card p-6 md:p-7" style={{ animationDelay: `${i * 60}ms` }}>
               <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent mb-4">
                 {String(i + 1).padStart(2, '0')}
               </div>
               <h3 className="font-display text-2xl md:text-[26px] font-medium tracking-[-0.02em]">{b.t}</h3>
-              <p className="mt-3 text-ink-600 leading-relaxed">{b.d}</p>
+              <p className="mt-3 text-muted-foreground leading-relaxed">{b.d}</p>
             </li>
           ))}
         </ul>
@@ -92,7 +92,7 @@ export default function AboutPage() {
               The people who plan your engagement are the people doing the work. Every partner
               is hands-on and accountable.
             </SectionLede>
-            <p className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warning/10 text-ink-900 text-xs font-medium border border-warning/30">
+            <p className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warning/10 text-foreground text-xs font-medium border border-warning/30">
               <span aria-hidden>·</span>
               Senior partners. Bios are illustrative until we publish the full team page.
             </p>

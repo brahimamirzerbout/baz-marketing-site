@@ -1,0 +1,9 @@
+# Alternating Three-Band CTA
+
+Create a CTA section composed of three separate vertical bands stacked with generous spacing between them, all inside a centered page container with comfortable side padding. Each band is a two-column split on large 1280 px width breakpoints; alternate which side carries the illustration and which carries the text so the stacking pattern reads as illustration–text for the first band, text–illustration for the second band, and illustration–text for the third band.
+
+In every **text column**, stack from top to bottom in this order: a large heading on its own line; one or two body paragraphs at a comfortable reading width directly beneath the heading; a vertical feature list where each item begins with a small leading icon at the left followed by either a single descriptive line to the right of the icon on the same baseline, or a bold title line on the same baseline as the icon with a short supporting line stacked directly beneath the title (choose one style per band and keep it consistent within that band); a closing sentence on its own line beneath the feature list; a horizontal row containing a solid primary button (the primary button may pair with a small trailing arrow or a small leading icon, varying per band) and a bordered secondary button to its right (the secondary button may pair with a small leading icon). The two buttons stay **side by side on one row** and never wrap to a second line (treat this as the global two-button row rule).
+
+In every **illustration column**, place one vector or raster illustration sized to fill the column area comfortably, vertically centered relative to the adjacent text column.
+
+On narrow viewports, stack each band's columns so that the illustration sits above the text in the first and third bands and below the text in the second band, preserving the alternating visual rhythm.

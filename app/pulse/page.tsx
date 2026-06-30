@@ -24,8 +24,8 @@ function pct(n: number, total: number): string {
 function scoreBand(score: number): { label: string; color: string; lo: number; hi: number } {
   if (score >= 75) return { label: 'Hot',    color: 'text-accent',  lo: 75, hi: 100 };
   if (score >= 50) return { label: 'Warm',   color: 'text-warning', lo: 50, hi: 74  };
-  if (score >= 25) return { label: 'Cool',   color: 'text-ink-700', lo: 25, hi: 49  };
-  return                 { label: 'Cold',    color: 'text-ink-400', lo: 0,  hi: 24  };
+  if (score >= 25) return { label: 'Cool',   color: 'text-foreground', lo: 25, hi: 49  };
+  return                 { label: 'Cold',    color: 'text-muted-foreground/60', lo: 0,  hi: 24  };
 }
 
 export default async function PulsePage() {
@@ -62,43 +62,43 @@ export default async function PulsePage() {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] leading-[0.95]">
             The loop, in <em className="not-italic text-gradient">real numbers.</em>
           </h1>
-          <p className="mt-6 text-lg md:text-2xl text-ink-600 leading-relaxed max-w-3xl">
+          <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
             No spin, no deck. Here&apos;s what the BAZ loop is doing right now.
           </p>
         </div>
       </Section>
 
       <Section tone="white" size="lg">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink-100 rounded-2xl overflow-hidden border border-ink-100">
-          <div className="bg-paper p-6 md:p-8">
-            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-500 mb-3">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-muted rounded-2xl overflow-hidden border border-border">
+          <div className="bg-background p-6 md:p-8">
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground mb-3">
               Total leads
             </p>
             <p className="font-display text-5xl md:text-6xl font-medium tracking-[-0.03em]">{total}</p>
-            <p className="mt-2 text-sm text-ink-500">
+            <p className="mt-2 text-sm text-muted-foreground">
               {stats.today} today · {stats.thisWeek} this week
             </p>
           </div>
-          <div className="bg-paper p-6 md:p-8">
-            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-500 mb-3">
+          <div className="bg-background p-6 md:p-8">
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground mb-3">
               Hot (≥75)
             </p>
             <p className="font-display text-5xl md:text-6xl font-medium tracking-[-0.03em] text-accent">{bands.hot}</p>
-            <p className="mt-2 text-sm text-ink-500">{pct(bands.hot, total)} of total · routed to book_call</p>
+            <p className="mt-2 text-sm text-muted-foreground">{pct(bands.hot, total)} of total · routed to book_call</p>
           </div>
-          <div className="bg-paper p-6 md:p-8">
-            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-500 mb-3">
+          <div className="bg-background p-6 md:p-8">
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground mb-3">
               Warm (50–74)
             </p>
             <p className="font-display text-5xl md:text-6xl font-medium tracking-[-0.03em] text-warning">{bands.warm}</p>
-            <p className="mt-2 text-sm text-ink-500">{pct(bands.warm, total)} of total · routed to send_proposal</p>
+            <p className="mt-2 text-sm text-muted-foreground">{pct(bands.warm, total)} of total · routed to send_proposal</p>
           </div>
-          <div className="bg-paper p-6 md:p-8">
-            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-500 mb-3">
+          <div className="bg-background p-6 md:p-8">
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground mb-3">
               Cool + Cold (&lt;50)
             </p>
-            <p className="font-display text-5xl md:text-6xl font-medium tracking-[-0.03em] text-ink-500">{bands.cool + bands.cold}</p>
-            <p className="mt-2 text-sm text-ink-500">nurture sequence, no human time</p>
+            <p className="font-display text-5xl md:text-6xl font-medium tracking-[-0.03em] text-muted-foreground">{bands.cool + bands.cold}</p>
+            <p className="mt-2 text-sm text-muted-foreground">nurture sequence, no human time</p>
           </div>
         </div>
 
@@ -106,7 +106,7 @@ export default async function PulsePage() {
           <div className="lg:col-span-5">
             <Eyebrow>By status</Eyebrow>
             <SectionHeading>Pipeline stage.</SectionHeading>
-            <p className="mt-3 text-ink-600 leading-relaxed">
+            <p className="mt-3 text-muted-foreground leading-relaxed">
               What the operator console shows. New leads get routed automatically;
               the team steps in once a lead shows buying intent.
             </p>
@@ -121,10 +121,10 @@ export default async function PulsePage() {
                 const count = (stats.byStatus as Record<string, number>)[status] ?? 0;
                 return (
                   <div key={status} className="flex items-center gap-4">
-                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-500 w-24 capitalize">{status}</p>
-                    <div className="flex-1 h-3 bg-ink-100 rounded-full overflow-hidden">
+                    <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground w-24 capitalize">{status}</p>
+                    <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
                       <div
-                        className={status === 'won' ? 'h-full bg-success' : status === 'lost' ? 'h-full bg-ink-400' : status === 'new' ? 'h-full bg-accent' : 'h-full bg-warning'}
+                        className={status === 'won' ? 'h-full bg-success' : status === 'lost' ? 'h-full bg-muted-foreground/40' : status === 'new' ? 'h-full bg-accent' : 'h-full bg-warning'}
                         style={{ width: `${total === 0 ? 0 : Math.max(2, (count / total) * 100)}%` }}
                       />
                     </div>

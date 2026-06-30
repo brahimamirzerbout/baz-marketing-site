@@ -3,9 +3,11 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Custom cursor: a small dot + a larger ring that scales on interactive
- * elements. Disabled on touch devices. Honours prefers-reduced-motion
- * by simply not animating (still tracks, just no transition).
+ * Cursor — quiet, precise, alive.
+ *
+ * A small dot that tracks instantly. A ring that follows with
+ * spring physics. On interactive elements, the ring expands.
+ * On CTAs, it fills subtly. No particles. No text. No noise.
  */
 export function Cursor() {
   const dotRef = useRef<HTMLDivElement | null>(null);
@@ -30,6 +32,7 @@ export function Cursor() {
       my = e.clientY;
       dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
     };
+
     const tick = () => {
       rx += (mx - rx) * 0.18;
       ry += (my - ry) * 0.18;
@@ -41,8 +44,11 @@ export function Cursor() {
       const t = e.target as HTMLElement | null;
       if (!t) return;
       const interactive = t.closest('a, button, [role="button"], input, textarea, select, [data-cursor]');
-      if (!interactive) { ring.classList.remove('hover', 'cta'); return; }
-      const cta = interactive.closest('[data-cursor="cta"], a[class*="bg-accent"], button[class*="bg-accent"]');
+      if (!interactive) {
+        ring.classList.remove('hover', 'cta');
+        return;
+      }
+      const cta = interactive.closest('[data-cursor="cta"], a[class*="bg-accent"], a[class*="btn-gold"], button[class*="bg-accent"]');
       ring.classList.toggle('cta', !!cta);
       ring.classList.toggle('hover', !cta);
     };

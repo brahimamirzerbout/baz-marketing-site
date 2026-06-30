@@ -1,0 +1,9 @@
+# Split 404 Page with Resource Cards
+
+Create a 404 page split into two columns on large 1280px width breakpoints that spans the full available width of the viewport with no outer margin.
+
+**Left column** uses a plain page background and contains a left-aligned vertical stack with comfortable inset padding, vertically centered within the column height. Stack from top to bottom: a large multi-line heading stating the error status and a short apology on its own line; a supporting paragraph of one or two sentences directly below the heading at a comfortable reading width, containing an inline bold text link pointing to the homepage embedded naturally within the sentence; a horizontal row of short text links placed below the paragraph after extra vertical space, with a small leading label (e.g. "Here are some helpful links:") followed by the links sitting side by side on the same baseline separated by consistent spacing.
+
+**Right column** uses a distinct filled background that spans the full column area edge-to-edge, with a very subtle geometric wave or line texture layered behind the content. Inside the column, place a vertical stack of three resource cards with consistent spacing between them, vertically centered within the column height. Each card is a left-aligned vertical stack composed of a small rounded-square icon container at the top (holding a single centered glyph); a bold title on its own line directly below the icon; a short two-line description paragraph directly below the title; and a text-style link on its own line below the paragraph whose label includes a trailing arrow icon at the end of the link text.
+
+On narrow viewports stack the two columns vertically with the left column first and the resource column directly below it; each internal stack preserves its original reading order with comfortable side padding.

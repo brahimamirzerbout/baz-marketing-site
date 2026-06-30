@@ -57,13 +57,13 @@ export function AnalyticsTools() {
             className={cn(
               'group rounded-2xl border px-5 py-3 text-left transition-all',
               tab === t.id
-                ? 'border-ink-900 bg-paper shadow-soft'
-                : 'border-ink-100 bg-paper hover:border-ink-300'
+                ? 'border-foreground bg-background shadow-soft'
+                : 'border-border bg-background hover:border-border'
             )}
           >
-            <p className={cn('font-mono uppercase tracking-[0.18em] text-[11px]', tab === t.id ? 'text-accent' : 'text-ink-400')}>{t.id}</p>
+            <p className={cn('font-mono uppercase tracking-[0.18em] text-[11px]', tab === t.id ? 'text-accent' : 'text-muted-foreground/60')}>{t.id}</p>
             <p className="font-display text-xl font-medium tracking-[-0.02em]">{t.label}</p>
-            <p className="text-xs text-ink-500 mt-0.5">{t.tagline}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t.tagline}</p>
           </button>
         ))}
       </div>
@@ -102,8 +102,8 @@ function AttributionPanel() {
 
   return (
     <div className="grid lg:grid-cols-[320px_1fr] gap-6">
-      <aside className="rounded-2xl border border-ink-100 bg-paper p-5">
-        <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-3">Model</p>
+      <aside className="rounded-2xl border border-border bg-background p-5">
+        <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-3">Model</p>
         <ul className="space-y-1.5">
           {ATTRIBUTION_MODELS.map((m) => (
             <li key={m.id}>
@@ -113,31 +113,31 @@ function AttributionPanel() {
                 aria-pressed={model === m.id}
                 className={cn(
                   'w-full text-left px-3 py-2.5 rounded-xl border transition-colors',
-                  model === m.id ? 'border-ink-900 bg-paper-50 shadow-soft' : 'border-ink-100 bg-paper hover:border-ink-300'
+                  model === m.id ? 'border-foreground bg-card shadow-soft' : 'border-border bg-background hover:border-border'
                 )}
               >
                 <span className="block text-sm font-medium">{m.label}</span>
-                <span className="block text-xs text-ink-500">{m.sub}</span>
+                <span className="block text-xs text-muted-foreground">{m.sub}</span>
               </button>
             </li>
           ))}
         </ul>
-        <div className="mt-5 pt-5 border-t border-ink-100">
+        <div className="mt-5 pt-5 border-t border-border">
           <label className="block">
-            <span className="block font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-2">Sample seed</span>
+            <span className="block font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">Sample seed</span>
             <input
               type="number"
               value={journeySeed}
               onChange={(e) => setJourneySeed(Number(e.target.value) || 0)}
-              className="w-full rounded-lg border border-ink-200 bg-paper px-3 py-2 text-sm"
+              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
             />
-            <span className="block text-[11px] text-ink-400 mt-1">Change to draw a new dataset of 120 journeys.</span>
+            <span className="block text-[11px] text-muted-foreground/60 mt-1">Change to draw a new dataset of 120 journeys.</span>
           </label>
         </div>
-        <div className="mt-5 pt-5 border-t border-ink-100 text-sm">
-          <p className="flex items-center justify-between"><span className="text-ink-500">Journeys</span><span className="font-mono">{formatNumber(result.journeys)}</span></p>
-          <p className="flex items-center justify-between mt-1"><span className="text-ink-500">Conversions</span><span className="font-mono">{formatNumber(result.conversions)}</span></p>
-          <p className="flex items-center justify-between mt-1"><span className="text-ink-500">Conv. rate</span><span className="font-mono">{((result.conversions / Math.max(1, result.journeys)) * 100).toFixed(1)}%</span></p>
+        <div className="mt-5 pt-5 border-t border-border text-sm">
+          <p className="flex items-center justify-between"><span className="text-muted-foreground">Journeys</span><span className="font-mono">{formatNumber(result.journeys)}</span></p>
+          <p className="flex items-center justify-between mt-1"><span className="text-muted-foreground">Conversions</span><span className="font-mono">{formatNumber(result.conversions)}</span></p>
+          <p className="flex items-center justify-between mt-1"><span className="text-muted-foreground">Conv. rate</span><span className="font-mono">{((result.conversions / Math.max(1, result.journeys)) * 100).toFixed(1)}%</span></p>
         </div>
         <div className="mt-5">
           <Button
@@ -152,25 +152,25 @@ function AttributionPanel() {
         </div>
       </aside>
 
-      <section className="rounded-2xl border border-ink-100 bg-paper p-5 md:p-6">
+      <section className="rounded-2xl border border-border bg-background p-5 md:p-6">
         <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">Channel credit — {ATTRIBUTION_MODELS.find((m) => m.id === model)?.label}</p>
         <h2 className="font-display text-3xl font-medium tracking-[-0.02em] mb-1">Where the credit goes.</h2>
-        <p className="text-sm text-ink-500 mb-6">Share of attributed conversions across the 120 simulated journeys.</p>
+        <p className="text-sm text-muted-foreground mb-6">Share of attributed conversions across the 120 simulated journeys.</p>
 
         <ul className="space-y-3">
           {rows.map((r) => {
             const widthPct = (r.credit / totalCredit) * 100;
             const convPct = (r.conversions / totalConv) * 100;
             return (
-              <li key={r.channel} className="bg-paper-50 rounded-xl border border-ink-100 p-4">
+              <li key={r.channel} className="bg-card rounded-xl border border-border p-4">
                 <div className="flex items-baseline justify-between gap-3 mb-2">
                   <span className="font-medium text-sm">{r.channel}</span>
-                  <span className="font-mono text-xs text-ink-500">{r.credit.toFixed(1)} conv · {formatUsd(r.revenue)}</span>
+                  <span className="font-mono text-xs text-muted-foreground">{r.credit.toFixed(1)} conv · {formatUsd(r.revenue)}</span>
                 </div>
-                <div className="relative h-2 rounded-full bg-ink-100 overflow-hidden">
+                <div className="relative h-2 rounded-full bg-muted overflow-hidden">
                   <div className="absolute inset-y-0 left-0 bg-accent transition-all" style={{ width: `${widthPct}%` }} />
                 </div>
-                <div className="mt-2 flex items-baseline justify-between text-[11px] font-mono text-ink-400">
+                <div className="mt-2 flex items-baseline justify-between text-[11px] font-mono text-muted-foreground/60">
                   <span>credit: {widthPct.toFixed(1)}%</span>
                   <span>of conversions: {convPct.toFixed(1)}%</span>
                 </div>
@@ -179,7 +179,7 @@ function AttributionPanel() {
           })}
         </ul>
 
-        <p className="mt-6 text-xs text-ink-500">
+        <p className="mt-6 text-xs text-muted-foreground">
           Model differences matter most when a single channel &quot;captures&quot; credit under the wrong lens. Compare last-touch vs data-driven across paid search and organic to expose over-investment.
         </p>
       </section>
@@ -204,15 +204,15 @@ function AdStockPanel() {
 
   return (
     <div className="grid lg:grid-cols-[320px_1fr] gap-6">
-      <aside className="rounded-2xl border border-ink-100 bg-paper p-5">
-        <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-3">Parameters</p>
+      <aside className="rounded-2xl border border-border bg-background p-5">
+        <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-3">Parameters</p>
         <label className="block">
           <span className="flex items-center justify-between text-sm font-medium mb-1.5">
             <span>Retention rate</span>
             <span className="font-mono">{retention.toFixed(2)}</span>
           </span>
           <input type="range" min={0.05} max={0.95} step={0.05} value={retention} onChange={(e) => setRetention(Number(e.target.value))} className="w-full accent-accent" />
-          <span className="block text-[11px] text-ink-400 mt-1">Higher = longer carryover. TV ≈ 0.5, paid search ≈ 0.2.</span>
+          <span className="block text-[11px] text-muted-foreground/60 mt-1">Higher = longer carryover. TV ≈ 0.5, paid search ≈ 0.2.</span>
         </label>
 
         <label className="block mt-5">
@@ -225,7 +225,7 @@ function AdStockPanel() {
 
         <label className="block mt-5">
           <span className="block text-sm font-medium mb-1.5">Sample seed</span>
-          <input type="number" value={seed} onChange={(e) => setSeed(Number(e.target.value) || 0)} className="w-full rounded-lg border border-ink-200 bg-paper px-3 py-2 text-sm" />
+          <input type="number" value={seed} onChange={(e) => setSeed(Number(e.target.value) || 0)} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm" />
         </label>
 
         <Magnetic strength={0.25}>
@@ -234,18 +234,18 @@ function AdStockPanel() {
           </Button>
         </Magnetic>
 
-        <div className="mt-5 pt-5 border-t border-ink-100 text-sm">
-          <p className="flex items-center justify-between"><span className="text-ink-500">Half-life</span><span className="font-mono">{result.halfLife.toFixed(1)} wk</span></p>
-          <p className="flex items-center justify-between mt-1"><span className="text-ink-500">Peak week</span><span className="font-mono">w{result.peak.index + 1}</span></p>
-          <p className="flex items-center justify-between mt-1"><span className="text-ink-500">Peak value</span><span className="font-mono">{formatUsd(result.peak.value)}</span></p>
-          <p className="flex items-center justify-between mt-1"><span className="text-ink-500">Total carryover</span><span className="font-mono">{formatUsd(result.totalCarryover)}</span></p>
+        <div className="mt-5 pt-5 border-t border-border text-sm">
+          <p className="flex items-center justify-between"><span className="text-muted-foreground">Half-life</span><span className="font-mono">{result.halfLife.toFixed(1)} wk</span></p>
+          <p className="flex items-center justify-between mt-1"><span className="text-muted-foreground">Peak week</span><span className="font-mono">w{result.peak.index + 1}</span></p>
+          <p className="flex items-center justify-between mt-1"><span className="text-muted-foreground">Peak value</span><span className="font-mono">{formatUsd(result.peak.value)}</span></p>
+          <p className="flex items-center justify-between mt-1"><span className="text-muted-foreground">Total carryover</span><span className="font-mono">{formatUsd(result.totalCarryover)}</span></p>
         </div>
       </aside>
 
-      <section className="rounded-2xl border border-ink-100 bg-paper p-5 md:p-6">
+      <section className="rounded-2xl border border-border bg-background p-5 md:p-6">
         <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">AdStock curve · 16 weeks</p>
         <h2 className="font-display text-3xl font-medium tracking-[-0.02em] mb-1">Spend decays. Awareness doesn&apos;t.</h2>
-        <p className="text-sm text-ink-500 mb-6">Each bar is weekly spend; the line is the carryover-adjusted adstock.</p>
+        <p className="text-sm text-muted-foreground mb-6">Each bar is weekly spend; the line is the carryover-adjusted adstock.</p>
 
         <Chart
           bars={spend.map((v) => ({ value: v, color: '#0e0e10' }))}
@@ -316,8 +316,8 @@ function Chart({ bars, line, maxBar, maxLine }: { bars: { value: number; color: 
 
 function Mini({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-ink-100 bg-paper-50 p-4">
-      <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400">{label}</p>
+    <div className="rounded-xl border border-border bg-card p-4">
+      <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60">{label}</p>
       <p className="mt-1 font-display text-2xl font-medium tracking-[-0.02em]">{value}</p>
     </div>
   );
@@ -350,15 +350,15 @@ function RfmPanel() {
 
   return (
     <div className="grid lg:grid-cols-[340px_1fr] gap-6">
-      <aside className="rounded-2xl border border-ink-100 bg-paper p-5">
-        <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-3">Dataset</p>
-        <p className="text-sm text-ink-700 mb-3">Sample dataset has 60 customers. Paste your own CSV to override.</p>
+      <aside className="rounded-2xl border border-border bg-background p-5">
+        <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-3">Dataset</p>
+        <p className="text-sm text-foreground mb-3">Sample dataset has 60 customers. Paste your own CSV to override.</p>
         <textarea
           value={csvText}
           onChange={(e) => setCsvText(e.target.value)}
           rows={6}
           placeholder={'customerId,lastPurchase,frequency,monetary\nc_001,2026-05-12,4,820\nc_002,2026-01-03,1,40'}
-          className="w-full rounded-lg border border-ink-200 bg-paper px-3 py-2 text-xs font-mono focus:outline-none focus:border-accent"
+          className="w-full rounded-lg border border-border bg-background px-3 py-2 text-xs font-mono focus:outline-none focus:border-accent"
         />
         <div className="flex gap-2 mt-3">
           <Button variant="outline" size="sm" className="flex-1" onClick={() => { setRecords(sampleRfm()); setCsvText(''); setCsvErr(null); }} trackAs="analytics_rfm_sample">
@@ -370,10 +370,10 @@ function RfmPanel() {
         </div>
         {csvErr && <p className="mt-2 text-xs text-accent">{csvErr}</p>}
 
-        <div className="mt-5 pt-5 border-t border-ink-100 text-sm">
-          <p className="flex items-center justify-between"><span className="text-ink-500">Customers</span><span className="font-mono">{formatNumber(records.length)}</span></p>
-          <p className="flex items-center justify-between mt-1"><span className="text-ink-500">Segments</span><span className="font-mono">{summary.length}</span></p>
-          <p className="flex items-center justify-between mt-1"><span className="text-ink-500">Total LTV</span><span className="font-mono">{formatUsd(totalRevenue)}</span></p>
+        <div className="mt-5 pt-5 border-t border-border text-sm">
+          <p className="flex items-center justify-between"><span className="text-muted-foreground">Customers</span><span className="font-mono">{formatNumber(records.length)}</span></p>
+          <p className="flex items-center justify-between mt-1"><span className="text-muted-foreground">Segments</span><span className="font-mono">{summary.length}</span></p>
+          <p className="flex items-center justify-between mt-1"><span className="text-muted-foreground">Total LTV</span><span className="font-mono">{formatUsd(totalRevenue)}</span></p>
         </div>
         <Button
           variant="outline"
@@ -390,21 +390,21 @@ function RfmPanel() {
         </Button>
       </aside>
 
-      <section className="rounded-2xl border border-ink-100 bg-paper p-5 md:p-6">
+      <section className="rounded-2xl border border-border bg-background p-5 md:p-6">
         <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">RFM segmentation</p>
         <h2 className="font-display text-3xl font-medium tracking-[-0.02em] mb-1">Who to spend the next dollar on.</h2>
-        <p className="text-sm text-ink-500 mb-6">Quintile bucketing on R/F/M, mapped to 10 standard segments.</p>
+        <p className="text-sm text-muted-foreground mb-6">Quintile bucketing on R/F/M, mapped to 10 standard segments.</p>
 
         <ul className="space-y-2.5">
           {summary.map((s) => {
             const widthPct = (s.count / maxCount) * 100;
             return (
-              <li key={s.segment} className="bg-paper-50 rounded-xl border border-ink-100 p-4">
+              <li key={s.segment} className="bg-card rounded-xl border border-border p-4">
                 <div className="flex items-baseline justify-between gap-3 mb-2">
                   <span className="font-medium text-sm">{s.segment}</span>
-                  <span className="font-mono text-xs text-ink-500">{formatNumber(s.count)} cust · {formatUsd(s.revenue)} LTV</span>
+                  <span className="font-mono text-xs text-muted-foreground">{formatNumber(s.count)} cust · {formatUsd(s.revenue)} LTV</span>
                 </div>
-                <div className="relative h-2 rounded-full bg-ink-100 overflow-hidden">
+                <div className="relative h-2 rounded-full bg-muted overflow-hidden">
                   <div className="absolute inset-y-0 left-0 bg-accent transition-all" style={{ width: `${widthPct}%` }} />
                 </div>
               </li>
@@ -412,7 +412,7 @@ function RfmPanel() {
           })}
         </ul>
 
-        <p className="mt-6 text-xs text-ink-500">
+        <p className="mt-6 text-xs text-muted-foreground">
           Champions and Loyal drive the bulk of LTV — protect them. Cant Lose Them and At Risk are the next-best retention targets.
         </p>
       </section>
@@ -442,14 +442,14 @@ function BudgetPanel() {
 
   return (
     <div className="grid lg:grid-cols-[1fr_380px] gap-6">
-      <section className="rounded-2xl border border-ink-100 bg-paper p-5 md:p-6">
+      <section className="rounded-2xl border border-border bg-background p-5 md:p-6">
         <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">Channel curves</p>
         <h2 className="font-display text-3xl font-medium tracking-[-0.02em] mb-1">Diminishing returns, live.</h2>
-        <p className="text-sm text-ink-500 mb-6">Hill curve: <code className="font-mono text-[11px]">conv = maxConv · spend / (spend + halfSat)</code></p>
+        <p className="text-sm text-muted-foreground mb-6">Hill curve: <code className="font-mono text-[11px]">conv = maxConv · spend / (spend + halfSat)</code></p>
 
         <table className="w-full text-sm border-collapse">
           <thead>
-            <tr className="text-left text-[11px] font-mono uppercase tracking-[0.16em] text-ink-400 border-b border-ink-100">
+            <tr className="text-left text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/60 border-b border-border">
               <th className="py-2">Channel</th>
               <th className="py-2 text-right">Spend /wk</th>
               <th className="py-2 text-right">Conv /wk</th>
@@ -460,18 +460,18 @@ function BudgetPanel() {
           </thead>
           <tbody>
             {channels.map((c, i) => (
-              <tr key={c.channel} className="border-b border-ink-100 last:border-b-0">
+              <tr key={c.channel} className="border-b border-border last:border-b-0">
                 <td className="py-2.5 font-medium">{c.channel}</td>
                 <td className="py-2.5 text-right">
-                  <input type="number" value={c.spend} onChange={(e) => setChannel(i, { spend: Number(e.target.value) || 0 })} className="w-24 text-right rounded border border-ink-200 bg-paper px-2 py-1 text-sm font-mono" />
+                  <input type="number" value={c.spend} onChange={(e) => setChannel(i, { spend: Number(e.target.value) || 0 })} className="w-24 text-right rounded border border-border bg-background px-2 py-1 text-sm font-mono" />
                 </td>
                 <td className="py-2.5 text-right font-mono">{formatNumber(c.conversions)}</td>
                 <td className="py-2.5 text-right font-mono">{liveCac(c) > 0 ? formatUsd(liveCac(c)) : '—'}</td>
                 <td className="py-2.5 text-right">
-                  <input type="number" value={c.halfSaturation} onChange={(e) => setChannel(i, { halfSaturation: Number(e.target.value) || 1 })} className="w-24 text-right rounded border border-ink-200 bg-paper px-2 py-1 text-sm font-mono" />
+                  <input type="number" value={c.halfSaturation} onChange={(e) => setChannel(i, { halfSaturation: Number(e.target.value) || 1 })} className="w-24 text-right rounded border border-border bg-background px-2 py-1 text-sm font-mono" />
                 </td>
                 <td className="py-2.5 text-right">
-                  <input type="number" value={c.maxConversions} onChange={(e) => setChannel(i, { maxConversions: Number(e.target.value) || 1 })} className="w-24 text-right rounded border border-ink-200 bg-paper px-2 py-1 text-sm font-mono" />
+                  <input type="number" value={c.maxConversions} onChange={(e) => setChannel(i, { maxConversions: Number(e.target.value) || 1 })} className="w-24 text-right rounded border border-border bg-background px-2 py-1 text-sm font-mono" />
                 </td>
               </tr>
             ))}
@@ -485,17 +485,17 @@ function BudgetPanel() {
               type="number"
               value={totalBudget}
               onChange={(e) => setTotalBudget(Number(e.target.value) || 0)}
-              className="w-32 rounded-lg border border-ink-200 bg-paper px-3 py-1.5 text-sm font-mono"
+              className="w-32 rounded-lg border border-border bg-background px-3 py-1.5 text-sm font-mono"
             />
           </label>
-          <span className="text-xs text-ink-500 font-mono">current total: {formatUsd(channels.reduce((s, c) => s + c.spend, 0))} · recommended: {formatUsd(totalRecommended)}</span>
+          <span className="text-xs text-muted-foreground font-mono">current total: {formatUsd(channels.reduce((s, c) => s + c.spend, 0))} · recommended: {formatUsd(totalRecommended)}</span>
         </div>
       </section>
 
-      <aside className="rounded-2xl border border-ink-100 bg-paper p-5 md:p-6">
+      <aside className="rounded-2xl border border-border bg-background p-5 md:p-6">
         <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">Reallocation</p>
         <h2 className="font-display text-2xl font-medium tracking-[-0.02em] mb-1">Same budget, more conversions.</h2>
-        <p className="text-sm text-ink-500 mb-5">Greedy marginal-CAC optimization. Pulls from least efficient, pushes to most.</p>
+        <p className="text-sm text-muted-foreground mb-5">Greedy marginal-CAC optimization. Pulls from least efficient, pushes to most.</p>
 
         <div className="grid grid-cols-2 gap-3 mb-5">
           <Mini label="Current conv"     value={formatNumber(Math.round(currentConversions))} />
@@ -508,14 +508,14 @@ function BudgetPanel() {
           {result.map((r) => {
             const deltaPct = r.current > 0 ? (r.delta / r.current) * 100 : 0;
             return (
-              <li key={r.channel} className="bg-paper-50 rounded-xl border border-ink-100 p-3.5">
+              <li key={r.channel} className="bg-card rounded-xl border border-border p-3.5">
                 <div className="flex items-baseline justify-between gap-2 mb-1">
                   <span className="font-medium text-sm">{r.channel}</span>
-                  <span className={cn('font-mono text-xs', r.delta > 0 ? 'text-success' : r.delta < 0 ? 'text-accent' : 'text-ink-400')}>
+                  <span className={cn('font-mono text-xs', r.delta > 0 ? 'text-success' : r.delta < 0 ? 'text-accent' : 'text-muted-foreground/60')}>
                     {r.delta > 0 ? '+' : ''}{formatUsd(r.delta)} ({deltaPct >= 0 ? '+' : ''}{deltaPct.toFixed(0)}%)
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-[11px] font-mono text-ink-400">
+                <div className="flex items-center justify-between text-[11px] font-mono text-muted-foreground/60">
                   <span>{formatUsd(r.current)} → {formatUsd(r.recommended)}</span>
                   <span>{formatNumber(r.newConversions)} conv</span>
                 </div>

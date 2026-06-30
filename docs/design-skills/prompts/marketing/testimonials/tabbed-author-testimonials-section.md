@@ -1,0 +1,9 @@
+# Tabbed Author Testimonials Section
+
+Create a testimonials section inside a centered page container with comfortable side padding, split into two columns on large 1280px width breakpoints.
+
+The **left column** contains a vertical list of author entries that behave as a tab group (exactly one entry is selected at a time). Each entry is a horizontal row composed of a small circular avatar thumbnail anchored to the left, and a text block to the right of the avatar containing a bold author name on its own line and a role or company label on a second line directly beneath the name. The selected entry uses a visually distinct background to indicate the active state; unselected entries use a plain surface. Below the author list, after comfortable vertical space, place a single centered button whose label is composed of a small leading icon and a short action label (e.g. "View all testimonials") on the same baseline.
+
+The **right column** is the content area whose contents swap based on the currently selected author tab. The content area is a left-aligned vertical stack containing, in order: a large decorative opening quotation mark glyph on its own line at the top; a bold testimonial heading on its own line directly below the quotation mark; one or more body paragraphs of testimonial text stacked vertically with consistent spacing between them directly below the heading; and an author attribution row at the bottom composed of a small circular avatar thumbnail on the left, with a bold author name on its own line to the right of the avatar and a role or company label on a second line directly beneath the name, aligned with the name text.
+
+On narrow viewports stack the two columns vertically with the author tab list first and the testimonial content area directly below it; keep all internal stacks in their original reading order.

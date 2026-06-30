@@ -21,12 +21,12 @@ export default function AnalyticsPage() {
         <SectionHeading>
           Four tools BAZ uses to audit a client. Pure TypeScript math, no Python runtime, no upload to third-party services.
         </SectionHeading>
-        <p className="mt-4 text-sm text-ink-500 max-w-2xl">
+        <p className="mt-4 text-sm text-muted-foreground max-w-2xl">
           Methodology ported from classical attribution modeling, AdStock carryover, RFM segmentation,
           and Hill-saturation budget allocation. Edit inputs on the left, see results update live.
         </p>
       </header>
-      <Suspense fallback={<div className="text-sm text-ink-500">Loading tools…</div>}>
+      <Suspense fallback={<div className="text-sm text-muted-foreground">Loading tools…</div>}>
         <AnalyticsTools />
       </Suspense>
     </Section>

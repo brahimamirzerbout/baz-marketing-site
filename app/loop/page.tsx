@@ -55,7 +55,7 @@ export default function LoopPage() {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] leading-[0.95]">
             No human in the loop <em className="not-italic text-gradient">until it matters.</em>
           </h1>
-          <p className="mt-6 text-lg md:text-2xl text-ink-600 leading-relaxed max-w-3xl">
+          <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
             Every visitor gets scored in real time, routed by intent, and sequenced by signal. We
             spend human time only on the leads that earn it.
           </p>
@@ -77,19 +77,19 @@ export default function LoopPage() {
           </div>
         </div>
 
-        <ol className="space-y-px bg-ink-100 rounded-2xl overflow-hidden border border-ink-100">
+        <ol className="space-y-px bg-muted rounded-2xl overflow-hidden border border-border">
           {stages.map((s) => (
-            <li key={s.n} className="bg-paper p-6 md:p-8 grid md:grid-cols-12 gap-6 items-start">
+            <li key={s.n} className="bg-background p-6 md:p-8 grid md:grid-cols-12 gap-6 items-start">
               <div className="md:col-span-2">
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{s.n}</p>
               </div>
               <div className="md:col-span-6">
                 <h3 className="font-display text-2xl md:text-[26px] font-medium tracking-[-0.02em]">{s.title}</h3>
-                <p className="mt-3 text-ink-600 leading-relaxed">{s.body}</p>
+                <p className="mt-3 text-muted-foreground leading-relaxed">{s.body}</p>
               </div>
               <div className="md:col-span-4">
-                <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-500 mb-2">Where it lives</p>
-                <ul className="space-y-1.5 text-sm text-ink-700 font-mono">
+                <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground mb-2">Where it lives</p>
+                <ul className="space-y-1.5 text-sm text-foreground font-mono">
                   {s.artifacts.map((a) => (
                     <li key={a}>{a}</li>
                   ))}
@@ -104,8 +104,8 @@ export default function LoopPage() {
         <div className="grid lg:grid-cols-12 gap-10 mb-10">
           <div className="lg:col-span-7">
             <Eyebrow tone="light">Run it yourself</Eyebrow>
-            <SectionHeading className="text-paper">Score 0-100, decide in 200ms.</SectionHeading>
-            <SectionLede className="text-paper-300">
+            <SectionHeading className="text-foreground">Score 0-100, decide in 200ms.</SectionHeading>
+            <SectionLede className="text-muted-foreground">
               Pick an agent. Run it. See your score and routing plan on the next page.
             </SectionLede>
           </div>

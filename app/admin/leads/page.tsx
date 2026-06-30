@@ -129,7 +129,7 @@ export default async function LeadsAdminPage({
         </h1>
         <a
           href="/admin"
-          className="text-sm text-ink-500 hover:text-ink-900 underline"
+          className="text-sm text-muted-foreground hover:text-foreground underline"
         >
           ← Admin home
         </a>
@@ -175,28 +175,28 @@ export default async function LeadsAdminPage({
           <div className="pt-1">
             <a
               href="/admin/leads"
-              className="text-xs text-ink-500 hover:text-ink-900 underline"
+              className="text-xs text-muted-foreground hover:text-foreground underline"
             >
               Clear all filters
             </a>
           </div>
         )}
-        <p className="text-xs text-ink-500 pt-1">
+        <p className="text-xs text-muted-foreground pt-1">
           Showing {leads.length} of {total} leads
           {(intentFilter || serviceFilter || statusFilter) && " (filtered)"}.
         </p>
       </div>
 
       {leads.length === 0 ? (
-        <div className="bg-paper rounded-2xl border border-ink-100 p-12 text-center">
-          <p className="text-ink-500 max-w-md mx-auto">
+        <div className="bg-background rounded-2xl border border-border p-12 text-center">
+          <p className="text-muted-foreground max-w-md mx-auto">
             No leads yet. When someone submits the contact form at{" "}
             <a href="/contact" className="underline">
               /contact
             </a>
             , it will land here.
           </p>
-          <p className="text-xs text-ink-400 mt-4 font-mono">
+          <p className="text-xs text-muted-foreground/60 mt-4 font-mono">
             sqlite: data/baz.db → leads
           </p>
         </div>
@@ -205,14 +205,14 @@ export default async function LeadsAdminPage({
           {leads.map((lead) => (
             <article
               key={lead.id}
-              className="bg-paper rounded-2xl border border-ink-100 p-6 md:p-8"
+              className="bg-background rounded-2xl border border-border p-6 md:p-8"
             >
-              <header className="flex flex-wrap items-baseline justify-between gap-2 mb-4 pb-4 border-b border-ink-100">
+              <header className="flex flex-wrap items-baseline justify-between gap-2 mb-4 pb-4 border-b border-border">
                 <div>
                   <h2 className="font-display text-2xl font-medium tracking-[-0.02em]">
                     {lead.name}
                     {lead.company ? (
-                      <span className="text-ink-400 font-normal ml-2 text-lg">
+                      <span className="text-muted-foreground/60 font-normal ml-2 text-lg">
                         · {lead.company}
                       </span>
                     ) : null}
@@ -230,30 +230,30 @@ export default async function LeadsAdminPage({
                         href={lead.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-ink-500 hover:text-ink-900 underline"
+                        className="text-sm text-muted-foreground hover:text-foreground underline"
                       >
                         {lead.website.replace(/^https?:\/\//, "")}
                       </a>
                     </>
                   ) : null}
                 </div>
-                <time className="text-xs text-ink-500 font-mono">
+                <time className="text-xs text-muted-foreground font-mono">
                   {formatDate(lead.created_at)}
                 </time>
               </header>
 
               <dl className="grid sm:grid-cols-4 gap-4 text-sm mb-4">
                 <div>
-                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mb-1">
+                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-1">
                     Source
                   </dt>
-                  <dd className="text-ink-700">{lead.source}</dd>
+                  <dd className="text-foreground">{lead.source}</dd>
                 </div>
                 <div>
-                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mb-1">
+                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-1">
                     Service
                   </dt>
-                  <dd className="text-ink-700">
+                  <dd className="text-foreground">
                     {lead.service ? (
                       <a
                         href={`/services/${lead.service}`}
@@ -267,38 +267,38 @@ export default async function LeadsAdminPage({
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mb-1">
+                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-1">
                     Budget
                   </dt>
-                  <dd className="text-ink-700">{lead.budget || "—"}</dd>
+                  <dd className="text-foreground">{lead.budget || "—"}</dd>
                 </div>
                 <div>
-                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mb-1">
+                  <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-1">
                     Score
                   </dt>
-                  <dd className="text-ink-700 font-mono">
+                  <dd className="text-foreground font-mono">
                     {lead.score != null ? `${lead.score} · ${lead.intent || "—"}` : "—"}
                   </dd>
                 </div>
               </dl>
 
               <div>
-                <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mb-2">
+                <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-2">
                   Message
                 </p>
-                <p className="text-ink-800 whitespace-pre-wrap leading-relaxed">
+                <p className="text-foreground whitespace-pre-wrap leading-relaxed">
                   {lead.message}
                 </p>
               </div>
 
-              <footer className="mt-6 pt-4 border-t border-ink-100 flex gap-3">
+              <footer className="mt-6 pt-4 border-t border-border flex gap-3">
                 <a
                   href={`mailto:${lead.email}?subject=Re: Your BAZ brief (${lead.id})`}
-                  className="inline-flex items-center gap-2 px-4 h-9 rounded-full bg-ink-900 text-paper text-sm font-medium hover:bg-ink-800 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 h-9 rounded-full bg-primary text-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
                 >
                   Reply by email →
                 </a>
-                <span className="text-xs text-ink-400 font-mono self-center">
+                <span className="text-xs text-muted-foreground/60 font-mono self-center">
                   {lead.id}
                 </span>
               </footer>
@@ -320,8 +320,8 @@ function Stat({
   small?: boolean;
 }) {
   return (
-    <div className="bg-paper rounded-2xl border border-ink-100 p-4">
-      <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mb-1">
+    <div className="bg-background rounded-2xl border border-border p-4">
+      <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-1">
         {label}
       </p>
       <p
@@ -352,11 +352,11 @@ function FilterRow({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mr-1 min-w-[80px]">
+      <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mr-1 min-w-[80px]">
         {label}
       </span>
       {options.length === 0 ? (
-        <span className="text-xs text-ink-400">no data</span>
+        <span className="text-xs text-muted-foreground/60">no data</span>
       ) : (
         options.map((o) => {
           const isActive = o.value === activeValue;
@@ -366,12 +366,12 @@ function FilterRow({
               href={isActive ? buildHref("") : buildHref(o.value)}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs transition-colors ${
                 isActive
-                  ? "bg-ink-900 text-paper"
-                  : "bg-paper border border-ink-200 text-ink-700 hover:border-ink-900"
+                  ? "bg-primary text-foreground"
+                  : "bg-background border border-border text-foreground hover:border-foreground"
               }`}
             >
               <span className="font-mono">{o.value.replace(/_/g, " ")}</span>
-              <span className={`font-mono text-[10px] ${isActive ? "text-paper/70" : "text-ink-400"}`}>
+              <span className={`font-mono text-[10px] ${isActive ? "text-foreground/70" : "text-muted-foreground/60"}`}>
                 {o.count}
               </span>
             </a>

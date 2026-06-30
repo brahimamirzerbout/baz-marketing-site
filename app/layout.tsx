@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // next-themes handles the cookie + localStorage + data-theme attribute
   // synchronously via its own inline script. No server-side cookie read here.
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${fraunces.variable} ${mono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${fraunces.variable} ${mono.variable} dark`} data-theme="dark">>
       <head>
         {/*
           Belt-and-braces pre-paint script: next-themes also injects its own
@@ -99,14 +99,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('baz:theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('baz:theme');if(!t){t='dark';}if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.setAttribute('data-theme','light');}else{document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}}catch(e){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}})();`,
           }}
         />
       </head>
-      <body className="bg-paper text-ink-900 antialiased">
+      <body className="bg-background text-foreground antialiased royal-entrance">
         <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="light"
+          attribute="class"
+          defaultTheme="dark"
           enableSystem={false}
           themes={["light", "dark"]}
           storageKey="baz:theme"

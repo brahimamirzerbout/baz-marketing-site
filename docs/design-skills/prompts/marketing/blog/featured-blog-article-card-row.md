@@ -1,0 +1,9 @@
+# Featured Blog Article With Card Row
+
+Create a blog section as one vertically stacked block inside a max-width container with comfortable side padding. At the top, place a large centered heading on its own line; directly below the heading, a centered supporting paragraph at a comfortable reading width. Below the header, add a thin horizontal divider spanning the full container width.
+
+**Featured article** sits directly below the divider as a two-column split on large breakpoints. The left sub-column holds a theme-colored image placeholder box with a centered image icon and rounded corners that spans the full sub-column width and height. The right sub-column is a left-aligned vertical stack containing, in order: a bold multi-line headline rendered as a clickable link on its own line; a horizontal author row composed of a small circular avatar on the left, the author name to the right of the avatar, a small calendar icon and publication date to the right of the name — all on the same baseline; a short multi-line excerpt paragraph directly below the author row at a comfortable reading width; a text-style "Read more" link composed of a small leading icon and a short label on its own line at the bottom.
+
+**Three-card row** sits directly below the featured article as three equal-width cards in one horizontal row with consistent gutters between them. Each card is a vertical stack containing, in order: a theme-colored image placeholder box with a centered image icon and rounded corners spanning the full card width; a bold headline rendered as a clickable link on its own line directly below the image; a short excerpt paragraph directly below the headline; a text-style "Read more" link with a small leading icon at the bottom of the card.
+
+On narrow viewports stack the featured article's two sub-columns vertically (image first, text second), then stack the three cards beneath it in a single column in their original left-to-right reading order.

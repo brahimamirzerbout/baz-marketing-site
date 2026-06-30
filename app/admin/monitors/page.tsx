@@ -16,12 +16,12 @@ export default async function MonitorsPage() {
         <div>
           <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">BAZ Monitors · /admin/monitors</p>
           <h1 className="font-display text-display-xl font-medium tracking-[-0.035em]">Efficiency, at a glance.</h1>
-          <p className="mt-3 text-ink-600 max-w-xl">
+          <p className="mt-3 text-muted-foreground max-w-xl">
             Live health of the BAZ build, API, lead funnel, AI spend, and the public site&apos;s Core Web Vitals.
           </p>
         </div>
         <div className="text-right">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">Generated</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">Generated</p>
           <p className="text-sm font-medium">{new Date(data.generatedAt).toLocaleString()}</p>
           <p className="mt-1 inline-flex items-center gap-2 text-xs font-mono">
             <span className={`w-2 h-2 rounded-full ${live ? 'bg-success animate-pulse-dot' : 'bg-warning'}`} />
@@ -71,7 +71,7 @@ export default async function MonitorsPage() {
         </Tile>
 
         <Tile title="Tips" subtitle="What good looks like" data={{ status: 'ok' }}>
-          <ul className="text-sm text-ink-700 space-y-2 list-disc pl-5">
+          <ul className="text-sm text-foreground space-y-2 list-disc pl-5">
             <li>Typecheck & lint stay green; build under 20s for fast deploys.</li>
             <li>API p95 &lt; 250ms keeps the contact form snappy.</li>
             <li>Lead conv. rate ≥ 12% means the brief form is doing its job.</li>
@@ -81,8 +81,8 @@ export default async function MonitorsPage() {
         </Tile>
       </div>
 
-      <p className="mt-10 text-xs font-mono text-ink-400">
-        user-agent: <span className="text-ink-600">{ua.slice(0, 80) || '—'}</span>
+      <p className="mt-10 text-xs font-mono text-muted-foreground/60">
+        user-agent: <span className="text-muted-foreground">{ua.slice(0, 80) || '—'}</span>
       </p>
     </div>
   );
@@ -92,13 +92,13 @@ function Tile({ title, subtitle, data, children }: { title: string; subtitle: st
   const tone =
     data.status === 'ok' ? 'bg-success/15 text-success border-success/30' :
     data.status === 'warn' ? 'bg-warning/15 text-warning border-warning/30' :
-    data.status === 'down' ? 'bg-accent/15 text-accent-700 border-accent/30' :
-    'bg-ink-100 text-ink-500 border-ink-200';
+    data.status === 'down' ? 'bg-accent/15 text-primary border-accent/30' :
+    'bg-muted text-muted-foreground border-border';
   return (
-    <section className="rounded-2xl border border-ink-100 bg-paper p-5 md:p-6">
+    <section className="rounded-2xl border border-border bg-background p-5 md:p-6">
       <header className="flex items-center justify-between mb-4">
         <div>
-          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400">{subtitle}</p>
+          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60">{subtitle}</p>
           <h2 className="font-display text-2xl font-medium tracking-[-0.02em]">{title}</h2>
         </div>
         <span className={`px-2.5 py-1 rounded-full border text-[11px] font-mono uppercase tracking-[0.14em] ${tone}`}>{data.status}</span>
@@ -113,10 +113,10 @@ function KV({ k, v, status, mono }: { k: string; v: string; status?: Status; mon
   const tone =
     status === 'ok'   ? 'text-success' :
     status === 'warn' ? 'text-warning' :
-    status === 'down' ? 'text-accent-700' : '';
+    status === 'down' ? 'text-primary' : '';
   return (
     <div>
-      <dt className="text-[11px] font-mono uppercase tracking-[0.14em] text-ink-400">{k}</dt>
+      <dt className="text-[11px] font-mono uppercase tracking-[0.14em] text-muted-foreground/60">{k}</dt>
       <dd className={`text-sm ${tone} ${mono ? 'font-mono text-[12.5px] truncate' : 'font-medium'}`}>{v}</dd>
     </div>
   );

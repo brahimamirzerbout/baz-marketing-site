@@ -1,0 +1,9 @@
+# Full-Width Split Login Page
+
+Create a login page as one full-bleed two-column split that spans edge to edge. The left half holds the form area on a plain surface; the right half is a solid filled marketing panel that runs the full height of the section.
+
+**Left half** is a vertically centered, padded vertical stack containing, in order: a large heading on its own line; a single sub-line directly below the heading combining a short supporting sentence with an inline text link to the sign-up flow at the end of the same line; a two-column field grid containing two labeled inputs on one row (email input on the left and password input on the right) — every label sits above its input with a tiny required-field marker to the right of the label text; a horizontal "or" separator made of a thin rule, a centered short word, and another thin rule; a stack of two full-width third-party provider buttons placed one above the other, each button starting with a small leading provider glyph and followed by short provider label copy; a single horizontal row composed of a small square "remember me" checkbox paired with an inline label on the left and a "forgot password" text link on the right; one full-width primary submit button at the bottom of the form column.
+
+**Right half** is a vertically centered, padded vertical stack contained inside the filled panel: a top brand-mark row pairing a small circular logo glyph and a short brand wordmark; a large multi-line headline below the brand mark; a supporting paragraph under the headline at a comfortable reading width; a bottom social proof row combining a tight cluster of overlapping small circular avatar thumbnails on the left and a short single-line rating sentence with an embedded bolded number on the right.
+
+On narrow viewports, stack the two halves vertically with the form half first and the marketing panel second; keep all internal stacks in the same reading order.

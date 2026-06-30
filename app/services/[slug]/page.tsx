@@ -100,7 +100,7 @@ export default function ServiceDetailPage({ params }: Params) {
               <Eyebrow>Who it&apos;s for</Eyebrow>
               <ul className="mt-3 space-y-2">
                 {service.who.map((w) => (
-                  <li key={w} className="flex items-start gap-3 text-[15px] text-ink-700">
+                  <li key={w} className="flex items-start gap-3 text-[15px] text-foreground">
                     <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-accent" />
                     {w}
                   </li>
@@ -134,12 +134,12 @@ export default function ServiceDetailPage({ params }: Params) {
         </div>
         <ul className="grid md:grid-cols-2 gap-4">
           {service.proof.map((p, i) => (
-            <li key={p.client + i} className="reveal bg-paper-50 rounded-2xl border border-ink-100 p-6 md:p-7" style={{ animationDelay: `${i * 80}ms` }}>
+            <li key={p.client + i} className="reveal bg-card rounded-2xl border border-border p-6 md:p-7" style={{ animationDelay: `${i * 80}ms` }}>
               <div className="flex items-center justify-between mb-3">
-                <p className="text-sm text-ink-500">{p.client}</p>
+                <p className="text-sm text-muted-foreground">{p.client}</p>
                 <p className="font-display text-3xl font-medium tracking-[-0.03em] text-accent">{p.metric}</p>
               </div>
-              <p className="text-[15px] text-ink-700 leading-relaxed">{p.detail}</p>
+              <p className="text-[15px] text-foreground leading-relaxed">{p.detail}</p>
             </li>
           ))}
         </ul>

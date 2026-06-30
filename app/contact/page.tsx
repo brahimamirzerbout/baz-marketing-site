@@ -64,8 +64,8 @@ export default function ContactPage({ searchParams }: { searchParams?: { service
             {requestedService ? (
               <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent-soft border border-accent/20 px-3 py-1.5 text-sm">
                 <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-accent">In reference to</span>
-                <span className="font-medium text-accent-700">{requestedService.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}</span>
-                <a href="/contact" className="text-ink-500 hover:text-ink-900 ml-1" aria-label="Clear service context">×</a>
+                <span className="font-medium text-primary">{requestedService.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}</span>
+                <a href="/contact" className="text-muted-foreground hover:text-foreground ml-1" aria-label="Clear service context">×</a>
               </div>
             ) : null}
             <SectionLede>
@@ -75,7 +75,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { service
 
             <div className="mt-10 space-y-6">
               <div>
-                <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-2">
+                <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
                   Email
                 </p>
                 <a
@@ -88,7 +88,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { service
 
               {hasPhone ? (
                 <div>
-                  <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-2">
+                  <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
                     Phone
                   </p>
                   <a
@@ -102,7 +102,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { service
 
               {hasBooking ? (
                 <div>
-                  <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-2">
+                  <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
                     Or skip the form
                   </p>
                   <Button
@@ -117,8 +117,8 @@ export default function ContactPage({ searchParams }: { searchParams?: { service
                 </div>
               ) : null}
 
-              <div className="pt-6 mt-6 border-t border-ink-100">
-                <p className="text-sm text-ink-500 leading-relaxed">
+              <div className="pt-6 mt-6 border-t border-border">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Based in Algiers. Working with clients in MENA, the EU, and the US.
                   Async-friendly. Replies in English, French, or Arabic.
                 </p>

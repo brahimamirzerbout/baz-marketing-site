@@ -43,12 +43,12 @@ export function CaseStudiesBrowser() {
       {/* Industry selector — Apexure's #2 test recommendation. */}
       <div className="mt-10">
         <div className="flex items-baseline justify-between mb-3">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500">
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
             Filter by your industry
           </p>
           {active !== 'all' && (
-            <p className="text-sm text-ink-600">
-              <span className="font-medium text-ink-900">{matchCount}</span> case{matchCount !== 1 ? 's' : ''} in{' '}
+            <p className="text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">{matchCount}</span> case{matchCount !== 1 ? 's' : ''} in{' '}
               {presentIndustries.find((i) => i.slug === active)?.name}
             </p>
           )}
@@ -72,8 +72,8 @@ export function CaseStudiesBrowser() {
 
       <div className="mt-10">
         {filtered.length === 0 ? (
-          <div className="rounded-2xl border border-ink-100 p-10 text-center">
-            <p className="text-ink-600">
+          <div className="rounded-2xl border border-border p-10 text-center">
+            <p className="text-muted-foreground">
               No cases in that industry yet.{' '}
               <button onClick={() => setActive('all')} className="text-accent font-medium hover:underline">
                 Show all
@@ -109,7 +109,7 @@ function FilterChip({
         "inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-sm font-medium border transition-colors " +
         (active
           ? "bg-accent text-white border-accent"
-          : "bg-paper text-ink-700 border-ink-200 hover:border-ink-400 hover:text-ink-900")
+          : "bg-background text-foreground border-border hover:border-ink-400 hover:text-foreground")
       }
     >
       {children}

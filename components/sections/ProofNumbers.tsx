@@ -8,23 +8,23 @@ import { caseStudies } from "@/content/case-studies";
 export function ProofNumbers() {
   const top = caseStudies.slice(0, 3);
   return (
-    <section className="bg-paper">
+    <section className="bg-background relative overflow-hidden">
       <div className="container mx-auto py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-ink-100 dark:bg-paper-200 rounded-2xl overflow-hidden border border-ink-100 dark:border-paper-200 dark:border-paper-200 dark:border-paper-200">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-muted dark:bg-muted rounded-2xl overflow-hidden border border-border dark:border-border dark:border-border dark:border-border">
           {top.map((cs) => {
             const headline = cs.metrics[0]; // most-quantified metric
             return (
-              <div key={cs.slug} className="bg-paper p-6 md:p-8 flex flex-col">
-                <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-500 mb-3">
+              <div key={cs.slug} className="bg-background p-6 md:p-8 flex flex-col">
+                <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground mb-3">
                   {cs.client} · {cs.industry}
                 </p>
-                <p className="font-display text-3xl md:text-5xl font-medium tracking-[-0.03em] text-ink-900">
+                <p className="font-display text-3xl md:text-5xl font-medium tracking-[-0.03em] text-foreground">
                   {headline?.value}
                 </p>
-                <p className="mt-1 text-sm text-ink-600">{headline?.label}</p>
-                <p className="mt-4 text-xs text-ink-500 line-clamp-2">{cs.result}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{headline?.label}</p>
+                <p className="mt-4 text-xs text-muted-foreground line-clamp-2">{cs.result}</p>
                 <div className="mt-auto pt-4 flex items-center justify-between text-xs">
-                  <span className="text-ink-500">{cs.duration}</span>
+                  <span className="text-muted-foreground">{cs.duration}</span>
                   <a href={`/case-studies/${cs.slug}`} className="text-accent font-medium hover:underline">
                     Read the case →
                   </a>

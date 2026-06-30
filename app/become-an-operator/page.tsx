@@ -81,16 +81,16 @@ export default function BecomeOperatorPage() {
             <br />
             <em className="italic text-accent">Near-zero overhead.</em>
           </h1>
-          <p className="mt-8 text-lg md:text-2xl text-ink-600 leading-relaxed max-w-3xl">
+          <p className="mt-8 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
             BAZ is the operator platform. You bring the hustle, we bring the engine: the website builder,
             the AI agents, the CRM, the lead capture. Cost to deliver one site: ~$60. What the market pays:
             hundreds or thousands. The spread is yours.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/signup?next=/console" className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-ink-900 hover:bg-ink-800 text-paper font-medium">
+            <Link href="/signup?next=/console" className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary hover:bg-primary/90 text-foreground font-medium">
               Apply to become an operator
             </Link>
-            <Link href="#phases" className="inline-flex items-center justify-center h-12 px-6 rounded-full border border-ink-200 hover:border-ink-900 font-medium">
+            <Link href="#phases" className="inline-flex items-center justify-center h-12 px-6 rounded-full border border-border hover:border-foreground font-medium">
               See the seven phases
             </Link>
           </div>
@@ -105,8 +105,8 @@ export default function BecomeOperatorPage() {
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {STACK.map((s) => (
-            <div key={s} className="bg-paper-50 rounded-2xl border border-ink-100 p-5">
-              <p className="text-sm text-ink-700 leading-relaxed">{s}</p>
+            <div key={s} className="bg-card rounded-2xl border border-border p-5">
+              <p className="text-sm text-foreground leading-relaxed">{s}</p>
             </div>
           ))}
         </div>
@@ -120,16 +120,16 @@ export default function BecomeOperatorPage() {
         </h2>
         <ol className="space-y-4">
           {PHASES.map((p) => (
-            <li key={p.n} className="grid lg:grid-cols-12 gap-6 bg-paper-50 rounded-2xl border border-ink-100 p-6 md:p-8">
+            <li key={p.n} className="grid lg:grid-cols-12 gap-6 bg-card rounded-2xl border border-border p-6 md:p-8">
               <div className="lg:col-span-1 flex items-start">
                 <span className="font-mono text-2xl font-medium text-accent">{p.n}</span>
               </div>
               <div className="lg:col-span-8">
                 <h3 className="font-display text-2xl font-medium tracking-[-0.02em] mb-3">{p.title}</h3>
-                <p className="text-ink-700 leading-relaxed">{p.body}</p>
+                <p className="text-foreground leading-relaxed">{p.body}</p>
               </div>
               <div className="lg:col-span-3 flex lg:justify-end items-start">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paper-200 text-xs text-ink-700">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted text-xs text-foreground">
                   <span aria-hidden>↓</span> {p.out}
                 </span>
               </div>
@@ -144,12 +144,12 @@ export default function BecomeOperatorPage() {
         <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] max-w-3xl mt-4 mb-10">
           Margins you can run on.
         </h2>
-        <p className="text-ink-600 max-w-2xl mb-8">
+        <p className="text-muted-foreground max-w-2xl mb-8">
           Assumes average website at $500, builder at $70 flat per site, $20/mo platform. Charge more and every number climbs.
         </p>
-        <div className="overflow-hidden bg-paper-50 rounded-2xl border border-ink-100">
+        <div className="overflow-hidden bg-card rounded-2xl border border-border">
           <table className="w-full text-sm">
-            <thead className="bg-ink-900 text-paper">
+            <thead className="bg-primary text-foreground">
               <tr className="text-left">
                 <th className="px-4 py-3 font-medium">Volume</th>
                 <th className="px-4 py-3 font-medium">Revenue</th>
@@ -159,19 +159,19 @@ export default function BecomeOperatorPage() {
             </thead>
             <tbody>
               {NUMBERS.map((r, i) => (
-                <tr key={r.tier} className={`border-t border-ink-100 ${i % 2 === 1 ? 'bg-paper-100/40' : ''}`}>
-                  <td className="px-4 py-3 font-medium text-ink-900">{r.tier}</td>
-                  <td className="px-4 py-3 text-ink-700 tabular-nums">{r.revenue}</td>
-                  <td className="px-4 py-3 text-ink-500 tabular-nums">-${parseInt(r.revenue.replace(/[$,]/g,'')) * 0.14 | 0}</td>
+                <tr key={r.tier} className={`border-t border-border ${i % 2 === 1 ? 'bg-muted/40' : ''}`}>
+                  <td className="px-4 py-3 font-medium text-foreground">{r.tier}</td>
+                  <td className="px-4 py-3 text-foreground tabular-nums">{r.revenue}</td>
+                  <td className="px-4 py-3 text-muted-foreground tabular-nums">-${parseInt(r.revenue.replace(/[$,]/g,'')) * 0.14 | 0}</td>
                   <td className="px-4 py-3 font-medium text-accent tabular-nums">{r.profit}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="mt-4 text-sm text-ink-500">
+        <p className="mt-4 text-sm text-muted-foreground">
           Email + ads management on top of the same platform stacks as recurring revenue at near-pure margin.
-          5 clients × $300/mo = <b className="text-ink-900">$1,500/mo</b>. 10 clients × $400/mo = <b className="text-ink-900">$4,000/mo</b>.
+          5 clients × $300/mo = <b className="text-foreground">$1,500/mo</b>. 10 clients × $400/mo = <b className="text-foreground">$4,000/mo</b>.
         </p>
       </Section>
 
@@ -180,21 +180,21 @@ export default function BecomeOperatorPage() {
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <Eyebrow tone="light">The loop</Eyebrow>
-            <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] mt-4 text-paper">
+            <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] mt-4 text-foreground">
               Look legit → learn the platform → scout local businesses → walk in with a free sample → put every lead in the CRM → close → ship → put them on recurring → repeat.
             </h2>
           </div>
-          <div className="bg-paper-50 rounded-2xl p-8">
-            <p className="font-display text-xl text-ink-900 leading-relaxed">
+          <div className="bg-card rounded-2xl p-8">
+            <p className="font-display text-xl text-foreground leading-relaxed">
               The business already works on paper. Margins are huge. Overhead is ~$20/mo. There&rsquo;s
               no financial risk to figure out. The only question is how many local businesses you&rsquo;re
               willing to go talk to.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/signup?next=/console" className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-ink-900 hover:bg-ink-800 text-paper font-medium">
+              <Link href="/signup?next=/console" className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary hover:bg-primary/90 text-foreground font-medium">
                 Apply now
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center h-12 px-6 rounded-full border border-ink-200 hover:border-ink-900 font-medium">
+              <Link href="/contact" className="inline-flex items-center justify-center h-12 px-6 rounded-full border border-border hover:border-foreground font-medium">
                 Talk to us first
               </Link>
             </div>

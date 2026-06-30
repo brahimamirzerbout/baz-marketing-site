@@ -1,0 +1,9 @@
+# Split Register Card With Illustration
+
+Create a register page split into two columns on large 1280px width breakpoints inside a centered page container with comfortable side padding. The left column carries a single form card with rounded corners; the right column carries one decorative vector illustration. The two columns share the same vertical center line.
+
+Inside the **left card**, stack from top to bottom: a small brand-mark row at the top of the card pairing a circular logo glyph and a short brand wordmark; a heading on its own line below the brand mark; a single sub-line directly below the heading combining a short supporting sentence with an inline text link to the sign-in flow at the end of the same line; a two-column field grid pairing a short text input on the left with a short text input on the right; a second two-column field grid pairing a password input on the left with a repeat-password input on the right (every label sits above its input with a tiny required-field marker to the right of the label text where applicable); a horizontal "or" separator made of a thin rule, a centered short word, and another thin rule; a stack of two full-width third-party provider buttons placed one above the other, each beginning with a small leading provider glyph followed by short provider label copy; a vertical stack of two checkbox rows with multi-line inline labels that may contain inline text links; one full-width primary submit button at the bottom of the card.
+
+The **right column** have a single vector full width illustration sized to fill the column visually (for example a person sitting beside a device, with simple background shapes such as plants and a silhouette of a screen). Vertically center the illustration relative to the form card.
+
+On narrow viewports, stack with the form card first and the illustration second; the illustration may shrink or be hidden when space is constrained.

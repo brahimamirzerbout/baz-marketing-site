@@ -6,35 +6,35 @@ export function CaseStudyCard({ caseStudy, index = 0 }: { caseStudy: CaseStudy; 
   return (
     <Link
       href={`/case-studies/${caseStudy.slug}`}
-      className="reveal group flex flex-col bg-paper-50 rounded-2xl border border-ink-100 hover:border-ink-900 hover:-translate-y-1 hover:shadow-lift transition-all duration-200 overflow-hidden h-full"
+      className="reveal group flex flex-col bg-card rounded-2xl border border-border hover:border-foreground hover:-translate-y-1 hover:shadow-lift transition-all duration-200 overflow-hidden h-full"
       style={{ animationDelay: `${index * 60}ms` }}
     >
       <div className="aspect-[5/3] relative grid place-items-center" style={{ background: caseStudy.cover }}>
-        <span className="font-display text-paper text-7xl md:text-8xl font-bold tracking-[-0.04em] opacity-90 dark:text-paper mix-blend-difference">
+        <span className="font-display text-foreground text-7xl md:text-8xl font-bold tracking-[-0.04em] opacity-90 dark:text-foreground mix-blend-difference">
           {caseStudy.client.charAt(0)}
         </span>
         <span className="absolute top-4 left-4 flex gap-2">
           <Badge variant="ink">{caseStudy.industry}</Badge>
           {caseStudy.placeholder && <Badge variant="warning">Demo</Badge>}
         </span>
-        <span className="absolute bottom-4 right-4 text-paper/80 text-xs font-mono uppercase tracking-[0.15em]">
+        <span className="absolute bottom-4 right-4 text-foreground/80 text-xs font-mono uppercase tracking-[0.15em]">
           {caseStudy.duration}
         </span>
       </div>
       <div className="p-6 md:p-7 flex-1 flex flex-col">
         <h3 className="font-display text-2xl font-medium tracking-[-0.02em]">{caseStudy.client}</h3>
-        <p className="mt-2 text-sm text-ink-600 line-clamp-2">{caseStudy.problem}</p>
+        <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{caseStudy.problem}</p>
         <div className="mt-6 grid grid-cols-3 gap-2">
           {caseStudy.metrics.slice(0, 3).map((m) => (
             <div key={m.label}>
               <p className="font-display text-lg font-medium tracking-[-0.02em]">{m.value}</p>
-              <p className="text-[10px] uppercase tracking-wider text-ink-500 mt-1">{m.label}</p>
+              <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{m.label}</p>
             </div>
           ))}
         </div>
-        <div className="mt-6 pt-4 border-t border-ink-100 flex items-center justify-between text-sm">
-          <span className="text-ink-500">{caseStudy.services.slice(0, 2).join(' · ')}</span>
-          <span aria-hidden className="text-ink-300 dark:text-ink-400 group-hover:text-accent group-hover:translate-x-0.5 transition-all">Read →</span>
+        <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-sm">
+          <span className="text-muted-foreground">{caseStudy.services.slice(0, 2).join(' · ')}</span>
+          <span aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">Read →</span>
         </div>
       </div>
     </Link>

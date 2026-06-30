@@ -25,7 +25,7 @@ export default function AdminIndexPage() {
             <Card className="card-hover p-6">
               <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent">{t.name}</p>
               <p className="mt-2 font-display text-2xl font-medium tracking-[-0.02em]">{t.tagline.split('.')[0]}.</p>
-              <p className="mt-1 text-ink-600 text-sm">{t.tagline.split('.').slice(1).join('.').trim()}</p>
+              <p className="mt-1 text-muted-foreground text-sm">{t.tagline.split('.').slice(1).join('.').trim()}</p>
             </Card>
           </Link>
         ))}

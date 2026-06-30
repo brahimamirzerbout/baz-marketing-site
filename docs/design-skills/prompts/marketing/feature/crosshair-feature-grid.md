@@ -1,0 +1,7 @@
+# Crosshair Feature Grid
+
+Create a feature section inside a centered page container with comfortable side padding, organized as a two-by-two grid of four equal quadrants on large 1280px width breakpoints. Separate the quadrants with thin horizontal and vertical rules that meet at the center of the section so the layout reads like a crosshair; place small circular nodes at the center intersection point and at the four outer ends of the divider lines where they meet the section edges (six nodes total: one center, four outer).
+
+Fill the quadrants in a checkerboard pattern: the **top-left quadrant** and the **bottom-right quadrant** each hold a large illustrative or isometric media block sized to fill the quadrant area. The **top-right quadrant** and the **bottom-left quadrant** each hold a left-aligned text stack containing, in order: a small pill-shaped badge (combining a tiny icon on the left and a short label text to its right, both inside a rounded container); a large left-aligned multi-line heading on its own line directly below the badge (allow selective emphasis on key words within the heading); a short two-line supporting paragraph directly beneath the heading. Keep all text within each quadrant left-aligned with comfortable internal padding.
+
+On narrow viewports, collapse the grid into a single column following reading order: top-left media quadrant first, top-right text quadrant second, bottom-left text quadrant third, bottom-right media quadrant fourth.

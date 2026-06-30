@@ -1,0 +1,9 @@
+# Centered Event Card CTA
+
+Create a CTA section as one vertical stack inside a centered page container with comfortable side padding. At the very top, center a large section heading on its own line. Below the heading, place a centered supporting paragraph set at a moderate max width so long lines do not stretch edge to edge.
+
+Below the introductory copy, leave generous vertical space, then place a two-column grid of identical event cards on large 1280 px width breakpoints. Each card has softly rounded corners and a thin outer border. Inside each card, stack from top to bottom: a top rectangular image whose top-left and top-right corners follow the card's border radius (the image spans the full card width and sits flush against the top edge of the card); a horizontal row directly beneath the image containing raised-amount and goal text left-aligned on one side and a donor-count label right-aligned on the other side of the same row; a full-width horizontal progress bar spanning the card width beneath the amount row (the bar's filled portion reflects the ratio of raised amount to goal); a bold card title on its own line beneath the progress bar; a multi-line description paragraph directly beneath the title at the full card content width; a horizontal row at the bottom of the card containing a primary button (short label plus a small trailing rightward arrow) and a secondary button (a small leading share icon plus a short label) sitting **side by side on one row** (the row never wraps to a second line — treat this as the global two-button row rule).
+
+Below the card grid, leave clear vertical space, then center a single text link whose label includes a small trailing rightward arrow at the end of the link text.
+
+On narrow viewports, collapse the grid to a single column and stack the two event cards in their original left-to-right order.

@@ -70,18 +70,18 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
   const focusNode = focus ? byId.get(focus) : null;
 
   return (
-    <div className="rounded-2xl border border-ink-100 bg-card overflow-hidden">
+    <div className="rounded-2xl border border-border bg-card overflow-hidden">
       {/* Header strip */}
-      <div className="flex items-baseline justify-between px-5 py-4 border-b border-ink-100">
+      <div className="flex items-baseline justify-between px-5 py-4 border-b border-border">
         <div>
           <h3 className="font-display text-lg font-medium tracking-[-0.01em]">
             Agency Graph
           </h3>
-          <p className="text-xs text-ink-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             How BAZ operates. Hover to highlight. Click a node to focus.
           </p>
         </div>
-        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-ink-500 font-mono">
+        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-muted-foreground font-mono">
           <Legend label="Acquire" color={RING_STROKE.acquisition} />
           <Legend label="Deliver" color={RING_STROKE.delivery} />
           <Legend label="Outcome" color={RING_STROKE.outcomes} />
@@ -234,21 +234,21 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
         {/* Focus panel — overlay that shows the focused node's blurb */}
         {focusNode && (
           <div
-            className="absolute bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm rounded-xl bg-ink-900/95 backdrop-blur border border-ink-100 p-4"
+            className="absolute bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm rounded-xl bg-primary/95 backdrop-blur border border-border p-4"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-baseline justify-between gap-3 mb-1">
-              <p className="font-display text-base font-medium text-paper">
+              <p className="font-display text-base font-medium text-foreground">
                 {focusNode.label}
               </p>
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper-300">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                 {RING_LABELS[focusNode.ring]}
               </span>
             </div>
-            <p className="text-sm text-paper-300 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {focusNode.blurb}
             </p>
-            <div className="mt-3 flex items-center justify-between text-[11px] text-paper-400 font-mono">
+            <div className="mt-3 flex items-center justify-between text-[11px] text-muted-foreground/60 font-mono">
               <span>
                 {EDGES.filter(
                   (e) => e.source === focusNode.id || e.target === focusNode.id
@@ -262,7 +262,7 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
       </div>
 
       {/* Footer strip */}
-      <div className="px-5 py-3 border-t border-ink-100 flex items-baseline justify-between text-xs text-ink-500">
+      <div className="px-5 py-3 border-t border-border flex items-baseline justify-between text-xs text-muted-foreground">
         <span>
           {NODES.length} nodes &middot; {EDGES.length} edges
         </span>

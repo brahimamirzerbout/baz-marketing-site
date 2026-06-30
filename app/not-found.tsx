@@ -16,7 +16,7 @@ export default function NotFound() {
         <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
           We can&apos;t find that page.
         </h1>
-        <p className="mt-6 text-lg text-ink-600">
+        <p className="mt-6 text-lg text-muted-foreground">
           The link may be old, or we may have moved the page. Try the navigation above, or
           book a call if you were looking for something specific.
         </p>
@@ -31,7 +31,7 @@ export default function NotFound() {
             Back to home
           </Button>
         </div>
-        <p className="mt-12 text-sm text-ink-500">
+        <p className="mt-12 text-sm text-muted-foreground">
           Or write us at <a href={`mailto:${site.email}`} className="underline">{site.email}</a>.
         </p>
       </div>

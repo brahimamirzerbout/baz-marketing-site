@@ -134,19 +134,19 @@ export default function MethodologyPage() {
         <SectionHeading>What you get, when, and how.</SectionHeading>
         <div className="mt-10 space-y-6">
           {phases.map((p) => (
-            <div key={p.n} className="grid md:grid-cols-12 gap-6 border-t border-ink-100 pt-6">
+            <div key={p.n} className="grid md:grid-cols-12 gap-6 border-t border-border pt-6">
               <div className="md:col-span-1">
                 <div className="font-display text-5xl font-medium tracking-[-0.04em] text-accent">{p.n}</div>
               </div>
               <div className="md:col-span-3">
                 <div className="font-display text-2xl font-medium tracking-[-0.02em]">{p.name}</div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500 mt-1">{p.days}</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mt-1">{p.days}</div>
               </div>
               <div className="md:col-span-5">
-                <p className="text-ink-700 leading-relaxed">{p.body}</p>
+                <p className="text-foreground leading-relaxed">{p.body}</p>
               </div>
               <div className="md:col-span-3">
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500 mb-2">Outputs</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-2">Outputs</div>
                 <ul className="space-y-1 text-sm">
                   {p.outputs.map((o) => (
                     <li key={o} className="flex gap-2">
@@ -168,20 +168,20 @@ export default function MethodologyPage() {
             <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-4">
               In public · The scoring formula
             </p>
-            <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] text-paper">
+            <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] text-foreground">
               The math behind the lead score.
             </h2>
-            <p className="mt-4 text-paper-300">
+            <p className="mt-4 text-muted-foreground">
               No black boxes. The Marketing Hub scores every contact against this
               formula. You can read the source, audit the inputs, and override the
               weights for your business.
             </p>
           </div>
           <div className="lg:col-span-7">
-            <pre className="rounded-2xl bg-paper text-ink-900 p-6 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre dark:bg-ink-900 dark:text-paper">
+            <pre className="rounded-2xl bg-background text-foreground p-6 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre dark:bg-primary dark:text-foreground">
 {scoreFormula}
             </pre>
-            <p className="mt-4 text-xs text-paper-400 dark:text-ink-500 font-mono">
+            <p className="mt-4 text-xs text-muted-foreground/60 dark:text-muted-foreground font-mono">
               Source: <code>src/lib/triangle.ts → scoreContact()</code> · live at <code>/api/triangle/health</code>
             </p>
           </div>
@@ -195,7 +195,7 @@ export default function MethodologyPage() {
           <h2 className="font-display text-display-xl font-medium tracking-[-0.04em]">
             Three tiers. One promise: measurable outcomes.
           </h2>
-          <p className="mt-4 text-lg text-ink-600">
+          <p className="mt-4 text-lg text-muted-foreground">
             Every BAZ engagement has a written outcome, a measurement method, and
             a guarantee. We get paid for what moves, not what we did.
           </p>
@@ -203,11 +203,11 @@ export default function MethodologyPage() {
 
         <div className="mt-10 grid md:grid-cols-3 gap-4">
           {pricing.map((tier) => (
-            <div key={tier.name} className="rounded-2xl border border-ink-100 p-6 flex flex-col">
-              <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500">{tier.duration}</div>
+            <div key={tier.name} className="rounded-2xl border border-border p-6 flex flex-col">
+              <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{tier.duration}</div>
               <div className="font-display text-2xl font-medium tracking-[-0.02em] mt-1">{tier.name}</div>
-              <div className="mt-3 text-sm text-ink-700">
-                <span className="font-medium text-ink-900">Commitment:</span> {tier.commitment}
+              <div className="mt-3 text-sm text-foreground">
+                <span className="font-medium text-foreground">Commitment:</span> {tier.commitment}
               </div>
               <div className="mt-1 text-sm">
                 <span className="font-medium text-accent">Guarantee:</span> {tier.guarantee}
@@ -230,7 +230,7 @@ export default function MethodologyPage() {
 
       {/* Speed guarantee */}
       <Section tone="paper" size="md">
-        <div className="rounded-3xl bg-ink-900 text-paper p-8 md:p-12 dark:bg-ink-900 dark:text-paper">
+        <div className="rounded-3xl bg-primary text-foreground p-8 md:p-12 dark:bg-primary dark:text-foreground">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2">
               <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-3">
@@ -239,14 +239,14 @@ export default function MethodologyPage() {
               <h2 className="font-display text-display-lg font-medium tracking-[-0.03em]">
                 Ship in 14 days. Or first month free.
               </h2>
-              <p className="mt-3 text-paper-300">
+              <p className="mt-3 text-muted-foreground">
                 From kickoff, the first measurable artifact is live in your Hub within
                 14 calendar days. Miss it, and month one is on us. We&apos;ve never paid out.
               </p>
             </div>
             <div className="md:col-span-1 text-center md:text-right">
               <div className="font-display text-7xl font-medium tracking-[-0.04em] text-accent">14d</div>
-              <div className="text-xs text-paper-400 mt-1 font-mono uppercase tracking-wider">or month 1 free</div>
+              <div className="text-xs text-muted-foreground/60 mt-1 font-mono uppercase tracking-wider">or month 1 free</div>
             </div>
           </div>
         </div>
@@ -261,21 +261,21 @@ export default function MethodologyPage() {
             We&apos;ve answered these 1,000 times. Here they are, written down.
           </SectionLede>
         </div>
-        <div className="mt-10 max-w-3xl divide-y divide-ink-100 border-t border-b border-ink-100">
+        <div className="mt-10 max-w-3xl divide-y divide-ink-100 border-t border-b border-border">
           {methodologyFaqs.map((faq, i) => (
             <details key={i} className="group py-5">
               <summary className="flex items-start justify-between gap-4 cursor-pointer list-none">
-                <h3 className="font-display text-lg md:text-xl font-medium tracking-[-0.01em] text-ink-900">
+                <h3 className="font-display text-lg md:text-xl font-medium tracking-[-0.01em] text-foreground">
                   {faq.q}
                 </h3>
                 <span
                   aria-hidden
-                  className="mt-1 inline-flex items-center justify-center w-7 h-7 rounded-full border border-ink-200 text-ink-700 transition-transform group-open:rotate-45 shrink-0"
+                  className="mt-1 inline-flex items-center justify-center w-7 h-7 rounded-full border border-border text-foreground transition-transform group-open:rotate-45 shrink-0"
                 >
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-ink-700 leading-relaxed max-w-2xl">{faq.a}</p>
+              <p className="mt-3 text-foreground leading-relaxed max-w-2xl">{faq.a}</p>
             </details>
           ))}
         </div>

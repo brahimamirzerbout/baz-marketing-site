@@ -24,12 +24,12 @@ export function LogoMarquee() {
   if (logos.length === 0) return null;
   const doubled = [...logos, ...logos];
   return (
-    <section className="bg-paper-50 py-10 border-y border-ink-100 dark:border-paper-200 marquee-mask overflow-hidden">
+    <section className="bg-card py-10 border-y border-border dark:border-border marquee-mask overflow-hidden">
       <div className="flex animate-marquee gap-12 whitespace-nowrap">
         {doubled.map((l, i) => (
           <span
             key={`${l}-${i}`}
-            className="font-display font-bold text-2xl md:text-3xl text-ink-300 dark:text-ink-400 hover:text-ink-700 dark:hover:text-paper transition-colors select-none"
+            className="font-display font-bold text-2xl md:text-3xl text-muted-foreground/40 dark:text-muted-foreground/60 hover:text-foreground dark:hover:text-foreground transition-colors select-none"
           >
             {l}
           </span>

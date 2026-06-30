@@ -1,0 +1,15 @@
+# Application Sidebar Navigation
+
+Create an application sidenav as a fixed-width vertical panel anchored to one edge of the viewport, stretching the full viewport height. Do not generate any main content area or placeholder blocks beside the sidenav; only output the sidenav code.
+
+**Brand header.** At the very top of the panel, place a brand mark composed of a small logo icon paired with the brand name to its right on the same baseline, separated from the navigation below by a thin horizontal divider.
+
+**Primary navigation list.** Below the brand header, stack a vertical list of navigation items from top to bottom. Each primary navigation item is a horizontal row composed of a small leading icon on the left and a text label to its right on the same baseline. Some items include a trailing chevron icon on the far right of the row indicating a collapsible dropdown submenu; the chevron rotates to point upward when the submenu is expanded. When expanded, indented child links appear directly below the parent item as plain text labels without leading icons, each on its own line with consistent vertical spacing. One navigation section carries a highlight state (active color on the label and icon, with the dropdown expanded and child links visible). One navigation item includes a small circular numeric badge to the right of its label indicating an unread count; the badge text is vertically and horizontally centered within the circle using line-height: 1 so the number never sits off-center.
+
+**Secondary utility group.** Below the primary navigation, separated by a thin horizontal divider or additional vertical whitespace, place a secondary group of navigation links at the bottom portion of the panel. Each follows the same icon-plus-label horizontal row pattern but belongs to a distinct utility category (such as documentation, component library, or help resources).
+
+**Interaction behavior.** Clicking a parent item that has a trailing chevron toggles the visibility of its child links and rotates the chevron between its collapsed (pointing down) and expanded (pointing up) states. Only one dropdown may be expanded at a time, or multiple may be open simultaneously — follow the host design system's convention. The active state visually distinguishes the currently selected item from all others using color, font weight, or a left-edge accent indicator.
+
+**Sizing and layout rules.** The sidenav panel height is exactly 100 vh, always spanning the full viewport height with no gap above or below. The panel width is fixed and does not stretch with the viewport. Navigation items have comfortable vertical padding between them. Child links are indented by a consistent left offset relative to parent items. The entire panel scrolls vertically if content exceeds the viewport height, with the brand header optionally remaining sticky at the top.
+
+On narrow viewports the sidenav collapses off-screen and becomes accessible via an external hamburger or toggle control. The panel slides in as an overlay or pushes the content area. Preserve reading order throughout.

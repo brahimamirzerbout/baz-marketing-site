@@ -18,7 +18,7 @@ export function PillarGrid() {
             Owned. Earned. Paid. Data.
           </h2>
         </div>
-        <p className="text-lg text-ink-600 max-w-xl">
+        <p className="text-lg text-muted-foreground max-w-xl">
           Most agencies run one channel. BAZ runs all four — under one senior team, one plan,
           one set of dashboards. No channel blame. One P&amp;L.
         </p>
@@ -28,11 +28,11 @@ export function PillarGrid() {
           <Link
             key={p.href}
             href={p.href}
-            className="group block bg-paper-50 rounded-2xl p-6 md:p-7 border border-ink-100 dark:border-paper-200 hover:border-ink-900 dark:hover:border-paper-50 hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
+            className="group block bg-card rounded-2xl p-6 md:p-7 border border-border dark:border-border hover:border-foreground dark:hover:border-border hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
           >
             <div className="flex items-center justify-between mb-12">
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">{p.label}</span>
-              <span aria-hidden className="text-ink-300 dark:text-ink-400 group-hover:text-accent group-hover:translate-x-0.5 transition-all">→</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">{p.label}</span>
+              <span aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">→</span>
             </div>
             <p className="font-display text-2xl font-medium tracking-[-0.02em]">{p.desc}</p>
           </Link>

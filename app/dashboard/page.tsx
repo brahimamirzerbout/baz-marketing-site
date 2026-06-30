@@ -11,7 +11,7 @@ import { cn } from '@/lib/cn';
 // here eliminates the hydration mismatch without changing the UI.
 const AgencyGraph = nextDynamic(
   () => import('@/components/dashboard/AgencyGraph').then((m) => m.AgencyGraph),
-  { ssr: false, loading: () => <div className="aspect-[4/3] rounded-2xl bg-paper-50 border border-ink-100 animate-pulse" /> }
+  { ssr: false, loading: () => <div className="aspect-[4/3] rounded-2xl bg-card border border-border animate-pulse" /> }
 );
 
 export const dynamic = 'force-dynamic';
@@ -93,13 +93,13 @@ export default async function DashboardPage({
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] mt-2">
             Dashboard
           </h1>
-          <p className="text-sm text-ink-500 mt-2">
+          <p className="text-sm text-muted-foreground mt-2">
             Your cockpit. Leads, replies, and AI agent output will land here.
           </p>
         </div>
         <Link
           href="/admin"
-          className="text-sm text-ink-500 hover:text-ink-900 underline"
+          className="text-sm text-muted-foreground hover:text-foreground underline"
         >
           ← Admin home
         </Link>
@@ -132,15 +132,15 @@ export default async function DashboardPage({
       </div>
 
       {/* Tab strip: Leads inbox OR Agency Graph (Obsidian-style) */}
-      <div className="mb-6 flex items-center gap-1 rounded-full border border-ink-100 bg-card p-1 w-fit">
+      <div className="mb-6 flex items-center gap-1 rounded-full border border-border bg-card p-1 w-fit">
         <Link
           href="/dashboard?tab=leads"
           scroll={false}
           className={cn(
             'rounded-full px-4 h-9 inline-flex items-center text-sm font-medium transition-colors',
             tab === 'leads'
-              ? 'bg-ink-900 text-paper'
-              : 'text-ink-500 hover:text-ink-900'
+              ? 'bg-primary text-foreground'
+              : 'text-muted-foreground hover:text-foreground'
           )}
         >
           Leads
@@ -152,8 +152,8 @@ export default async function DashboardPage({
           className={cn(
             'rounded-full px-4 h-9 inline-flex items-center text-sm font-medium transition-colors',
             tab === 'graph'
-              ? 'bg-ink-900 text-paper'
-              : 'text-ink-500 hover:text-ink-900'
+              ? 'bg-primary text-foreground'
+              : 'text-muted-foreground hover:text-foreground'
           )}
         >
           Agency Graph
@@ -170,7 +170,7 @@ export default async function DashboardPage({
                 <h2 className="font-display text-2xl font-medium tracking-[-0.02em]">
                   Leads
                 </h2>
-                <div className="flex items-center gap-3 text-xs text-ink-500">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span>
                     <span className="font-mono">{stats.byStatus.new}</span> new
                   </span>
@@ -186,15 +186,15 @@ export default async function DashboardPage({
               </div>
 
           {leads.length === 0 ? (
-            <div className="bg-paper rounded-2xl border border-ink-100 p-12 text-center">
-              <p className="text-ink-500 max-w-md mx-auto">
+            <div className="bg-background rounded-2xl border border-border p-12 text-center">
+              <p className="text-muted-foreground max-w-md mx-auto">
                 No leads yet. When someone submits the contact form at{' '}
                 <Link href="/contact" className="underline">
                   /contact
                 </Link>
                 , they&apos;ll land here.
               </p>
-              <p className="text-xs text-ink-400 mt-3 font-mono">
+              <p className="text-xs text-muted-foreground/60 mt-3 font-mono">
                 data/leads.jsonl
               </p>
             </div>
@@ -203,19 +203,19 @@ export default async function DashboardPage({
               {recent.map((lead) => (
                 <article
                   key={lead.id}
-                  className="bg-paper rounded-2xl border border-ink-100 p-5 md:p-6 hover:border-ink-200 transition-colors"
+                  className="bg-background rounded-2xl border border-border p-5 md:p-6 hover:border-border transition-colors"
                 >
                   <header className="flex flex-wrap items-start justify-between gap-3 mb-3">
                     <div className="min-w-0">
                       <h3 className="font-display text-lg font-medium tracking-[-0.01em]">
                         {lead.name}
                         {lead.company ? (
-                          <span className="text-ink-400 font-normal ml-2 text-sm">
+                          <span className="text-muted-foreground/60 font-normal ml-2 text-sm">
                             · {lead.company}
                           </span>
                         ) : null}
                       </h3>
-                      <div className="flex flex-wrap items-center gap-x-2 text-xs text-ink-500 mt-1">
+                      <div className="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground mt-1">
                         <a
                           href={`mailto:${lead.email}`}
                           className="text-accent hover:underline font-mono"
@@ -229,7 +229,7 @@ export default async function DashboardPage({
                               href={lead.website}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="hover:text-ink-900 underline"
+                              className="hover:text-foreground underline"
                             >
                               {lead.website.replace(/^https?:\/\//, '')}
                             </a>
@@ -239,28 +239,28 @@ export default async function DashboardPage({
                     </div>
                     <div className="flex flex-col items-end gap-1">
                       <time
-                        className="text-xs text-ink-500 font-mono"
+                        className="text-xs text-muted-foreground font-mono"
                         dateTime={lead.receivedAt}
                         title={formatDate(lead.receivedAt)}
                       >
                         {relativeTime(lead.receivedAt)}
                       </time>
-                      <span className="text-[10px] text-ink-400 font-mono">
+                      <span className="text-[10px] text-muted-foreground/60 font-mono">
                         {lead.id.slice(-8)}
                       </span>
                     </div>
                   </header>
 
-                  <p className="text-sm text-ink-700 whitespace-pre-wrap leading-relaxed mb-4">
+                  <p className="text-sm text-foreground whitespace-pre-wrap leading-relaxed mb-4">
                     {lead.message}
                   </p>
 
-                  <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-ink-100">
-                    <dl className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-500">
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-border">
+                    <dl className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                       {lead.budget ? (
                         <>
                           <div>
-                            <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 inline mr-1">
+                            <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 inline mr-1">
                               Budget
                             </dt>
                             <dd className="inline">
@@ -270,7 +270,7 @@ export default async function DashboardPage({
                         </>
                       ) : null}
                       <div>
-                        <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 inline mr-1">
+                        <dt className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 inline mr-1">
                           Source
                         </dt>
                         <dd className="inline font-mono">{lead.source}</dd>
@@ -279,7 +279,7 @@ export default async function DashboardPage({
                     <div className="flex items-center gap-3">
                       <a
                         href={`mailto:${lead.email}?subject=Re: Your BAZ brief (${lead.id})`}
-                        className="inline-flex items-center gap-2 px-4 h-9 rounded-full bg-ink-900 text-paper text-xs font-medium hover:bg-ink-800 transition-colors"
+                        className="inline-flex items-center gap-2 px-4 h-9 rounded-full bg-primary text-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
                       >
                         Reply by email →
                       </a>
@@ -300,26 +300,26 @@ export default async function DashboardPage({
 
         {/* Sidebar (1/3) */}
         <aside className="space-y-6">
-          <div className="bg-paper rounded-2xl border border-ink-100 p-5">
+          <div className="bg-background rounded-2xl border border-border p-5">
             <h3 className="font-display text-lg font-medium tracking-[-0.01em] mb-3">
               AI agent
             </h3>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-amber-400" />
-              <span className="text-sm text-ink-700">Not connected</span>
+              <span className="text-sm text-foreground">Not connected</span>
             </div>
-            <p className="text-xs text-ink-500 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               When the LangGraph agent is running, it will write actions,
               insights, and conversation drafts here in real time.
             </p>
           </div>
 
-          <div className="bg-paper rounded-2xl border border-ink-100 p-5">
+          <div className="bg-background rounded-2xl border border-border p-5">
             <h3 className="font-display text-lg font-medium tracking-[-0.01em] mb-3">
               By budget
             </h3>
             {Object.keys(stats.byBudget).length === 0 ? (
-              <p className="text-xs text-ink-500">No budget data yet.</p>
+              <p className="text-xs text-muted-foreground">No budget data yet.</p>
             ) : (
               <ul className="space-y-2">
                 {Object.entries(stats.byBudget)
@@ -329,17 +329,17 @@ export default async function DashboardPage({
                       key={k}
                       className="flex items-center justify-between text-sm"
                     >
-                      <span className="text-ink-700">
+                      <span className="text-foreground">
                         {BUDGET_LABELS[k] ?? k}
                       </span>
-                      <span className="font-mono text-ink-900">{v}</span>
+                      <span className="font-mono text-foreground">{v}</span>
                     </li>
                   ))}
               </ul>
             )}
           </div>
 
-          <div className="bg-paper rounded-2xl border border-ink-100 p-5">
+          <div className="bg-background rounded-2xl border border-border p-5">
             <h3 className="font-display text-lg font-medium tracking-[-0.01em] mb-3">
               Other tools
             </h3>
@@ -367,16 +367,16 @@ export default async function DashboardPage({
             </ul>
           </div>
 
-          <div className="bg-ink-900 text-paper rounded-2xl p-5">
+          <div className="bg-primary text-foreground rounded-2xl p-5">
             <h3 className="font-display text-lg font-medium tracking-[-0.01em] mb-2">
               Quick action
             </h3>
-            <p className="text-xs text-paper-300 mb-4">
+            <p className="text-xs text-muted-foreground mb-4">
               Open the contact form to see exactly what your leads see.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-4 h-9 rounded-full bg-accent text-white text-xs font-medium hover:bg-accent-600 transition-colors"
+              className="inline-flex items-center gap-2 px-4 h-9 rounded-full bg-accent text-white text-xs font-medium hover:bg-primary/90 transition-colors"
             >
               Open /contact →
             </Link>
@@ -384,7 +384,7 @@ export default async function DashboardPage({
         </aside>
       </div>
 
-      <footer className="mt-16 pt-8 border-t border-ink-100 flex items-center justify-between text-xs text-ink-400">
+      <footer className="mt-16 pt-8 border-t border-border flex items-center justify-between text-xs text-muted-foreground/60">
         <span>
           Stored at <span className="font-mono">data/leads.jsonl</span>
         </span>
@@ -393,7 +393,7 @@ export default async function DashboardPage({
           {site.email ? (
             <a
               href={`mailto:${site.email}`}
-              className="hover:text-ink-900 underline"
+              className="hover:text-foreground underline"
             >
               {site.email}
             </a>
@@ -422,10 +422,10 @@ function Stat({
       ? 'text-accent'
       : tone === 'ok'
         ? 'text-emerald-700'
-        : 'text-ink-900';
+        : 'text-foreground';
   return (
-    <div className="bg-paper rounded-2xl border border-ink-100 p-4">
-      <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400 mb-1">
+    <div className="bg-background rounded-2xl border border-border p-4">
+      <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-1">
         {label}
       </p>
       <p
@@ -433,7 +433,7 @@ function Stat({
       >
         {value}
       </p>
-      {hint ? <p className="text-xs text-ink-500 mt-1">{hint}</p> : null}
+      {hint ? <p className="text-xs text-muted-foreground mt-1">{hint}</p> : null}
     </div>
   );
 }

@@ -27,7 +27,7 @@ export function ServicesOverview() {
         <div className="lg:col-span-5 flex items-end lg:justify-end">
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 font-medium text-ink-900 hover:text-accent transition-colors"
+            className="inline-flex items-center gap-2 font-medium text-foreground hover:text-accent transition-colors"
           >
             All services <span aria-hidden>→</span>
           </Link>
@@ -41,20 +41,20 @@ export function ServicesOverview() {
             <Link
               key={s.slug}
               href={`/services/${s.slug}`}
-              className="reveal group block bg-paper-50 rounded-2xl p-6 md:p-7 border border-ink-100 dark:border-paper-200 hover:border-ink-900 dark:hover:border-paper-50 hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
+              className="reveal group block bg-card rounded-2xl p-6 md:p-7 border border-border dark:border-border hover:border-foreground dark:hover:border-border hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className="flex items-center justify-between mb-8">
                 <Badge variant={tone.tone}>{String(i + 1).padStart(2, '0')} · {tone.name}</Badge>
-                <span aria-hidden className="text-ink-300 dark:text-ink-400 group-hover:text-accent group-hover:translate-x-0.5 transition-all">→</span>
+                <span aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">→</span>
               </div>
               <h3 className="font-display text-2xl md:text-[26px] font-medium tracking-[-0.02em] leading-tight">
                 {s.name}
               </h3>
-              <p className="mt-3 text-ink-600 leading-relaxed">{s.tagline}</p>
-              <div className="mt-6 pt-4 border-t border-ink-100 flex items-center justify-between text-sm">
-                <span className="font-mono uppercase tracking-[0.15em] text-[11px] text-ink-400">{s.deliverables[0]}</span>
-                <span className="text-ink-500">{s.deliverables.length} deliverables</span>
+              <p className="mt-3 text-muted-foreground leading-relaxed">{s.tagline}</p>
+              <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-sm">
+                <span className="font-mono uppercase tracking-[0.15em] text-[11px] text-muted-foreground/60">{s.deliverables[0]}</span>
+                <span className="text-muted-foreground">{s.deliverables.length} deliverables</span>
               </div>
             </Link>
           );

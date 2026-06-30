@@ -53,7 +53,7 @@ export function PerformanceFeature() {
           <h3 className="font-display text-3xl md:text-4xl font-medium tracking-[-0.02em] mt-3 leading-tight">
             From tracking gaps to scale in 12 weeks.
           </h3>
-          <p className="mt-4 text-ink-600 max-w-md leading-relaxed">
+          <p className="mt-4 text-muted-foreground max-w-md leading-relaxed">
             Every Performance Marketing engagement follows the same 5-phase loop.
             The shape is repeatable; the work is bespoke to your funnel, your
             creative, and your unit economics.
@@ -91,10 +91,10 @@ export function PerformanceFeature() {
       </div>
 
       {/* Proof strip */}
-      <div className="mt-16 pt-10 border-t border-ink-100 dark:border-paper-200">
+      <div className="mt-16 pt-10 border-t border-border dark:border-border">
         <div className="flex flex-wrap items-baseline justify-between gap-4 mb-6">
           <Eyebrow>Selected outcomes</Eyebrow>
-          <Link href="/case-studies" className="text-sm font-medium text-ink-900 hover:text-accent transition-colors">
+          <Link href="/case-studies" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
             All case studies →
           </Link>
         </div>
@@ -128,14 +128,14 @@ export function PerformanceFeature() {
 
 function KpiBlock({ value, label, sub }: { value: string; label: string; sub: string }) {
   return (
-    <div className="bg-paper rounded-2xl border border-ink-100 dark:border-paper-200 p-5">
-      <p className="font-display text-3xl md:text-4xl font-medium tracking-[-0.03em] text-ink-900">
+    <div className="bg-background rounded-2xl border border-border dark:border-border p-5">
+      <p className="font-display text-3xl md:text-4xl font-medium tracking-[-0.03em] text-foreground">
         {value}
       </p>
-      <p className="mt-2 font-mono uppercase tracking-[0.18em] text-[10px] text-ink-400">
+      <p className="mt-2 font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60">
         {label}
       </p>
-      <p className="mt-1 text-xs text-ink-500 leading-snug">{sub}</p>
+      <p className="mt-1 text-xs text-muted-foreground leading-snug">{sub}</p>
     </div>
   );
 }
@@ -152,7 +152,7 @@ function FunnelStep({
   metric: string;
 }) {
   return (
-    <li className="bg-paper rounded-2xl border border-ink-100 dark:border-paper-200 p-5 md:p-6 flex flex-wrap items-start gap-4 md:gap-6 hover:border-ink-900 dark:hover:border-paper-50 transition-colors">
+    <li className="bg-background rounded-2xl border border-border dark:border-border p-5 md:p-6 flex flex-wrap items-start gap-4 md:gap-6 hover:border-foreground dark:hover:border-border transition-colors">
       <span className="font-mono text-xs uppercase tracking-[0.18em] text-accent min-w-[80px]">
         {week}
       </span>
@@ -160,9 +160,9 @@ function FunnelStep({
         <h4 className="font-display text-lg md:text-xl font-medium tracking-[-0.02em]">
           {title}
         </h4>
-        <p className="mt-1 text-sm text-ink-600 leading-relaxed">{detail}</p>
+        <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{detail}</p>
       </div>
-      <span className="font-display text-sm md:text-lg font-medium text-accent-700 dark:text-accent whitespace-nowrap truncate max-w-full">
+      <span className="font-display text-sm md:text-lg font-medium text-primary dark:text-accent whitespace-nowrap truncate max-w-full">
         {metric}
       </span>
     </li>
@@ -185,19 +185,19 @@ function ProofCard({
   return (
     <Link
       href={href}
-      className="block bg-paper rounded-2xl border border-ink-100 dark:border-paper-200 p-5 md:p-6 hover:border-ink-900 dark:hover:border-paper-50 hover:-translate-y-0.5 hover:shadow-lift transition-all duration-200"
+      className="block bg-background rounded-2xl border border-border dark:border-border p-5 md:p-6 hover:border-foreground dark:hover:border-border hover:-translate-y-0.5 hover:shadow-lift transition-all duration-200"
     >
       <div className="flex items-baseline justify-between mb-3">
         <div>
           <p className="font-display text-lg font-medium tracking-[-0.02em]">{client}</p>
-          <p className="text-xs text-ink-400 mt-0.5">{industry}</p>
+          <p className="text-xs text-muted-foreground/60 mt-0.5">{industry}</p>
         </div>
         <p className="font-display text-2xl md:text-3xl font-medium tracking-[-0.03em] text-accent">
           {metric}
         </p>
       </div>
-      <p className="text-sm text-ink-600 leading-relaxed">{detail}</p>
-      <p className="mt-3 text-xs font-medium text-ink-900 group-hover:text-accent">
+      <p className="text-sm text-muted-foreground leading-relaxed">{detail}</p>
+      <p className="mt-3 text-xs font-medium text-foreground group-hover:text-accent">
         Read case →
       </p>
     </Link>

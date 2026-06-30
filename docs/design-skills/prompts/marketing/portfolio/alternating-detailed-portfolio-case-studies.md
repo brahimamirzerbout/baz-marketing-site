@@ -1,0 +1,13 @@
+# Alternating Detailed Portfolio Case Studies
+
+Create a portfolio section inside a centered page container with comfortable side padding. At the top, place a centered heading on its own line; directly below the heading, a centered supporting paragraph at a comfortable reading width. Directly below the paragraph, place a horizontal row of two text links sitting side by side on the same baseline, each link composed of a short label paired with a trailing arrow icon.
+
+Below the header, stack several detailed case-study entries vertically with generous spacing between them. Alternate the entry layouts so consecutive entries feel visually distinct.
+
+**Full-width entry** — stack from top to bottom: a single large full-width screenshot or product image spanning the container width; a horizontal row of small tech-stack or tool icons sitting side by side on the same baseline directly below the image; a prominent left-aligned project title on its own line directly below the icon row; a multi-paragraph left-aligned description at a comfortable reading width directly below the title; and a text-style link at the bottom composed of a short label paired with a trailing arrow icon.
+
+**Split entry with stats** — a two-column split on large 1280px width breakpoints. One column is a left-aligned vertical stack containing: a prominent project title on its own line; a text link on its own line directly below the title composed of a URL label paired with a small trailing external-link icon; a multi-line description paragraph directly below the link; a horizontal row of small tech-stack or tool icons; and a text-style link composed of a short label paired with a trailing arrow icon. The other column holds one large image with rounded corners. Below the two-column block, place a horizontal row of stat blocks on the same baseline, each stat composed of one large prominent number on its own line at the top and a short descriptive label directly beneath the number. Alternate which side carries the image and which carries the content between consecutive split entries.
+
+**Split entry with image collage and stats** — similar to the split entry above, but the image column holds a small collage of two or three images arranged in an overlapping composition with rounded corners, and the stat row beneath the two-column block uses more items (up to six) spread across the full container width.
+
+On narrow viewports, stack all entry elements in a single column in reading order: image or collage first, then title, description, icons, links, and stats; preserve all internal reading order within each entry.

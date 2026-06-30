@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 // The Marketing Hub lives on a different port locally. In production
 // we'd point this at marketing.yourdomain.com. Edit once here.
-const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL || 'http://localhost:3010';
+const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL || 'http://localhost:3001';
 
 export const metadata = buildMetadata({
   title: 'Marketing Hub',
@@ -104,8 +104,8 @@ export default function MarketingHubPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((s) => (
             <div key={s.k}>
-              <div className="font-display text-display-md font-medium text-paper tracking-[-0.03em]">{s.k}</div>
-              <div className="text-sm text-paper-300 mt-1">{s.v}</div>
+              <div className="font-display text-display-md font-medium text-foreground tracking-[-0.03em]">{s.k}</div>
+              <div className="text-sm text-muted-foreground mt-1">{s.v}</div>
             </div>
           ))}
         </div>
@@ -124,8 +124,8 @@ export default function MarketingHubPage() {
           {features.map((f) => (
             <Card key={f.title} className="p-6 h-full flex flex-col">
               <h3 className="font-display text-xl font-medium tracking-[-0.02em] mb-2">{f.title}</h3>
-              <p className="text-sm text-ink-600 leading-relaxed flex-1">{f.body}</p>
-              <div className="mt-4 pt-4 border-t border-ink-100">
+              <p className="text-sm text-muted-foreground leading-relaxed flex-1">{f.body}</p>
+              <div className="mt-4 pt-4 border-t border-border">
                 <Link href={f.href} className="text-sm text-accent font-medium hover:underline">
                   See it in the Hub →
                 </Link>
@@ -183,12 +183,12 @@ export default function MarketingHubPage() {
             { t: '2. Route',  d: 'Score ≥ 50 → enroll into the least-loaded active sequence. Balances the queue.' },
             { t: '3. Step',   d: 'Each enrollment advances daily. Reply pauses. Booking promotes the deal to qualified.' },
             { t: '4. Close',  d: 'Negotiation deals with prob ≥ 80 auto-close as won. Stale deals auto-lost at 45d.' },
-            { t: '5. Learn',  d: 'Wins feed back into Nova. Tomorrow&apos;s scoring is smarter than today&apos;s.' },
+            { t: '5. Learn',  d: 'Wins feed back into Nova. Tomorrow\'s scoring is smarter than today\'s.' },
             { t: '6. Report', d: 'Pipeline value, velocity, wins/day, loop health — one cockpit, no spreadsheets.' },
           ].map((s) => (
             <div key={s.t} className="border-l-2 border-accent pl-4">
               <h4 className="font-display text-lg font-medium tracking-[-0.02em]">{s.t}</h4>
-              <p className="text-sm text-ink-600 mt-1" dangerouslySetInnerHTML={{ __html: s.d }} />
+              <p className="text-sm text-muted-foreground mt-1">{s.d}</p>
             </div>
           ))}
         </div>
@@ -209,11 +209,11 @@ export default function MarketingHubPage() {
               href={`${HUB_URL}${s.href}`}
               target="_blank"
               rel="noreferrer"
-              className="group block p-4 rounded-2xl border border-ink-100 hover:border-accent hover:bg-paper-300 transition-colors"
+              className="group block p-4 rounded-2xl border border-border hover:border-accent hover:bg-muted/70 transition-colors"
             >
               <div className="font-display text-base font-medium tracking-[-0.02em] group-hover:text-accent">{s.label}</div>
-              <div className="text-xs text-ink-500 mt-1">{s.desc}</div>
-              <div className="mt-3 text-xs text-ink-400 font-mono">{HUB_URL}{s.href}</div>
+              <div className="text-xs text-muted-foreground mt-1">{s.desc}</div>
+              <div className="mt-3 text-xs text-muted-foreground/60 font-mono">{HUB_URL}{s.href}</div>
             </a>
           ))}
         </div>

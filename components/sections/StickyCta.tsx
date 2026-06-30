@@ -46,20 +46,20 @@ export function StickyCta() {
 
   return (
     <div
-      className={`md:hidden fixed inset-x-0 bottom-0 z-50 bg-ink-900 text-paper dark:bg-ink-900 dark:text-paper transition-transform duration-200 ${
+      className={`md:hidden fixed inset-x-0 bottom-0 z-50 bg-primary text-foreground dark:bg-primary dark:text-foreground transition-transform duration-200 ${
         hidden ? "translate-y-full pointer-events-none" : "translate-y-0"
       }`}
       aria-hidden={hidden}
     >
       <div className="flex items-center justify-between gap-3 px-4 py-3">
-        <p className="text-xs text-paper-300 leading-tight">
-          <span className="text-paper font-medium">20 min with a senior partner.</span>
+        <p className="text-xs text-muted-foreground leading-tight">
+          <span className="text-foreground font-medium">20 min with a senior partner.</span>
           <br />
           <span className="opacity-70">No obligation. NDA on request.</span>
         </p>
         <a
           href={bookingHref}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-accent text-white text-sm font-medium hover:bg-accent-600 transition-colors flex-shrink-0"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-accent text-white text-sm font-medium hover:bg-primary/90 transition-colors flex-shrink-0"
           data-cursor="cta"
           data-track="sticky_book_call"
         >

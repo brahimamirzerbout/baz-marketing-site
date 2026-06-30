@@ -19,7 +19,7 @@ export default function IntegrationsPage() {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
             Connected services.
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed max-w-2xl">
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
             The tools BAZ connects to — comms, design, engineering, finance,
             marketing, automation. Configure connection state per browser.
           </p>

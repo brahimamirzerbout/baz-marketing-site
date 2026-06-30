@@ -26,7 +26,7 @@ export default async function PortalBriefPage() {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] mt-4">
             Tell us what you need.
           </h1>
-          <p className="mt-6 text-lg text-ink-600">
+          <p className="mt-6 text-lg text-muted-foreground">
             New project, scope change, or kickoff request. The more specific you are about
             the outcome you want, the better we can scope.
           </p>

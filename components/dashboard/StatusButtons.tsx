@@ -19,7 +19,7 @@ const STATUSES: { value: LeadStatus; label: string; tone: string }[] = [
   {
     value: 'archived',
     label: 'Archived',
-    tone: 'bg-ink-100 text-ink-500 border-ink-200',
+    tone: 'bg-muted text-muted-foreground border-border',
   },
 ];
 
@@ -59,7 +59,7 @@ export function StatusButtons({ leadId, initial }: StatusButtonsProps) {
 
   return (
     <div className="flex flex-col gap-1">
-      <div className="inline-flex rounded-full border border-ink-200 bg-paper p-0.5">
+      <div className="inline-flex rounded-full border border-border bg-background p-0.5">
         {STATUSES.map((s) => (
           <button
             key={s.value}
@@ -71,7 +71,7 @@ export function StatusButtons({ leadId, initial }: StatusButtonsProps) {
               'disabled:opacity-50 disabled:cursor-not-allowed',
               status === s.value
                 ? s.tone + ' border border-current/20'
-                : 'text-ink-500 hover:text-ink-900',
+                : 'text-muted-foreground hover:text-foreground',
             )}
           >
             {s.label}
@@ -79,7 +79,7 @@ export function StatusButtons({ leadId, initial }: StatusButtonsProps) {
         ))}
       </div>
       {error ? (
-        <span className="text-xs text-accent-700">Couldn&apos;t save: {error}</span>
+        <span className="text-xs text-primary">Couldn&apos;t save: {error}</span>
       ) : null}
     </div>
   );

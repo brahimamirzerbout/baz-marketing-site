@@ -53,9 +53,9 @@ export default function ClientPortal() {
             { t: 'Sequence log', d: 'Every enrollment, every step, every reply. Auditable.' },
             { t: 'Weekly ship log', d: 'What your BAZ team shipped this week, what shipped before that, what\'s next.' },
           ].map((c) => (
-            <div key={c.t} className="rounded-2xl border border-ink-100 p-5">
+            <div key={c.t} className="rounded-2xl border border-border p-5">
               <div className="font-display text-lg font-medium tracking-[-0.02em]">{c.t}</div>
-              <p className="text-sm text-ink-600 mt-1">{c.d}</p>
+              <p className="text-sm text-muted-foreground mt-1">{c.d}</p>
             </div>
           ))}
         </div>

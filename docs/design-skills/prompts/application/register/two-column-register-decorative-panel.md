@@ -1,0 +1,9 @@
+# Two-Column Register With Decorative Panel
+
+Create a register page split into two columns on large 1280px width breakpoints inside a centered page container with comfortable side padding.
+
+The **left column** is a left-aligned vertical stack containing, in order: a heading on its own line; a horizontal row of two equal third-party provider buttons sitting side by side (each button carries a small leading provider glyph and a short provider label); a horizontal "or" separator made of a thin rule, a centered short word, and another thin rule; a two-column field grid where the first row pairs a short text input on the left with a short text input on the right; a labeled date-of-birth row whose label is followed by a tiny circular question-mark information affordance to its right and whose control area is a single horizontal row of three inline dropdown selects (one for day, one for month, one for year) sitting on the same line; a second two-column field grid pairing a password input on the left with a repeat-password input on the right; one checkbox row containing a small square checkbox and an inline multi-line label whose copy may contain inline text links to legal documents; one full-width primary submit button beneath the checkbox row; finally a small helper line containing a short prompt sentence followed by an inline text link to the sign-in flow.
+
+The **right column** holds a single rounded decorative panel vertically centered relative to the form column. Inside the panel, arrange a loose decorative cluster of small circular technology glyphs distributed in a soft arc-style composition (no single rigid grid), then under the cluster center a short bold heading on its own line and a single short supporting paragraph centered beneath the heading.
+
+On narrow viewports, stack with the form column first and the decorative panel second.

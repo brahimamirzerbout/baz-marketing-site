@@ -47,7 +47,7 @@ export default function CaseStudyDetailPage({ params }: Params) {
             <Eyebrow>The problem</Eyebrow>
           </div>
           <div className="lg:col-span-8">
-            <p className="font-display text-2xl md:text-3xl tracking-[-0.02em] leading-snug text-ink-900">
+            <p className="font-display text-2xl md:text-3xl tracking-[-0.02em] leading-snug text-foreground">
               {c.problem}
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function CaseStudyDetailPage({ params }: Params) {
             <Eyebrow>The strategy</Eyebrow>
           </div>
           <div className="lg:col-span-8">
-            <p className="text-lg text-ink-700 leading-relaxed max-w-3xl">{c.strategy}</p>
+            <p className="text-lg text-foreground leading-relaxed max-w-3xl">{c.strategy}</p>
           </div>
         </div>
       </Section>
@@ -71,7 +71,7 @@ export default function CaseStudyDetailPage({ params }: Params) {
             <Eyebrow>The result</Eyebrow>
           </div>
           <div className="lg:col-span-8">
-            <p className="font-display text-2xl md:text-3xl tracking-[-0.02em] leading-snug text-ink-900">
+            <p className="font-display text-2xl md:text-3xl tracking-[-0.02em] leading-snug text-foreground">
               {c.result}
             </p>
           </div>
@@ -82,11 +82,11 @@ export default function CaseStudyDetailPage({ params }: Params) {
         <Section tone="ink" size="lg">
           <figure className="max-w-3xl mx-auto text-center">
             <span aria-hidden className="font-display text-6xl text-accent leading-none">&ldquo;</span>
-            <blockquote className="mt-4 font-display text-2xl md:text-4xl tracking-[-0.02em] leading-snug text-paper">
+            <blockquote className="mt-4 font-display text-2xl md:text-4xl tracking-[-0.02em] leading-snug text-foreground">
               {c.testimonial.quote}
             </blockquote>
-            <figcaption className="mt-8 text-paper-300">
-              <p className="font-medium text-paper">{c.testimonial.author}</p>
+            <figcaption className="mt-8 text-muted-foreground">
+              <p className="font-medium text-foreground">{c.testimonial.author}</p>
               <p className="text-sm">{c.testimonial.role} · {c.client}</p>
             </figcaption>
           </figure>

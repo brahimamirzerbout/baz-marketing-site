@@ -75,23 +75,23 @@ export function IntegrationsClient() {
       {/* Header summary */}
       <div className="flex items-end justify-between flex-wrap gap-4">
         <div>
-          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-500 mb-2">
+          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground mb-2">
             Connected services
           </p>
           <p className="font-display text-3xl md:text-4xl font-medium tracking-[-0.03em]">
             {mounted ? `${connectedCount} of ${total} active`
-                      : <span className="text-ink-300">— of {total} active</span>}
+                      : <span className="text-muted-foreground/40">— of {total} active</span>}
           </p>
-          <p className="mt-2 text-sm text-ink-600 max-w-md">
+          <p className="mt-2 text-sm text-muted-foreground max-w-md">
             Click any card to configure. Connection state is saved to this
             browser. Real OAuth/API integrations require per-provider keys —
-            see <code className="font-mono text-xs bg-paper-300 px-1.5 py-0.5 rounded">README → Integrations</code>.
+            see <code className="font-mono text-xs bg-muted/70 px-1.5 py-0.5 rounded">README → Integrations</code>.
           </p>
         </div>
         <button
           type="button"
           onClick={onReset}
-          className="text-sm font-medium text-ink-700 hover:text-accent transition-colors"
+          className="text-sm font-medium text-foreground hover:text-accent transition-colors"
         >
           Reset to defaults
         </button>
@@ -106,8 +106,8 @@ export function IntegrationsClient() {
             onClick={() => setFilter(f.id as FilterId)}
             className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
               filter === f.id
-                ? 'bg-ink-900 text-paper border border-ink-900'
-                : 'bg-paper-50 border border-ink-200 text-ink-700 hover:border-ink-400'
+                ? 'bg-primary text-foreground border border-foreground'
+                : 'bg-card border border-border text-foreground hover:border-ink-400'
             }`}
           >
             {f.label}
@@ -130,7 +130,7 @@ export function IntegrationsClient() {
               key={integ.id}
               type="button"
               onClick={() => setModal(integ)}
-              className="reveal group text-left bg-paper-50 rounded-2xl border border-ink-100 hover:border-ink-900 hover:-translate-y-0.5 hover:shadow-lift transition-all p-5 md:p-6"
+              className="reveal group text-left bg-card rounded-2xl border border-border hover:border-foreground hover:-translate-y-0.5 hover:shadow-lift transition-all p-5 md:p-6"
             >
               <div className="flex items-center gap-4">
                 <span
@@ -142,9 +142,9 @@ export function IntegrationsClient() {
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <b className="text-ink-900 truncate">{integ.name}</b>
+                    <b className="text-foreground truncate">{integ.name}</b>
                   </div>
-                  <div className="mt-1 flex items-center gap-2 text-xs text-ink-500">
+                  <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
                     <span
                       className="inline-block w-1.5 h-1.5 rounded-full"
                       style={{ background: dotColor }}
@@ -157,17 +157,17 @@ export function IntegrationsClient() {
                 </div>
                 <span
                   aria-hidden
-                  className="text-ink-300 dark:text-ink-400 group-hover:text-accent group-hover:translate-x-0.5 transition-all shrink-0"
+                  className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all shrink-0"
                 >
                   →
                 </span>
               </div>
-              <p className="mt-4 text-sm text-ink-600 leading-relaxed">{integ.desc}</p>
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{integ.desc}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {integ.categories.map((c) => (
                   <span
                     key={c}
-                    className="font-mono text-[10px] uppercase tracking-[0.15em] px-2 py-0.5 rounded-full bg-paper-300 text-ink-700"
+                    className="font-mono text-[10px] uppercase tracking-[0.15em] px-2 py-0.5 rounded-full bg-muted/70 text-foreground"
                   >
                     {CATEGORIES[c]}
                   </span>
@@ -179,7 +179,7 @@ export function IntegrationsClient() {
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-center text-sm text-ink-500 py-12">
+        <p className="text-center text-sm text-muted-foreground py-12">
           No integrations in this category.
         </p>
       )}
@@ -206,10 +206,10 @@ export function IntegrationsClient() {
           <div
             className={`pointer-events-auto px-5 py-3 rounded-2xl shadow-lift text-sm font-medium ${
               toast.kind === 'ok'
-                ? 'bg-ink-900 text-paper'
+                ? 'bg-primary text-foreground'
                 : toast.kind === 'warn'
                 ? 'bg-amber-500 text-white'
-                : 'bg-paper-200 border border-ink-200 text-ink-900'
+                : 'bg-muted border border-border text-foreground'
             }`}
           >
             {toast.msg}
@@ -250,11 +250,11 @@ function IntegrationModal({
       aria-modal="true"
       aria-labelledby={`int-modal-${integration.id}`}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-900/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm"
       style={{ animation: 'bz-fade-in .18s ease both' }}
     >
       <div
-        className="bg-paper-50 rounded-2xl border border-ink-100 w-full max-w-md overflow-hidden"
+        className="bg-card rounded-2xl border border-border w-full max-w-md overflow-hidden"
         style={{ animation: 'bz-pop-in .22s cubic-bezier(.2,.9,.3,1.2) both' }}
       >
         <div className="flex items-start gap-4 p-6">
@@ -275,7 +275,7 @@ function IntegrationModal({
                 style={{ background: connected ? 'var(--success, #3ddc97)' : 'var(--muted, #7e7e79)' }}
                 aria-hidden
               />
-              <span className={connected ? 'text-ink-700' : 'text-ink-500'}>
+              <span className={connected ? 'text-foreground' : 'text-muted-foreground'}>
                 {connected ? integration.defaultStatus : 'Available — connect to enable'}
               </span>
             </div>
@@ -284,20 +284,20 @@ function IntegrationModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid place-items-center w-8 h-8 rounded-full bg-paper-300 hover:bg-ink-200 transition-colors text-ink-700"
+            className="grid place-items-center w-8 h-8 rounded-full bg-muted/70 hover:bg-muted transition-colors text-foreground"
           >
             ✕
           </button>
         </div>
 
         <div className="px-6 pb-6">
-          <p className="text-[15px] text-ink-700 leading-relaxed">{integration.desc}</p>
+          <p className="text-[15px] text-foreground leading-relaxed">{integration.desc}</p>
 
-          <div className="mt-5 rounded-xl bg-paper-200 p-4 border border-ink-100">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500 mb-2">
+          <div className="mt-5 rounded-xl bg-muted p-4 border border-border">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">
               {connected ? 'Currently connected' : 'What connecting does'}
             </p>
-            <ul className="space-y-1.5 text-sm text-ink-700">
+            <ul className="space-y-1.5 text-sm text-foreground">
               {connected ? (
                 <>
                   <li className="flex items-start gap-2"><span className="text-success">✓</span> {integration.defaultStatus}</li>
@@ -307,7 +307,7 @@ function IntegrationModal({
               ) : (
                 <>
                   <li className="flex items-start gap-2"><span aria-hidden>·</span> Authorize BAZ to read &amp; write on your behalf</li>
-                  <li className="flex items-start gap-2"><span aria-hidden>·</span> Surface events in <code className="font-mono text-xs bg-paper-50 px-1.5 py-0.5 rounded">/admin/leads</code> &amp; <code className="font-mono text-xs bg-paper-50 px-1.5 py-0.5 rounded">/admin/monitors</code></li>
+                  <li className="flex items-start gap-2"><span aria-hidden>·</span> Surface events in <code className="font-mono text-xs bg-card px-1.5 py-0.5 rounded">/admin/leads</code> &amp; <code className="font-mono text-xs bg-card px-1.5 py-0.5 rounded">/admin/monitors</code></li>
                   <li className="flex items-start gap-2"><span aria-hidden>·</span> OAuth token stored encrypted in your browser session</li>
                 </>
               )}
@@ -318,7 +318,7 @@ function IntegrationModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 h-11 rounded-full text-sm font-medium text-ink-700 hover:text-ink-900 transition-colors"
+              className="px-4 h-11 rounded-full text-sm font-medium text-foreground hover:text-foreground transition-colors"
             >
               Close
             </button>
@@ -326,7 +326,7 @@ function IntegrationModal({
               <button
                 type="button"
                 onClick={onDisconnect}
-                className="px-5 h-11 rounded-full bg-paper-200 border border-ink-200 hover:border-ink-900 text-sm font-medium text-ink-900 transition-colors"
+                className="px-5 h-11 rounded-full bg-muted border border-border hover:border-foreground text-sm font-medium text-foreground transition-colors"
               >
                 Disconnect
               </button>
@@ -334,7 +334,7 @@ function IntegrationModal({
               <button
                 type="button"
                 onClick={onConnect}
-                className="px-5 h-11 rounded-full bg-ink-900 hover:bg-ink-800 text-sm font-medium text-paper transition-colors"
+                className="px-5 h-11 rounded-full bg-primary hover:bg-primary/90 text-sm font-medium text-foreground transition-colors"
               >
                 Connect
               </button>

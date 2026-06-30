@@ -1,0 +1,5 @@
+# Centered Illustrated 500 Error Page
+
+Create a 500 error page as one centered vertical stack on a full-width section background, vertically centered within the viewport height. Stack from top to bottom: a large illustrative scene centered horizontally on its own line, depicting a figure sitting on or beside server hardware or storage boxes, working at a laptop, conveying a calm we're-fixing-it theme without relying on photographic imagery; a large bold centered heading on its own line directly below the illustration stating the error status (e.g. "500 — Internal Server Error"); a centered paragraph of one or two sentences directly below the heading at a comfortable reading width, explaining that the team is experiencing technical difficulties and is working to resolve them, suggesting the user refresh or check back soon.
+
+On narrow viewports keep the same single-column centered stack; allow the illustration to scale down proportionally while preserving center alignment and comfortable side padding throughout.

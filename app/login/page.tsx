@@ -33,32 +33,32 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen grid place-items-center px-6 py-16 bg-paper">
+    <div className="min-h-screen grid place-items-center px-6 py-16 bg-background">
       <div className="w-full max-w-md">
         <Link href="/" className="block text-center font-display text-2xl font-medium tracking-[-0.04em] mb-8">
           BAZ
         </Link>
-        <form onSubmit={onSubmit} className="bg-paper-50 rounded-2xl border border-ink-100 p-8 space-y-5">
+        <form onSubmit={onSubmit} className="bg-card rounded-2xl border border-border p-8 space-y-5">
           <div>
             <h1 className="font-display text-2xl font-medium tracking-[-0.02em]">Sign in</h1>
-            <p className="mt-1 text-sm text-ink-500">Operator console &amp; client portal.</p>
+            <p className="mt-1 text-sm text-muted-foreground">Operator console &amp; client portal.</p>
           </div>
           <label className="block">
-            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-ink-500">Email</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Email</span>
             <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full px-3 h-11 rounded-xl bg-white border border-ink-200 text-sm focus:outline-none focus:border-accent" />
+              className="mt-1 w-full px-3 h-11 rounded-xl bg-white dark:bg-zinc-900 border border-border text-sm focus:outline-none focus:border-accent" />
           </label>
           <label className="block">
-            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-ink-500">Password</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Password</span>
             <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full px-3 h-11 rounded-xl bg-white border border-ink-200 text-sm focus:outline-none focus:border-accent" />
+              className="mt-1 w-full px-3 h-11 rounded-xl bg-white dark:bg-zinc-900 border border-border text-sm focus:outline-none focus:border-accent" />
           </label>
           {error && <p className="text-sm text-accent">{error === 'invalid_credentials' ? 'Wrong email or password.' : error}</p>}
           <button type="submit" disabled={busy}
-            className="w-full h-12 rounded-full bg-ink-900 hover:bg-ink-800 text-paper text-sm font-medium disabled:opacity-50">
+            className="w-full h-12 rounded-full bg-primary hover:bg-primary/90 text-foreground text-sm font-medium disabled:opacity-50">
             {busy ? 'Signing in…' : 'Sign in'}
           </button>
-          <p className="text-center text-sm text-ink-500">
+          <p className="text-center text-sm text-muted-foreground">
             No account? <Link href="/signup" className="text-accent hover:underline">Sign up</Link>
           </p>
         </form>
@@ -69,7 +69,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen grid place-items-center bg-paper"><span className="text-ink-500 text-sm">Loading…</span></div>}>
+    <Suspense fallback={<div className="min-h-screen grid place-items-center bg-background"><span className="text-muted-foreground text-sm">Loading…</span></div>}>
       <LoginForm />
     </Suspense>
   );

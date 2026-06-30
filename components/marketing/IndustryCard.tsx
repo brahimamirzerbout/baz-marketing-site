@@ -5,18 +5,18 @@ export function IndustryCard({ industry, index = 0 }: { industry: Industry; inde
   return (
     <Link
       href={`/industries/${industry.slug}`}
-      className="reveal group block bg-paper-50 rounded-2xl p-6 md:p-7 border border-ink-100 dark:border-paper-200 hover:border-ink-900 dark:hover:border-paper-50 hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
+      className="reveal group block bg-card rounded-2xl p-6 md:p-7 border border-border dark:border-border hover:border-foreground dark:hover:border-border hover:-translate-y-1 hover:shadow-lift transition-all duration-200"
       style={{ animationDelay: `${index * 60}ms` }}
     >
       <div className="flex items-center justify-between mb-6">
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">
           {String(index + 1).padStart(2, '0')}
         </span>
-        <span aria-hidden className="text-ink-300 dark:text-ink-400 group-hover:text-accent group-hover:translate-x-0.5 transition-all">→</span>
+        <span aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">→</span>
       </div>
       <h3 className="font-display text-2xl md:text-[26px] font-medium tracking-[-0.02em]">{industry.name}</h3>
-      <p className="mt-3 text-ink-600 leading-relaxed">{industry.blurb}</p>
-      <div className="mt-6 pt-4 border-t border-ink-100 text-sm text-ink-500">
+      <p className="mt-3 text-muted-foreground leading-relaxed">{industry.blurb}</p>
+      <div className="mt-6 pt-4 border-t border-border text-sm text-muted-foreground">
         {industry.challenges.length} challenges · {industry.outcomes.length} typical outcomes
       </div>
     </Link>

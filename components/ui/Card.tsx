@@ -21,10 +21,10 @@ export function Card({
   return (
     <Tag
       className={cn(
-        'bg-paper-50 dark:bg-paper-100 rounded-2xl',
-        bordered && 'border border-ink-100 dark:border-paper-200',
+        'bg-card text-card-foreground rounded-lg',
+        bordered && 'border border-border',
         padded && 'p-6 md:p-7',
-        hover && 'transition-all duration-200 hover:-translate-y-1 hover:shadow-lift hover:border-ink-200 dark:hover:border-paper-300',
+        hover && 'transition-all duration-200 hover:-translate-y-px hover:border-foreground/20',
         className
       )}
       {...rest}

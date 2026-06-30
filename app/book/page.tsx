@@ -25,7 +25,7 @@ export default function BookPage() {
         <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
           Taking you to the booking page…
         </h1>
-        <p className="mt-6 text-ink-600">
+        <p className="mt-6 text-muted-foreground">
           If you are not redirected,{' '}
           <a href={site.bookingUrl} className="underline">
             click here
@@ -43,7 +43,7 @@ export default function BookPage() {
       <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
         Send us three time windows.
       </h1>
-      <p className="mt-6 text-lg text-ink-600 max-w-xl">
+      <p className="mt-6 text-lg text-muted-foreground max-w-xl">
         We don&rsquo;t use a scheduling tool yet — we reply personally to set up
         a 20-minute audit. Email us three windows that work in the next two
         weeks (Algiers / EU / US time zones) and we&rsquo;ll confirm one within
@@ -59,15 +59,15 @@ export default function BookPage() {
         </Button>
       </div>
 
-      <p className="mt-12 text-sm text-ink-500">
+      <p className="mt-12 text-sm text-muted-foreground">
         Prefer to type it out?{' '}
         <a href={`mailto:${site.email}`} className="underline">
           {site.email}
         </a>
       </p>
 
-      <p className="mt-12 text-xs text-ink-400">
-        <Link href="/" className="hover:text-ink-900 underline">
+      <p className="mt-12 text-xs text-muted-foreground/60">
+        <Link href="/" className="hover:text-foreground underline">
           ← Back to home
         </Link>
       </p>

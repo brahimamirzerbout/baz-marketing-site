@@ -1,10 +1,10 @@
 export function Faq({ items }: { items: { q: string; a: string }[] }) {
   return (
-    <div className="grid gap-px bg-ink-100 dark:bg-paper-200 rounded-2xl overflow-hidden border border-ink-100 dark:border-paper-200 dark:border-paper-200 dark:border-paper-200">
+    <div className="grid gap-px bg-muted dark:bg-muted rounded-2xl overflow-hidden border border-border dark:border-border dark:border-border dark:border-border">
       {items.map((item, i) => (
         <details
           key={i}
-          className="group bg-paper open:bg-paper-50 transition-colors"
+          className="group bg-background open:bg-card transition-colors"
         >
           <summary className="flex items-start justify-between gap-6 cursor-pointer p-6 md:p-8 list-none">
             <span className="font-display text-xl md:text-2xl tracking-[-0.02em] leading-snug">
@@ -12,7 +12,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
             </span>
             <span
               aria-hidden
-              className="shrink-0 mt-1 grid place-items-center w-9 h-9 rounded-full border border-ink-200 dark:border-paper-300 group-open:bg-ink-900 group-open:text-paper group-open:border-ink-900 transition-colors text-ink-500"
+              className="shrink-0 mt-1 grid place-items-center w-9 h-9 rounded-full border border-border dark:border-border group-open:bg-primary group-open:text-foreground group-open:border-foreground transition-colors text-muted-foreground"
             >
               <span className="relative w-3.5 h-3.5 block">
                 <span className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-current" />
@@ -20,7 +20,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
               </span>
             </span>
           </summary>
-          <div className="px-6 md:px-8 pb-6 md:pb-8 -mt-3 text-ink-600 max-w-3xl leading-relaxed">
+          <div className="px-6 md:px-8 pb-6 md:pb-8 -mt-3 text-muted-foreground max-w-3xl leading-relaxed">
             {item.a}
           </div>
         </details>

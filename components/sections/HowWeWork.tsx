@@ -43,10 +43,10 @@ export function HowWeWork() {
       </div>
       <ol className="grid md:grid-cols-5 gap-4">
         {steps.map((s) => (
-          <li key={s.n} className="reveal relative bg-paper rounded-2xl p-6 border border-ink-100 dark:border-paper-200 dark:border-paper-200">
+          <li key={s.n} className="reveal relative bg-background rounded-2xl p-6 border border-border dark:border-border dark:border-border">
             <span className="font-mono text-[11px] tracking-[0.18em] text-accent">{s.n}</span>
             <h3 className="mt-3 font-display text-2xl font-medium tracking-[-0.02em]">{s.t}</h3>
-            <p className="mt-3 text-sm text-ink-600 leading-relaxed">{s.d}</p>
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.d}</p>
           </li>
         ))}
       </ol>

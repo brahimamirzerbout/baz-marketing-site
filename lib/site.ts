@@ -16,17 +16,13 @@ export const site = {
   // number. Set the env vars in .env.local for production.
   stats: {
     brandsScaled:
-      process.env.NEXT_PUBLIC_BRANDS_SCALED ||
-      (process.env.NODE_ENV !== 'production' ? '240+' : null),
+      process.env.NEXT_PUBLIC_BRANDS_SCALED || '60+',
     countriesServed:
-      process.env.NEXT_PUBLIC_COUNTRIES_SERVED ||
-      (process.env.NODE_ENV !== 'production' ? '12' : null),
+      process.env.NEXT_PUBLIC_COUNTRIES_SERVED || '3',
     seniorOnly:
-      process.env.NEXT_PUBLIC_SENIOR_ONLY ||
-      (process.env.NODE_ENV !== 'production' ? '100%' : null),
+      process.env.NEXT_PUBLIC_SENIOR_ONLY || '100%',
     teamSize:
-      process.env.NEXT_PUBLIC_TEAM_SIZE ||
-      (process.env.NODE_ENV !== 'production' ? '14' : null),
+      process.env.NEXT_PUBLIC_TEAM_SIZE || '6',
   },
   social: {
     linkedin: 'https://www.linkedin.com/company/baz-agency',

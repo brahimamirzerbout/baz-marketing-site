@@ -56,17 +56,17 @@ export function PortalView({ id }: { id: string }) {
       <Section tone="white" size="md">
         <div className="grid lg:grid-cols-12 gap-8">
           <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-ink-100 dark:border-paper-200 bg-paper p-6 md:p-8 animate-pulse">
-              <div className="h-3 w-20 bg-ink-100 rounded mb-4" />
-              <div className="h-16 w-32 bg-ink-100 rounded mb-3" />
-              <div className="h-3 w-40 bg-ink-100 rounded" />
+            <div className="rounded-2xl border border-border dark:border-border bg-background p-6 md:p-8 animate-pulse">
+              <div className="h-3 w-20 bg-muted rounded mb-4" />
+              <div className="h-16 w-32 bg-muted rounded mb-3" />
+              <div className="h-3 w-40 bg-muted rounded" />
             </div>
           </div>
           <div className="lg:col-span-7">
-            <div className="h-3 w-32 bg-ink-100 rounded mb-4" />
+            <div className="h-3 w-32 bg-muted rounded mb-4" />
             <div className="space-y-3">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="h-20 bg-ink-100/50 rounded-xl animate-pulse" />
+                <div key={i} className="h-20 bg-muted/50 rounded-xl animate-pulse" />
               ))}
             </div>
           </div>
@@ -82,7 +82,7 @@ export function PortalView({ id }: { id: string }) {
           <h2 className="font-display text-display-lg font-medium tracking-[-0.03em]">
             We couldn&apos;t find that lead.
           </h2>
-          <p className="mt-4 text-ink-600 leading-relaxed">
+          <p className="mt-4 text-muted-foreground leading-relaxed">
             Double-check the link from your inbox or run a new agent demo on the homepage.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -95,61 +95,61 @@ export function PortalView({ id }: { id: string }) {
   }
 
   const { lead, plan } = data;
-  const scoreColor = (lead.score ?? 0) >= 75 ? 'text-accent' : (lead.score ?? 0) >= 40 ? 'text-warning' : 'text-ink-500';
+  const scoreColor = (lead.score ?? 0) >= 75 ? 'text-accent' : (lead.score ?? 0) >= 40 ? 'text-warning' : 'text-muted-foreground';
   const action = plan?.action ?? 'nurture_30d';
 
   return (
     <Section tone="white" size="md">
       <div className="grid lg:grid-cols-12 gap-8">
         <div className="lg:col-span-5">
-          <div className="rounded-2xl border border-ink-100 dark:border-paper-200 bg-paper p-6 md:p-8">
-            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-3">
+          <div className="rounded-2xl border border-border dark:border-border bg-background p-6 md:p-8">
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-3">
               Your score
             </p>
             <p className={`font-display text-7xl font-medium tracking-[-0.03em] ${scoreColor}`}>
               {lead.score}
-              <span className="text-2xl text-ink-400 font-normal ml-1">/100</span>
+              <span className="text-2xl text-muted-foreground/60 font-normal ml-1">/100</span>
             </p>
-            <p className="mt-3 text-sm text-ink-600">
-              Intent: <span className="font-medium text-ink-900">{lead.intent}</span>
-              {lead.service && <> · Service: <span className="font-medium text-ink-900">{lead.service}</span></>}
+            <p className="mt-3 text-sm text-muted-foreground">
+              Intent: <span className="font-medium text-foreground">{lead.intent}</span>
+              {lead.service && <> · Service: <span className="font-medium text-foreground">{lead.service}</span></>}
             </p>
-            <hr className="my-6 border-ink-100 dark:border-paper-200" />
-            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-2">
+            <hr className="my-6 border-border dark:border-border" />
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
               What we&apos;ll do
             </p>
             <p className="font-display text-2xl font-medium tracking-[-0.02em] mb-2">
               {actionLabel(action)}
             </p>
-            <p className="text-sm text-ink-600 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {actionBlurb(action)}
             </p>
           </div>
         </div>
 
         <div className="lg:col-span-7">
-          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 mb-4">
+          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-4">
             Your sequence
           </p>
           <ol className="space-y-3">
             {(plan?.steps ?? []).map((step, i) => (
               <li key={i} className="flex gap-4 items-start">
-                <div className="shrink-0 w-12 h-12 rounded-xl bg-ink-900 text-paper grid place-items-center font-display text-lg font-medium">
+                <div className="shrink-0 w-12 h-12 rounded-xl bg-primary text-foreground grid place-items-center font-display text-lg font-medium">
                   D{step.day}
                 </div>
-                <div className="flex-1 rounded-xl border border-ink-100 dark:border-paper-200 bg-paper p-4">
+                <div className="flex-1 rounded-xl border border-border dark:border-border bg-background p-4">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-ink-500 px-2 py-0.5 rounded-full bg-ink-100">
+                    <span className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground px-2 py-0.5 rounded-full bg-muted">
                       {step.channel}
                     </span>
-                    <p className="font-medium text-ink-900">{step.subject}</p>
+                    <p className="font-medium text-foreground">{step.subject}</p>
                   </div>
-                  {step.body && <p className="text-sm text-ink-600 mt-1">{step.body}</p>}
+                  {step.body && <p className="text-sm text-muted-foreground mt-1">{step.body}</p>}
                 </div>
               </li>
             ))}
             {(!plan?.steps || plan.steps.length === 0) && (
-              <li className="text-sm text-ink-500 italic">
+              <li className="text-sm text-muted-foreground italic">
                 No automated follow-up. Reply to the email we sent if you change your mind.
               </li>
             )}

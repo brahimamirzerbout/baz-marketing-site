@@ -37,18 +37,18 @@ export function NewsletterForm({ source = 'newsletter' }: { source?: string }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@company.com"
-        className="flex-1 h-12 px-4 rounded-full bg-paper border border-ink-200 dark:border-paper-300 focus:border-ink-900 focus:outline-none focus:ring-2 focus:ring-accent text-[15px]"
+        className="flex-1 h-12 px-4 rounded-full bg-background border border-border dark:border-border focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent text-[15px]"
       />
       <button
         type="submit"
         disabled={state === 'pending'}
-        className="h-12 px-6 rounded-full bg-ink-900 text-paper font-medium hover:bg-ink-800 transition-colors disabled:opacity-50"
+        className="h-12 px-6 rounded-full bg-primary text-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
         data-source={source}
       >
         {state === 'pending' ? 'Joining…' : 'Subscribe'}
       </button>
       {state !== 'idle' && (
-        <p className={`text-sm ${state === 'err' ? 'text-accent-700' : 'text-ink-500'}`} role="status">
+        <p className={`text-sm ${state === 'err' ? 'text-primary' : 'text-muted-foreground'}`} role="status">
           {msg}
         </p>
       )}

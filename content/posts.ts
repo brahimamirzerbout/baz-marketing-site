@@ -21,7 +21,7 @@ Link earning is the multiplier. Authority compounds faster than content quality,
 
 The mistake most agencies make is treating SEO as a content mill. The mistake most in-house teams make is treating SEO as a checklist. The truth is editorial: SEO is a publishing business that happens to rank.`,
     category: 'seo',
-    author: 'Sora Tanaka',
+    author: 'Brahim ZERBOUT',
     publishedAt: '2026-06-18',
     readingMin: 6,
   },
@@ -46,7 +46,7 @@ The platforms lie. Their numbers are always 5–20% optimistic. The warehouse is
 
 Attribution is the moat. Most agencies can't build it. Most in-house teams don't have time. The few teams who can are the ones whose dashboards execs actually open.`,
     category: 'paid',
-    author: 'Mira Okafor',
+    author: 'Brahim ZERBOUT',
     publishedAt: '2026-06-11',
     readingMin: 7,
   },
@@ -88,7 +88,7 @@ The mistake most agencies make is running tests that are easy to ship, not tests
 
 BAZ runs 60+ tests per quarter per client. Most teams run 4. That's the gap.`,
     category: 'analytics',
-    author: 'Daniel K.',
+    author: 'Brahim ZERBOUT',
     publishedAt: '2026-05-28',
     readingMin: 6,
   },
@@ -108,7 +108,7 @@ The mistake most agencies make is treating content as a service line, not a stra
 
 BAZ runs editorial as an operating discipline, not a deliverable. That is the moat.`,
     category: 'content',
-    author: 'Hala Mansour',
+    author: 'Brahim ZERBOUT',
     publishedAt: '2026-05-21',
     readingMin: 5,
   },

@@ -56,8 +56,8 @@ export function FeedbackForm({ email, name }: { email: string; name: string }) {
   if (done) {
     return (
       <div className="bg-success/10 border border-success/30 rounded-2xl p-8 text-center">
-        <p className="font-display text-2xl text-ink-900 mb-2">Thank you.</p>
-        <p className="text-sm text-ink-700">Your feedback is logged with your account team.</p>
+        <p className="font-display text-2xl text-foreground mb-2">Thank you.</p>
+        <p className="text-sm text-foreground">Your feedback is logged with your account team.</p>
       </div>
     );
   }
@@ -67,13 +67,13 @@ export function FeedbackForm({ email, name }: { email: string; name: string }) {
   return (
     <form onSubmit={onSubmit} className="space-y-8">
       {DIMENSIONS.map((dim) => (
-        <div key={dim.key} className="bg-paper-50 rounded-2xl border border-ink-100 p-6">
+        <div key={dim.key} className="bg-card rounded-2xl border border-border p-6">
           <div className="flex items-start justify-between gap-4 mb-3">
             <div>
               <h3 className="font-display text-xl font-medium tracking-[-0.02em]">{dim.label}</h3>
-              <p className="text-sm text-ink-600 mt-1">{dim.question}</p>
+              <p className="text-sm text-muted-foreground mt-1">{dim.question}</p>
             </div>
-            <span className="font-display text-3xl font-medium tabular-nums text-accent">{ratings[dim.key]}<span className="text-ink-300 text-lg">/5</span></span>
+            <span className="font-display text-3xl font-medium tabular-nums text-accent">{ratings[dim.key]}<span className="text-muted-foreground/40 text-lg">/5</span></span>
           </div>
           <div className="flex gap-2">
             {[1, 2, 3, 4, 5].map((n) => (
@@ -82,7 +82,7 @@ export function FeedbackForm({ email, name }: { email: string; name: string }) {
                 type="button"
                 onClick={() => setRatings({ ...ratings, [dim.key]: n })}
                 className={`flex-1 h-12 rounded-full text-sm font-medium transition-colors ${
-                  ratings[dim.key] === n ? 'bg-ink-900 text-paper' : 'bg-paper-200 text-ink-700 hover:bg-ink-200'
+                  ratings[dim.key] === n ? 'bg-primary text-foreground' : 'bg-muted text-foreground hover:bg-muted'
                 }`}
                 aria-label={`Rate ${n} of 5`}
               >
@@ -93,12 +93,12 @@ export function FeedbackForm({ email, name }: { email: string; name: string }) {
         </div>
       ))}
 
-      <div className="bg-ink-900 text-paper rounded-2xl p-6 flex items-center justify-between">
+      <div className="bg-primary text-foreground rounded-2xl p-6 flex items-center justify-between">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-paper-300">Overall</p>
-          <p className="text-sm text-paper-200 mt-1">Average across all four dimensions</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Overall</p>
+          <p className="text-sm text-muted-foreground mt-1">Average across all four dimensions</p>
         </div>
-        <p className="font-display text-5xl font-medium tabular-nums">{overall}<span className="text-paper-300 text-2xl">/5</span></p>
+        <p className="font-display text-5xl font-medium tabular-nums">{overall}<span className="text-muted-foreground text-2xl">/5</span></p>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
@@ -107,16 +107,16 @@ export function FeedbackForm({ email, name }: { email: string; name: string }) {
       </div>
 
       <label className="block">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-ink-500">Anything specific? (optional)</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Anything specific? (optional)</span>
         <textarea value={comment} onChange={(e) => setComment(e.target.value)} rows={4}
           placeholder="A specific win, a specific frustration, or a request."
-          className="mt-1 w-full px-3 py-3 rounded-xl bg-paper border border-ink-200 text-sm focus:outline-none focus:border-accent" />
+          className="mt-1 w-full px-3 py-3 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-accent" />
       </label>
 
       <label className="flex items-start gap-3 cursor-pointer">
         <input type="checkbox" checked={publicOk} onChange={(e) => setPublicOk(e.target.checked)}
-          className="mt-1 w-4 h-4 rounded border-ink-300" />
-        <span className="text-sm text-ink-700">
+          className="mt-1 w-4 h-4 rounded border-border" />
+        <span className="text-sm text-foreground">
           You can use this quote publicly (with my name). <b>You can use this anonymously.</b> (uncheck to opt out)
         </span>
       </label>
@@ -124,7 +124,7 @@ export function FeedbackForm({ email, name }: { email: string; name: string }) {
       {error && <p className="text-sm text-accent">{error}</p>}
 
       <button type="submit" disabled={busy}
-        className="w-full h-12 rounded-full bg-ink-900 hover:bg-ink-800 text-paper text-sm font-medium disabled:opacity-50">
+        className="w-full h-12 rounded-full bg-primary hover:bg-primary/90 text-foreground text-sm font-medium disabled:opacity-50">
         {busy ? 'Sending…' : 'Submit feedback'}
       </button>
     </form>
@@ -134,9 +134,9 @@ export function FeedbackForm({ email, name }: { email: string; name: string }) {
 function Field({ label, value, onChange }: { label: string; value: string; onChange: (s: string) => void }) {
   return (
     <label className="block">
-      <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-ink-500">{label}</span>
+      <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">{label}</span>
       <input value={value} onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full px-3 h-11 rounded-xl bg-paper border border-ink-200 text-sm focus:outline-none focus:border-accent" />
+        className="mt-1 w-full px-3 h-11 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-accent" />
     </label>
   );
 }

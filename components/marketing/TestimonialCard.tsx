@@ -3,15 +3,15 @@ import { Badge } from '@/components/ui/Badge';
 
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <figure className="flex flex-col bg-paper rounded-2xl p-6 md:p-7 border border-ink-100 h-full">
+    <figure className="flex flex-col bg-background rounded-2xl p-6 md:p-7 border border-border h-full">
       <span aria-hidden className="font-display text-5xl text-accent leading-none mb-3">&ldquo;</span>
-      <blockquote className="font-display text-xl md:text-2xl tracking-[-0.02em] leading-snug text-ink-900 flex-1">
+      <blockquote className="font-display text-xl md:text-2xl tracking-[-0.02em] leading-snug text-foreground flex-1">
         {testimonial.quote}
       </blockquote>
-      <figcaption className="mt-6 pt-4 border-t border-ink-100 flex items-center justify-between gap-3">
+      <figcaption className="mt-6 pt-4 border-t border-border flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="font-medium text-ink-900 truncate">{testimonial.author}</p>
-          <p className="text-sm text-ink-500 truncate">{testimonial.role} · {testimonial.company}</p>
+          <p className="font-medium text-foreground truncate">{testimonial.author}</p>
+          <p className="text-sm text-muted-foreground truncate">{testimonial.role} · {testimonial.company}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {testimonial.placeholder && <Badge variant="warning">Demo</Badge>}

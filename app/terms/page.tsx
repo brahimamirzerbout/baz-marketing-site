@@ -16,9 +16,9 @@ export default function TermsPage() {
       <div className="max-w-3xl">
         <Eyebrow>Legal</Eyebrow>
         <h1 className="font-display text-display-xl font-medium tracking-[-0.035em]">Terms of Service</h1>
-        <p className="mt-4 text-ink-500 text-sm">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <p className="mt-4 text-muted-foreground text-sm">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
 
-        <div className="mt-12 space-y-10 text-[15px] leading-[1.75] text-ink-700">
+        <div className="mt-12 space-y-10 text-[15px] leading-[1.75] text-foreground">
           <SubSection title="1. Acceptance">
             <p>By using {site.url} you agree to these terms. If you do not agree, do not use the site.</p>
           </SubSection>

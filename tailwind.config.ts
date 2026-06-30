@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: ['./app/**/*.{ts,tsx,mdx}', './components/**/*.{ts,tsx}', './content/**/*.{ts,mdx}'],
-  darkMode: ['selector', '[data-theme=dark]'],
+  darkMode: ['selector', '.dark'],
   theme: {
     container: {
       center: true,
@@ -11,7 +11,50 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // ink: text colors — invert in dark mode
+        // shadcn OKLCH tokens
+        background: 'oklch(var(--background) / <alpha-value>)',
+        foreground: 'oklch(var(--foreground) / <alpha-value>)',
+        card: {
+          DEFAULT: 'oklch(var(--card) / <alpha-value>)',
+          foreground: 'oklch(var(--card-foreground) / <alpha-value>)',
+        },
+        popover: {
+          DEFAULT: 'oklch(var(--popover) / <alpha-value>)',
+          foreground: 'oklch(var(--popover-foreground) / <alpha-value>)',
+        },
+        primary: {
+          DEFAULT: 'oklch(var(--primary) / <alpha-value>)',
+          foreground: 'oklch(var(--primary-foreground) / <alpha-value>)',
+        },
+        secondary: {
+          DEFAULT: 'oklch(var(--secondary) / <alpha-value>)',
+          foreground: 'oklch(var(--secondary-foreground) / <alpha-value>)',
+        },
+        muted: {
+          DEFAULT: 'oklch(var(--muted) / <alpha-value>)',
+          foreground: 'oklch(var(--muted-foreground) / <alpha-value>)',
+        },
+        accent: {
+          DEFAULT: 'oklch(var(--accent) / <alpha-value>)',
+          foreground: 'oklch(var(--accent-foreground) / <alpha-value>)',
+        },
+        destructive: {
+          DEFAULT: 'oklch(var(--destructive) / <alpha-value>)',
+        },
+        // Accentuation colors
+        success: {
+          DEFAULT: 'oklch(var(--success) / <alpha-value>)',
+        },
+        warning: {
+          DEFAULT: 'oklch(var(--warning) / <alpha-value>)',
+        },
+        info: {
+          DEFAULT: 'oklch(var(--info) / <alpha-value>)',
+        },
+        border: 'oklch(var(--border) / <alpha-value>)',
+        input: 'oklch(var(--input) / <alpha-value>)',
+        ring: 'oklch(var(--ring) / <alpha-value>)',
+        // Legacy tokens — mapped to new system so existing components work
         ink: {
           DEFAULT: 'rgb(var(--c-ink) / <alpha-value>)',
           50: 'rgb(var(--c-paper-50) / <alpha-value>)',
@@ -26,7 +69,6 @@ const config: Config = {
           900: 'rgb(var(--c-ink-900) / <alpha-value>)',
           950: 'rgb(var(--c-ink-950) / <alpha-value>)',
         },
-        // paper: surface colors — invert in dark mode
         paper: {
           DEFAULT: 'rgb(var(--c-paper) / <alpha-value>)',
           50: 'rgb(var(--c-paper-50) / <alpha-value>)',
@@ -35,15 +77,6 @@ const config: Config = {
           300: 'rgb(var(--c-paper-300) / <alpha-value>)',
           400: 'rgb(var(--c-paper-400) / <alpha-value>)',
         },
-        // Accent stays the same in both modes
-        accent: {
-          DEFAULT: '#ff3b2f',
-          600: '#e0281c',
-          700: '#b81f15',
-        },
-        success: '#3ddc97',
-        warning: '#ffb020',
-        info: '#4f7cff',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],

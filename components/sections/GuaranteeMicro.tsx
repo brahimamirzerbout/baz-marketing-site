@@ -20,7 +20,7 @@ export function GuaranteeMicro({
   const tone =
     variant === "emphasized"
       ? "text-accent"
-      : "text-ink-500";
+      : "text-muted-foreground";
   return (
     <p
       className={`mt-3 text-xs font-mono uppercase tracking-wider ${tone} ${className}`}

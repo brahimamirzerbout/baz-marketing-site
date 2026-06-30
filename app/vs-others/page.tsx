@@ -55,11 +55,11 @@ export default function VsOthersPage() {
       <Section tone="paper" size="lg">
         <div className="max-w-3xl mb-10">
           <h2 className="font-display text-display-lg font-medium tracking-[-0.03em]">The honest comparison</h2>
-          <p className="mt-4 text-lg text-ink-600 leading-relaxed">Twelve dimensions, no marketing copy. If we miss, the row says so. If we win, the proof is in /case-studies.</p>
+          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">Twelve dimensions, no marketing copy. If we miss, the row says so. If we win, the proof is in /case-studies.</p>
         </div>
-        <div className="rounded-2xl border border-ink-100 overflow-hidden">
+        <div className="rounded-2xl border border-border overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-paper-300">
+            <thead className="bg-muted/70">
               <tr>
                 <th className="text-left p-4 font-display font-medium tracking-[-0.02em]">Dimension</th>
                 <th className="text-center p-4 font-display font-medium w-20">BAZ</th>
@@ -69,11 +69,11 @@ export default function VsOthersPage() {
             </thead>
             <tbody>
               {dimensions.map((d, i) => (
-                <tr key={d.label} className={i % 2 === 0 ? '' : 'bg-paper-300/40'}>
-                  <td className="p-4 font-medium text-ink-900">{d.label}</td>
+                <tr key={d.label} className={i % 2 === 0 ? '' : 'bg-muted/70/40'}>
+                  <td className="p-4 font-medium text-foreground">{d.label}</td>
                   <td className="p-4 text-center"><Cell value={d.baz} /></td>
                   <td className="p-4 text-center"><Cell value={d.them} /></td>
-                  <td className="p-4 text-ink-600">{d.note}</td>
+                  <td className="p-4 text-muted-foreground">{d.note}</td>
                 </tr>
               ))}
             </tbody>

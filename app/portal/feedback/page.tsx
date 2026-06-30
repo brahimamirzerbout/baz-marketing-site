@@ -26,7 +26,7 @@ export default async function PortalFeedbackPage() {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] mt-4">
             How are we doing?
           </h1>
-          <p className="mt-6 text-lg text-ink-600">
+          <p className="mt-6 text-lg text-muted-foreground">
             Four short ratings. One comment. ~60 seconds. We read every one and adjust.
           </p>
         </div>

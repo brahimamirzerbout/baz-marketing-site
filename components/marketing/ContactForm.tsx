@@ -110,16 +110,16 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
 
   if (successId) {
     return (
-      <div className="bg-paper dark:bg-paper-50 rounded-2xl border border-ink-100 dark:border-paper-200 p-8 md:p-10 text-center">
+      <div className="bg-background dark:bg-card rounded-2xl border border-border dark:border-border p-8 md:p-10 text-center">
         <div className="inline-grid place-items-center w-12 h-12 rounded-full bg-accent text-white text-2xl mb-5">\u2713</div>
         <h3 className="font-display text-3xl md:text-4xl font-medium tracking-[-0.02em]">Got it.</h3>
-        <p className="mt-3 text-ink-600 max-w-md mx-auto">
+        <p className="mt-3 text-muted-foreground max-w-md mx-auto">
           We&apos;ll be in touch within one business day. If it&apos;s urgent, write us at{' '}
           <a href="mailto:zerboutbrahimamir@gmail.com" className="underline">zerboutbrahimamir@gmail.com</a>.
         </p>
         <button
           onClick={() => setSuccessId(null)}
-          className="mt-6 text-sm text-ink-500 hover:text-ink-900 underline"
+          className="mt-6 text-sm text-muted-foreground hover:text-foreground underline"
         >
           Submit another
         </button>
@@ -132,7 +132,7 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-paper dark:bg-paper-50 rounded-2xl border border-ink-100 dark:border-paper-200 p-6 md:p-8 space-y-5"
+      className="bg-background dark:bg-card rounded-2xl border border-border dark:border-border p-6 md:p-8 space-y-5"
       noValidate
       aria-busy={submitting}
     >
@@ -222,11 +222,11 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
                 <span
                   className={cn(
                     'block px-3 py-2.5 rounded-xl border text-sm text-center transition-all',
-                    'bg-paper dark:bg-paper-100 border-ink-200 dark:border-paper-300',
-                    'text-ink-700 dark:text-ink-700',
-                    'hover:border-ink-900 dark:hover:border-paper-200',
+                    'bg-background dark:bg-muted border-border dark:border-border',
+                    'text-foreground dark:text-foreground',
+                    'hover:border-foreground dark:hover:border-border',
                     budgetValue === b.v
-                      ? 'border-accent bg-accent-soft text-accent-700'
+                      ? 'border-accent bg-accent-soft text-primary'
                       : ''
                   )}
                 >
@@ -251,7 +251,7 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
       </Field>
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-        <p className="text-xs text-ink-500 max-w-md">
+        <p className="text-xs text-muted-foreground max-w-md">
           By submitting, you agree to our <a href="/privacy" className="underline">Privacy Policy</a>.
           We respond within one business day. No spam, ever.
         </p>
@@ -270,7 +270,7 @@ export function ContactForm({ source = 'contact', service }: { source?: string; 
       {serverError && serverError !== 'validation_failed' && (
         <p
           role="alert"
-          className="text-sm text-accent-700 bg-accent-soft border border-accent/20 rounded-xl px-4 py-3"
+          className="text-sm text-primary bg-accent-soft border border-accent/20 rounded-xl px-4 py-3"
         >
           Something went wrong sending your brief. Please email{' '}
           <a href="mailto:zerboutbrahimamir@gmail.com" className="underline">zerboutbrahimamir@gmail.com</a> directly.
@@ -296,12 +296,12 @@ function Field({
   const errorId = `${htmlFor}-error`;
   return (
     <label htmlFor={htmlFor} className="block">
-      <span id={`${htmlFor}-label`} className="block text-sm font-medium text-ink-900 mb-1.5">
+      <span id={`${htmlFor}-label`} className="block text-sm font-medium text-foreground mb-1.5">
         {label} {required && <span className="text-accent" aria-hidden>*</span>}
       </span>
       {children}
       {error && (
-        <span id={errorId} role="alert" className="block mt-1.5 text-xs text-accent-700">
+        <span id={errorId} role="alert" className="block mt-1.5 text-xs text-primary">
           {error}
         </span>
       )}
@@ -311,10 +311,10 @@ function Field({
 
 function inputCls(hasError?: boolean) {
   return cn(
-    'block w-full rounded-xl bg-paper dark:bg-ink-950 border border-ink-200 dark:border-paper-300 px-4 h-12 text-[15px] text-ink-900 dark:text-paper placeholder:text-ink-300 dark:placeholder:text-ink-500 transition-colors',
+    'block w-full rounded-xl bg-background dark:bg-background border border-border dark:border-border px-4 h-12 text-[15px] text-foreground dark:text-foreground placeholder:text-muted-foreground/40 dark:placeholder:text-muted-foreground transition-colors',
     'focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent',
     hasError
       ? 'border-accent'
-      : 'border-ink-200 dark:border-paper-300 hover:border-ink-300 dark:hover:border-paper-200'
+      : 'border-border dark:border-border hover:border-border dark:hover:border-border'
   );
 }

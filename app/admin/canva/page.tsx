@@ -148,7 +148,7 @@ export default function CanvaPage() {
         <div>
           <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-2">BAZ Canva · /admin/canva</p>
           <h1 className="font-display text-display-xl font-medium tracking-[-0.035em]">Design assets, in-house.</h1>
-          <p className="mt-3 text-ink-600 max-w-xl">
+          <p className="mt-3 text-muted-foreground max-w-xl">
             Generate OG cards, case covers, ads, and quotes with your brand kit. No third-party tool. Export PNG or SVG.
           </p>
         </div>
@@ -162,8 +162,8 @@ export default function CanvaPage() {
 
       <div className="grid lg:grid-cols-[260px_1fr_280px] gap-6">
         {/* Templates */}
-        <aside className="rounded-2xl border border-ink-100 bg-paper p-3">
-          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 px-2 pb-2">Templates</p>
+        <aside className="rounded-2xl border border-border bg-background p-3">
+          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 px-2 pb-2">Templates</p>
           <ul className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible">
             {templates.map((t) => (
               <li key={t.id}>
@@ -171,19 +171,19 @@ export default function CanvaPage() {
                   type="button"
                   onClick={() => setTemplate(t.id)}
                   aria-pressed={template === t.id}
-                  className={`w-full text-left rounded-xl p-3 border transition-colors ${template === t.id ? 'border-ink-900 bg-white' : 'border-ink-100 hover:border-ink-300 bg-white'}`}
+                  className={`w-full text-left rounded-xl p-3 border transition-colors ${template === t.id ? 'border-foreground bg-white dark:bg-zinc-900' : 'border-border hover:border-border bg-white dark:bg-zinc-900'}`}
                 >
                   <div className="flex items-baseline justify-between gap-2">
                     <span className="font-medium text-sm">{t.name}</span>
-                    <span className="font-mono text-[10px] text-ink-400">{t.w}×{t.h}</span>
+                    <span className="font-mono text-[10px] text-muted-foreground/60">{t.w}×{t.h}</span>
                   </div>
-                  <p className="text-xs text-ink-500 mt-0.5">{t.desc}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{t.desc}</p>
                 </button>
               </li>
             ))}
           </ul>
 
-          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400 px-2 pt-6 pb-2">Brand kit</p>
+          <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 px-2 pt-6 pb-2">Brand kit</p>
           <div className="space-y-2 px-2">
             <Field label="Primary" type="color" value={brand.primary} onChange={(v) => setBrand({ ...brand, primary: v })} />
             <Field label="Accent"  type="color" value={brand.accent}  onChange={(v) => setBrand({ ...brand, accent: v })} />
@@ -194,7 +194,7 @@ export default function CanvaPage() {
         </aside>
 
         {/* Stage */}
-        <div className="rounded-2xl border border-ink-100 bg-paper-300 p-4 md:p-8">
+        <div className="rounded-2xl border border-border bg-muted/70 p-4 md:p-8">
           <div
             ref={stageRef}
             className="relative w-full max-w-3xl mx-auto rounded-2xl shadow-lift overflow-hidden select-none"
@@ -226,39 +226,39 @@ export default function CanvaPage() {
               </div>
             ))}
           </div>
-          <p className="text-center mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
+          <p className="text-center mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground/60">
             {tmpl.w} × {tmpl.h} · click a layer to edit
           </p>
         </div>
 
         {/* Inspector */}
-        <aside className="rounded-2xl border border-ink-100 bg-paper p-4">
+        <aside className="rounded-2xl border border-border bg-background p-4">
           <div className="flex items-center justify-between mb-3">
-            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400">Layers</p>
-            <button type="button" onClick={addLayer} className="text-xs font-medium px-3 py-1.5 rounded-full bg-ink-900 text-paper hover:bg-ink-800">+ Add</button>
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60">Layers</p>
+            <button type="button" onClick={addLayer} className="text-xs font-medium px-3 py-1.5 rounded-full bg-primary text-foreground hover:bg-primary/90">+ Add</button>
           </div>
           <ul className="space-y-1.5 mb-4">
             {layers.map((l) => (
-              <li key={l.id} className={`flex items-center justify-between rounded-xl px-3 py-2 text-sm border ${selected === l.id ? 'border-accent bg-white' : 'border-ink-100 bg-white'}`}>
+              <li key={l.id} className={`flex items-center justify-between rounded-xl px-3 py-2 text-sm border ${selected === l.id ? 'border-accent bg-white dark:bg-zinc-900' : 'border-border bg-white dark:bg-zinc-900'}`}>
                 <button type="button" onClick={() => setSelected(l.id)} className="flex-1 text-left truncate">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400 mr-2">{l.kind}</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground/60 mr-2">{l.kind}</span>
                   <span className="truncate align-middle">{l.text.split('\n')[0]}</span>
                 </button>
-                <button type="button" aria-label="Delete layer" onClick={() => deleteLayer(l.id)} className="ml-2 text-ink-400 hover:text-accent">×</button>
+                <button type="button" aria-label="Delete layer" onClick={() => deleteLayer(l.id)} className="ml-2 text-muted-foreground/60 hover:text-accent">×</button>
               </li>
             ))}
           </ul>
 
           {sel && (
-            <div className="space-y-3 border-t border-ink-100 pt-4">
-              <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-ink-400">Edit layer</p>
+            <div className="space-y-3 border-t border-border pt-4">
+              <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60">Edit layer</p>
               <label className="block">
                 <span className="block text-xs font-medium mb-1">Text</span>
                 <textarea
                   rows={3}
                   value={sel.text}
                   onChange={(e) => updateLayer(sel.id, { text: e.target.value })}
-                  className="w-full rounded-xl bg-white border border-ink-200 px-3 py-2 text-sm focus:outline-none focus:border-accent resize-y"
+                  className="w-full rounded-xl bg-white dark:bg-zinc-900 border border-border px-3 py-2 text-sm focus:outline-none focus:border-accent resize-y"
                 />
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -273,7 +273,7 @@ export default function CanvaPage() {
                   type="color"
                   value={normalizeColor(sel.color)}
                   onChange={(e) => updateLayer(sel.id, { color: e.target.value })}
-                  className="w-full h-9 rounded-lg border border-ink-200 bg-white"
+                  className="w-full h-9 rounded-lg border border-border bg-white dark:bg-zinc-900"
                 />
               </label>
               <label className="block">
@@ -281,7 +281,7 @@ export default function CanvaPage() {
                 <select
                   value={sel.align}
                   onChange={(e) => updateLayer(sel.id, { align: e.target.value as Layer['align'] })}
-                  className="w-full rounded-lg border border-ink-200 bg-white px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-border bg-white dark:bg-zinc-900 px-3 py-2 text-sm"
                 >
                   <option value="left">Left</option>
                   <option value="center">Center</option>
@@ -292,7 +292,7 @@ export default function CanvaPage() {
           )}
 
           {!sel && (
-            <p className="text-xs text-ink-500 border-t border-ink-100 pt-4">
+            <p className="text-xs text-muted-foreground border-t border-border pt-4">
               Click any layer on the canvas to edit it, or add a new one. Use the brand kit on the left to set colors and fonts across all templates.
             </p>
           )}
@@ -305,11 +305,11 @@ export default function CanvaPage() {
 function Field({ label, type, value, onChange }: { label: string; type: 'color' | 'text'; value: string; onChange: (v: string) => void }) {
   return (
     <label className="flex items-center gap-2 text-xs">
-      <span className="w-20 text-ink-500 font-mono uppercase tracking-[0.14em] text-[10px]">{label}</span>
+      <span className="w-20 text-muted-foreground font-mono uppercase tracking-[0.14em] text-[10px]">{label}</span>
       {type === 'color' ? (
-        <input type="color" value={value} onChange={(e) => onChange(e.target.value)} className="w-10 h-7 rounded border border-ink-200 bg-white" />
+        <input type="color" value={value} onChange={(e) => onChange(e.target.value)} className="w-10 h-7 rounded border border-border bg-white dark:bg-zinc-900" />
       ) : (
-        <input type="text" value={value} onChange={(e) => onChange(e.target.value)} className="flex-1 rounded border border-ink-200 bg-white px-2 py-1 text-xs" />
+        <input type="text" value={value} onChange={(e) => onChange(e.target.value)} className="flex-1 rounded border border-border bg-white dark:bg-zinc-900 px-2 py-1 text-xs" />
       )}
     </label>
   );
@@ -323,7 +323,7 @@ function NumField({ label, value, onChange }: { label: string; value: number; on
         type="number"
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full rounded-lg border border-ink-200 bg-white px-3 py-1.5 text-sm"
+        className="w-full rounded-lg border border-border bg-white dark:bg-zinc-900 px-3 py-1.5 text-sm"
       />
     </label>
   );

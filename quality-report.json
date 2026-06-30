@@ -1,0 +1,121 @@
+{
+  "timestamp": "2026-06-29T22:48:48.845Z",
+  "site": "http://localhost:3000",
+  "checks": {
+    "pages": {
+      "passed": 27,
+      "failed": 0,
+      "failures": []
+    },
+    "apis": {
+      "passed": 8,
+      "failed": 1,
+      "failures": [
+        {
+          "route": "/api/score",
+          "status": 405
+        }
+      ]
+    },
+    "placeholders": {
+      "total": 1,
+      "findings": [
+        {
+          "file": "/home/uzer/baz/content/testimonials.ts",
+          "count": 9
+        }
+      ]
+    },
+    "seo": {
+      "pages": 6,
+      "allPass": true,
+      "details": [
+        {
+          "path": "/",
+          "title": true,
+          "description": true,
+          "ogTitle": true,
+          "ogImage": true,
+          "canonical": true,
+          "jsonLd": true
+        },
+        {
+          "path": "/services",
+          "title": true,
+          "description": true,
+          "ogTitle": true,
+          "ogImage": true,
+          "canonical": true,
+          "jsonLd": true
+        },
+        {
+          "path": "/case-studies",
+          "title": true,
+          "description": true,
+          "ogTitle": true,
+          "ogImage": true,
+          "canonical": true,
+          "jsonLd": true
+        },
+        {
+          "path": "/insights",
+          "title": true,
+          "description": true,
+          "ogTitle": true,
+          "ogImage": true,
+          "canonical": true,
+          "jsonLd": true
+        },
+        {
+          "path": "/pricing",
+          "title": true,
+          "description": true,
+          "ogTitle": true,
+          "ogImage": true,
+          "canonical": true,
+          "jsonLd": true
+        },
+        {
+          "path": "/about",
+          "title": true,
+          "description": true,
+          "ogTitle": true,
+          "ogImage": true,
+          "canonical": true,
+          "jsonLd": true
+        }
+      ]
+    },
+    "design": {
+      "goldRules": 83,
+      "hasDarkMode": true,
+      "hasRoyalSeal": true,
+      "hasGoldCursor": false,
+      "hasScrollProgress": true,
+      "hasHairlineGold": true,
+      "hasBtnGold": true,
+      "hasEyebrowGold": true,
+      "hasGrain": true,
+      "hasRoyalEntrance": true
+    }
+  },
+  "issues": [
+    "API /api/score returned 405",
+    "1 files with placeholder: true flags"
+  ],
+  "passed": [
+    "All 27 pages return 200",
+    "SEO meta tags present on all 6 checked pages",
+    "66 components, 60 pages, 15 API routes",
+    "Design system: 9/10 royal features present"
+  ],
+  "stats": {
+    "components": 66,
+    "pages": 60,
+    "apiRoutes": 15,
+    "contentFiles": 9,
+    "libFiles": 22,
+    "totalLines": 1046,
+    "beuiComponents": 7
+  }
+}

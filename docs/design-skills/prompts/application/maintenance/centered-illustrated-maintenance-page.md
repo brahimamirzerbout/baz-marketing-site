@@ -1,0 +1,5 @@
+# Centered Illustrated Maintenance Page
+
+Create a maintenance page as one centered vertical stack on a full-width section background, vertically centered within the viewport height. Stack from top to bottom: a large illustrative scene centered horizontally on its own line, depicting a figure working at a laptop with stylized UI elements or browser windows floating in the background (conveying an active-but-paused development mood without relying on photographic imagery); a large bold centered heading on its own line directly below the illustration stating the maintenance status (e.g. "Down for Maintenance"); a centered paragraph of one or two sentences directly below the heading at a comfortable reading width, explaining that the site is temporarily offline for planned maintenance and will return soon, containing an inline bold text link pointing to the blog or status page embedded naturally within the sentence.
+
+On narrow viewports keep the same single-column centered stack; allow the illustration to scale down proportionally while preserving center alignment and comfortable side padding throughout.

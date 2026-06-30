@@ -9,27 +9,27 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'soft';
 type Size = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ' +
-  'focus-visible:ring-offset-paper dark:focus-visible:ring-offset-ink-900 disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
+  'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ' +
+  'focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-ink-900 text-paper hover:bg-ink-800 dark:bg-paper dark:text-ink-900 dark:hover:bg-paper-50 shadow-soft hover:shadow-lift hover:-translate-y-0.5',
+    'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md hover:-translate-y-px',
   secondary:
-    'bg-accent text-white hover:bg-accent-600 shadow-soft hover:shadow-lift hover:-translate-y-0.5',
+    'bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-md hover:-translate-y-px',
   ghost:
-    'bg-transparent text-ink-900 hover:bg-ink-100 dark:text-paper dark:hover:bg-paper-100',
+    'bg-transparent text-foreground hover:bg-muted',
   outline:
-    'bg-transparent text-ink-900 border border-ink-200 hover:border-ink-900 hover:bg-paper dark:text-paper dark:border-paper-50 dark:hover:border-paper dark:hover:bg-paper-100',
+    'bg-transparent text-foreground border border-border hover:bg-muted',
   soft:
-    'bg-paper-300 text-ink-900 hover:bg-paper-400 border border-paper-400 dark:bg-paper-100 dark:text-paper dark:border-paper-200 dark:hover:bg-paper-200',
+    'bg-muted text-foreground hover:bg-muted/70',
 };
 
 const sizes: Record<Size, string> = {
   sm: 'h-9 px-4 text-sm',
-  md: 'h-11 px-5 text-[15px]',
-  lg: 'h-14 px-7 text-base',
+  md: 'h-10 px-5 text-sm',
+  lg: 'h-12 px-7 text-base',
 };
 
 type CommonProps = {
@@ -61,47 +61,39 @@ export function Button(props: ButtonProps) {
     children,
     trackAs,
     trackPayload,
-  } = props;
+    ...rest
+  } = props as any;
 
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if ('href' in props && props.href) {
     const { href, external } = props;
-    const clickHandler = trackAs
-      ? trackedClick('cta_click', { label: trackAs, href, ...(trackPayload || {}) })
-      : undefined;
-
-    if (external || (/^https?:\/\//.test(href) && !href.startsWith('mailto'))) {
+    if (external) {
       return (
         <a
           href={href}
-          target={external ? '_blank' : undefined}
-          rel={external ? 'noopener noreferrer' : undefined}
+          target="_blank"
+          rel="noopener noreferrer"
           className={classes}
-          onClick={clickHandler}
+          onClick={() => trackAs && trackedClick(trackAs, trackPayload)}
         >
           {children}
         </a>
       );
     }
-    // mailto: and other protocols use a plain anchor.
     return (
-      <a href={href} className={classes} onClick={clickHandler}>
+      <Link
+        href={href}
+        className={classes}
+        onClick={() => trackAs && trackedClick(trackAs, trackPayload)}
+      >
         {children}
-      </a>
+      </Link>
     );
   }
 
-  const { onClick: userOnClick, ...rest } = props as ButtonAsButtonProps;
-  // Strip non-DOM props before spreading on <button>.
-  delete (rest as Record<string, unknown>).trackAs;
-  delete (rest as Record<string, unknown>).trackPayload;
-  const clickHandler = trackAs
-    ? trackedClick('cta_click', { label: trackAs, ...(trackPayload || {}) }, userOnClick)
-    : userOnClick;
-
   return (
-    <button className={classes} onClick={clickHandler} {...rest}>
+    <button className={classes} {...rest}>
       {children}
     </button>
   );

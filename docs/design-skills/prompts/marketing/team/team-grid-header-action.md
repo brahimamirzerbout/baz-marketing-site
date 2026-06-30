@@ -1,0 +1,7 @@
+# Team Grid With Header Action
+
+Create a team section inside a centered page container with comfortable side padding. At the top, place a header row split into two halves on the same baseline: a left-aligned vertical stack containing a large heading on its own line and a supporting paragraph directly beneath the heading at a comfortable reading width; and a single compact outlined button anchored to the right end of the row whose label includes a trailing arrow icon.
+
+Below the header, place one large transparent container with no shadow or borders. Inside the container, build a four-column by two-row grid of eight team member blocks with consistent gutters between columns and rows. Each block is a centered vertical stack containing, in order: a medium circular avatar image at the top; a small pill-shaped badge on its own line directly below the avatar (composed of a tiny leading icon and a short role-category label); the team member's name on its own line directly below the badge in medium weight; a single-line job title directly below the name in lighter weight; and a compact outlined button at the bottom of the block whose label is composed of a small leading icon and a short action label (e.g. "Contact me") on the same baseline.
+
+On smaller breakpoints reduce the column count stepwise (four columns, then two, then one) until the blocks form a single column on the narrowest viewports; preserve left-to-right top-to-bottom reading order throughout.

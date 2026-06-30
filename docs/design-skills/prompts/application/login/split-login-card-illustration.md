@@ -1,0 +1,9 @@
+# Split Login Card With Illustration
+
+Create a login page split into two columns on large 1280px width breakpoints inside a centered page container with comfortable side padding. The left column carries a single form card with rounded corners; the right column carries one decorative vector illustration. The two columns share the same vertical center line.
+
+Inside the **left card**, stack from top to bottom: a small brand-mark row at the top of the card pairing a circular logo glyph and a short brand wordmark; a heading on its own line below the brand mark; a single sub-line directly below the heading combining a short supporting sentence with an inline text link to the sign-up flow at the end of the same line; a two-column field grid containing two labeled inputs on one row (email input on the left and password input on the right) — every label sits above its input with a tiny required-field marker to the right of the label text; a horizontal "or" separator made of a thin rule, a centered short word, and another thin rule; a stack of two full-width third-party provider buttons placed one above the other, each button starting with a small leading provider glyph and followed by short provider label copy; a single horizontal row composed of a small square "remember me" checkbox paired with an inline label on the left and a "forgot password" text link on the right; one full-width primary submit button at the bottom of the card.
+
+The **right column** holds a single vector full-width illustration sized to fill the column visually (for example a person sitting at a device, with simple background shapes such as plants and a silhouette of a screen). Vertically center the illustration relative to the form card.
+
+On narrow viewports, stack with the form card first and the illustration second; the illustration may shrink or be hidden when space is constrained.

@@ -1,9 +1,22 @@
 import type { CaseStudy } from '@/types';
 
 /**
- * Case studies. Representative composites clearly written to read like real
- * client stories. Names, metrics, and companies are illustrative — replace
- * with signed-client material before public launch.
+ * Case studies.
+ *
+ * IMPORTANT: These are representative composites based on real engagement
+ * patterns. They illustrate the types of problems BAZ solves and the
+ * outcomes that are typical for each industry and service combination.
+ *
+ * Names, metrics, and companies are illustrative — written to read like
+ * real client stories so visitors understand what working with BAZ looks
+ * like. Replace with signed-client case studies before public launch.
+ *
+ * Each case study follows the same structure:
+ *   - Problem (what the client was stuck on)
+ *   - Strategy (what BAZ did differently)
+ *   - Result (what changed, with metrics)
+ *   - Duration (how long it took)
+ *   - Testimonial (optional, from the client)
  */
 export const caseStudies: CaseStudy[] = [
   {

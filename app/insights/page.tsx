@@ -37,10 +37,10 @@ export default function InsightsIndexPage() {
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
             <Eyebrow tone="light">Monthly playbook</Eyebrow>
-            <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] text-paper leading-[1.05]">
+            <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] text-foreground leading-[1.05]">
               One growth playbook per month. Zero spam.
             </h2>
-            <p className="mt-4 text-paper-300 max-w-xl">
+            <p className="mt-4 text-muted-foreground max-w-xl">
               A single, edited email with the best of what we&apos;re reading, building, and
               recommending. Unsubscribe anytime.
             </p>

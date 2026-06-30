@@ -76,7 +76,7 @@ export default function ServicesIndexPage() {
       <Section tone="paper" size="lg">
         <div className="space-y-4">
           {outcomes.map((o, i) => (
-            <div key={o.title} className="grid md:grid-cols-12 gap-6 items-start border-t border-ink-100 pt-6">
+            <div key={o.title} className="grid md:grid-cols-12 gap-6 items-start border-t border-border pt-6">
               <div className="md:col-span-1">
                 <div className="font-display text-4xl font-medium tracking-[-0.03em] text-accent">
                   0{i + 1}
@@ -84,20 +84,20 @@ export default function ServicesIndexPage() {
               </div>
               <div className="md:col-span-4">
                 <h2 className="font-display text-2xl font-medium tracking-[-0.02em]">{o.title}</h2>
-                <p className="mt-2 text-ink-600 leading-relaxed">{o.summary}</p>
+                <p className="mt-2 text-muted-foreground leading-relaxed">{o.summary}</p>
                 <div className="mt-3 inline-block text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">
                   {o.metric}
                 </div>
               </div>
               <div className="md:col-span-7">
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500 mb-2">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">
                   Services that deliver it
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {o.services.map((s) => (
                     <span
                       key={s}
-                      className="inline-block text-xs px-2.5 py-1 rounded-full bg-paper-300 text-ink-700 border border-ink-100"
+                      className="inline-block text-xs px-2.5 py-1 rounded-full bg-muted/70 text-foreground border border-border"
                     >
                       {s}
                     </span>
@@ -114,7 +114,7 @@ export default function ServicesIndexPage() {
         <div className="max-w-3xl mb-10">
           <Eyebrow>By channel</Eyebrow>
           <SectionHeading>The eighteen services, grouped by where they live.</SectionHeading>
-          <p className="mt-3 text-ink-600">
+          <p className="mt-3 text-muted-foreground">
             Most clients engage BAZ across all five outcomes. The implementation lives
             across five traditional pillars. Skip to the one you care about.
           </p>
@@ -127,16 +127,16 @@ export default function ServicesIndexPage() {
               <a
                 key={p.id}
                 href={`#${p.id}`}
-                className="block p-4 rounded-2xl border border-ink-100 hover:border-accent transition-colors"
+                className="block p-4 rounded-2xl border border-border hover:border-accent transition-colors"
               >
-                <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-500">
+                <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                   {p.name}
                 </div>
                 <div className="font-display text-lg font-medium tracking-[-0.02em] mt-1">
                   {p.name}
                 </div>
-                <p className="text-xs text-ink-600 mt-1">{p.desc}</p>
-                <div className="mt-3 text-xs text-ink-500">{list.length} services →</div>
+                <p className="text-xs text-muted-foreground mt-1">{p.desc}</p>
+                <div className="mt-3 text-xs text-muted-foreground">{list.length} services →</div>
               </a>
             );
           })}
@@ -148,7 +148,7 @@ export default function ServicesIndexPage() {
         const list = services.filter((s) => s.pillar === p.id);
         if (list.length === 0) return null;
         return (
-          <section key={p.id} id={p.id} className="py-12 md:py-16 bg-paper-50 border-t border-ink-100 scroll-mt-24">
+          <section key={p.id} id={p.id} className="py-12 md:py-16 bg-card border-t border-border scroll-mt-24">
             <div className="container mx-auto">
               <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
                 <div>

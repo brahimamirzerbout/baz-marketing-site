@@ -1,18 +1,14 @@
 import { cn } from '@/lib/cn';
 import type { ReactNode } from 'react';
 
-type Tone = 'paper' | 'white' | 'ink' | 'accent';
+type Tone = 'default' | 'card' | 'muted' | 'inverse';
 type Size = 'sm' | 'md' | 'lg' | 'xl';
 
 const tones: Record<Tone, string> = {
-  // The token swap in globals.css inverts ink-* and paper-* semantics, so
-  // bg-paper / text-ink-900 already produce a dark surface with light text in
-  // dark mode. We only override white→ink-950 for a slightly darker variant
-  // of the off-black, and ink→paper for a paper-tone "ink" section in dark.
-  paper: 'bg-paper text-ink-900',
-  white: 'bg-paper-50 text-ink-900 dark:bg-ink-950',
-  ink: 'bg-ink-900 text-paper dark:bg-ink-950',
-  accent: 'bg-accent text-white',
+  default:  'bg-background text-foreground',
+  card:     'bg-card text-card-foreground',
+  muted:    'bg-muted text-foreground',
+  inverse:  'bg-primary text-primary-foreground',
 };
 
 const sizes: Record<Size, string> = {
@@ -22,21 +18,30 @@ const sizes: Record<Size, string> = {
   xl: 'py-24 md:py-40',
 };
 
+// Legacy tone aliases so existing calls don't break
+const toneAliases: Record<string, Tone> = {
+  paper: 'default',
+  white: 'card',
+  ink: 'inverse',
+  accent: 'inverse',
+};
+
 export function Section({
   children,
-  tone = 'paper',
+  tone = 'default',
   size = 'md',
   className,
   id,
 }: {
   children: ReactNode;
-  tone?: Tone;
+  tone?: Tone | string;
   size?: Size;
   className?: string;
   id?: string;
 }) {
+  const resolvedTone = toneAliases[tone] || (tone as Tone);
   return (
-    <section id={id} className={cn(tones[tone], sizes[size], className)}>
+    <section id={id} className={cn(tones[resolvedTone], sizes[size], className)}>
       <div className="container mx-auto">{children}</div>
     </section>
   );
@@ -54,8 +59,8 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        'font-mono uppercase tracking-[0.18em] text-[11px] mb-4',
-        tone === 'light' ? 'text-paper-300' : 'text-ink-500',
+        'font-mono uppercase tracking-[0.16em] text-[11px] mb-4',
+        tone === 'light' ? 'text-primary-foreground/60' : 'text-muted-foreground',
         className
       )}
     >
@@ -76,7 +81,7 @@ export function SectionHeading({
   return (
     <Tag
       className={cn(
-        'font-display text-display-lg font-medium tracking-[-0.03em] leading-[1.05] max-w-3xl text-ink-900',
+        'font-display text-display-lg font-medium tracking-[-0.03em] leading-[1.05] max-w-3xl text-foreground',
         className
       )}
     >
@@ -93,7 +98,7 @@ export function SectionLede({
   className?: string;
 }) {
   return (
-    <p className={cn('text-lg md:text-xl text-ink-600 max-w-2xl mt-5 leading-relaxed', className)}>
+    <p className={cn('text-lg md:text-xl text-muted-foreground max-w-2xl mt-5 leading-relaxed', className)}>
       {children}
     </p>
   );

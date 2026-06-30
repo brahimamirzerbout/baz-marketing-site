@@ -75,7 +75,7 @@ export function LiveStatusPill() {
     <div
       role="status"
       aria-live="polite"
-      className="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-paper px-3 py-1.5 text-xs font-mono uppercase tracking-[0.18em] text-ink-700"
+      className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-mono uppercase tracking-[0.18em] text-foreground"
     >
       <Dot
         color={
@@ -83,17 +83,17 @@ export function LiveStatusPill() {
             ? "bg-emerald-500"
             : state.kind === "warming"
               ? "bg-amber-500"
-              : "bg-ink-400"
+              : "bg-muted-foreground/40"
         }
         pulse={state.kind !== "offline"}
       />
       {state.kind === "live" && (
         <span>
-          Hub live <span className="text-ink-400">·</span> last tick {state.secondsAgo}s ago
+          Hub live <span className="text-muted-foreground/60">·</span> last tick {state.secondsAgo}s ago
         </span>
       )}
       {state.kind === "warming" && <span>Hub warming</span>}
-      {state.kind === "offline" && <span className="text-ink-500">Hub offline</span>}
+      {state.kind === "offline" && <span className="text-muted-foreground">Hub offline</span>}
     </div>
   );
 }

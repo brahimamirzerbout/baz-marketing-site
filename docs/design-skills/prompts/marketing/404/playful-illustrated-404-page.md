@@ -1,0 +1,5 @@
+# Playful Illustrated 404 Page
+
+Create a 404 page as one centered vertical stack on a full-width section background, vertically centered within the viewport height. Stack from top to bottom: a large decorative composition of the numerals "404" where the middle digit is replaced by a rounded illustrative character or expressive icon that conveys a lighthearted error mood (the three elements — first digit, illustration, last digit — sit side by side on the same baseline and read as a single oversized display group); a bold centered heading on its own line directly below the illustration group (e.g. a playful acknowledgment like "Oops! Wrong Turn"); a centered paragraph of one or two sentences directly below the heading at a comfortable reading width, containing an inline bold text link pointing back to the homepage embedded naturally within the sentence.
+
+On narrow viewports keep the same single-column centered stack; allow the decorative digit group to scale down proportionally while preserving center alignment and comfortable side padding.

@@ -32,7 +32,7 @@ const links = [
 
 export function ReadNext() {
   return (
-    <section className="bg-paper">
+    <section className="bg-background">
       <div className="container mx-auto py-16 md:py-20">
         <div className="max-w-3xl mb-10">
           <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-3">
@@ -47,12 +47,12 @@ export function ReadNext() {
             <a
               key={l.href}
               href={l.href}
-              className="group block p-6 rounded-2xl border border-ink-100 hover:border-accent hover:bg-paper-300 transition-colors"
+              className="group block p-6 rounded-2xl border border-border hover:border-accent hover:bg-muted/70 transition-colors"
             >
               <div className="font-display text-xl font-medium tracking-[-0.02em] group-hover:text-accent">
                 {l.label}
               </div>
-              <p className="mt-2 text-sm text-ink-600 leading-relaxed">{l.desc}</p>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{l.desc}</p>
               <div className="mt-4 text-sm text-accent font-medium">{l.cta}</div>
             </a>
           ))}

@@ -22,7 +22,7 @@ export default function PortalPage({ params }: { params: { id: string } }) {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] leading-[0.95]">
             Here&apos;s <em className="not-italic text-gradient">your plan.</em>
           </h1>
-          <p className="mt-6 text-lg md:text-2xl text-ink-600 leading-relaxed max-w-3xl">
+          <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
             Based on the prompt you ran, here&apos;s what happens next — and when.
           </p>
         </div>

@@ -1,0 +1,7 @@
+# Centered Team Card Grid
+
+Create a team section inside a centered page container with comfortable side padding. At the top, place a centered header block composed of a large heading centered on its own line followed by a centered supporting paragraph directly beneath it at a moderate reading width. Below the paragraph, place a single centered text link on its own line whose label includes a trailing arrow icon.
+
+Below the header, place a responsive grid of team member cards arranged as four columns and two rows on the widest breakpoint, with consistent gutters between all cards. Each card is a rounded rectangular panel with a thin outer border. Inside each card, stack from top to bottom: a large rectangular photograph that spans the full card width at the top (cropped to a landscape or portrait aspect ratio); the team member's name on its own line directly below the image in medium weight with comfortable horizontal padding; a single-line job title directly below the name in lighter weight; a short multi-line description paragraph directly below the title at the card's internal reading width; and a horizontal row of small social-media icon links sitting side by side on the same baseline at the bottom of the card with comfortable padding.
+
+On smaller breakpoints reduce the column count stepwise (four, then two, then one) until the cards form a single column on the narrowest viewports; preserve left-to-right top-to-bottom reading order throughout.

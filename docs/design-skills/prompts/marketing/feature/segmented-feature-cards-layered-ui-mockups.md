@@ -1,0 +1,9 @@
+# Segmented Feature Cards with Layered UI Mockups
+
+Create a feature section inside a centered page container with comfortable side padding. At the top, place a centered header stack composed of the following elements in order: a small pill-shaped label row that combines a tiny leading icon on the left with a short label text to its right, both sitting on the same baseline inside a rounded container; a large centered multi-line headline directly below the pill label, where at least one word in the headline is paired with a small inline icon inside a rounded-square frame so the icon reads as part of the title line (sitting on the same baseline as the adjacent text).
+
+Below the headline, place a single horizontal pill-shaped control that behaves like segmented navigation: a row of short text links arranged inline inside one continuous rounded container, with one link carrying a distinct filled background to mark the active segment while the remaining links use plain text.
+
+Beneath the segmented navigation, place three equal-width cards in one row on large 1280px width breakpoints with consistent gutters between them. Each card is a rounded rectangular panel containing two vertical zones: the **upper zone** stacks a small numeric index anchored to the top corner of the card beside a medium heading on the same line, with a short supporting paragraph directly below the heading; the **lower zone** dedicates the remaining card height to a dense composition of overlapping simplified UI mockups (small readouts, mini cards, and compact controls) that may spill slightly past the card's inner text block edges to create a layered collage effect.
+
+On narrow viewports, stack the three cards vertically in reading order; keep the header stack and segmented navigation centered above the card column.

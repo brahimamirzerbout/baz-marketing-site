@@ -27,16 +27,16 @@ export default async function ConsolePage() {
             <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] mt-4">
               Sign in to access the console.
             </h1>
-            <p className="mt-6 text-lg text-ink-600">
+            <p className="mt-6 text-lg text-muted-foreground">
               The operator console is the cockpit you use every day: pipeline, scout list,
               activity tracker, income calculator, AI tools. It&rsquo;s the surface for the
               owner-operator playbook.
             </p>
             <div className="mt-8 flex gap-3">
-              <Link href="/login" className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-ink-900 hover:bg-ink-800 text-paper font-medium">
+              <Link href="/login" className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary hover:bg-primary/90 text-foreground font-medium">
                 Sign in
               </Link>
-              <Link href="/become-an-operator" className="inline-flex items-center justify-center h-12 px-6 rounded-full border border-ink-200 hover:border-ink-900 font-medium">
+              <Link href="/become-an-operator" className="inline-flex items-center justify-center h-12 px-6 rounded-full border border-border hover:border-foreground font-medium">
                 Become an Operator
               </Link>
             </div>
@@ -66,7 +66,7 @@ export default async function ConsolePage() {
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] mt-4">
             Sell. Ship. Get paid.
           </h1>
-          <p className="mt-6 text-lg text-ink-600">
+          <p className="mt-6 text-lg text-muted-foreground">
             This is the cockpit. Pipeline on the left, scout list in the middle, activity tracker
             on the right. The only thing that moves the business is conversations — every tool here
             exists to make them more frequent.

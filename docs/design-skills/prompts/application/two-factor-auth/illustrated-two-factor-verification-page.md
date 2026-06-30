@@ -1,0 +1,9 @@
+# Illustrated Two-Factor Verification Page
+
+Create a two-factor authentication page split into two columns on large 1280px width breakpoints inside a centered page container with comfortable side padding.
+
+**Left column** holds one large illustrative scene that fills most of the column area, vertically centered within the column. The illustration depicts a figure sitting on or beside server hardware or storage boxes, working at a laptop, conveying a secure-infrastructure or authentication theme without relying on photographic imagery.
+
+**Right column** is a left-aligned vertical stack, vertically centered within the column height, containing a single elevated card with rounded corners and a light surface treatment. Inside the card, stack from top to bottom: a small brand icon or logo mark on its own line paired with a brand name label immediately to the right of the icon on the same baseline; a bold heading on its own line directly below the brand row stating the purpose (e.g. "Enter your digit"); a supporting paragraph of one or two sentences directly below the heading at a comfortable reading width, instructing the user to open their authenticator app and verify their identity; a horizontal row of six equally sized square single-character numeric input fields placed below the paragraph (each field is a real input element that accepts exactly one digit, auto-advances focus to the next field on entry, and supports backspace to move focus back to the previous field); one full-width primary action button placed below the input row on its own line with a short label (e.g. "Verify").
+
+On narrow viewports stack the two columns vertically with the illustration first and the verification card directly below it; keep all internal stacks in their original reading order with comfortable side padding.

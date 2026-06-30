@@ -87,7 +87,7 @@ export function PipelineTicker() {
   const track = [...chips, ...chips];
 
   return (
-    <section className="bg-ink-900 text-paper overflow-hidden border-y border-ink-800 dark:bg-ink-900 dark:text-paper dark:border-paper-300">
+    <section className="bg-primary text-foreground overflow-hidden border-y border-ink-800 dark:bg-primary dark:text-foreground dark:border-border">
       <div className="relative">
         <div
           aria-hidden
@@ -106,9 +106,9 @@ export function PipelineTicker() {
               key={i}
               className="flex items-center gap-3 px-6 text-xs font-mono uppercase tracking-[0.18em]"
             >
-              <span className="text-paper-400 dark:text-ink-500">{chip.prefix}</span>
+              <span className="text-muted-foreground/60 dark:text-muted-foreground">{chip.prefix}</span>
               <span className="text-accent font-medium">{chip.value}</span>
-              <span className="text-paper-600">·</span>
+              <span className="text-foreground-600">·</span>
             </div>
           ))}
         </div>

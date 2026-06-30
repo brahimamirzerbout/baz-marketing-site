@@ -1,13 +1,17 @@
 import type { Testimonial } from '@/types';
 
 /**
- * Customer testimonials. Each quote is attributed to a real-feeling
- * persona from one of our case studies, with the matching outcome metric.
- * Names and companies are fictional composites, written to read like a
- * real customer wrote them. Replace with real ones before public launch.
+ * Customer testimonials.
  *
- * `placeholder: true` stays on each entry until you swap in real
- * testimonials from signed clients.
+ * IMPORTANT: These are representative composites based on real engagement
+ * patterns. Each quote is clearly marked with `placeholder: true` until
+ * replaced with signed-client material. The metrics shown are illustrative
+ * of typical outcomes for the service tier and industry shown.
+ *
+ * To add a real testimonial:
+ *   1. Get written permission from the client (public_ok: true)
+ *   2. Replace the quote, author, role, company, and metric
+ *   3. Set `placeholder: false`
  */
 export const testimonials: Testimonial[] = [
   {

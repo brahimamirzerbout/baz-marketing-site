@@ -29,9 +29,9 @@ export function ChapterDivider({
       className="relative my-10 first:mt-0"
       aria-label={`Chapter ${n}: ${label}`}
     >
-      <div className="absolute inset-x-0 top-1/2 border-t border-ink-100" aria-hidden />
+      <div className="absolute inset-x-0 top-1/2 border-t border-border" aria-hidden />
       <div className="relative flex justify-center">
-        <span className="bg-paper dark:bg-paper-300 px-4 text-[11px] font-mono uppercase tracking-[0.18em] text-ink-500 dark:text-paper">
+        <span className="bg-background dark:bg-muted/70 px-4 text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground dark:text-foreground">
           § {n} · {label}
         </span>
       </div>

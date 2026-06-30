@@ -77,7 +77,7 @@ export default function OurStoryPage() {
             A tell, not a pitch. The good years, the bad year, the year we built the Hub,
             and the part where we decided we&apos;d never go back to a junior pipeline.
           </SectionLede>
-          <p className="mt-4 text-sm text-ink-500">
+          <p className="mt-4 text-sm text-muted-foreground">
             Read time: ~6 minutes. Skip to the chapter you care about.
           </p>
         </div>
@@ -88,9 +88,9 @@ export default function OurStoryPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {numbers.map((n) => (
             <div key={n.l}>
-              <div className="font-display text-display-md font-medium text-paper tracking-[-0.03em]">{n.v}</div>
-              <div className="text-sm text-paper mt-1">{n.l}</div>
-              <div className="text-xs text-paper-400 mt-0.5">{n.sub}</div>
+              <div className="font-display text-display-md font-medium text-foreground tracking-[-0.03em]">{n.v}</div>
+              <div className="text-sm text-foreground mt-1">{n.l}</div>
+              <div className="text-xs text-muted-foreground/60 mt-0.5">{n.sub}</div>
             </div>
           ))}
         </div>
@@ -102,12 +102,12 @@ export default function OurStoryPage() {
         <SectionHeading>The shape of the work.</SectionHeading>
         <div className="mt-10 space-y-12">
           {chapters.map((c) => (
-            <article key={c.n} className="grid md:grid-cols-12 gap-6 border-t border-ink-100 pt-8">
+            <article key={c.n} className="grid md:grid-cols-12 gap-6 border-t border-border pt-8">
               <div className="md:col-span-2">
                 <div className="font-display text-5xl font-medium tracking-[-0.04em] text-accent">
                   {c.n}
                 </div>
-                <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500">
+                <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                   {c.years}
                 </div>
               </div>
@@ -115,7 +115,7 @@ export default function OurStoryPage() {
                 <h2 className="font-display text-2xl md:text-3xl font-medium tracking-[-0.02em]">
                   {c.title}
                 </h2>
-                <p className="mt-4 text-lg text-ink-700 leading-relaxed">{c.body}</p>
+                <p className="mt-4 text-lg text-foreground leading-relaxed">{c.body}</p>
               </div>
             </article>
           ))}
@@ -130,22 +130,22 @@ export default function OurStoryPage() {
             <SectionHeading>The Hub is the receipt.</SectionHeading>
           </div>
           <div className="lg:col-span-7">
-            <p className="text-ink-700 leading-relaxed">
+            <p className="text-foreground leading-relaxed">
               Most agencies tell you they&apos;re senior. We show you the system that proves it.
               The Marketing Hub is open for clients to read, audit, and eventually own. The
               scoring formula is on the methodology page. The cadence logic is in our code.
               The data is yours.
             </p>
-            <p className="mt-4 text-ink-700 leading-relaxed">
+            <p className="mt-4 text-foreground leading-relaxed">
               If you hire us, you don&apos;t hire a vendor. You get senior operators and a
               system they built in public. When you leave, you take the system with you.
               That&apos;s not a tagline. That&apos;s the whole pitch.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href="/marketing-hub" className="px-5 py-2.5 rounded-full bg-accent text-white text-sm font-medium hover:bg-accent-600 transition-colors">
+              <a href="/marketing-hub" className="px-5 py-2.5 rounded-full bg-accent text-white text-sm font-medium hover:bg-primary/90 transition-colors">
                 See the Hub live →
               </a>
-              <a href="/methodology" className="px-5 py-2.5 rounded-full border border-ink-200 text-ink-900 text-sm font-medium hover:bg-paper-300 transition-colors">
+              <a href="/methodology" className="px-5 py-2.5 rounded-full border border-border text-foreground text-sm font-medium hover:bg-muted/70 transition-colors">
                 Read the methodology
               </a>
             </div>

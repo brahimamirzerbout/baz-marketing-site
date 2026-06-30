@@ -1,96 +1,126 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
+import { Moon, Sun } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/beui/utils';
 
 /**
- * Light/dark theme toggle.
- *
- * Backed by next-themes which handles cookie + localStorage + <html
- * data-theme> attribute swap. We keep `storageKey="baz:theme"` in the
- * ThemeProvider so existing user preference in localStorage is honored.
- *
- * Adds a smooth color transition on switch by toggling the `theme-transition`
- * class for 250ms (prefers-reduced-motion aware, see globals.css).
- *
- * Keyboard shortcut: Cmd/Ctrl + Shift + L toggles theme from anywhere on the
- * page — same as GitHub / Linear / Notion. Suppressed when the user is typing
- * in an input or textarea so it doesn't hijack form work.
+ * ThemeToggle — beUI-inspired with View Transition API.
+ * Works with baz/ existing data-theme attribute system.
  */
-export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+
+const VT_STYLE_ID = 'baz-theme-vt';
+const VT_CSS = `
+html[data-baz-vt="circle"]::view-transition-old(root) {
+  animation: none; mix-blend-mode: normal;
+}
+html[data-baz-vt="circle"]::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: baz-circle-reveal 650ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes baz-circle-reveal {
+  from { clip-path: circle(0% at var(--baz-vt-origin, 50% 100%)); }
+  to   { clip-path: circle(150% at var(--baz-vt-origin, 50% 100%)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-baz-vt]::view-transition-new(root) { animation: none; }
+}
+`;
+
+function getTheme(): 'light' | 'dark' {
+  if (typeof document === 'undefined') return 'dark';
+  return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+}
+
+function setTheme(mode: 'light' | 'dark') {
+  const root = document.documentElement;
+  if (mode === 'dark') {
+    root.classList.add('dark');
+  } else {
+    root.classList.remove('dark');
+  }
+  root.setAttribute('data-theme', mode);
+  try { localStorage.setItem('baz:theme', mode); } catch {}
+}
+
+export function ThemeToggle({ className }: { className?: string }) {
+  const reduce = useReducedMotion() ?? false;
   const [mounted, setMounted] = useState(false);
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    setDark(getTheme() === 'dark');
   }, []);
 
-  const toggle = useCallback(() => {
-    const root = document.documentElement;
-    const current = resolvedTheme || theme || 'light';
-    const next = current === 'light' ? 'dark' : 'light';
-    // brief global transition for the color flip; scrubbed after 250ms
-    // so it doesn't slow down unrelated interactions.
-    root.classList.add('theme-transition');
-    setTheme(next);
-    window.setTimeout(() => root.classList.remove('theme-transition'), 260);
-  }, [theme, resolvedTheme, setTheme]);
-
   useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (!(e.metaKey || e.ctrlKey) || !e.shiftKey || e.altKey) return;
-      if (e.key !== 'L' && e.key !== 'l') return;
-      const t = e.target as HTMLElement | null;
-      if (t) {
-        const tag = t.tagName;
-        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || t.isContentEditable) return;
-      }
-      e.preventDefault();
-      toggle();
+    if (document.getElementById(VT_STYLE_ID)) return;
+    const el = document.createElement('style');
+    el.id = VT_STYLE_ID;
+    el.textContent = VT_CSS;
+    document.head.appendChild(el);
+  }, []);
+
+  async function toggle() {
+    const next = dark ? 'light' : 'dark';
+    const apply = () => {
+      setTheme(next);
+      setDark(next === 'dark');
+    };
+
+    if (reduce || typeof document === 'undefined' || !('startViewTransition' in document)) {
+      apply();
+      return;
     }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [toggle]);
 
-  // While pre-hydration we don't know what the stored value is — render a
-  // neutral placeholder of the same size to avoid layout shift.
-  if (!mounted) {
-    return (
-      <button
-        type="button"
-        aria-label="Toggle theme (Cmd/Ctrl + Shift + L)"
-        title="Toggle theme (Cmd/Ctrl + Shift + L)"
-        className="theme-toggle"
-        // Inline-block keeps the button taking up its real width so layout
-        // doesn't jump when the real icon appears.
-        style={{ opacity: 0, width: 16, height: 16 }}
-      />
-    );
+    const root = document.documentElement;
+    root.style.setProperty('--baz-vt-origin', '50% 100%');
+    root.dataset.bazVt = 'circle';
+
+    const vt = (document as any).startViewTransition(apply);
+    try { await vt.finished; } finally { delete root.dataset.bazVt; }
   }
-
-  const current = resolvedTheme || theme || 'light';
-  const next = current === 'light' ? 'dark' : 'light';
 
   return (
     <button
       type="button"
-      aria-label={`Switch to ${next} theme (Cmd/Ctrl + Shift + L)`}
-      title={`Switch to ${next} theme (Cmd/Ctrl + Shift + L)`}
+      aria-label={mounted && dark ? 'Switch to light mode' : 'Switch to dark mode'}
       onClick={toggle}
-      className="theme-toggle"
+      className={cn(
+        'relative inline-flex items-center justify-center p-2 rounded-full',
+        'border border-border hover:border-foreground transition-colors',
+        'text-foreground hover:text-foreground',
+        className
+      )}
     >
-      <span aria-hidden style={{ display: 'inline-block', width: 16, height: 16 }}>
-        {current === 'light' ? (
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
+      <AnimatePresence mode="wait" initial={false}>
+        {mounted && dark ? (
+          <motion.span
+            key="sun"
+            initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+            exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+            transition={{ duration: 0.25 }}
+            className="inline-flex"
+          >
+            <Sun className="w-4 h-4" />
+          </motion.span>
+        ) : mounted ? (
+          <motion.span
+            key="moon"
+            initial={{ rotate: 90, opacity: 0, scale: 0.6 }}
+            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+            exit={{ rotate: -90, opacity: 0, scale: 0.6 }}
+            transition={{ duration: 0.25 }}
+            className="inline-flex"
+          >
+            <Moon className="w-4 h-4" />
+          </motion.span>
         ) : (
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-          </svg>
+          <span className="w-4 h-4 inline-block" aria-hidden="true" />
         )}
-      </span>
+      </AnimatePresence>
     </button>
   );
 }

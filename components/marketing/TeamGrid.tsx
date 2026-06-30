@@ -6,22 +6,22 @@ export function TeamGrid() {
       {team.map((m, i) => (
         <li
           key={m.name}
-          className="reveal bg-paper-50 rounded-2xl p-6 border border-ink-100"
+          className="reveal bg-card rounded-2xl p-6 border border-border"
           style={{ animationDelay: `${i * 60}ms` }}
         >
           <div className="flex items-center gap-4 mb-4">
             <span
-              className="grid place-items-center w-14 h-14 rounded-2xl font-display text-xl font-bold text-paper"
+              className="grid place-items-center w-14 h-14 rounded-2xl font-display text-xl font-bold text-foreground"
               style={{ background: m.color }}
             >
               {m.initials}
             </span>
             <div>
               <h3 className="font-display text-xl font-medium tracking-[-0.02em] leading-tight">{m.name}</h3>
-              <p className="text-sm text-ink-500">{m.role}</p>
+              <p className="text-sm text-muted-foreground">{m.role}</p>
             </div>
           </div>
-          <p className="text-sm text-ink-600 leading-relaxed">{m.bio}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">{m.bio}</p>
         </li>
       ))}
     </ul>

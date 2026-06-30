@@ -1,0 +1,7 @@
+# Trending Topics Blog Panels
+
+Create a blog section inside a centered page container with comfortable side padding. At the top, place a left-aligned header row with a large heading on the left (e.g. "Trending topics") and a text-style link anchored to the right of the same baseline whose label includes a small leading icon and the text "See all topics".
+
+Below the header, place three equal-width columns on large breakpoints with consistent gutters between them. Each column is a rounded panel with a thin outer boundary. Inside each panel, stack from top to bottom: a header row composed of a small icon on the left, a bold category name to the right of the icon on the same baseline, and a compact pill-shaped "View all" link anchored to the right of that same row whose label includes a trailing arrow; below the header row, a vertical list of five to six article link rows with consistent vertical spacing. Each link row is a horizontal composition of a small circular placeholder avatar on the left, a short article title rendered as a clickable link to the right of the avatar filling the available width, and a small trailing arrow icon anchored to the far right of the row — all elements on the same baseline.
+
+On narrow viewports stack the three columns vertically in their original left-to-right reading order; each panel stretches to the full content width with comfortable side padding.

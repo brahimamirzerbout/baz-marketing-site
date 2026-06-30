@@ -58,7 +58,7 @@ export default function IndustryDetailPage({ params }: Params) {
             <SectionHeading>What we hear first.</SectionHeading>
             <ul className="mt-8 space-y-3">
               {ind.challenges.map((c) => (
-                <li key={c} className="flex items-start gap-3 text-[15px] text-ink-700">
+                <li key={c} className="flex items-start gap-3 text-[15px] text-foreground">
                   <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-accent" />
                   {c}
                 </li>
@@ -70,7 +70,7 @@ export default function IndustryDetailPage({ params }: Params) {
             <SectionHeading>What the engagement unlocks.</SectionHeading>
             <ul className="mt-8 space-y-3">
               {ind.outcomes.map((o) => (
-                <li key={o} className="flex items-start gap-3 text-[15px] text-ink-700">
+                <li key={o} className="flex items-start gap-3 text-[15px] text-foreground">
                   <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-success" />
                   {o}
                 </li>
