@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/Button';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { SearchBox } from './SearchBox';
-import { cn } from '@/lib/cn';
-import { site } from '@/lib/site';
-import { services } from '@/content/services';
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { SearchBox } from "./SearchBox";
+import { cn } from "@/lib/cn";
+import { site } from "@/lib/site";
+import { services } from "@/content/services";
 
 const nav = [
-  { href: '/services', label: 'Services' },
-  { href: '/marketing-hub', label: 'Marketing Hub', badge: 'LIVE' },
-  { href: '/hub', label: 'Hub', badge: 'NEW' },
-  { href: '/methodology', label: 'Methodology' },
-  { href: '/case-studies', label: 'Case studies' },
-  { href: '/insights', label: 'Insights' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/about', label: 'About' },
+  { href: "/services", label: "Services" },
+  { href: "/marketing-hub", label: "Marketing Hub", badge: "LIVE" },
+  { href: "/hub", label: "Hub", badge: "NEW" },
+  { href: "/methodology", label: "Methodology" },
+  { href: "/case-studies", label: "Case studies" },
+  { href: "/insights", label: "Insights" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
 ];
 
 export function Header() {
@@ -27,31 +27,29 @@ export function Header() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 transition-all duration-300',
+        "sticky top-0 z-50 transition-all duration-300",
         scrolled
-          ? 'bg-background/80 backdrop-blur-md border-b border-border'
-          : 'bg-background border-b border-transparent'
+          ? "bg-background/80 backdrop-blur-md border-b border-border"
+          : "bg-background border-b border-transparent",
       )}
     >
       <div className="container mx-auto flex items-center justify-between h-16 md:h-18">
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-3 group"
-          aria-label={`${site.name} — home`}
-        >
+        <Link href="/" className="flex items-center gap-3 group" aria-label={`${site.name} — home`}>
           <span className="royal-seal">B</span>
           <span className="font-display font-bold text-lg tracking-[-0.02em] whitespace-nowrap">
             BAZ
@@ -67,10 +65,10 @@ export function Header() {
               className="relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors inline-flex items-center gap-1.5"
             >
               {item.label}
-              {(item as any).badge && (
+              {(item as { badge?: React.ReactNode }).badge && (
                 <span className="inline-flex items-center gap-1 text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-primary text-primary-foreground">
                   <span className="inline-block w-1 h-1 rounded-full bg-primary-foreground animate-pulse" />
-                  {(item as any).badge}
+                  {(item as { badge?: React.ReactNode }).badge}
                 </span>
               )}
             </Link>
@@ -84,7 +82,13 @@ export function Header() {
           <Button href="/contact" variant="ghost" size="sm" trackAs="header_contact">
             Talk to us
           </Button>
-          <Button href={site.bookOrMailto} external variant="primary" size="sm" trackAs="header_book_call">
+          <Button
+            href={site.bookOrMailto}
+            external
+            variant="primary"
+            size="sm"
+            trackAs="header_book_call"
+          >
             Book a growth call
           </Button>
         </div>
@@ -92,21 +96,21 @@ export function Header() {
         {/* Mobile toggle */}
         <button
           className="lg:hidden grid place-items-center w-10 h-10 rounded-md hover:bg-muted text-foreground"
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
           <span aria-hidden className="relative w-5 h-3.5">
             <span
               className={cn(
-                'absolute left-0 right-0 h-0.5 bg-foreground transition-all duration-300',
-                open ? 'top-1/2 -translate-y-1/2 rotate-45' : 'top-0'
+                "absolute left-0 right-0 h-0.5 bg-foreground transition-all duration-300",
+                open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0",
               )}
             />
             <span
               className={cn(
-                'absolute left-0 right-0 h-0.5 bg-foreground transition-all duration-300',
-                open ? 'top-1/2 -translate-y-1/2 -rotate-45' : 'bottom-0'
+                "absolute left-0 right-0 h-0.5 bg-foreground transition-all duration-300",
+                open ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0",
               )}
             />
           </span>
@@ -116,8 +120,8 @@ export function Header() {
       {/* Mobile sheet */}
       <div
         className={cn(
-          'lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background transition-all duration-300',
-          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          "lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background transition-all duration-300",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}
         aria-hidden={!open}
       >
@@ -134,7 +138,10 @@ export function Header() {
           ))}
           <details className="py-3 border-b border-border">
             <summary className="text-2xl font-display tracking-[-0.02em] list-none cursor-pointer flex items-center justify-between text-foreground">
-              Services <span aria-hidden className="text-muted-foreground text-base">+</span>
+              Services{" "}
+              <span aria-hidden className="text-muted-foreground text-base">
+                +
+              </span>
             </summary>
             <ul className="mt-4 pl-2 grid gap-2">
               {services.map((s) => (
@@ -151,10 +158,22 @@ export function Header() {
             </ul>
           </details>
           <div className="mt-6 flex flex-col gap-3">
-            <Button href={site.bookOrMailto} external variant="primary" size="lg" trackAs="mobile_book_call">
+            <Button
+              href={site.bookOrMailto}
+              external
+              variant="primary"
+              size="lg"
+              trackAs="mobile_book_call"
+            >
               Book a growth call
             </Button>
-            <Button href="/contact" variant="outline" size="lg" trackAs="mobile_contact" className="w-full">
+            <Button
+              href="/contact"
+              variant="outline"
+              size="lg"
+              trackAs="mobile_contact"
+              className="w-full"
+            >
               Talk to us
             </Button>
           </div>

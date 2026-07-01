@@ -23,7 +23,8 @@ import { site } from "@/lib/site";
 
 export function StickyCta() {
   const [hidden, setHidden] = useState(false);
-  const bookingHref = (site as any).bookOrMailto ?? site.bookingUrl ?? `mailto:${site.email}`;
+  const bookingHref =
+    (site as Record<string, unknown>).bookOrMailto ?? site.bookingUrl ?? `mailto:${site.email}`;
 
   useEffect(() => {
     const target = document.getElementById("hero-cta");
@@ -38,7 +39,7 @@ export function StickyCta() {
           setHidden(entry.isIntersecting);
         }
       },
-      { threshold: [0, 0.5, 1] }
+      { threshold: [0, 0.5, 1] },
     );
     io.observe(target);
     return () => io.disconnect();

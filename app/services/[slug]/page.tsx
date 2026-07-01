@@ -1,18 +1,18 @@
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import { Section, Eyebrow, SectionHeading } from '@/components/ui/Section';
-import { StatRow } from '@/components/sections/StatRow';
-import { CaseStudyCard } from '@/components/marketing/CaseStudyCard';
-import { ServiceHero } from '@/components/marketing/ServiceHero';
-import { ServiceAnalytics } from '@/components/marketing/ServiceAnalytics';
-import { DeliverablesList } from '@/components/marketing/DeliverablesList';
-import { ProcessTimeline } from '@/components/marketing/ProcessTimeline';
-import { Faq } from '@/components/marketing/Faq';
-import { CtaBanner } from '@/components/marketing/CtaBanner';
-import { ServiceCard } from '@/components/marketing/ServiceCard';
-import { caseStudies } from '@/content/case-studies';
-import { services, getService } from '@/content/services';
-import { buildMetadata, jsonLd, faqLd, breadcrumbLd } from '@/lib/seo';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { Section, Eyebrow, SectionHeading } from "@/components/ui/Section";
+import { StatRow } from "@/components/sections/StatRow";
+import { CaseStudyCard } from "@/components/marketing/CaseStudyCard";
+import { ServiceHero } from "@/components/marketing/ServiceHero";
+import { ServiceAnalytics } from "@/components/marketing/ServiceAnalytics";
+import { DeliverablesList } from "@/components/marketing/DeliverablesList";
+import { ProcessTimeline } from "@/components/marketing/ProcessTimeline";
+import { Faq } from "@/components/marketing/Faq";
+import { CtaBanner } from "@/components/marketing/CtaBanner";
+import { ServiceCard } from "@/components/marketing/ServiceCard";
+import { caseStudies } from "@/content/case-studies";
+import { services, getService } from "@/content/services";
+import { buildMetadata, jsonLd, faqLd, breadcrumbLd } from "@/lib/seo";
 
 type Params = { params: { slug: string } };
 
@@ -22,7 +22,12 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: Params): Metadata {
   const service = getService(params.slug);
-  if (!service) return buildMetadata({ title: 'Service not found', path: `/services/${params.slug}`, noindex: true });
+  if (!service)
+    return buildMetadata({
+      title: "Service not found",
+      path: `/services/${params.slug}`,
+      noindex: true,
+    });
   return buildMetadata({
     title: service.name,
     description: service.description,
@@ -40,30 +45,43 @@ export default function ServiceDetailPage({ params }: Params) {
   // growth, optimization, & automation-style suffixes) so renames don't
   // accidentally over-match unrelated case studies.
   const NOISE = new Set([
-    'marketing', 'operations', 'optimization', 'automation', 'management',
-    'services', 'strategy', 'consulting', 'design', 'development', 'studio',
-    'system', 'systems', 'channel', 'channels', 'platform',
+    "marketing",
+    "operations",
+    "optimization",
+    "automation",
+    "management",
+    "services",
+    "strategy",
+    "consulting",
+    "design",
+    "development",
+    "studio",
+    "system",
+    "systems",
+    "channel",
+    "channels",
+    "platform",
   ]);
   const relatedCases = (() => {
     const tokenize = (s: string) =>
       s
         .toLowerCase()
-        .replace(/[^a-z0-9 ]/g, ' ')
+        .replace(/[^a-z0-9 ]/g, " ")
         .split(/\s+/)
         .filter((w) => w.length > 2 && !NOISE.has(w));
     const serviceTokens = tokenize(service.name);
     const aliases: Record<string, string[]> = {
-      crm: ['crm', 'mops'],
-      abm: ['abm', 'b2b', 'demand'],
-      cro: ['cro', 'conversion'],
-      ai: ['ai', 'geo', 'aeo'],
-      video: ['video', 'podcast'],
-      lifecycle: ['lifecycle', 'email', 'sms'],
-      brand: ['brand', 'identity'],
-      public: ['public', 'relations', 'pr'],
-      analytics: ['analytics', 'attribution', 'tracking'],
+      crm: ["crm", "mops"],
+      abm: ["abm", "b2b", "demand"],
+      cro: ["cro", "conversion"],
+      ai: ["ai", "geo", "aeo"],
+      video: ["video", "podcast"],
+      lifecycle: ["lifecycle", "email", "sms"],
+      brand: ["brand", "identity"],
+      public: ["public", "relations", "pr"],
+      analytics: ["analytics", "attribution", "tracking"],
     };
-    const primary = serviceTokens[0] ?? '';
+    const primary = serviceTokens[0] ?? "";
     const candidates = new Set<string>([primary, ...(aliases[primary] ?? [])]);
     return caseStudies
       .filter((c) =>
@@ -88,7 +106,7 @@ export default function ServiceDetailPage({ params }: Params) {
       <ServiceHero service={service} />
 
       <Section tone="white" size="md">
-        <StatRow items={service.kpis.map((k) => ({ value: k.value, label: k.label, sub: '' }))} />
+        <StatRow items={service.kpis.map((k) => ({ value: k.value, label: k.label, sub: "" }))} />
       </Section>
 
       <Section tone="paper" size="lg">
@@ -101,7 +119,10 @@ export default function ServiceDetailPage({ params }: Params) {
               <ul className="mt-3 space-y-2">
                 {service.who.map((w) => (
                   <li key={w} className="flex items-start gap-3 text-[15px] text-foreground">
-                    <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-accent" />
+                    <span
+                      aria-hidden
+                      className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-accent"
+                    />
                     {w}
                   </li>
                 ))}
@@ -134,10 +155,16 @@ export default function ServiceDetailPage({ params }: Params) {
         </div>
         <ul className="grid md:grid-cols-2 gap-4">
           {service.proof.map((p, i) => (
-            <li key={p.client + i} className="reveal bg-card rounded-2xl border border-border p-6 md:p-7" style={{ animationDelay: `${i * 80}ms` }}>
+            <li
+              key={p.client + i}
+              className="reveal bg-card rounded-2xl border border-border p-6 md:p-7"
+              style={{ animationDelay: `${i * 80}ms` }}
+            >
               <div className="flex items-center justify-between mb-3">
                 <p className="text-sm text-muted-foreground">{p.client}</p>
-                <p className="font-display text-3xl font-medium tracking-[-0.03em] text-accent">{p.metric}</p>
+                <p className="font-display text-3xl font-medium tracking-[-0.03em] text-accent">
+                  {p.metric}
+                </p>
               </div>
               <p className="text-[15px] text-foreground leading-relaxed">{p.detail}</p>
             </li>
@@ -185,14 +212,17 @@ export default function ServiceDetailPage({ params }: Params) {
 
       <CtaBanner serviceSlug={service.slug} serviceName={service.name} />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd([
-        faqLd(service.faqs),
-        breadcrumbLd([
-          { name: 'Home', url: '/' },
-          { name: 'Services', url: '/services' },
-          { name: service.name, url: `/services/${service.slug}` },
-        ]),
-      ])} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd([
+          faqLd(service.faqs),
+          breadcrumbLd([
+            { name: "Home", url: "/" },
+            { name: "Services", url: "/services" },
+            { name: service.name, url: `/services/${service.slug}` },
+          ]),
+        ])}
+      />
     </>
   );
 }

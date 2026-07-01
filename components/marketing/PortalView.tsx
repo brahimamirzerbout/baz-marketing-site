@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/Button';
-import { Section } from '@/components/ui/Section';
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/Button";
+import { Section } from "@/components/ui/Section";
 
 interface PlanStep {
   day: number;
@@ -13,29 +13,45 @@ interface PlanStep {
 
 interface PortalData {
   ok: boolean;
-  lead?: { id: string; name: string; company: string; service: string; score: number; intent: string };
+  lead?: {
+    id: string;
+    name: string;
+    company: string;
+    service: string;
+    score: number;
+    intent: string;
+  };
   plan?: { action: string; steps: PlanStep[] };
   error?: string;
 }
 
 function actionLabel(action: string): string {
-  return ({
-    book_call: 'Book a call this week',
-    send_proposal: 'Tailored proposal in 24h',
-    nurture_7d: '7-day resource sequence',
-    nurture_30d: 'Monthly newsletter',
-    archive: 'No follow-up',
-  } as Record<string, string>)[action] ?? action;
+  return (
+    (
+      {
+        book_call: "Book a call this week",
+        send_proposal: "Tailored proposal in 24h",
+        nurture_7d: "7-day resource sequence",
+        nurture_30d: "Monthly newsletter",
+        archive: "No follow-up",
+      } as Record<string, string>
+    )[action] ?? action
+  );
 }
 
 function actionBlurb(action: string): string {
-  return ({
-    book_call: 'High-intent signal. A senior partner reaches out within 24 hours with two windows.',
-    send_proposal: 'Strong fit. We send a tailored mini-proposal tied to your prompt.',
-    nurture_7d: 'Researcher. Useful resources first; pitch only when you raise your hand.',
-    nurture_30d: 'Early. We send one thing a week worth reading.',
-    archive: 'We won\u2019t follow up.',
-  } as Record<string, string>)[action] ?? '';
+  return (
+    (
+      {
+        book_call:
+          "High-intent signal. A senior partner reaches out within 24 hours with two windows.",
+        send_proposal: "Strong fit. We send a tailored mini-proposal tied to your prompt.",
+        nurture_7d: "Researcher. Useful resources first; pitch only when you raise your hand.",
+        nurture_30d: "Early. We send one thing a week worth reading.",
+        archive: "We won\u2019t follow up.",
+      } as Record<string, string>
+    )[action] ?? ""
+  );
 }
 
 export function PortalView({ id }: { id: string }) {
@@ -44,11 +60,23 @@ export function PortalView({ id }: { id: string }) {
 
   useEffect(() => {
     let cancelled = false;
-    fetch(`/api/lead-portal/${id}`, { cache: 'no-store' })
+    fetch(`/api/lead-portal/${id}`, { cache: "no-store" })
       .then((r) => r.json())
-      .then((j) => { if (!cancelled) { setData(j); setLoading(false); } })
-      .catch(() => { if (!cancelled) { setData({ ok: false, error: 'fetch_failed' }); setLoading(false); } });
-    return () => { cancelled = true; };
+      .then((j) => {
+        if (!cancelled) {
+          setData(j);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setData({ ok: false, error: "fetch_failed" });
+          setLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [id]);
 
   if (loading) {
@@ -86,8 +114,12 @@ export function PortalView({ id }: { id: string }) {
             Double-check the link from your inbox or run a new agent demo on the homepage.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button href="/" variant="primary" size="lg">Back to home →</Button>
-            <Button href="/contact" variant="outline" size="lg">Contact us</Button>
+            <Button href="/" variant="primary" size="lg">
+              Back to home →
+            </Button>
+            <Button href="/contact" variant="outline" size="lg">
+              Contact us
+            </Button>
           </div>
         </div>
       </Section>
@@ -95,8 +127,13 @@ export function PortalView({ id }: { id: string }) {
   }
 
   const { lead, plan } = data;
-  const scoreColor = (lead.score ?? 0) >= 75 ? 'text-accent' : (lead.score ?? 0) >= 40 ? 'text-warning' : 'text-muted-foreground';
-  const action = plan?.action ?? 'nurture_30d';
+  const scoreColor =
+    (lead.score ?? 0) >= 75
+      ? "text-accent"
+      : (lead.score ?? 0) >= 40
+        ? "text-warning"
+        : "text-muted-foreground";
+  const action = plan?.action ?? "nurture_30d";
 
   return (
     <Section tone="white" size="md">
@@ -112,7 +149,12 @@ export function PortalView({ id }: { id: string }) {
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
               Intent: <span className="font-medium text-foreground">{lead.intent}</span>
-              {lead.service && <> · Service: <span className="font-medium text-foreground">{lead.service}</span></>}
+              {lead.service && (
+                <>
+                  {" "}
+                  · Service: <span className="font-medium text-foreground">{lead.service}</span>
+                </>
+              )}
             </p>
             <hr className="my-6 border-border dark:border-border" />
             <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
@@ -121,9 +163,7 @@ export function PortalView({ id }: { id: string }) {
             <p className="font-display text-2xl font-medium tracking-[-0.02em] mb-2">
               {actionLabel(action)}
             </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {actionBlurb(action)}
-            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{actionBlurb(action)}</p>
           </div>
         </div>
 
@@ -156,10 +196,16 @@ export function PortalView({ id }: { id: string }) {
           </ol>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href={(lead.score ?? 0) >= 40 ? '/contact' : '/insights'} variant="primary" size="lg">
-              {(lead.score ?? 0) >= 40 ? 'Book a call →' : 'Read the latest →'}
+            <Button
+              href={(lead.score ?? 0) >= 40 ? "/contact" : "/insights"}
+              variant="primary"
+              size="lg"
+            >
+              {(lead.score ?? 0) >= 40 ? "Book a call →" : "Read the latest →"}
             </Button>
-            <Button href="/case-studies" variant="outline" size="lg">See case studies</Button>
+            <Button href="/case-studies" variant="outline" size="lg">
+              See case studies
+            </Button>
           </div>
         </div>
       </div>

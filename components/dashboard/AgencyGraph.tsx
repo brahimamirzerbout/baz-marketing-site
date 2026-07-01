@@ -1,34 +1,27 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { motion } from 'motion/react';
-import {
-  EDGES,
-  GRAPH_VIEWBOX,
-  NODES,
-  RING_LABELS,
-  layoutNodes,
-  type NodeId,
-} from './graph-data';
+import { useMemo, useState } from "react";
+import { motion } from "motion/react";
+import { EDGES, GRAPH_VIEWBOX, NODES, RING_LABELS, layoutNodes, type NodeId } from "./graph-data";
 
-const RING_STROKE: Record<'acquisition' | 'delivery' | 'outcomes', string> = {
-  acquisition: 'rgba(120, 120, 140, 0.18)',
-  delivery:    'rgba(120, 120, 140, 0.28)',
-  outcomes:    'rgba(255, 59, 47, 0.30)',
+const RING_STROKE: Record<"acquisition" | "delivery" | "outcomes", string> = {
+  acquisition: "rgba(120, 120, 140, 0.18)",
+  delivery: "rgba(120, 120, 140, 0.28)",
+  outcomes: "rgba(255, 59, 47, 0.30)",
 };
 
-const NODE_FILL: Record<'acquisition' | 'delivery' | 'outcomes', string> = {
-  acquisition: 'hsl(0 0% 100% / 0.04)',
-  delivery:    'hsl(0 0% 100% / 0.06)',
-  outcomes:    'hsl(0 0% 100% / 0.10)',
+const NODE_FILL: Record<"acquisition" | "delivery" | "outcomes", string> = {
+  acquisition: "hsl(0 0% 100% / 0.04)",
+  delivery: "hsl(0 0% 100% / 0.06)",
+  outcomes: "hsl(0 0% 100% / 0.10)",
 };
 
-const NODE_STROKE_DEFAULT = 'rgba(120, 120, 140, 0.45)';
-const NODE_STROKE_FOCUS   = 'rgb(255, 59, 47)';
-const NODE_TEXT          = 'rgb(245, 245, 242)';
-const NODE_TEXT_DIM      = 'rgba(245, 245, 242, 0.55)';
-const EDGE_STROKE        = 'rgba(245, 245, 242, 0.22)';
-const EDGE_STROKE_FOCUS  = 'rgb(255, 59, 47)';
+const NODE_STROKE_DEFAULT = "rgba(120, 120, 140, 0.45)";
+const NODE_STROKE_FOCUS = "rgb(255, 59, 47)";
+const NODE_TEXT = "rgb(245, 245, 242)";
+const NODE_TEXT_DIM = "rgba(245, 245, 242, 0.55)";
+const EDGE_STROKE = "rgba(245, 245, 242, 0.22)";
+const EDGE_STROKE_FOCUS = "rgb(255, 59, 47)";
 
 const W = GRAPH_VIEWBOX.width;
 const H = GRAPH_VIEWBOX.height;
@@ -49,10 +42,7 @@ interface AgencyGraphProps {
  */
 export function AgencyGraph({ caption }: AgencyGraphProps) {
   const positioned = useMemo(() => layoutNodes(), []);
-  const byId = useMemo(
-    () => new Map(positioned.map((n) => [n.id, n])),
-    [positioned]
-  );
+  const byId = useMemo(() => new Map(positioned.map((n) => [n.id, n])), [positioned]);
 
   const [focus, setFocus] = useState<NodeId | null>(null);
 
@@ -61,9 +51,7 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
     if (!focus) return true;
     if (focus === id) return true;
     return EDGES.some(
-      (e) =>
-        (e.source === focus && e.target === id) ||
-        (e.target === focus && e.source === id)
+      (e) => (e.source === focus && e.target === id) || (e.target === focus && e.source === id),
     );
   };
 
@@ -74,9 +62,7 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
       {/* Header strip */}
       <div className="flex items-baseline justify-between px-5 py-4 border-b border-border">
         <div>
-          <h3 className="font-display text-lg font-medium tracking-[-0.01em]">
-            Agency Graph
-          </h3>
+          <h3 className="font-display text-lg font-medium tracking-[-0.01em]">Agency Graph</h3>
           <p className="text-xs text-muted-foreground mt-0.5">
             How BAZ operates. Hover to highlight. Click a node to focus.
           </p>
@@ -97,29 +83,26 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
         <svg
           viewBox={`0 0 ${W} ${H}`}
           className="w-full h-auto"
-          style={{ maxHeight: '560px' }}
+          style={{ maxHeight: "560px" }}
           aria-label="Agency operating graph"
         >
           {/* Radial rings */}
-          {(['acquisition', 'delivery', 'outcomes'] as const).map((ring) => (
+          {(["acquisition", "delivery", "outcomes"] as const).map((ring) => (
             <circle
               key={ring}
               cx={CENTER.x}
               cy={CENTER.y}
-              r={
-                ring === 'acquisition' ? 230 : ring === 'delivery' ? 150 : 60
-              }
+              r={ring === "acquisition" ? 230 : ring === "delivery" ? 150 : 60}
               fill="none"
               stroke={RING_STROKE[ring]}
-              strokeWidth={ring === 'outcomes' ? 1.25 : 1}
-              strokeDasharray={ring === 'outcomes' ? '0' : '2 4'}
+              strokeWidth={ring === "outcomes" ? 1.25 : 1}
+              strokeDasharray={ring === "outcomes" ? "0" : "2 4"}
             />
           ))}
 
           {/* Ring labels, sitting at the right of each ring */}
-          {(['acquisition', 'delivery', 'outcomes'] as const).map((ring) => {
-            const r =
-              ring === 'acquisition' ? 230 : ring === 'delivery' ? 150 : 60;
+          {(["acquisition", "delivery", "outcomes"] as const).map((ring) => {
+            const r = ring === "acquisition" ? 230 : ring === "delivery" ? 150 : 60;
             return (
               <text
                 key={ring}
@@ -130,8 +113,8 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
                 style={{
                   fontSize: 9,
                   fill: NODE_TEXT_DIM,
-                  letterSpacing: '0.18em',
-                  textTransform: 'uppercase',
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
                 }}
               >
                 {RING_LABELS[ring]}
@@ -160,7 +143,7 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
                   transition={{
                     duration: 0.6,
                     delay: 0.1 + i * 0.04,
-                    ease: 'easeOut',
+                    ease: "easeOut",
                   }}
                 />
               );
@@ -184,9 +167,9 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
                   transition={{
                     duration: 0.4,
                     delay: 0.4 + i * 0.05,
-                    ease: 'easeOut',
+                    ease: "easeOut",
                   }}
-                  style={{ cursor: 'pointer', transformOrigin: `${node.x}px ${node.y}px` }}
+                  style={{ cursor: "pointer", transformOrigin: `${node.x}px ${node.y}px` }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setFocus(focused ? null : node.id);
@@ -220,7 +203,7 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
                       fontSize: node.importance >= 8 ? 11 : 10,
                       fontWeight: node.importance >= 8 ? 600 : 500,
                       fill: dim ? NODE_TEXT_DIM : NODE_TEXT,
-                      letterSpacing: '0.01em',
+                      letterSpacing: "0.01em",
                     }}
                   >
                     {node.label}
@@ -245,14 +228,10 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
                 {RING_LABELS[focusNode.ring]}
               </span>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {focusNode.blurb}
-            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{focusNode.blurb}</p>
             <div className="mt-3 flex items-center justify-between text-[11px] text-muted-foreground/60 font-mono">
               <span>
-                {EDGES.filter(
-                  (e) => e.source === focusNode.id || e.target === focusNode.id
-                ).length}{' '}
+                {EDGES.filter((e) => e.source === focusNode.id || e.target === focusNode.id).length}{" "}
                 connections
               </span>
               <span>importance {focusNode.importance}/10</span>
@@ -275,10 +254,7 @@ export function AgencyGraph({ caption }: AgencyGraphProps) {
 function Legend({ label, color }: { label: string; color: string }) {
   return (
     <span className="inline-flex items-center gap-1.5">
-      <span
-        className="inline-block w-3 h-3 rounded-full"
-        style={{ backgroundColor: color }}
-      />
+      <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: color }} />
       {label}
     </span>
   );

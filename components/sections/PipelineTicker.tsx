@@ -8,8 +8,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 const HUB_URL =
-  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_HUB_URL) ||
-  "http://localhost:3010";
+  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_HUB_URL) || "http://localhost:3010";
 
 interface HubPulse {
   ok: boolean;
@@ -70,7 +69,10 @@ export function PipelineTicker() {
   // Build the chip list once. Each chip is the prefix + value (number rendered accent).
   const chips = useMemo(
     () => [
-      { prefix: "Pipeline under management", value: pulse ? fmtCurrency(pulse.pipeline_value) : "—" },
+      {
+        prefix: "Pipeline under management",
+        value: pulse ? fmtCurrency(pulse.pipeline_value) : "—",
+      },
       { prefix: "Active sequences", value: pulse ? String(pulse.enrollments_active) : "—" },
       { prefix: "Velocity", value: pulse ? `${pulse.triangle_velocity.toFixed(2)} wins/day` : "—" },
       { prefix: "Marketing Dive", value: dive ? `${dive.total} articles` : "—" },
@@ -80,7 +82,7 @@ export function PipelineTicker() {
       },
       { prefix: "Wins (7d)", value: pulse ? String(pulse.recent_wins_7d) : "—" },
     ],
-    [pulse, dive, lastTickSecs]
+    [pulse, dive, lastTickSecs],
   );
 
   // Duplicate the list so the marquee loops seamlessly.
@@ -106,7 +108,9 @@ export function PipelineTicker() {
               key={i}
               className="flex items-center gap-3 px-6 text-xs font-mono uppercase tracking-[0.18em]"
             >
-              <span className="text-muted-foreground/60 dark:text-muted-foreground">{chip.prefix}</span>
+              <span className="text-muted-foreground/60 dark:text-muted-foreground">
+                {chip.prefix}
+              </span>
               <span className="text-accent font-medium">{chip.value}</span>
               <span className="text-foreground-600">·</span>
             </div>
@@ -115,8 +119,12 @@ export function PipelineTicker() {
       </div>
       <style jsx>{`
         @keyframes ticker {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
         }
         @media (prefers-reduced-motion: reduce) {
           .animate-\\[ticker_30s_linear_infinite\\] {

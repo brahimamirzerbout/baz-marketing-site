@@ -25,7 +25,10 @@ export function ProofNumbers() {
                 <p className="mt-4 text-xs text-muted-foreground line-clamp-2">{cs.result}</p>
                 <div className="mt-auto pt-4 flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">{cs.duration}</span>
-                  <a href={`/case-studies/${cs.slug}`} className="text-accent font-medium hover:underline">
+                  <a
+                    href={`/case-studies/${cs.slug}`}
+                    className="text-accent font-medium hover:underline"
+                  >
                     Read the case →
                   </a>
                 </div>

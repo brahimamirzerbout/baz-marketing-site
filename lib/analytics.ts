@@ -9,56 +9,56 @@
  */
 declare global {
   interface Window {
-    dataLayer?: any[];
-    gtag?: (...args: any[]) => void;
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
 export type EventName =
-  | 'page_view'
-  | 'cta_click'
-  | 'form_submit'
-  | 'form_submit_success'
-  | 'form_submit_error'
-  | 'case_study_view'
-  | 'service_view'
-  | 'service_proof_impression'
-  | 'service_faq_open'
-  | 'contact_view'
-  | 'pricing_view'
-  | 'newsletter_signup'
-  | 'book_call_click'
-  | 'phone_click'
-  | 'email_click'
-  | 'outbound_link'
-  | 'search'
-  | 'ai_demo_run'
-  | 'ai_demo_capture'
-  | 'canva_export_png'
-  | 'canva_export_svg'
-  | 'analytics_attribution_export'
-  | 'analytics_adstock_apply'
-  | 'analytics_rfm_sample'
-  | 'analytics_rfm_upload'
-  | 'analytics_rfm_export'
-  | 'analytics_budget_export';
+  | "page_view"
+  | "cta_click"
+  | "form_submit"
+  | "form_submit_success"
+  | "form_submit_error"
+  | "case_study_view"
+  | "service_view"
+  | "service_proof_impression"
+  | "service_faq_open"
+  | "contact_view"
+  | "pricing_view"
+  | "newsletter_signup"
+  | "book_call_click"
+  | "phone_click"
+  | "email_click"
+  | "outbound_link"
+  | "search"
+  | "ai_demo_run"
+  | "ai_demo_capture"
+  | "canva_export_png"
+  | "canva_export_svg"
+  | "analytics_attribution_export"
+  | "analytics_adstock_apply"
+  | "analytics_rfm_sample"
+  | "analytics_rfm_upload"
+  | "analytics_rfm_export"
+  | "analytics_budget_export";
 
 type EventPayload = Record<string, string | number | boolean | undefined>;
 
 export function track(event: EventName, payload: EventPayload = {}) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   const enriched = { event, ts: Date.now(), ...payload };
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(enriched);
 
   // GA4 event format
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', event, payload);
+  if (typeof window.gtag === "function") {
+    window.gtag("event", event, payload);
   }
 
   // Custom DOM event for in-app listeners
-  window.dispatchEvent(new CustomEvent('baz:track', { detail: enriched }));
+  window.dispatchEvent(new CustomEvent("baz:track", { detail: enriched }));
 }
 
 /**
@@ -68,7 +68,7 @@ export function track(event: EventName, payload: EventPayload = {}) {
 export function trackedClick<E extends React.MouseEvent>(
   event: EventName,
   payload: EventPayload,
-  action?: (e: E) => void
+  action?: (e: E) => void,
 ) {
   return (e: E) => {
     track(event, payload);

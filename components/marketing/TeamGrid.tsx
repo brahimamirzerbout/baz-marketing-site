@@ -1,4 +1,4 @@
-import { team } from '@/content/team';
+import { team } from "@/content/team";
 
 export function TeamGrid() {
   return (
@@ -17,7 +17,9 @@ export function TeamGrid() {
               {m.initials}
             </span>
             <div>
-              <h3 className="font-display text-xl font-medium tracking-[-0.02em] leading-tight">{m.name}</h3>
+              <h3 className="font-display text-xl font-medium tracking-[-0.02em] leading-tight">
+                {m.name}
+              </h3>
               <p className="text-sm text-muted-foreground">{m.role}</p>
             </div>
           </div>

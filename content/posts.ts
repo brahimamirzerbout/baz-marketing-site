@@ -1,10 +1,11 @@
-import type { Post } from '@/types';
+import type { Post } from "@/types";
 
 export const posts: Post[] = [
   {
-    slug: 'compounding-seo',
-    title: 'Compounding SEO: the only channel that ages like wine',
-    excerpt: 'Why SEO is the only growth channel where yesterday\'s work still pays off next year — and how to build one that compounds.',
+    slug: "compounding-seo",
+    title: "Compounding SEO: the only channel that ages like wine",
+    excerpt:
+      "Why SEO is the only growth channel where yesterday's work still pays off next year — and how to build one that compounds.",
     body: `Most channels are renting attention. SEO is owning it.
 
 When you stop publishing, paid traffic stops. When you stop posting, social traffic decays. But SEO compounds: every article you ship, every link you earn, every technical fix you make stays in the index and keeps producing traffic 24/7/365.
@@ -20,15 +21,16 @@ Topical authority is the strategy. A site that has 200 high-quality pages on "B2
 Link earning is the multiplier. Authority compounds faster than content quality, but only when the content deserves it.
 
 The mistake most agencies make is treating SEO as a content mill. The mistake most in-house teams make is treating SEO as a checklist. The truth is editorial: SEO is a publishing business that happens to rank.`,
-    category: 'seo',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-06-18',
+    category: "seo",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-06-18",
     readingMin: 6,
   },
   {
-    slug: 'paid-attribution-after-ios',
-    title: 'Paid attribution after iOS: a survival guide',
-    excerpt: 'Server-side tracking, conversion APIs, and the new rules of measuring paid media without losing your mind.',
+    slug: "paid-attribution-after-ios",
+    title: "Paid attribution after iOS: a survival guide",
+    excerpt:
+      "Server-side tracking, conversion APIs, and the new rules of measuring paid media without losing your mind.",
     body: `The old attribution model is dead. Browser-side pixels lost 30–60% of conversion signal on iOS. Cookies are being deprecated. Marketers pretending otherwise are flying blind.
 
 Server-side tracking is the new floor, not the ceiling. Google Tag Manager's server container, Meta\'s Conversion API, TikTok\'s Events API — these give you deterministic signal that survives iOS and Chrome's cookie phase-out.
@@ -45,15 +47,16 @@ This gives you 95%+ signal recovery. Most teams stop there. The teams that win g
 The platforms lie. Their numbers are always 5–20% optimistic. The warehouse is the only place you see reality.
 
 Attribution is the moat. Most agencies can't build it. Most in-house teams don't have time. The few teams who can are the ones whose dashboards execs actually open.`,
-    category: 'paid',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-06-11',
+    category: "paid",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-06-11",
     readingMin: 7,
   },
   {
-    slug: 'winning-the-ai-overview',
-    title: 'How to win the AI Overview',
-    excerpt: 'AI Overviews and LLM answers are the new top of the SERP. Here is how to be cited, not just ranked.',
+    slug: "winning-the-ai-overview",
+    title: "How to win the AI Overview",
+    excerpt:
+      "AI Overviews and LLM answers are the new top of the SERP. Here is how to be cited, not just ranked.",
     body: `If your SEO strategy hasn't changed in 12 months, you are already losing traffic to AI Overviews.
 
 The click-through rate on queries with AI Overviews is down 20–40% year-over-year. The page that gets cited in the AI Overview gets the rest — and the brand impression that doesn't show up in GA4.
@@ -67,15 +70,16 @@ Three pillars of winning the new SERP:
 3. Author authority. Author bios with credentials, bylines across publications, and outbound links to authoritative sources. Models weight author signals heavily.
 
 The teams that crack this early will own the next decade of search. The teams that don't will watch their traffic decay in slow motion.`,
-    category: 'ai',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-06-04',
+    category: "ai",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-06-04",
     readingMin: 5,
   },
   {
-    slug: 'cro-without-slop',
-    title: 'CRO without the slop',
-    excerpt: 'Conversion rate optimization is the most abused word in growth. Here is what good CRO actually looks like.',
+    slug: "cro-without-slop",
+    title: "CRO without the slop",
+    excerpt:
+      "Conversion rate optimization is the most abused word in growth. Here is what good CRO actually looks like.",
     body: `Most "CRO" is a junior changing button colors and A/B testing copy that doesn't matter.
 
 Real CRO starts with a funnel. Where are users dropping? Where is intent highest but conversion lowest? What does the data say vs. what does the team feel?
@@ -87,15 +91,15 @@ It also tests the right things. Hero copy, pricing structure, social proof place
 The mistake most agencies make is running tests that are easy to ship, not tests that move the metric. The mistake most in-house teams make is running too few tests to learn anything.
 
 BAZ runs 60+ tests per quarter per client. Most teams run 4. That's the gap.`,
-    category: 'analytics',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-05-28',
+    category: "analytics",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-28",
     readingMin: 6,
   },
   {
-    slug: 'editorial-as-moat',
-    title: 'Editorial as a moat',
-    excerpt: 'Why the best growth teams are publishers first and marketers second.',
+    slug: "editorial-as-moat",
+    title: "Editorial as a moat",
+    excerpt: "Why the best growth teams are publishers first and marketers second.",
     body: `The best B2B and DTC brands of the next decade will be publishers. Not because content is cheap, but because it compounds in a way no other channel does.
 
 A paid campaign stops when the budget stops. An email list decays if you stop emailing. A podcast ages.
@@ -107,15 +111,15 @@ The teams winning at this treat editorial as a product, not a campaign. They hav
 The mistake most agencies make is treating content as a service line, not a strategy. The mistake most brands make is treating it as an afterthought.
 
 BAZ runs editorial as an operating discipline, not a deliverable. That is the moat.`,
-    category: 'content',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-05-21',
+    category: "content",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-21",
     readingMin: 5,
   },
   {
-    slug: 'the-90-day-plan',
-    title: 'The 90-day growth plan',
-    excerpt: 'Why BAZ plans in 90 days, not 12 months — and what that means for compounding.',
+    slug: "the-90-day-plan",
+    title: "The 90-day growth plan",
+    excerpt: "Why BAZ plans in 90 days, not 12 months — and what that means for compounding.",
     body: `A 12-month plan is a deck. A 90-day plan is a contract.
 
 Most agencies pitch annual roadmaps because they obscure accountability. Three months is short enough that the work has to ship, the metrics have to move, and the strategy has to be honest about assumptions.
@@ -135,45 +139,48 @@ The 90-day structure:
 - Days 76–90: Review and replan.
 
 Most of our clients renew after their first 90 days. The plan works. So does the rhythm.`,
-    category: 'strategy',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-05-14',
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-14",
     readingMin: 5,
   },
 
   // ── Imported from baz-marketing (legacy DB) on 2026-06-23 ──
   {
-    slug: 'senior-team-no-juniors',
-    title: 'Why we only staff senior people — and what it costs us',
-    excerpt: 'The conventional agency pyramid sells at the top and delivers at the bottom. We rejected that, and paid for it.',
+    slug: "senior-team-no-juniors",
+    title: "Why we only staff senior people — and what it costs us",
+    excerpt:
+      "The conventional agency pyramid sells at the top and delivers at the bottom. We rejected that, and paid for it.",
     body: `When we started BAZ, the conventional wisdom was clear: build a junior-heavy pyramid, sell at the top, deliver at the bottom. We rejected that.
 
 In our model, the person who pitched the work is the person who ships it. No junior BA synthesizing the call. No account manager translating between strategy and execution. The senior crafts the brief, ships the work, and answers the email.
 
 This means our margins are worse. Our utilization is harder to manage. Our capacity is finite. But the output is consistent, the relationships compound, and our clients renew at a rate we never managed with the pyramid.`,
-    category: 'strategy',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-04-08',
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-04-08",
     readingMin: 3,
   },
   {
-    slug: 'distribution-is-design',
-    title: 'Distribution is design: a manifesto',
-    excerpt: 'Most agencies treat distribution as an afterthought. We treat it as the first constraint.',
+    slug: "distribution-is-design",
+    title: "Distribution is design: a manifesto",
+    excerpt:
+      "Most agencies treat distribution as an afterthought. We treat it as the first constraint.",
     body: `Most agencies treat distribution as an afterthought — something the media team handles once the creative is "done." We think that's wrong.
 
 Distribution shapes the creative. The format, the length, the hook, the caption — all of it is downstream of where it's going to live and who's going to see it. Designing in a vacuum is a recipe for beautiful work that dies in a CMS.
 
 In our process, distribution is part of the brief from day one. Before we write a line of copy, we know the platforms, the formats, the algorithms, the audiences, the cadence. The creative comes after.`,
-    category: 'content',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-04-15',
+    category: "content",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-04-15",
     readingMin: 3,
   },
   {
-    slug: 'original-data-seo',
-    title: 'Original data is the only SEO moat that lasts',
-    excerpt: 'After three algorithm updates targeting helpful content, the winning pattern is clear: ship data nobody else has.',
+    slug: "original-data-seo",
+    title: "Original data is the only SEO moat that lasts",
+    excerpt:
+      "After three algorithm updates targeting helpful content, the winning pattern is clear: ship data nobody else has.",
     body: `After three algorithm updates targeting "helpful content," the pattern is clear: thin, derivative content gets buried. The strategy that works: original data.
 
 Five formats that work for us right now:
@@ -183,29 +190,31 @@ Five formats that work for us right now:
 3. **Industry tooling.** Free calculators, graders, generators. People link to tools.
 4. **Expert roundups with original synthesis.** Not "10 CEOs say X." Instead: "We interviewed 30 CEOs, here's the 4-part pattern."
 5. **Live dashboards.** Public, always-updated data. Build once, link forever.`,
-    category: 'seo',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-04-22',
+    category: "seo",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-04-22",
     readingMin: 3,
   },
   {
-    slug: 'brand-is-a-verb',
-    title: 'Brand is a verb, not a noun',
-    excerpt: 'A brand isn\'t a logo on a balance sheet. It\'s the pattern of behavior a company exhibits across every touchpoint.',
+    slug: "brand-is-a-verb",
+    title: "Brand is a verb, not a noun",
+    excerpt:
+      "A brand isn't a logo on a balance sheet. It's the pattern of behavior a company exhibits across every touchpoint.",
     body: `Most companies treat "brand" as an asset on a balance sheet — a logo, a color, a font. It's something they own.
 
 That framing is broken. A brand is the pattern of behavior a company exhibits across every touchpoint. The way the support rep answers. The way the product breaks. The way the CEO tweets. None of that is on a balance sheet, all of it is the brand.
 
 The reframe changes everything: you stop measuring brand health with quarterly trackers and start measuring it with the consistency of experience. You stop hiring brand managers and start hiring operators who understand that everything ships the brand.`,
-    category: 'content',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-04-29',
+    category: "content",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-04-29",
     readingMin: 3,
   },
   {
-    slug: 'speed-as-a-feature',
-    title: 'Speed is a feature',
-    excerpt: 'Our average engagement is eight weeks. Our longest retainer renewal is six years. Both are downstream of one principle.',
+    slug: "speed-as-a-feature",
+    title: "Speed is a feature",
+    excerpt:
+      "Our average engagement is eight weeks. Our longest retainer renewal is six years. Both are downstream of one principle.",
     body: `Our average engagement is eight weeks. Our longest retainer renewal is six years. Both are downstream of one operating principle: ship fast, iterate faster.
 
 The OS that makes this possible:
@@ -217,9 +226,9 @@ The OS that makes this possible:
 - **Weekly demos, not weekly status.** "Look at what shipped" beats "here's what we're doing."
 
 We gave up: predictability, scope-creep tolerance, and the ability to say yes to every brief. We gained: speed, trust, and a renewal rate that compounds.`,
-    category: 'strategy',
-    author: 'Brahim ZERBOUT',
-    publishedAt: '2026-05-02',
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-02",
     readingMin: 3,
   },
 ];

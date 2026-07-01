@@ -8,14 +8,25 @@
  *   NEXT_PUBLIC_CLIENT_LOGOS="Acme Co.,Beta Inc.,Gamma LLC"
  */
 const DEFAULT_PARTNERS = [
-  'Ollama', 'GitHub', 'Vercel', 'Linear', 'Stripe',
-  'Resend', 'Cal.com', 'Figma', 'Notion', 'Slack',
+  "Ollama",
+  "GitHub",
+  "Vercel",
+  "Linear",
+  "Stripe",
+  "Resend",
+  "Cal.com",
+  "Figma",
+  "Notion",
+  "Slack",
 ];
 
 const logos = (() => {
   const env = process.env.NEXT_PUBLIC_CLIENT_LOGOS;
   if (env && env.trim().length > 0) {
-    return env.split(',').map((s) => s.trim()).filter(Boolean);
+    return env
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
   }
   return DEFAULT_PARTNERS;
 })();

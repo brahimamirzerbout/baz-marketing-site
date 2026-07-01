@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 /**
  * Tiny in-memory rate limiter. For production, swap with Redis/Upstash.
@@ -18,7 +18,7 @@ const buckets = new Map<string, Bucket>();
 
 // Prune every 5 minutes to avoid memory leak
 const PRUNE_INTERVAL = 5 * 60_000;
-if (typeof setInterval !== 'undefined') {
+if (typeof setInterval !== "undefined") {
   setInterval(() => {
     const now = Date.now();
     for (const [k, b] of buckets) if (b.resetAt < now) buckets.delete(k);
@@ -27,12 +27,13 @@ if (typeof setInterval !== 'undefined') {
 
 export function rateLimit(
   req: Request,
-  opts: { key: string; limit: number; windowMs: number }
+  opts: { key: string; limit: number; windowMs: number },
 ): { ok: true; remaining: number; resetAt: number } | { ok: false; retryAfter: number } {
   // Key = route key + client IP. IP comes from x-forwarded-for in prod.
-  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-          ?? req.headers.get('x-real-ip')
-          ?? 'unknown';
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
   const k = `${opts.key}:${ip}`;
   const now = Date.now();
   const existing = buckets.get(k);
@@ -50,13 +51,15 @@ export function rateLimit(
   return { ok: true, remaining: opts.limit - existing.count, resetAt: existing.resetAt };
 }
 
-export function rateLimitHeaders(result: { ok: true; remaining: number; resetAt: number } | { ok: false; retryAfter: number }): HeadersInit {
+export function rateLimitHeaders(
+  result: { ok: true; remaining: number; resetAt: number } | { ok: false; retryAfter: number },
+): HeadersInit {
   const headers: Record<string, string> = {};
   if (result.ok) {
-    headers['X-RateLimit-Remaining'] = String(result.remaining);
-    headers['X-RateLimit-Reset'] = String(Math.ceil(result.resetAt / 1000));
+    headers["X-RateLimit-Remaining"] = String(result.remaining);
+    headers["X-RateLimit-Reset"] = String(Math.ceil(result.resetAt / 1000));
   } else {
-    headers['Retry-After'] = String(result.retryAfter);
+    headers["Retry-After"] = String(result.retryAfter);
   }
   return headers;
 }

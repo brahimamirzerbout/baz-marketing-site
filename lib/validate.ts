@@ -7,17 +7,18 @@
 export type FieldErrors = Record<string, string>;
 
 export type ValidationResult<T> =
-  | { ok: true; data: T; errors: FieldErrors }
-  | { ok: false; data: null; errors: FieldErrors };
+  { ok: true; data: T; errors: FieldErrors } | { ok: false; data: null; errors: FieldErrors };
 
 export type Rule<T> = {
   field: keyof T & string;
   test: (value: unknown) => true | string;
 };
 
-function isString(v: unknown): v is string { return typeof v === 'string'; }
+function isString(v: unknown): v is string {
+  return typeof v === "string";
+}
 function isObject(v: unknown): v is Record<string, unknown> {
-  return typeof v === 'object' && v !== null && !Array.isArray(v);
+  return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -35,31 +36,40 @@ export function validateLead(input: unknown): ValidationResult<{
   const errors: FieldErrors = {};
 
   if (!isObject(input)) {
-    return { ok: false, data: null, errors: { _form: 'Invalid request body' } };
+    return { ok: false, data: null, errors: { _form: "Invalid request body" } };
   }
 
-  const name = String(input.name ?? '').trim();
-  const email = String(input.email ?? '').trim();
-  const company = String(input.company ?? '').trim();
-  const website = String(input.website ?? '').trim();
-  const budget = String(input.budget ?? '').trim();
-  const message = String(input.message ?? '').trim();
-  const source = String(input.source ?? '').trim();
-  const service = String(input.service ?? '').trim();
-  const hp = String(input.hp ?? '');
+  const name = String(input.name ?? "").trim();
+  const email = String(input.email ?? "").trim();
+  const company = String(input.company ?? "").trim();
+  const website = String(input.website ?? "").trim();
+  const budget = String(input.budget ?? "").trim();
+  const message = String(input.message ?? "").trim();
+  const source = String(input.source ?? "").trim();
+  const service = String(input.service ?? "").trim();
+  const hp = String(input.hp ?? "");
 
-  if (name.length < 2) errors.name = 'Please enter your full name.';
-  if (name.length > 100) errors.name = 'Name is too long.';
-  if (!EMAIL.test(email)) errors.email = 'Please enter a valid work email.';
-  if (company.length > 200) errors.company = 'Company name is too long.';
+  if (name.length < 2) errors.name = "Please enter your full name.";
+  if (name.length > 100) errors.name = "Name is too long.";
+  if (!EMAIL.test(email)) errors.email = "Please enter a valid work email.";
+  if (company.length > 200) errors.company = "Company name is too long.";
   if (website) {
-    try { new URL(website); } catch { errors.website = 'Please enter a valid URL (https://…).'; }
+    try {
+      new URL(website);
+    } catch {
+      errors.website = "Please enter a valid URL (https://…).";
+    }
   }
-  if (message.length < 10) errors.message = 'Tell us a little about what you need (at least 10 characters).';
-  if (message.length > 5000) errors.message = 'Message is too long.';
+  if (message.length < 10)
+    errors.message = "Tell us a little about what you need (at least 10 characters).";
+  if (message.length > 5000) errors.message = "Message is too long.";
 
   if (Object.keys(errors).length > 0) {
     return { ok: false, data: null, errors };
   }
-  return { ok: true, data: { name, email, company, website, budget, message, source, service, hp }, errors: {} };
+  return {
+    ok: true,
+    data: { name, email, company, website, budget, message, source, service, hp },
+    errors: {},
+  };
 }

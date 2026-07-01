@@ -1,71 +1,68 @@
-import { Section, Eyebrow, SectionHeading, SectionLede } from '@/components/ui/Section';
-import { Button } from '@/components/ui/Button';
-import { Breadcrumb } from '@/components/sections/Breadcrumb';
-import { StickyCta } from '@/components/sections/StickyCta';
-import { CtaBanner } from '@/components/marketing/CtaBanner';
-import { buildMetadata, jsonLd, faqLd } from '@/lib/seo';
+import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { Breadcrumb } from "@/components/sections/Breadcrumb";
+import { StickyCta } from "@/components/sections/StickyCta";
+import { CtaBanner } from "@/components/marketing/CtaBanner";
+import { buildMetadata, jsonLd, faqLd } from "@/lib/seo";
 
 const methodologyFaqs = [
   {
-    q: 'How fast will I see pipeline movement?',
-    a: 'First measurable artifact in your Hub within 14 calendar days — paid guarantee. Most clients see movement inside 60 days. The 90-day commitment is when we report on the $200K+ pipeline target.',
+    q: "How fast will I see pipeline movement?",
+    a: "First measurable artifact in your Hub within 14 calendar days — paid guarantee. Most clients see movement inside 60 days. The 90-day commitment is when we report on the $200K+ pipeline target.",
   },
   {
-    q: 'Who actually does the work?',
-    a: 'A senior partner on your account. No juniors, no offshore pod, no account manager in between. The person in the kickoff is the person shipping the work.',
+    q: "Who actually does the work?",
+    a: "A senior partner on your account. No juniors, no offshore pod, no account manager in between. The person in the kickoff is the person shipping the work.",
   },
   {
-    q: 'What if my team disagrees with the plan?',
-    a: 'The 90-day plan is a working document, not a deck. Your team edits it. We pre-commit to the targets and the measurement method, then iterate against it every two weeks.',
+    q: "What if my team disagrees with the plan?",
+    a: "The 90-day plan is a working document, not a deck. Your team edits it. We pre-commit to the targets and the measurement method, then iterate against it every two weeks.",
   },
   {
-    q: 'How do I see what the Hub is actually doing?',
-    a: 'Every client watches their own loop live. Score updates, attribution events, and Nova reasoning audit are visible in real time. You see the work, not a status report about the work.',
+    q: "How do I see what the Hub is actually doing?",
+    a: "Every client watches their own loop live. Score updates, attribution events, and Nova reasoning audit are visible in real time. You see the work, not a status report about the work.",
   },
 ];
 
 export async function generateMetadata() {
   return buildMetadata({
-    title: 'The BAZ Methodology',
+    title: "The BAZ Methodology",
     description:
-      'How BAZ plans, ships, scores, and learns. The Triangle Loop: a closed system that runs Marketing ↔ Sales ↔ Nova on its own. Open source, in public, with the math.',
-    path: '/methodology',
-    image: '/methodology-og?title=The%20BAZ%20Methodology&subtitle=Diagnose.%20Plan.%20Ship.%20Score.%20Learn.',
+      "How BAZ plans, ships, scores, and learns. The Triangle Loop: a closed system that runs Marketing ↔ Sales ↔ Nova on its own. Open source, in public, with the math.",
+    path: "/methodology",
+    image:
+      "/methodology-og?title=The%20BAZ%20Methodology&subtitle=Diagnose.%20Plan.%20Ship.%20Score.%20Learn.",
   });
 }
 
 const phases = [
   {
-    n: '01',
-    name: 'Diagnose',
-    days: 'Week 1',
-    outputs: ['Pipeline audit', 'Attribution map', 'Score model', 'Persona refresh'],
-    body:
-      'We start every engagement with a 5-day diagnostic. We pull your CRM, ad accounts, GA4, and server-side events. We map the funnel. We score 100 leads by hand. We tell you what we found before we invoice.',
+    n: "01",
+    name: "Diagnose",
+    days: "Week 1",
+    outputs: ["Pipeline audit", "Attribution map", "Score model", "Persona refresh"],
+    body: "We start every engagement with a 5-day diagnostic. We pull your CRM, ad accounts, GA4, and server-side events. We map the funnel. We score 100 leads by hand. We tell you what we found before we invoice.",
   },
   {
-    n: '02',
-    name: 'Plan',
-    days: 'Week 2',
-    outputs: ['90-day roadmap', 'Channel mix', 'Budget allocation', 'Test backlog'],
-    body:
-      'A 90-day plan with owners, budgets, and exit criteria. Not a deck — a working document your team edits. We pre-commit to the targets and what we measure against them.',
+    n: "02",
+    name: "Plan",
+    days: "Week 2",
+    outputs: ["90-day roadmap", "Channel mix", "Budget allocation", "Test backlog"],
+    body: "A 90-day plan with owners, budgets, and exit criteria. Not a deck — a working document your team edits. We pre-commit to the targets and what we measure against them.",
   },
   {
-    n: '03',
-    name: 'Ship',
-    days: 'Weeks 3-10',
-    outputs: ['Weekly deliverables', 'Live attribution', 'Daily reporting'],
-    body:
-      'Two-week sprints. Each sprint ships something measurable: a campaign live, a landing page converting, an A/B test reading, a sequence running. No "we are strategizing."',
+    n: "03",
+    name: "Ship",
+    days: "Weeks 3-10",
+    outputs: ["Weekly deliverables", "Live attribution", "Daily reporting"],
+    body: 'Two-week sprints. Each sprint ships something measurable: a campaign live, a landing page converting, an A/B test reading, a sequence running. No "we are strategizing."',
   },
   {
-    n: '04',
-    name: 'Score & Learn',
-    days: 'Every 60s, in public',
-    outputs: ['Loop ticks visible to client', 'Nova reasoning audit', 'Attribution graph'],
-    body:
-      'The Marketing Hub triangle ticks every 60 seconds: score leads, route to sequences, advance steps, log outcomes. Every client can watch their own loop live.',
+    n: "04",
+    name: "Score & Learn",
+    days: "Every 60s, in public",
+    outputs: ["Loop ticks visible to client", "Nova reasoning audit", "Attribution graph"],
+    body: "The Marketing Hub triangle ticks every 60 seconds: score leads, route to sequences, advance steps, log outcomes. Every client can watch their own loop live.",
   },
 ];
 
@@ -81,25 +78,43 @@ score = clamp(
 
 const pricing = [
   {
-    name: 'Velocity',
-    duration: '90 days',
-    commitment: 'Add $200K to pipeline',
-    guarantee: 'Or month 4 free',
-    deliverables: ['Full diagnostic', '90-day plan', '2 channels active', 'Weekly reporting', 'Hub access'],
+    name: "Velocity",
+    duration: "90 days",
+    commitment: "Add $200K to pipeline",
+    guarantee: "Or month 4 free",
+    deliverables: [
+      "Full diagnostic",
+      "90-day plan",
+      "2 channels active",
+      "Weekly reporting",
+      "Hub access",
+    ],
   },
   {
-    name: 'Compounding',
-    duration: '6 months',
-    commitment: '4× pipeline coverage',
-    guarantee: 'Or we keep going free until you do',
-    deliverables: ['Everything in Velocity', 'All 4 channels', 'A/B test cadence', 'Nova reasoning audit', 'Dedicated senior partner'],
+    name: "Compounding",
+    duration: "6 months",
+    commitment: "4× pipeline coverage",
+    guarantee: "Or we keep going free until you do",
+    deliverables: [
+      "Everything in Velocity",
+      "All 4 channels",
+      "A/B test cadence",
+      "Nova reasoning audit",
+      "Dedicated senior partner",
+    ],
   },
   {
-    name: 'Sovereign',
-    duration: '12 months',
-    commitment: 'Build + run your own Hub',
-    guarantee: 'You own the asset when we leave',
-    deliverables: ['Everything in Compounding', 'Custom Hub instance', 'Source code transfer', 'Team training', 'Quarterly board review'],
+    name: "Sovereign",
+    duration: "12 months",
+    commitment: "Build + run your own Hub",
+    guarantee: "You own the asset when we leave",
+    deliverables: [
+      "Everything in Compounding",
+      "Custom Hub instance",
+      "Source code transfer",
+      "Team training",
+      "Quarterly board review",
+    ],
   },
 ];
 
@@ -107,18 +122,23 @@ export default function MethodologyPage() {
   return (
     <>
       <Section tone="paper" size="lg">
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Methodology' }]} />
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Methodology" }]} />
         <div className="max-w-4xl">
           <Eyebrow>BAZ Methodology</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
             Diagnose. Plan. Ship. Score. Learn.
           </h1>
           <SectionLede>
-            Most agencies sell hours. We sell outcomes. Here&apos;s exactly how
-            we get there — and what we measure ourselves against.
+            Most agencies sell hours. We sell outcomes. Here&apos;s exactly how we get there — and
+            what we measure ourselves against.
           </SectionLede>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/contact?topic=methodology" variant="primary" size="lg" trackAs="meth_book">
+            <Button
+              href="/contact?topic=methodology"
+              variant="primary"
+              size="lg"
+              trackAs="meth_book"
+            >
               Book a diagnostic →
             </Button>
             <Button href="/marketing-hub" variant="outline" size="lg" trackAs="meth_hub">
@@ -136,17 +156,23 @@ export default function MethodologyPage() {
           {phases.map((p) => (
             <div key={p.n} className="grid md:grid-cols-12 gap-6 border-t border-border pt-6">
               <div className="md:col-span-1">
-                <div className="font-display text-5xl font-medium tracking-[-0.04em] text-accent">{p.n}</div>
+                <div className="font-display text-5xl font-medium tracking-[-0.04em] text-accent">
+                  {p.n}
+                </div>
               </div>
               <div className="md:col-span-3">
                 <div className="font-display text-2xl font-medium tracking-[-0.02em]">{p.name}</div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mt-1">{p.days}</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mt-1">
+                  {p.days}
+                </div>
               </div>
               <div className="md:col-span-5">
                 <p className="text-foreground leading-relaxed">{p.body}</p>
               </div>
               <div className="md:col-span-3">
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-2">Outputs</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-2">
+                  Outputs
+                </div>
                 <ul className="space-y-1 text-sm">
                   {p.outputs.map((o) => (
                     <li key={o} className="flex gap-2">
@@ -172,17 +198,17 @@ export default function MethodologyPage() {
               The math behind the lead score.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              No black boxes. The Marketing Hub scores every contact against this
-              formula. You can read the source, audit the inputs, and override the
-              weights for your business.
+              No black boxes. The Marketing Hub scores every contact against this formula. You can
+              read the source, audit the inputs, and override the weights for your business.
             </p>
           </div>
           <div className="lg:col-span-7">
             <pre className="rounded-2xl bg-background text-foreground p-6 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre dark:bg-primary dark:text-foreground">
-{scoreFormula}
+              {scoreFormula}
             </pre>
             <p className="mt-4 text-xs text-muted-foreground/60 dark:text-muted-foreground font-mono">
-              Source: <code>src/lib/triangle.ts → scoreContact()</code> · live at <code>/api/triangle/health</code>
+              Source: <code>src/lib/triangle.ts → scoreContact()</code> · live at{" "}
+              <code>/api/triangle/health</code>
             </p>
           </div>
         </div>
@@ -196,16 +222,20 @@ export default function MethodologyPage() {
             Three tiers. One promise: measurable outcomes.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Every BAZ engagement has a written outcome, a measurement method, and
-            a guarantee. We get paid for what moves, not what we did.
+            Every BAZ engagement has a written outcome, a measurement method, and a guarantee. We
+            get paid for what moves, not what we did.
           </p>
         </div>
 
         <div className="mt-10 grid md:grid-cols-3 gap-4">
           {pricing.map((tier) => (
             <div key={tier.name} className="rounded-2xl border border-border p-6 flex flex-col">
-              <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{tier.duration}</div>
-              <div className="font-display text-2xl font-medium tracking-[-0.02em] mt-1">{tier.name}</div>
+              <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                {tier.duration}
+              </div>
+              <div className="font-display text-2xl font-medium tracking-[-0.02em] mt-1">
+                {tier.name}
+              </div>
               <div className="mt-3 text-sm text-foreground">
                 <span className="font-medium text-foreground">Commitment:</span> {tier.commitment}
               </div>
@@ -220,7 +250,13 @@ export default function MethodologyPage() {
                   </li>
                 ))}
               </ul>
-              <Button href={`/contact?topic=${tier.name.toLowerCase()}`} variant="outline" size="sm" className="mt-6" trackAs={`meth_${tier.name.toLowerCase()}`}>
+              <Button
+                href={`/contact?topic=${tier.name.toLowerCase()}`}
+                variant="outline"
+                size="sm"
+                className="mt-6"
+                trackAs={`meth_${tier.name.toLowerCase()}`}
+              >
                 Inquire →
               </Button>
             </div>
@@ -240,13 +276,17 @@ export default function MethodologyPage() {
                 Ship in 14 days. Or first month free.
               </h2>
               <p className="mt-3 text-muted-foreground">
-                From kickoff, the first measurable artifact is live in your Hub within
-                14 calendar days. Miss it, and month one is on us. We&apos;ve never paid out.
+                From kickoff, the first measurable artifact is live in your Hub within 14 calendar
+                days. Miss it, and month one is on us. We&apos;ve never paid out.
               </p>
             </div>
             <div className="md:col-span-1 text-center md:text-right">
-              <div className="font-display text-7xl font-medium tracking-[-0.04em] text-accent">14d</div>
-              <div className="text-xs text-muted-foreground/60 mt-1 font-mono uppercase tracking-wider">or month 1 free</div>
+              <div className="font-display text-7xl font-medium tracking-[-0.04em] text-accent">
+                14d
+              </div>
+              <div className="text-xs text-muted-foreground/60 mt-1 font-mono uppercase tracking-wider">
+                or month 1 free
+              </div>
             </div>
           </div>
         </div>

@@ -3,5 +3,5 @@
  * Filters falsy values and joins with spaces.
  */
 export function cn(...classes: (string | false | null | undefined | 0)[]): string {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }

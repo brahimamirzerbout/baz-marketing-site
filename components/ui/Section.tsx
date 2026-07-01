@@ -1,35 +1,35 @@
-import { cn } from '@/lib/cn';
-import type { ReactNode } from 'react';
+import { cn } from "@/lib/cn";
+import type { ReactNode } from "react";
 
-type Tone = 'default' | 'card' | 'muted' | 'inverse';
-type Size = 'sm' | 'md' | 'lg' | 'xl';
+type Tone = "default" | "card" | "muted" | "inverse";
+type Size = "sm" | "md" | "lg" | "xl";
 
 const tones: Record<Tone, string> = {
-  default:  'bg-background text-foreground',
-  card:     'bg-card text-card-foreground',
-  muted:    'bg-muted text-foreground',
-  inverse:  'bg-primary text-primary-foreground',
+  default: "bg-background text-foreground",
+  card: "bg-card text-card-foreground",
+  muted: "bg-muted text-foreground",
+  inverse: "bg-primary text-primary-foreground",
 };
 
 const sizes: Record<Size, string> = {
-  sm: 'py-12 md:py-16',
-  md: 'py-16 md:py-24',
-  lg: 'py-20 md:py-32',
-  xl: 'py-24 md:py-40',
+  sm: "py-12 md:py-16",
+  md: "py-16 md:py-24",
+  lg: "py-20 md:py-32",
+  xl: "py-24 md:py-40",
 };
 
 // Legacy tone aliases so existing calls don't break
 const toneAliases: Record<string, Tone> = {
-  paper: 'default',
-  white: 'card',
-  ink: 'inverse',
-  accent: 'inverse',
+  paper: "default",
+  white: "card",
+  ink: "inverse",
+  accent: "inverse",
 };
 
 export function Section({
   children,
-  tone = 'default',
-  size = 'md',
+  tone = "default",
+  size = "md",
   className,
   id,
 }: {
@@ -50,18 +50,18 @@ export function Section({
 export function Eyebrow({
   children,
   className,
-  tone = 'default',
+  tone = "default",
 }: {
   children: ReactNode;
   className?: string;
-  tone?: 'default' | 'light';
+  tone?: "default" | "light";
 }) {
   return (
     <p
       className={cn(
-        'font-mono uppercase tracking-[0.16em] text-[11px] mb-4',
-        tone === 'light' ? 'text-primary-foreground/60' : 'text-muted-foreground',
-        className
+        "font-mono uppercase tracking-[0.16em] text-[11px] mb-4",
+        tone === "light" ? "text-primary-foreground/60" : "text-muted-foreground",
+        className,
       )}
     >
       {children}
@@ -71,18 +71,18 @@ export function Eyebrow({
 
 export function SectionHeading({
   children,
-  as: Tag = 'h2',
+  as: Tag = "h2",
   className,
 }: {
   children: ReactNode;
-  as?: 'h2' | 'h3';
+  as?: "h2" | "h3";
   className?: string;
 }) {
   return (
     <Tag
       className={cn(
-        'font-display text-display-lg font-medium tracking-[-0.03em] leading-[1.05] max-w-3xl text-foreground',
-        className
+        "font-display text-display-lg font-medium tracking-[-0.03em] leading-[1.05] max-w-3xl text-foreground",
+        className,
       )}
     >
       {children}
@@ -90,15 +90,14 @@ export function SectionHeading({
   );
 }
 
-export function SectionLede({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function SectionLede({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <p className={cn('text-lg md:text-xl text-muted-foreground max-w-2xl mt-5 leading-relaxed', className)}>
+    <p
+      className={cn(
+        "text-lg md:text-xl text-muted-foreground max-w-2xl mt-5 leading-relaxed",
+        className,
+      )}
+    >
       {children}
     </p>
   );

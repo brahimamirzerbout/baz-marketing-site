@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Fragment } from 'react';
+import Link from "next/link";
+import { Fragment } from "react";
 
 type Item = { label: string; href?: string };
 
@@ -17,12 +17,19 @@ export function Breadcrumb({ items }: { items: Item[] }) {
                     {item.label}
                   </Link>
                 ) : (
-                  <span aria-current={last ? 'page' : undefined} className={last ? 'text-foreground font-medium' : ''}>
+                  <span
+                    aria-current={last ? "page" : undefined}
+                    className={last ? "text-foreground font-medium" : ""}
+                  >
                     {item.label}
                   </span>
                 )}
               </li>
-              {!last && <li aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground">/</li>}
+              {!last && (
+                <li aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground">
+                  /
+                </li>
+              )}
             </Fragment>
           );
         })}

@@ -9,14 +9,14 @@
  * client component (the parent page wraps this in `'use client'`).
  */
 
-import { integrations, type IntegrationId } from './catalog';
+import { integrations, type IntegrationId } from "./catalog";
 
-const KEY = 'baz.admin.integrations.v1';
+const KEY = "baz.admin.integrations.v1";
 
 export type ConnectionMap = Partial<Record<IntegrationId, boolean>>;
 
 function readRaw(): ConnectionMap {
-  if (typeof window === 'undefined') return {};
+  if (typeof window === "undefined") return {};
   try {
     const raw = window.localStorage.getItem(KEY);
     return raw ? (JSON.parse(raw) as ConnectionMap) : {};
@@ -26,7 +26,7 @@ function readRaw(): ConnectionMap {
 }
 
 function writeRaw(map: ConnectionMap): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(KEY, JSON.stringify(map));
   } catch {
@@ -38,14 +38,14 @@ function writeRaw(map: ConnectionMap): void {
  *  Defaults to true for everything except `zapier` (which defaults to false). */
 export function isConnected(id: IntegrationId, map: ConnectionMap): boolean {
   if (id in map) return Boolean(map[id]);
-  return id !== 'zapier';
+  return id !== "zapier";
 }
 
 /** Returns the status text shown on a card. Uses the integration's defaultStatus
  *  when connected, or "Available" otherwise. Custom override is preserved. */
 export function statusText(id: IntegrationId, map: ConnectionMap, defaultStatus: string): string {
   if (isConnected(id, map)) return defaultStatus;
-  return 'Available';
+  return "Available";
 }
 
 /** Read the persisted connection map. SSR-safe (returns {} on the server). */

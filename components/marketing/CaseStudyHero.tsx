@@ -1,24 +1,31 @@
-import type { CaseStudy } from '@/types';
-import { Badge } from '@/components/ui/Badge';
-import { Breadcrumb } from '@/components/sections/Breadcrumb';
+import type { CaseStudy } from "@/types";
+import { Badge } from "@/components/ui/Badge";
+import { Breadcrumb } from "@/components/sections/Breadcrumb";
 
 export function CaseStudyHero({ caseStudy }: { caseStudy: CaseStudy }) {
   return (
     <section className="relative overflow-hidden" style={{ background: caseStudy.cover }}>
-      <div aria-hidden className="absolute inset-0 bg-grid opacity-20 [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]" />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-grid opacity-20 [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]"
+      />
       <div className="container mx-auto relative py-16 md:py-24 text-foreground">
         <div className="text-muted-foreground mb-6">
-          <Breadcrumb items={[
-            { label: 'Home', href: '/' },
-            { label: 'Case studies', href: '/case-studies' },
-            { label: caseStudy.client },
-          ]} />
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Case studies", href: "/case-studies" },
+              { label: caseStudy.client },
+            ]}
+          />
         </div>
         <div className="flex flex-wrap items-center gap-2 mb-6">
           <Badge variant="ink">{caseStudy.industry}</Badge>
           {caseStudy.placeholder && <Badge variant="warning">Demo case study</Badge>}
           {caseStudy.services.slice(0, 3).map((s) => (
-            <Badge key={s} variant="default" className="bg-background/20 text-foreground">{s}</Badge>
+            <Badge key={s} variant="default" className="bg-background/20 text-foreground">
+              {s}
+            </Badge>
           ))}
         </div>
         <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground mb-4">

@@ -1,16 +1,33 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
-import { Activity, Zap, Target, TrendingUp, Play, AlertCircle, CheckCircle2, Circle, Rocket } from 'lucide-react';
-import { ScrollReveal } from '@/components/beui/ScrollReveal';
+import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import {
+  Activity,
+  Zap,
+  Target,
+  TrendingUp,
+  Play,
+  AlertCircle,
+  CheckCircle2,
+  Circle,
+  Rocket,
+} from "lucide-react";
+import { ScrollReveal } from "@/components/beui/ScrollReveal";
 
-const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL || 'http://localhost:3001';
+const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL || "http://localhost:3001";
 
 interface LoopHealth {
   ok: boolean;
   last_tick_at: number | null;
-  last_tick: { scored: number; routed: number; stepped: number; won: number; lost: number; actions: any[] } | null;
+  last_tick: {
+    scored: number;
+    routed: number;
+    stepped: number;
+    won: number;
+    lost: number;
+    actions: Record<string, unknown>[];
+  } | null;
   contacts_scored_24h: number;
   enrollments_active: number;
   deals_in_pipeline: number;
@@ -40,20 +57,38 @@ export default function CockpitPage() {
   async function runNow() {
     setRunning(true);
     try {
-      await fetch(`${HUB_URL}/api/triangle/run`, { method: 'POST' });
+      await fetch(`${HUB_URL}/api/triangle/run`, { method: "POST" });
       const r = await fetch(`${HUB_URL}/api/triangle/health`);
       if (r.ok) setHealth(await r.json());
-    } finally { setRunning(false); }
+    } finally {
+      setRunning(false);
+    }
   }
 
   const h = health;
   const lastAgo = h?.last_tick_at ? Math.floor(Date.now() / 1000 - h.last_tick_at / 1000) : null;
 
   const stats = [
-    { label: 'Scored 24h', value: h?.contacts_scored_24h ?? 0, icon: Zap, color: '#4f7cff' },
-    { label: 'Active sequences', value: h?.enrollments_active ?? 0, icon: Activity, color: '#3ddc97' },
-    { label: 'Pipeline', value: h ? `$${Math.round(h.pipeline_value).toLocaleString()}` : '—', sub: `${h?.deals_in_pipeline ?? 0} deals`, icon: Target, color: '#ff3b2f' },
-    { label: 'Wins/day (7d)', value: h ? (h.triangle_velocity).toFixed(2) : '—', icon: TrendingUp, color: '#f9a01f' },
+    { label: "Scored 24h", value: h?.contacts_scored_24h ?? 0, icon: Zap, color: "#4f7cff" },
+    {
+      label: "Active sequences",
+      value: h?.enrollments_active ?? 0,
+      icon: Activity,
+      color: "#3ddc97",
+    },
+    {
+      label: "Pipeline",
+      value: h ? `$${Math.round(h.pipeline_value).toLocaleString()}` : "—",
+      sub: `${h?.deals_in_pipeline ?? 0} deals`,
+      icon: Target,
+      color: "#ff3b2f",
+    },
+    {
+      label: "Wins/day (7d)",
+      value: h ? h.triangle_velocity.toFixed(2) : "—",
+      icon: TrendingUp,
+      color: "#f9a01f",
+    },
   ];
 
   return (
@@ -67,7 +102,9 @@ export default function CockpitPage() {
               <p className="eyebrow-neutral">The Cockpit</p>
             </div>
             <h1 className="font-display text-3xl font-medium text-foreground">Pipeline Command</h1>
-            <p className="text-sm text-muted-foreground mt-1">One screen a CMO can open on Monday morning.</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              One screen a CMO can open on Monday morning.
+            </p>
           </div>
           <button
             onClick={runNow}
@@ -75,21 +112,33 @@ export default function CockpitPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent hover:bg-primary/90 disabled:opacity-50 text-white font-medium text-sm transition-colors"
           >
             <Play className="w-4 h-4" />
-            {running ? 'Running…' : 'Run tick now'}
+            {running ? "Running…" : "Run tick now"}
           </button>
         </div>
       </ScrollReveal>
 
       {/* Loop status */}
       <ScrollReveal y={16} delay={0.1}>
-        <div className={`rounded-2xl border p-4 flex items-center gap-3 ${
-          h?.ok ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-amber-500/30 bg-amber-500/5'
-        }`}>
-          {h?.ok ? <CheckCircle2 className="w-5 h-5 text-emerald-400" /> : <AlertCircle className="w-5 h-5 text-amber-400" />}
+        <div
+          className={`rounded-2xl border p-4 flex items-center gap-3 ${
+            h?.ok ? "border-emerald-500/30 bg-emerald-500/5" : "border-amber-500/30 bg-amber-500/5"
+          }`}
+        >
+          {h?.ok ? (
+            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+          ) : (
+            <AlertCircle className="w-5 h-5 text-amber-400" />
+          )}
           <div className="flex-1">
-            <div className="font-medium text-foreground">{h?.ok ? 'Loop is alive' : 'Loop has not ticked recently'}</div>
+            <div className="font-medium text-foreground">
+              {h?.ok ? "Loop is alive" : "Loop has not ticked recently"}
+            </div>
             <div className="text-xs text-muted-foreground/60">
-              {lastAgo == null ? 'Never' : lastAgo < 60 ? `${lastAgo}s ago` : `${Math.floor(lastAgo / 60)}m ago`}
+              {lastAgo == null
+                ? "Never"
+                : lastAgo < 60
+                  ? `${lastAgo}s ago`
+                  : `${Math.floor(lastAgo / 60)}m ago`}
             </div>
           </div>
         </div>
@@ -110,9 +159,13 @@ export default function CockpitPage() {
               >
                 <div className="flex items-center gap-2 mb-3">
                   <Icon className="w-4 h-4" style={{ color: s.color }} />
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/60">{s.label}</span>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/60">
+                    {s.label}
+                  </span>
                 </div>
-                <p className="font-display text-2xl md:text-3xl font-medium text-foreground">{s.value}</p>
+                <p className="font-display text-2xl md:text-3xl font-medium text-foreground">
+                  {s.value}
+                </p>
                 {s.sub && <p className="text-xs text-muted-foreground/60 mt-1">{s.sub}</p>}
               </motion.div>
             );
@@ -127,11 +180,11 @@ export default function CockpitPage() {
             <h2 className="font-display text-lg font-medium text-foreground mb-4">Last tick</h2>
             <div className="grid grid-cols-5 gap-3 text-center">
               {[
-                { label: 'Scored', n: h.last_tick.scored, color: 'text-blue-400' },
-                { label: 'Routed', n: h.last_tick.routed, color: 'text-violet-400' },
-                { label: 'Stepped', n: h.last_tick.stepped, color: 'text-cyan-400' },
-                { label: 'Won', n: h.last_tick.won, color: 'text-emerald-400' },
-                { label: 'Lost', n: h.last_tick.lost, color: 'text-rose-400' },
+                { label: "Scored", n: h.last_tick.scored, color: "text-blue-400" },
+                { label: "Routed", n: h.last_tick.routed, color: "text-violet-400" },
+                { label: "Stepped", n: h.last_tick.stepped, color: "text-cyan-400" },
+                { label: "Won", n: h.last_tick.won, color: "text-emerald-400" },
+                { label: "Lost", n: h.last_tick.lost, color: "text-rose-400" },
               ].map((c) => (
                 <div key={c.label} className="rounded-xl bg-background py-3">
                   <div className={`text-2xl font-bold ${c.color}`}>{c.n}</div>
@@ -142,13 +195,19 @@ export default function CockpitPage() {
 
             {h.last_tick.actions?.length > 0 && (
               <div className="mt-5">
-                <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/60 mb-2">Actions</div>
+                <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/60 mb-2">
+                  Actions
+                </div>
                 <ul className="space-y-1 max-h-80 overflow-auto text-sm">
                   {h.last_tick.actions.slice(0, 50).map((a, i) => (
                     <li key={i} className="flex items-center gap-2 text-muted-foreground">
-                      {a.kind === 'win' ? <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                        : a.kind === 'loss' ? <AlertCircle className="w-3 h-3 text-rose-400" />
-                        : <Circle className="w-3 h-3 text-foreground-600" />}
+                      {a.kind === "win" ? (
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                      ) : a.kind === "loss" ? (
+                        <AlertCircle className="w-3 h-3 text-rose-400" />
+                      ) : (
+                        <Circle className="w-3 h-3 text-foreground-600" />
+                      )}
                       <span className="font-mono text-xs text-foreground0">{a.kind}</span>
                       <span>{a.detail}</span>
                     </li>
@@ -162,7 +221,8 @@ export default function CockpitPage() {
 
       {!loading && !h?.last_tick && (
         <div className="rounded-2xl border border-ink-800 p-8 text-center text-muted-foreground/60">
-          No tick yet. Hit <em className="text-foreground">Run tick now</em> or wait 60s for the scheduler.
+          No tick yet. Hit <em className="text-foreground">Run tick now</em> or wait 60s for the
+          scheduler.
         </div>
       )}
     </div>

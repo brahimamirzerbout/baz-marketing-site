@@ -1,14 +1,17 @@
-import Link from 'next/link';
-import { posts } from '@/content/posts';
-import { Badge } from '@/components/ui/Badge';
+import Link from "next/link";
+import { posts } from "@/content/posts";
+import { Badge } from "@/components/ui/Badge";
 
-const categoryLabel: Record<string, { name: string; tone: 'accent' | 'info' | 'success' | 'warning' }> = {
-  strategy: { name: 'Strategy', tone: 'accent' },
-  seo: { name: 'SEO', tone: 'info' },
-  paid: { name: 'Paid', tone: 'warning' },
-  analytics: { name: 'Analytics', tone: 'success' },
-  content: { name: 'Content', tone: 'accent' },
-  ai: { name: 'AI', tone: 'info' },
+const categoryLabel: Record<
+  string,
+  { name: string; tone: "accent" | "info" | "success" | "warning" }
+> = {
+  strategy: { name: "Strategy", tone: "accent" },
+  seo: { name: "SEO", tone: "info" },
+  paid: { name: "Paid", tone: "warning" },
+  analytics: { name: "Analytics", tone: "success" },
+  content: { name: "Content", tone: "accent" },
+  ai: { name: "AI", tone: "info" },
 };
 
 export function PostsList() {
@@ -25,14 +28,22 @@ export function PostsList() {
             >
               <div className="flex items-center justify-between mb-6">
                 <Badge variant={cat.tone}>{cat.name}</Badge>
-                <span className="text-xs text-muted-foreground/60 font-mono">{p.readingMin} min read</span>
+                <span className="text-xs text-muted-foreground/60 font-mono">
+                  {p.readingMin} min read
+                </span>
               </div>
-              <h3 className="font-display text-2xl font-medium tracking-[-0.02em] leading-tight">{p.title}</h3>
+              <h3 className="font-display text-2xl font-medium tracking-[-0.02em] leading-tight">
+                {p.title}
+              </h3>
               <p className="mt-3 text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>
               <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">{p.author}</span>
                 <span className="text-muted-foreground/60 font-mono text-xs">
-                  {new Date(p.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  {new Date(p.publishedAt).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </span>
               </div>
             </Link>

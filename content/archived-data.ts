@@ -9,76 +9,86 @@
  */
 
 export const archivedData = {
-  "diveArticles": 50,
-  "wireArticles": 14,
-  "macroTrends": 11,
-  "microTrends": 11,
-  "lexiconTerms": 29,
-  "libraryItems": 26,
-  "triangleAlive": true,
-  "pipelineValue": 532729,
-  "enrollmentsActive": 68,
-  "velocity": 0.42857142857142855,
-  "hubCaseStudies": 2
+  diveArticles: 50,
+  wireArticles: 14,
+  macroTrends: 11,
+  microTrends: 11,
+  lexiconTerms: 29,
+  libraryItems: 26,
+  triangleAlive: true,
+  pipelineValue: 532729,
+  enrollmentsActive: 68,
+  velocity: 0.42857142857142855,
+  hubCaseStudies: 2,
 } as const;
 
 export type ArchivedData = typeof archivedData;
 
 /** Marketing Dive articles — real industry news, archived daily. */
-export function getArchivedDiveArticles(): any[] {
+export function getArchivedDiveArticles(): Record<string, unknown>[] {
   try {
-    const raw = require('fs').readFileSync(
-      require('path').join(process.cwd(), 'data', 'archive', 'marketing-dive.json'),
-      'utf8'
+    const raw = require("fs").readFileSync(
+      require("path").join(process.cwd(), "data", "archive", "marketing-dive.json"),
+      "utf8",
     );
     const data = JSON.parse(raw);
     return data.rows || data.articles || data || [];
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 }
 
 /** Wire articles — Seth Godin, industry blogs, scored and ranked. */
-export function getArchivedWireArticles(): any[] {
+export function getArchivedWireArticles(): Record<string, unknown>[] {
   try {
-    const raw = require('fs').readFileSync(
-      require('path').join(process.cwd(), 'data', 'archive', 'wire.json'),
-      'utf8'
+    const raw = require("fs").readFileSync(
+      require("path").join(process.cwd(), "data", "archive", "wire.json"),
+      "utf8",
     );
     const data = JSON.parse(raw);
     return data.rows || data.articles || data || [];
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 }
 
 /** Macro trends — what's rising in marketing. */
-export function getArchivedTrends(): any[] {
+export function getArchivedTrends(): Record<string, unknown>[] {
   try {
-    const raw = require('fs').readFileSync(
-      require('path').join(process.cwd(), 'data', 'archive', 'trends-macro.json'),
-      'utf8'
+    const raw = require("fs").readFileSync(
+      require("path").join(process.cwd(), "data", "archive", "trends-macro.json"),
+      "utf8",
     );
     const data = JSON.parse(raw);
     return data.macro || data.rows || data || [];
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 }
 
 /** Marketing lexicon — terms, definitions, who coined them. */
-export function getArchivedLexicon(): any[] {
+export function getArchivedLexicon(): Record<string, unknown>[] {
   try {
-    const raw = require('fs').readFileSync(
-      require('path').join(process.cwd(), 'data', 'archive', 'lexicon.json'),
-      'utf8'
+    const raw = require("fs").readFileSync(
+      require("path").join(process.cwd(), "data", "archive", "lexicon.json"),
+      "utf8",
     );
     const data = JSON.parse(raw);
     return data.rows || data.terms || data || [];
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 }
 
 /** Triangle loop health — live pipeline stats. */
-export function getArchivedTriangleHealth(): any | null {
+export function getArchivedTriangleHealth(): Record<string, unknown> | null {
   try {
-    const raw = require('fs').readFileSync(
-      require('path').join(process.cwd(), 'data', 'archive', 'triangle-health.json'),
-      'utf8'
+    const raw = require("fs").readFileSync(
+      require("path").join(process.cwd(), "data", "archive", "triangle-health.json"),
+      "utf8",
     );
     return JSON.parse(raw);
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }

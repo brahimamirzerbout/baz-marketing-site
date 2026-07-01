@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import type { CaseStudy } from '@/types';
-import { Badge } from '@/components/ui/Badge';
+import Link from "next/link";
+import type { CaseStudy } from "@/types";
+import { Badge } from "@/components/ui/Badge";
 
 export function CaseStudyCard({ caseStudy, index = 0 }: { caseStudy: CaseStudy; index?: number }) {
   return (
@@ -9,7 +9,10 @@ export function CaseStudyCard({ caseStudy, index = 0 }: { caseStudy: CaseStudy; 
       className="reveal group flex flex-col bg-card rounded-2xl border border-border hover:border-foreground hover:-translate-y-1 hover:shadow-lift transition-all duration-200 overflow-hidden h-full"
       style={{ animationDelay: `${index * 60}ms` }}
     >
-      <div className="aspect-[5/3] relative grid place-items-center" style={{ background: caseStudy.cover }}>
+      <div
+        className="aspect-[5/3] relative grid place-items-center"
+        style={{ background: caseStudy.cover }}
+      >
         <span className="font-display text-foreground text-7xl md:text-8xl font-bold tracking-[-0.04em] opacity-90 dark:text-foreground mix-blend-difference">
           {caseStudy.client.charAt(0)}
         </span>
@@ -28,13 +31,22 @@ export function CaseStudyCard({ caseStudy, index = 0 }: { caseStudy: CaseStudy; 
           {caseStudy.metrics.slice(0, 3).map((m) => (
             <div key={m.label}>
               <p className="font-display text-lg font-medium tracking-[-0.02em]">{m.value}</p>
-              <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{m.label}</p>
+              <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
+                {m.label}
+              </p>
             </div>
           ))}
         </div>
         <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">{caseStudy.services.slice(0, 2).join(' · ')}</span>
-          <span aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">Read →</span>
+          <span className="text-muted-foreground">
+            {caseStudy.services.slice(0, 2).join(" · ")}
+          </span>
+          <span
+            aria-hidden
+            className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all"
+          >
+            Read →
+          </span>
         </div>
       </div>
     </Link>

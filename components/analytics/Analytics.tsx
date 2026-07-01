@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
-import { useEffect } from 'react';
-import { track } from '@/lib/analytics';
+import Script from "next/script";
+import { useEffect } from "react";
+import { track } from "@/lib/analytics";
 
 /**
  * GA4 + GTM bootstrap. Reads NEXT_PUBLIC_GA4_ID. If empty,
@@ -14,7 +14,7 @@ export function Analytics() {
 
   useEffect(() => {
     // Surface page view to any listeners
-    track('page_view', { path: location.pathname, title: document.title });
+    track("page_view", { path: location.pathname, title: document.title });
   }, []);
 
   if (!id) return null;

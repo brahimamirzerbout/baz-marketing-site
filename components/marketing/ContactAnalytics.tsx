@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { track } from '@/lib/analytics';
+import { useEffect } from "react";
+import { track } from "@/lib/analytics";
 
 /**
  * Contact page analytics. Fires contact_view with the service context
@@ -15,7 +15,7 @@ import { track } from '@/lib/analytics';
  */
 export function ContactAnalytics({ service }: { service?: string }) {
   useEffect(() => {
-    track('contact_view', {
+    track("contact_view", {
       service_slug: service || undefined,
       has_service_context: !!service,
     });

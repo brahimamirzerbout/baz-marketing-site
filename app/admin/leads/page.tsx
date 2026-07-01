@@ -109,7 +109,12 @@ export default async function LeadsAdminPage({
   // Build "clear filter" href that drops just one filter at a time
   const buildHref = (overrides: Partial<{ intent: string; service: string; status: string }>) => {
     const p = new URLSearchParams();
-    const next = { intent: intentFilter, service: serviceFilter, status: statusFilter, ...overrides };
+    const next = {
+      intent: intentFilter,
+      service: serviceFilter,
+      status: statusFilter,
+      ...overrides,
+    };
     if (next.intent) p.set("intent", next.intent);
     if (next.service) p.set("service", next.service);
     if (next.status) p.set("status", next.status);
@@ -127,10 +132,7 @@ export default async function LeadsAdminPage({
         <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
           Contact submissions
         </h1>
-        <a
-          href="/admin"
-          className="text-sm text-muted-foreground hover:text-foreground underline"
-        >
+        <a href="/admin" className="text-sm text-muted-foreground hover:text-foreground underline">
           ← Admin home
         </a>
       </div>
@@ -139,11 +141,7 @@ export default async function LeadsAdminPage({
         <Stat label="Total" value={total} />
         <Stat label="This week" value={thisWeek} />
         <Stat label="Today" value={today} />
-        <Stat
-          label="Top service"
-          value={topService ? topService[0] : "—"}
-          small
-        />
+        <Stat label="Top service" value={topService ? topService[0] : "—"} small />
       </div>
 
       {/* ─── Filter chips ─── */}
@@ -217,10 +215,7 @@ export default async function LeadsAdminPage({
                       </span>
                     ) : null}
                   </h2>
-                  <a
-                    href={`mailto:${lead.email}`}
-                    className="text-sm text-accent hover:underline"
-                  >
+                  <a href={`mailto:${lead.email}`} className="text-sm text-accent hover:underline">
                     {lead.email}
                   </a>
                   {lead.website ? (
@@ -255,10 +250,7 @@ export default async function LeadsAdminPage({
                   </dt>
                   <dd className="text-foreground">
                     {lead.service ? (
-                      <a
-                        href={`/services/${lead.service}`}
-                        className="text-accent hover:underline"
-                      >
+                      <a href={`/services/${lead.service}`} className="text-accent hover:underline">
                         {lead.service.replace(/-/g, " ")}
                       </a>
                     ) : (
@@ -310,15 +302,7 @@ export default async function LeadsAdminPage({
   );
 }
 
-function Stat({
-  label,
-  value,
-  small,
-}: {
-  label: string;
-  value: string | number;
-  small?: boolean;
-}) {
+function Stat({ label, value, small }: { label: string; value: string | number; small?: boolean }) {
   return (
     <div className="bg-background rounded-2xl border border-border p-4">
       <p className="font-mono uppercase tracking-[0.18em] text-[10px] text-muted-foreground/60 mb-1">
@@ -371,7 +355,9 @@ function FilterRow({
               }`}
             >
               <span className="font-mono">{o.value.replace(/_/g, " ")}</span>
-              <span className={`font-mono text-[10px] ${isActive ? "text-foreground/70" : "text-muted-foreground/60"}`}>
+              <span
+                className={`font-mono text-[10px] ${isActive ? "text-foreground/70" : "text-muted-foreground/60"}`}
+              >
                 {o.count}
               </span>
             </a>

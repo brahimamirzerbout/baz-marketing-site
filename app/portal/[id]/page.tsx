@@ -1,14 +1,14 @@
-import { Section, Eyebrow } from '@/components/ui/Section';
-import { Breadcrumb } from '@/components/sections/Breadcrumb';
-import { Button } from '@/components/ui/Button';
-import { CtaBanner } from '@/components/marketing/CtaBanner';
-import { PortalView } from '@/components/marketing/PortalView';
-import { buildMetadata } from '@/lib/seo';
+import { Section, Eyebrow } from "@/components/ui/Section";
+import { Breadcrumb } from "@/components/sections/Breadcrumb";
+import { Button } from "@/components/ui/Button";
+import { CtaBanner } from "@/components/marketing/CtaBanner";
+import { PortalView } from "@/components/marketing/PortalView";
+import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: 'Your plan',
-  description: 'Your BAZ routing plan based on the prompt you ran.',
-  path: '/portal/[id]',
+  title: "Your plan",
+  description: "Your BAZ routing plan based on the prompt you ran.",
+  path: "/portal/[id]",
   noindex: true,
 });
 
@@ -16,7 +16,7 @@ export default function PortalPage({ params }: { params: { id: string } }) {
   return (
     <>
       <Section tone="paper" size="lg">
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Your plan' }]} />
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Your plan" }]} />
         <div className="max-w-4xl">
           <Eyebrow>BAZ Portal</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] leading-[0.95]">

@@ -7,18 +7,14 @@
 import { useEffect, useState } from "react";
 
 const HUB_URL =
-  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_HUB_URL) ||
-  "http://localhost:3010";
+  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_HUB_URL) || "http://localhost:3010";
 
 interface HubPulse {
   ok: boolean;
   last_tick_at: number | null;
 }
 
-type State =
-  | { kind: "live"; secondsAgo: number }
-  | { kind: "warming" }
-  | { kind: "offline" };
+type State = { kind: "live"; secondsAgo: number } | { kind: "warming" } | { kind: "offline" };
 
 function readState(pulse: HubPulse | null, errored: boolean): State {
   if (errored) return { kind: "offline" };
@@ -34,6 +30,8 @@ export function LiveStatusPill() {
   useEffect(() => {
     let cancelled = false;
     let secondsAgo = 0;
+    let consecutiveFailures = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
 
     async function load() {
       try {
@@ -42,6 +40,7 @@ export function LiveStatusPill() {
           if (!cancelled) {
             setErrored(true);
             setPulse(null);
+            consecutiveFailures++;
           }
           return;
         }
@@ -49,6 +48,7 @@ export function LiveStatusPill() {
         if (!cancelled) {
           setPulse(data);
           setErrored(false);
+          consecutiveFailures = 0;
           if (data.last_tick_at) {
             secondsAgo = Math.max(0, Math.floor(Date.now() / 1000 - data.last_tick_at / 1000));
           }
@@ -57,15 +57,22 @@ export function LiveStatusPill() {
         if (!cancelled) {
           setErrored(true);
           setPulse(null);
+          consecutiveFailures++;
+          // After 3 consecutive failures, stop polling to avoid console spam.
+          // The hub simply isn't running — no point retrying every 30s.
+          if (consecutiveFailures >= 3 && timer) {
+            clearInterval(timer);
+            timer = null;
+          }
         }
       }
     }
 
     load();
-    const t = setInterval(load, 30_000);
+    timer = setInterval(load, 30_000);
     return () => {
       cancelled = true;
-      clearInterval(t);
+      if (timer) clearInterval(timer);
     };
   }, []);
 
@@ -89,7 +96,8 @@ export function LiveStatusPill() {
       />
       {state.kind === "live" && (
         <span>
-          Hub live <span className="text-muted-foreground/60">·</span> last tick {state.secondsAgo}s ago
+          Hub live <span className="text-muted-foreground/60">·</span> last tick {state.secondsAgo}s
+          ago
         </span>
       )}
       {state.kind === "warming" && <span>Hub warming</span>}

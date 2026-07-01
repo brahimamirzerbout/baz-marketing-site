@@ -1,18 +1,57 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { cn } from '@/lib/cn';
-import { Magnetic } from '@/components/ui/Magnetic';
-import { track } from '@/lib/analytics';
-import Link from 'next/link';
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/cn";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { track } from "@/lib/analytics";
+import Link from "next/link";
 
-type Agent = 'leadgen' | 'content' | 'analytics' | 'general';
+type Agent = "leadgen" | "content" | "analytics" | "general";
 
-const agents: { id: Agent; name: string; role: string; color: string; emoji: string; prompt: string }[] = [
-  { id: 'leadgen',    name: 'LeadGen',     role: 'Research & outreach',   color: '#ff3b2f', emoji: '◬', prompt: 'Find 3 qualified B2B SaaS leads in the marketing analytics space, $2M–$50M ARR, hiring growth marketers.' },
-  { id: 'content',    name: 'Content',     role: 'Editorial & SEO',       color: '#4f7cff', emoji: '✎', prompt: 'Write a 200-word LinkedIn post announcing our new AI search optimization service for B2B SaaS CMOs.' },
-  { id: 'analytics',  name: 'Analytics',   role: 'Attribution & reporting',color: '#3ddc97', emoji: '◐', prompt: 'A DTC skincare brand spent $80K on Meta last month and got 4,200 purchases averaging $52 AOV. CAC, MER, and the next 90-day reallocation plan?' },
-  { id: 'general',    name: 'General',     role: 'Strategy & copy',       color: '#ffb020', emoji: '✦', prompt: 'Draft a cold email to a DTC beauty founder who is burned out on agency churn and skeptical of AI.' },
+const agents: {
+  id: Agent;
+  name: string;
+  role: string;
+  color: string;
+  emoji: string;
+  prompt: string;
+}[] = [
+  {
+    id: "leadgen",
+    name: "LeadGen",
+    role: "Research & outreach",
+    color: "#ff3b2f",
+    emoji: "◬",
+    prompt:
+      "Find 3 qualified B2B SaaS leads in the marketing analytics space, $2M–$50M ARR, hiring growth marketers.",
+  },
+  {
+    id: "content",
+    name: "Content",
+    role: "Editorial & SEO",
+    color: "#4f7cff",
+    emoji: "✎",
+    prompt:
+      "Write a 200-word LinkedIn post announcing our new AI search optimization service for B2B SaaS CMOs.",
+  },
+  {
+    id: "analytics",
+    name: "Analytics",
+    role: "Attribution & reporting",
+    color: "#3ddc97",
+    emoji: "◐",
+    prompt:
+      "A DTC skincare brand spent $80K on Meta last month and got 4,200 purchases averaging $52 AOV. CAC, MER, and the next 90-day reallocation plan?",
+  },
+  {
+    id: "general",
+    name: "General",
+    role: "Strategy & copy",
+    color: "#ffb020",
+    emoji: "✦",
+    prompt:
+      "Draft a cold email to a DTC beauty founder who is burned out on agency churn and skeptical of AI.",
+  },
 ];
 
 interface DemoResult {
@@ -30,16 +69,18 @@ interface DemoResult {
  * breaks on the marketing site.
  */
 export function LiveAgentDemo() {
-  const [active, setActive] = useState<Agent>('leadgen');
+  const [active, setActive] = useState<Agent>("leadgen");
   const [prompt, setPrompt] = useState(agents[0].prompt);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<DemoResult | null>(null);
   const [history, setHistory] = useState<DemoResult[]>([]);
   const [showCapture, setShowCapture] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [company, setCompany] = useState('');
-  const [score, setScore] = useState<{ score: number; intent: string; action: string } | null>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [score, setScore] = useState<{ score: number; intent: string; action: string } | null>(
+    null,
+  );
   const [submitting, setSubmitting] = useState(false);
   const [submittedId, setSubmittedId] = useState<string | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
@@ -52,7 +93,7 @@ export function LiveAgentDemo() {
     if (busy) return;
     setBusy(true);
     setResult(null);
-    track('ai_demo_run', { agent: active });
+    track("ai_demo_run", { agent: active });
     const start = performance.now();
 
     const api = process.env.NEXT_PUBLIC_API_URL;
@@ -61,16 +102,16 @@ export function LiveAgentDemo() {
     if (api) {
       try {
         const r = await fetch(`${api}/api/ai`, {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
+          method: "POST",
+          headers: { "content-type": "application/json" },
           body: JSON.stringify({ kind: active, prompt }),
         });
         const j = await r.json();
         out = {
           agent: active,
           output: j.text ?? j.output ?? j.error ?? JSON.stringify(j),
-          provider: j.provider ?? 'unknown',
-          model: j.model ?? 'unknown',
+          provider: j.provider ?? "unknown",
+          model: j.model ?? "unknown",
           tokens: (j.tokens_in ?? 0) + (j.tokens_out ?? 0),
           ms: j.latency_ms ?? Math.round(performance.now() - start),
         };
@@ -94,17 +135,17 @@ export function LiveAgentDemo() {
   const submitLead = async () => {
     if (!email || submitting) return;
     setSubmitting(true);
-    track('ai_demo_capture', { agent: active });
+    track("ai_demo_capture", { agent: active });
     try {
-      const r = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
+      const r = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          name: name || 'Anonymous',
+          name: name || "Anonymous",
           email,
           company,
           message: `Ran the ${active} agent on: "${prompt.slice(0, 200)}"`,
-          source: 'live_agent_demo',
+          source: "live_agent_demo",
           service: active,
           demoCompleted: true,
           agentRuns: history.length + 1,
@@ -133,7 +174,9 @@ export function LiveAgentDemo() {
           baz://agents · live
         </p>
         <p className="font-mono text-[11px] text-muted-foreground/60 hidden md:block">
-          {history.length > 0 ? `${history.length} run${history.length === 1 ? '' : 's'} this session` : 'idle'}
+          {history.length > 0
+            ? `${history.length} run${history.length === 1 ? "" : "s"} this session`
+            : "idle"}
         </p>
       </div>
 
@@ -147,15 +190,17 @@ export function LiveAgentDemo() {
                 onClick={() => setActive(a.id)}
                 aria-pressed={active === a.id}
                 className={cn(
-                  'w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-colors',
-                  active === a.id ? 'bg-primary text-foreground' : 'hover:bg-muted/70 text-foreground'
+                  "w-full text-left px-3 py-2.5 rounded-xl flex items-center gap-3 transition-colors",
+                  active === a.id
+                    ? "bg-primary text-foreground"
+                    : "hover:bg-muted/70 text-foreground",
                 )}
               >
                 <span
                   aria-hidden
                   className={cn(
-                    'inline-grid place-items-center w-7 h-7 rounded-lg text-sm font-mono',
-                    active === a.id ? 'bg-background/10' : 'bg-muted/70'
+                    "inline-grid place-items-center w-7 h-7 rounded-lg text-sm font-mono",
+                    active === a.id ? "bg-background/10" : "bg-muted/70",
                   )}
                   style={{ color: active === a.id ? a.color : undefined }}
                 >
@@ -163,7 +208,12 @@ export function LiveAgentDemo() {
                 </span>
                 <span className="flex-1 min-w-0">
                   <span className="block text-sm font-medium leading-tight">{a.name}</span>
-                  <span className={cn('block text-[11px] truncate', active === a.id ? 'text-foreground/60' : 'text-muted-foreground/60')}>
+                  <span
+                    className={cn(
+                      "block text-[11px] truncate",
+                      active === a.id ? "text-foreground/60" : "text-muted-foreground/60",
+                    )}
+                  >
                     {a.role}
                   </span>
                 </span>
@@ -189,7 +239,7 @@ export function LiveAgentDemo() {
 
           <div className="flex items-center justify-between">
             <p className="font-mono text-[11px] text-muted-foreground/60">
-              {process.env.NEXT_PUBLIC_API_URL ? '→ /api/ai' : 'simulated (no API configured)'}
+              {process.env.NEXT_PUBLIC_API_URL ? "→ /api/ai" : "simulated (no API configured)"}
             </p>
             <Magnetic strength={0.25}>
               <button
@@ -212,15 +262,23 @@ export function LiveAgentDemo() {
           </div>
 
           <div className="rounded-2xl bg-primary text-foreground p-5 md:p-6 font-mono text-[13px] leading-relaxed min-h-[180px] overflow-x-auto">
-            {!result && !busy && (
-              <p className="text-foreground/50">{'// output appears here'}</p>
-            )}
+            {!result && !busy && <p className="text-foreground/50">{"// output appears here"}</p>}
             {busy && (
               <p className="text-foreground/70">
                 <span className="text-accent">▍</span> thinking
                 <span className="ml-1 inline-block animate-pulse-dot">.</span>
-                <span className="ml-1 inline-block animate-pulse-dot" style={{ animationDelay: '.2s' }}>.</span>
-                <span className="ml-1 inline-block animate-pulse-dot" style={{ animationDelay: '.4s' }}>.</span>
+                <span
+                  className="ml-1 inline-block animate-pulse-dot"
+                  style={{ animationDelay: ".2s" }}
+                >
+                  .
+                </span>
+                <span
+                  className="ml-1 inline-block animate-pulse-dot"
+                  style={{ animationDelay: ".4s" }}
+                >
+                  .
+                </span>
               </p>
             )}
             {result && !busy && (
@@ -228,19 +286,30 @@ export function LiveAgentDemo() {
                 <div className="flex items-center gap-3 text-foreground/50 text-[11px] uppercase tracking-[0.16em] mb-3">
                   <span>{result.agent}</span>
                   <span>·</span>
-                  <span>{result.provider}/{result.model}</span>
+                  <span>
+                    {result.provider}/{result.model}
+                  </span>
                   <span>·</span>
                   <span>{result.ms}ms</span>
-                  {result.tokens ? <><span>·</span><span>{result.tokens} tok</span></> : null}
+                  {result.tokens ? (
+                    <>
+                      <span>·</span>
+                      <span>{result.tokens} tok</span>
+                    </>
+                  ) : null}
                 </div>
-                <pre className="whitespace-pre-wrap font-mono text-foreground text-[13px] leading-relaxed">{result.output}</pre>
+                <pre className="whitespace-pre-wrap font-mono text-foreground text-[13px] leading-relaxed">
+                  {result.output}
+                </pre>
               </div>
             )}
           </div>
 
           {history.length > 1 && (
             <div className="border-t border-border pt-4">
-              <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">Recent</p>
+              <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
+                Recent
+              </p>
               <div className="flex flex-wrap gap-2">
                 {history.slice(1).map((h, i) => (
                   <button
@@ -265,7 +334,8 @@ export function LiveAgentDemo() {
                     Want us to actually run this?
                   </p>
                   <p className="text-sm text-foreground leading-relaxed mb-4">
-                    Drop your email. We&apos;ll score your prompt, route it to a senior, and send back a tailored plan within 24 hours.
+                    Drop your email. We&apos;ll score your prompt, route it to a senior, and send
+                    back a tailored plan within 24 hours.
                   </p>
                   <div className="grid sm:grid-cols-3 gap-2 mb-3">
                     <input
@@ -296,7 +366,7 @@ export function LiveAgentDemo() {
                     disabled={!email || submitting}
                     className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 h-11 rounded-full bg-primary hover:bg-primary/90 text-white text-sm font-medium transition-colors disabled:opacity-50"
                   >
-                    {submitting ? 'Sending…' : 'Send my plan →'}
+                    {submitting ? "Sending…" : "Send my plan →"}
                   </button>
                 </div>
               )}
@@ -323,7 +393,9 @@ export function LiveAgentDemo() {
                     <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-muted-foreground/60 mb-2">
                       Action
                     </p>
-                    <p className="font-display text-lg font-medium">{score.action.replace(/_/g, ' ')}</p>
+                    <p className="font-display text-lg font-medium">
+                      {score.action.replace(/_/g, " ")}
+                    </p>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-4 border-t border-border/60">
@@ -405,8 +477,8 @@ Worth 15 minutes to see if it'd work for {company}? No deck, no pitch — just t
   };
   return {
     agent,
-    output: map[agent].replace('{prompt}', prompt.slice(0, 60)),
-    provider: 'simulated',
+    output: map[agent].replace("{prompt}", prompt.slice(0, 60)),
+    provider: "simulated",
     model: agent,
     ms,
   };

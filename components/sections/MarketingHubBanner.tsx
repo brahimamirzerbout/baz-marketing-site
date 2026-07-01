@@ -7,8 +7,7 @@
 import { useEffect, useState } from "react";
 
 const HUB_URL =
-  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_HUB_URL) ||
-  "http://localhost:3001";
+  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_HUB_URL) || "http://localhost:3001";
 
 interface HubPulse {
   ok: boolean;
@@ -32,8 +31,12 @@ export function MarketingHubBanner() {
     async function load() {
       try {
         const [p, d] = await Promise.all([
-          fetch(`${HUB_URL}/api/triangle/health`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
-          fetch(`${HUB_URL}/api/dive/status`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+          fetch(`${HUB_URL}/api/triangle/health`)
+            .then((r) => (r.ok ? r.json() : null))
+            .catch(() => null),
+          fetch(`${HUB_URL}/api/dive/status`)
+            .then((r) => (r.ok ? r.json() : null))
+            .catch(() => null),
         ]);
         if (!cancelled) {
           setPulse(p);
@@ -52,9 +55,7 @@ export function MarketingHubBanner() {
   }, []);
 
   const fmtCurrency = (n: number) =>
-    n >= 1_000_000
-      ? `$${(n / 1_000_000).toFixed(1)}M`
-      : `$${Math.round(n).toLocaleString()}`;
+    n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(1)}M` : `$${Math.round(n).toLocaleString()}`;
 
   return (
     <section className="bg-primary text-foreground border-y border-ink-800 relative overflow-hidden">
@@ -69,9 +70,9 @@ export function MarketingHubBanner() {
               The marketing, sales, and finance loop — running itself.
             </h2>
             <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
-              Every contact scored. Every cadence stepped. Every outcome learned from. The
-              BAZ Marketing Hub is the operating system under everything we ship for clients —
-              and it runs whether we&apos;re watching or not.
+              Every contact scored. Every cadence stepped. Every outcome learned from. The BAZ
+              Marketing Hub is the operating system under everything we ship for clients — and it
+              runs whether we&apos;re watching or not.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -82,7 +83,17 @@ export function MarketingHubBanner() {
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-accent text-white font-medium hover:bg-primary/90 transition-colors"
               >
                 Open the Hub
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
                   <path d="M5 12h14M13 5l7 7-7 7" />
                 </svg>
               </a>
@@ -173,7 +184,11 @@ function Stat({
         {label}
       </div>
       <div className="font-display text-2xl font-medium tracking-[-0.02em] mt-1">{value}</div>
-      {sub && <div className="text-[10px] text-muted-foreground/60 dark:text-muted-foreground mt-0.5">{sub}</div>}
+      {sub && (
+        <div className="text-[10px] text-muted-foreground/60 dark:text-muted-foreground mt-0.5">
+          {sub}
+        </div>
+      )}
     </div>
   );
 }
@@ -188,7 +203,17 @@ function DotIcon({ color }: { color: string }) {
 
 function ShieldIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
   );

@@ -1,5 +1,5 @@
-import { testimonials } from '@/content/testimonials';
-import { Section, Eyebrow, SectionHeading, SectionLede } from '@/components/ui/Section';
+import { testimonials } from "@/content/testimonials";
+import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
 
 export function Testimonials() {
   return (
@@ -9,8 +9,8 @@ export function Testimonials() {
           <Eyebrow>In their words</Eyebrow>
           <SectionHeading>What senior-team actually feels like.</SectionHeading>
           <SectionLede>
-            Five clients on what changed when they stopped working with generalist pods and
-            started working with partners.
+            Five clients on what changed when they stopped working with generalist pods and started
+            working with partners.
           </SectionLede>
         </div>
       </div>
@@ -21,14 +21,18 @@ export function Testimonials() {
             className="reveal flex flex-col bg-background rounded-2xl p-6 md:p-7 border border-border dark:border-border dark:border-border"
             style={{ animationDelay: `${i * 80}ms` }}
           >
-            <span aria-hidden className="font-display text-5xl text-accent leading-none mb-3">&ldquo;</span>
+            <span aria-hidden className="font-display text-5xl text-accent leading-none mb-3">
+              &ldquo;
+            </span>
             <blockquote className="font-display text-xl md:text-2xl tracking-[-0.02em] leading-snug text-foreground">
               {t.quote}
             </blockquote>
             <figcaption className="mt-6 pt-4 border-t border-border dark:border-border flex items-center justify-between">
               <div>
                 <p className="font-medium text-foreground">{t.author}</p>
-                <p className="text-sm text-muted-foreground">{t.role} · {t.company}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t.role} · {t.company}
+                </p>
               </div>
               {t.metric && (
                 <span className="text-xs font-mono uppercase tracking-[0.15em] text-accent">

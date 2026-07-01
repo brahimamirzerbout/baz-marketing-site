@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useState, useCallback } from 'react';
-import type { Integration, IntegrationId } from '@/lib/integrations/catalog';
-import { CATEGORIES } from '@/lib/integrations/catalog';
+import { useEffect, useMemo, useState, useCallback } from "react";
+import type { Integration, IntegrationId } from "@/lib/integrations/catalog";
+import { CATEGORIES } from "@/lib/integrations/catalog";
 import {
   loadConnections,
   setConnection,
@@ -11,41 +11,43 @@ import {
   totalIntegrations,
   isConnected,
   statusText,
-} from '@/lib/integrations/store';
-import { integrations as catalog } from '@/lib/integrations/catalog';
+} from "@/lib/integrations/store";
+import { integrations as catalog } from "@/lib/integrations/catalog";
 
 const FILTERS = [
-  { id: 'all',        label: 'All' },
-  { id: 'comms',      label: CATEGORIES.comms },
-  { id: 'design',     label: CATEGORIES.design },
-  { id: 'engineering',label: CATEGORIES.engineering },
-  { id: 'finance',    label: CATEGORIES.finance },
-  { id: 'marketing',  label: CATEGORIES.marketing },
-  { id: 'automation', label: CATEGORIES.automation },
+  { id: "all", label: "All" },
+  { id: "comms", label: CATEGORIES.comms },
+  { id: "design", label: CATEGORIES.design },
+  { id: "engineering", label: CATEGORIES.engineering },
+  { id: "finance", label: CATEGORIES.finance },
+  { id: "marketing", label: CATEGORIES.marketing },
+  { id: "automation", label: CATEGORIES.automation },
 ] as const;
 
-type FilterId = typeof FILTERS[number]['id'] | 'all';
+type FilterId = (typeof FILTERS)[number]["id"] | "all";
 
 export function IntegrationsClient() {
   const [connections, setConnections] = useState<ReturnType<typeof loadConnections>>({});
-  const [filter, setFilter] = useState<FilterId>('all');
+  const [filter, setFilter] = useState<FilterId>("all");
   const [modal, setModal] = useState<Integration | null>(null);
   const [mounted, setMounted] = useState(false);
-  const [toast, setToast] = useState<{ msg: string; kind: 'ok' | 'warn' | 'info' } | null>(null);
+  const [toast, setToast] = useState<{ msg: string; kind: "ok" | "warn" | "info" } | null>(null);
 
   useEffect(() => {
     setConnections(loadConnections());
     setMounted(true);
   }, []);
 
-  const showToast = useCallback((msg: string, kind: 'ok' | 'warn' | 'info' = 'ok') => {
+  const showToast = useCallback((msg: string, kind: "ok" | "warn" | "info" = "ok") => {
     setToast({ msg, kind });
     setTimeout(() => setToast(null), 2500);
   }, []);
 
   const filtered = useMemo(() => {
-    if (filter === 'all') return catalog;
-    return catalog.filter((i) => i.categories.includes(filter as Integration['categories'][number]));
+    if (filter === "all") return catalog;
+    return catalog.filter((i) =>
+      i.categories.includes(filter as Integration["categories"][number]),
+    );
   }, [filter]);
 
   const connectedCount = mounted ? countConnected(connections) : 0;
@@ -54,20 +56,20 @@ export function IntegrationsClient() {
   function onConnect(id: IntegrationId) {
     setConnections(setConnection(id, true));
     const integ = catalog.find((i) => i.id === id)!;
-    showToast(`${integ.name} connected.`, 'ok');
+    showToast(`${integ.name} connected.`, "ok");
     setModal(null);
   }
 
   function onDisconnect(id: IntegrationId) {
     setConnections(setConnection(id, false));
     const integ = catalog.find((i) => i.id === id)!;
-    showToast(`${integ.name} disconnected.`, 'warn');
+    showToast(`${integ.name} disconnected.`, "warn");
     setModal(null);
   }
 
   function onReset() {
     setConnections(resetConnections());
-    showToast('Reset to defaults.', 'info');
+    showToast("Reset to defaults.", "info");
   }
 
   return (
@@ -79,13 +81,19 @@ export function IntegrationsClient() {
             Connected services
           </p>
           <p className="font-display text-3xl md:text-4xl font-medium tracking-[-0.03em]">
-            {mounted ? `${connectedCount} of ${total} active`
-                      : <span className="text-muted-foreground/40">— of {total} active</span>}
+            {mounted ? (
+              `${connectedCount} of ${total} active`
+            ) : (
+              <span className="text-muted-foreground/40">— of {total} active</span>
+            )}
           </p>
           <p className="mt-2 text-sm text-muted-foreground max-w-md">
-            Click any card to configure. Connection state is saved to this
-            browser. Real OAuth/API integrations require per-provider keys —
-            see <code className="font-mono text-xs bg-muted/70 px-1.5 py-0.5 rounded">README → Integrations</code>.
+            Click any card to configure. Connection state is saved to this browser. Real OAuth/API
+            integrations require per-provider keys — see{" "}
+            <code className="font-mono text-xs bg-muted/70 px-1.5 py-0.5 rounded">
+              README → Integrations
+            </code>
+            .
           </p>
         </div>
         <button
@@ -106,14 +114,18 @@ export function IntegrationsClient() {
             onClick={() => setFilter(f.id as FilterId)}
             className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors ${
               filter === f.id
-                ? 'bg-primary text-foreground border border-foreground'
-                : 'bg-card border border-border text-foreground hover:border-ink-400'
+                ? "bg-primary text-foreground border border-foreground"
+                : "bg-card border border-border text-foreground hover:border-ink-400"
             }`}
           >
             {f.label}
-            {f.id !== 'all' && (
+            {f.id !== "all" && (
               <span className="font-mono text-[10px] opacity-70">
-                {catalog.filter((i) => i.categories.includes(f.id as Integration['categories'][number])).length}
+                {
+                  catalog.filter((i) =>
+                    i.categories.includes(f.id as Integration["categories"][number]),
+                  ).length
+                }
               </span>
             )}
           </button>
@@ -124,7 +136,7 @@ export function IntegrationsClient() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map((integ) => {
           const connected = mounted ? isConnected(integ.id, connections) : true;
-          const dotColor = connected ? 'var(--success, #3ddc97)' : 'var(--muted, #7e7e79)';
+          const dotColor = connected ? "var(--success, #3ddc97)" : "var(--muted, #7e7e79)";
           return (
             <button
               key={integ.id}
@@ -151,7 +163,9 @@ export function IntegrationsClient() {
                       aria-hidden
                     />
                     <span className="truncate">
-                      {mounted ? statusText(integ.id, connections, integ.defaultStatus) : integ.defaultStatus}
+                      {mounted
+                        ? statusText(integ.id, connections, integ.defaultStatus)
+                        : integ.defaultStatus}
                     </span>
                   </div>
                 </div>
@@ -201,15 +215,15 @@ export function IntegrationsClient() {
           role="status"
           aria-live="polite"
           className="fixed bottom-6 right-6 z-50 pointer-events-none"
-          style={{ animation: 'bz-fade-in .2s ease both' }}
+          style={{ animation: "bz-fade-in .2s ease both" }}
         >
           <div
             className={`pointer-events-auto px-5 py-3 rounded-2xl shadow-lift text-sm font-medium ${
-              toast.kind === 'ok'
-                ? 'bg-primary text-foreground'
-                : toast.kind === 'warn'
-                ? 'bg-amber-500 text-white'
-                : 'bg-muted border border-border text-foreground'
+              toast.kind === "ok"
+                ? "bg-primary text-foreground"
+                : toast.kind === "warn"
+                  ? "bg-amber-500 text-white"
+                  : "bg-muted border border-border text-foreground"
             }`}
           >
             {toast.msg}
@@ -235,12 +249,14 @@ function IntegrationModal({
 }) {
   // Close on Escape, lock body scroll while open
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', onKey);
-    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
     return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
     };
   }, [onClose]);
 
@@ -249,13 +265,15 @@ function IntegrationModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby={`int-modal-${integration.id}`}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm"
-      style={{ animation: 'bz-fade-in .18s ease both' }}
+      style={{ animation: "bz-fade-in .18s ease both" }}
     >
       <div
         className="bg-card rounded-2xl border border-border w-full max-w-md overflow-hidden"
-        style={{ animation: 'bz-pop-in .22s cubic-bezier(.2,.9,.3,1.2) both' }}
+        style={{ animation: "bz-pop-in .22s cubic-bezier(.2,.9,.3,1.2) both" }}
       >
         <div className="flex items-start gap-4 p-6">
           <span
@@ -266,17 +284,22 @@ function IntegrationModal({
             {integration.icon}
           </span>
           <div className="flex-1 min-w-0">
-            <h2 id={`int-modal-${integration.id}`} className="font-display text-xl font-medium tracking-[-0.02em]">
+            <h2
+              id={`int-modal-${integration.id}`}
+              className="font-display text-xl font-medium tracking-[-0.02em]"
+            >
               {integration.name}
             </h2>
             <div className="mt-1 flex items-center gap-2 text-xs">
               <span
                 className="inline-block w-1.5 h-1.5 rounded-full"
-                style={{ background: connected ? 'var(--success, #3ddc97)' : 'var(--muted, #7e7e79)' }}
+                style={{
+                  background: connected ? "var(--success, #3ddc97)" : "var(--muted, #7e7e79)",
+                }}
                 aria-hidden
               />
-              <span className={connected ? 'text-foreground' : 'text-muted-foreground'}>
-                {connected ? integration.defaultStatus : 'Available — connect to enable'}
+              <span className={connected ? "text-foreground" : "text-muted-foreground"}>
+                {connected ? integration.defaultStatus : "Available — connect to enable"}
               </span>
             </div>
           </div>
@@ -295,20 +318,39 @@ function IntegrationModal({
 
           <div className="mt-5 rounded-xl bg-muted p-4 border border-border">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">
-              {connected ? 'Currently connected' : 'What connecting does'}
+              {connected ? "Currently connected" : "What connecting does"}
             </p>
             <ul className="space-y-1.5 text-sm text-foreground">
               {connected ? (
                 <>
-                  <li className="flex items-start gap-2"><span className="text-success">✓</span> {integration.defaultStatus}</li>
-                  <li className="flex items-start gap-2"><span className="text-success">✓</span> Events sync to your BAZ dashboard</li>
-                  <li className="flex items-start gap-2"><span className="text-success">✓</span> Webhooks fire on activity</li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span> {integration.defaultStatus}
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span> Events sync to your BAZ dashboard
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-success">✓</span> Webhooks fire on activity
+                  </li>
                 </>
               ) : (
                 <>
-                  <li className="flex items-start gap-2"><span aria-hidden>·</span> Authorize BAZ to read &amp; write on your behalf</li>
-                  <li className="flex items-start gap-2"><span aria-hidden>·</span> Surface events in <code className="font-mono text-xs bg-card px-1.5 py-0.5 rounded">/admin/leads</code> &amp; <code className="font-mono text-xs bg-card px-1.5 py-0.5 rounded">/admin/monitors</code></li>
-                  <li className="flex items-start gap-2"><span aria-hidden>·</span> OAuth token stored encrypted in your browser session</li>
+                  <li className="flex items-start gap-2">
+                    <span aria-hidden>·</span> Authorize BAZ to read &amp; write on your behalf
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span aria-hidden>·</span> Surface events in{" "}
+                    <code className="font-mono text-xs bg-card px-1.5 py-0.5 rounded">
+                      /admin/leads
+                    </code>{" "}
+                    &amp;{" "}
+                    <code className="font-mono text-xs bg-card px-1.5 py-0.5 rounded">
+                      /admin/monitors
+                    </code>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span aria-hidden>·</span> OAuth token stored encrypted in your browser session
+                  </li>
                 </>
               )}
             </ul>

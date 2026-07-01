@@ -2,10 +2,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
   return (
     <div className="grid gap-px bg-muted dark:bg-muted rounded-2xl overflow-hidden border border-border dark:border-border dark:border-border dark:border-border">
       {items.map((item, i) => (
-        <details
-          key={i}
-          className="group bg-background open:bg-card transition-colors"
-        >
+        <details key={i} className="group bg-background open:bg-card transition-colors">
           <summary className="flex items-start justify-between gap-6 cursor-pointer p-6 md:p-8 list-none">
             <span className="font-display text-xl md:text-2xl tracking-[-0.02em] leading-snug">
               {item.q}

@@ -14,7 +14,7 @@
  *   if (result.ok) ... else handle(result.error);
  */
 
-export type LlmProvider = 'openai' | 'anthropic' | 'ollama' | 'stub';
+export type LlmProvider = "openai" | "anthropic" | "ollama" | "stub";
 
 export interface LlmConfig {
   provider: LlmProvider;
@@ -40,10 +40,16 @@ interface CompleteArgs {
   temperature?: number;
 }
 
-const PROVIDERS: Record<Exclude<LlmProvider, 'stub'>, { url: string | null; defaultModel: string }> = {
-  openai:    { url: 'https://api.openai.com/v1/chat/completions', defaultModel: 'gpt-4o-mini' },
-  anthropic: { url: 'https://api.anthropic.com/v1/messages',     defaultModel: 'claude-3-5-haiku-latest' },
-  ollama:    { url: null,                                          defaultModel: 'llama3.1' },
+const PROVIDERS: Record<
+  Exclude<LlmProvider, "stub">,
+  { url: string | null; defaultModel: string }
+> = {
+  openai: { url: "https://api.openai.com/v1/chat/completions", defaultModel: "gpt-4o-mini" },
+  anthropic: {
+    url: "https://api.anthropic.com/v1/messages",
+    defaultModel: "claude-3-5-haiku-latest",
+  },
+  ollama: { url: null, defaultModel: "llama3.1" },
 };
 
 /**
@@ -53,28 +59,28 @@ const PROVIDERS: Record<Exclude<LlmProvider, 'stub'>, { url: string | null; defa
 export function getLlmConfig(): LlmConfig | null {
   const forced = process.env.AI_PROVIDER?.toLowerCase();
 
-  if (forced === 'stub' || (forced === undefined && !hasAnyKey())) {
+  if (forced === "stub" || (forced === undefined && !hasAnyKey())) {
     return null; // stub mode — caller should handle via complete()
   }
-  if (forced === 'openai' || (forced === undefined && process.env.OPENAI_API_KEY)) {
+  if (forced === "openai" || (forced === undefined && process.env.OPENAI_API_KEY)) {
     return {
-      provider: 'openai',
+      provider: "openai",
       key: process.env.OPENAI_API_KEY!,
       model: process.env.OPENAI_MODEL || PROVIDERS.openai.defaultModel,
       url: PROVIDERS.openai.url,
     };
   }
-  if (forced === 'anthropic' || (forced === undefined && process.env.ANTHROPIC_API_KEY)) {
+  if (forced === "anthropic" || (forced === undefined && process.env.ANTHROPIC_API_KEY)) {
     return {
-      provider: 'anthropic',
+      provider: "anthropic",
       key: process.env.ANTHROPIC_API_KEY!,
       model: process.env.ANTHROPIC_MODEL || PROVIDERS.anthropic.defaultModel,
       url: PROVIDERS.anthropic.url,
     };
   }
-  if (forced === 'ollama' || (forced === undefined && process.env.OLLAMA_HOST)) {
+  if (forced === "ollama" || (forced === undefined && process.env.OLLAMA_HOST)) {
     return {
-      provider: 'ollama',
+      provider: "ollama",
       key: null,
       model: process.env.OLLAMA_MODEL || PROVIDERS.ollama.defaultModel,
       url: `${process.env.OLLAMA_HOST}/api/chat`,
@@ -85,9 +91,7 @@ export function getLlmConfig(): LlmConfig | null {
 
 function hasAnyKey(): boolean {
   return Boolean(
-    process.env.OPENAI_API_KEY ||
-    process.env.ANTHROPIC_API_KEY ||
-    process.env.OLLAMA_HOST,
+    process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY || process.env.OLLAMA_HOST,
   );
 }
 
@@ -103,16 +107,26 @@ export async function complete(args: CompleteArgs): Promise<LlmResult> {
       provider: null,
       model: null,
       text: null,
-      error: 'no_provider_configured',
+      error: "no_provider_configured",
     };
   }
 
   try {
     switch (cfg.provider) {
-      case 'openai':    return await callOpenAI(cfg, args);
-      case 'anthropic': return await callAnthropic(cfg, args);
-      case 'ollama':    return await callOllama(cfg, args);
-      default:          return { ok: false, provider: cfg.provider, model: cfg.model, text: null, error: 'unsupported_provider' };
+      case "openai":
+        return await callOpenAI(cfg, args);
+      case "anthropic":
+        return await callAnthropic(cfg, args);
+      case "ollama":
+        return await callOllama(cfg, args);
+      default:
+        return {
+          ok: false,
+          provider: cfg.provider,
+          model: cfg.model,
+          text: null,
+          error: "unsupported_provider",
+        };
     }
   } catch (err) {
     return {
@@ -120,82 +134,98 @@ export async function complete(args: CompleteArgs): Promise<LlmResult> {
       provider: cfg.provider,
       model: cfg.model,
       text: null,
-      error: err instanceof Error ? err.message : 'unknown_error',
+      error: err instanceof Error ? err.message : "unknown_error",
     };
   }
 }
 
 async function callOpenAI(cfg: LlmConfig, args: CompleteArgs): Promise<LlmResult> {
   const r = await fetch(cfg.url!, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${cfg.key}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${cfg.key}`,
     },
     body: JSON.stringify({
       model: cfg.model,
       messages: [
-        ...(args.system ? [{ role: 'system', content: args.system }] : []),
-        { role: 'user', content: args.prompt },
+        ...(args.system ? [{ role: "system", content: args.system }] : []),
+        { role: "user", content: args.prompt },
       ],
       max_tokens: args.maxTokens ?? 1024,
       temperature: args.temperature ?? 0.7,
     }),
   });
   if (!r.ok) {
-    const body = await r.text().catch(() => '');
-    return { ok: false, provider: 'openai', model: cfg.model, text: null, error: `openai_${r.status}: ${body.slice(0, 200)}` };
+    const body = await r.text().catch(() => "");
+    return {
+      ok: false,
+      provider: "openai",
+      model: cfg.model,
+      text: null,
+      error: `openai_${r.status}: ${body.slice(0, 200)}`,
+    };
   }
   const j = await r.json();
   const text = j.choices?.[0]?.message?.content ?? null;
-  const usage = j.usage ? {
-    input: j.usage.prompt_tokens ?? 0,
-    output: j.usage.completion_tokens ?? 0,
-    total: j.usage.total_tokens ?? 0,
-  } : undefined;
-  return { ok: true, provider: 'openai', model: cfg.model, text, usage };
+  const usage = j.usage
+    ? {
+        input: j.usage.prompt_tokens ?? 0,
+        output: j.usage.completion_tokens ?? 0,
+        total: j.usage.total_tokens ?? 0,
+      }
+    : undefined;
+  return { ok: true, provider: "openai", model: cfg.model, text, usage };
 }
 
 async function callAnthropic(cfg: LlmConfig, args: CompleteArgs): Promise<LlmResult> {
   const r = await fetch(cfg.url!, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': cfg.key!,
-      'anthropic-version': '2023-06-01',
+      "Content-Type": "application/json",
+      "x-api-key": cfg.key!,
+      "anthropic-version": "2023-06-01",
     },
     body: JSON.stringify({
       model: cfg.model,
       max_tokens: args.maxTokens ?? 1024,
       temperature: args.temperature ?? 0.7,
       system: args.system,
-      messages: [{ role: 'user', content: args.prompt }],
+      messages: [{ role: "user", content: args.prompt }],
     }),
   });
   if (!r.ok) {
-    const body = await r.text().catch(() => '');
-    return { ok: false, provider: 'anthropic', model: cfg.model, text: null, error: `anthropic_${r.status}: ${body.slice(0, 200)}` };
+    const body = await r.text().catch(() => "");
+    return {
+      ok: false,
+      provider: "anthropic",
+      model: cfg.model,
+      text: null,
+      error: `anthropic_${r.status}: ${body.slice(0, 200)}`,
+    };
   }
   const j = await r.json();
   const text = j.content?.[0]?.text ?? null;
-  const usage = j.usage ? {
-    input: j.usage.input_tokens ?? 0,
-    output: j.usage.output_tokens ?? 0,
-    total: (j.usage.input_tokens ?? 0) + (j.usage.output_tokens ?? 0),
-  } : undefined;
-  return { ok: true, provider: 'anthropic', model: cfg.model, text, usage };
+  const usage = j.usage
+    ? {
+        input: j.usage.input_tokens ?? 0,
+        output: j.usage.output_tokens ?? 0,
+        total: (j.usage.input_tokens ?? 0) + (j.usage.output_tokens ?? 0),
+      }
+    : undefined;
+  return { ok: true, provider: "anthropic", model: cfg.model, text, usage };
 }
 
 async function callOllama(cfg: LlmConfig, args: CompleteArgs): Promise<LlmResult> {
   const r = await fetch(cfg.url!, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       model: cfg.model,
       stream: false,
       messages: [
-        ...(args.system ? [{ role: 'system', content: args.system }] : []),
-        { role: 'user', content: args.prompt },
+        ...(args.system ? [{ role: "system", content: args.system }] : []),
+        { role: "user", content: args.prompt },
       ],
       options: {
         num_predict: args.maxTokens ?? 1024,
@@ -204,18 +234,28 @@ async function callOllama(cfg: LlmConfig, args: CompleteArgs): Promise<LlmResult
     }),
   });
   if (!r.ok) {
-    return { ok: false, provider: 'ollama', model: cfg.model, text: null, error: `ollama_${r.status}` };
+    return {
+      ok: false,
+      provider: "ollama",
+      model: cfg.model,
+      text: null,
+      error: `ollama_${r.status}`,
+    };
   }
   const j = await r.json();
   const text = j.message?.content ?? null;
-  return { ok: true, provider: 'ollama', model: cfg.model, text };
+  return { ok: true, provider: "ollama", model: cfg.model, text };
 }
 
 /** Returns the current provider name (or 'stub' if no keys) — used by /admin/monitors. */
-export function llmStatus(): { provider: LlmProvider | 'unconfigured'; model: string | null; keysPresent: Record<string, boolean> } {
+export function llmStatus(): {
+  provider: LlmProvider | "unconfigured";
+  model: string | null;
+  keysPresent: Record<string, boolean>;
+} {
   const cfg = getLlmConfig();
   return {
-    provider: cfg?.provider ?? 'unconfigured',
+    provider: cfg?.provider ?? "unconfigured",
     model: cfg?.model ?? null,
     keysPresent: {
       openai: Boolean(process.env.OPENAI_API_KEY),

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { Section, Eyebrow, SectionHeading, SectionLede } from '@/components/ui/Section';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import Link from "next/link";
+import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 
 /**
  * Performance Marketing feature strip — a deeper-than-the-grid showcase of
@@ -20,18 +20,30 @@ export function PerformanceFeature() {
     <Section tone="paper" size="lg" id="performance-marketing-feature">
       <div className="grid lg:grid-cols-12 gap-10 mb-12">
         <div className="lg:col-span-7">
-          <Badge variant="warning" className="mb-5">02 · Featured service</Badge>
+          <Badge variant="warning" className="mb-5">
+            02 · Featured service
+          </Badge>
           <SectionHeading>Performance Marketing that compounds.</SectionHeading>
           <SectionLede>
-            Paid search, paid social, programmatic, and connected TV — built on
-            clean tracking, real attribution, and creative that converts. We
-            treat ad spend as a portfolio, not a slot machine.
+            Paid search, paid social, programmatic, and connected TV — built on clean tracking, real
+            attribution, and creative that converts. We treat ad spend as a portfolio, not a slot
+            machine.
           </SectionLede>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button href="/services/performance-marketing" variant="primary" size="lg" trackAs="perf_feature_primary">
+            <Button
+              href="/services/performance-marketing"
+              variant="primary"
+              size="lg"
+              trackAs="perf_feature_primary"
+            >
               See the full offer →
             </Button>
-            <Button href="/contact?service=performance-marketing" variant="outline" size="lg" trackAs="perf_feature_audit">
+            <Button
+              href="/contact?service=performance-marketing"
+              variant="outline"
+              size="lg"
+              trackAs="perf_feature_audit"
+            >
               Get a paid audit
             </Button>
           </div>
@@ -54,9 +66,8 @@ export function PerformanceFeature() {
             From tracking gaps to scale in 12 weeks.
           </h3>
           <p className="mt-4 text-muted-foreground max-w-md leading-relaxed">
-            Every Performance Marketing engagement follows the same 5-phase loop.
-            The shape is repeatable; the work is bespoke to your funnel, your
-            creative, and your unit economics.
+            Every Performance Marketing engagement follows the same 5-phase loop. The shape is
+            repeatable; the work is bespoke to your funnel, your creative, and your unit economics.
           </p>
         </div>
 
@@ -94,7 +105,10 @@ export function PerformanceFeature() {
       <div className="mt-16 pt-10 border-t border-border dark:border-border">
         <div className="flex flex-wrap items-baseline justify-between gap-4 mb-6">
           <Eyebrow>Selected outcomes</Eyebrow>
-          <Link href="/case-studies" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
+          <Link
+            href="/case-studies"
+            className="text-sm font-medium text-foreground hover:text-accent transition-colors"
+          >
             All case studies →
           </Link>
         </div>
@@ -157,9 +171,7 @@ function FunnelStep({
         {week}
       </span>
       <div className="flex-1 min-w-[200px]">
-        <h4 className="font-display text-lg md:text-xl font-medium tracking-[-0.02em]">
-          {title}
-        </h4>
+        <h4 className="font-display text-lg md:text-xl font-medium tracking-[-0.02em]">{title}</h4>
         <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{detail}</p>
       </div>
       <span className="font-display text-sm md:text-lg font-medium text-primary dark:text-accent whitespace-nowrap truncate max-w-full">

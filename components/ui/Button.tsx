@@ -1,35 +1,32 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { cn } from '@/lib/cn';
-import { trackedClick } from '@/lib/analytics';
-import type { ComponentProps, ReactNode } from 'react';
+import Link from "next/link";
+import { cn } from "@/lib/cn";
+import { trackedClick } from "@/lib/analytics";
+import type { ComponentProps, ReactNode } from "react";
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'soft';
-type Size = 'sm' | 'md' | 'lg';
+type Variant = "primary" | "secondary" | "ghost" | "outline" | "soft";
+type Size = "sm" | "md" | "lg";
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200 ' +
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ' +
-  'focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
+  "inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200 " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 " +
+  "focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md hover:-translate-y-px',
+    "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md hover:-translate-y-px",
   secondary:
-    'bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-md hover:-translate-y-px',
-  ghost:
-    'bg-transparent text-foreground hover:bg-muted',
-  outline:
-    'bg-transparent text-foreground border border-border hover:bg-muted',
-  soft:
-    'bg-muted text-foreground hover:bg-muted/70',
+    "bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-md hover:-translate-y-px",
+  ghost: "bg-transparent text-foreground hover:bg-muted",
+  outline: "bg-transparent text-foreground border border-border hover:bg-muted",
+  soft: "bg-muted text-foreground hover:bg-muted/70",
 };
 
 const sizes: Record<Size, string> = {
-  sm: 'h-9 px-4 text-sm',
-  md: 'h-10 px-5 text-sm',
-  lg: 'h-12 px-7 text-base',
+  sm: "h-9 px-4 text-sm",
+  md: "h-10 px-5 text-sm",
+  lg: "h-12 px-7 text-base",
 };
 
 type CommonProps = {
@@ -47,26 +44,27 @@ type ButtonAsLinkProps = CommonProps & {
   onClick?: never;
 };
 
-type ButtonAsButtonProps = CommonProps & ComponentProps<'button'> & {
-  href?: never;
-};
+type ButtonAsButtonProps = CommonProps &
+  ComponentProps<"button"> & {
+    href?: never;
+  };
 
 export type ButtonProps = ButtonAsLinkProps | ButtonAsButtonProps;
 
 export function Button(props: ButtonProps) {
   const {
-    variant = 'primary',
-    size = 'md',
+    variant = "primary",
+    size = "md",
     className,
     children,
     trackAs,
     trackPayload,
     ...rest
-  } = props as any;
+  } = props as React.ComponentProps<"button">;
 
   const classes = cn(base, variants[variant], sizes[size], className);
 
-  if ('href' in props && props.href) {
+  if ("href" in props && props.href) {
     const { href, external } = props;
     if (external) {
       return (

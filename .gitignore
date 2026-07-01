@@ -56,3 +56,4 @@ playwright/.cache/
 # Secrets / credentials
 .env.production
 content/_NEW_TESTIMONIALS.ts
+supabase branch

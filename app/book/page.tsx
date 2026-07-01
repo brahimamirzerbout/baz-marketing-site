@@ -1,11 +1,12 @@
-import Link from 'next/link';
-import { Section, Eyebrow } from '@/components/ui/Section';
-import { Button } from '@/components/ui/Button';
-import { site } from '@/lib/site';
+import Link from "next/link";
+import { Section, Eyebrow } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { site } from "@/lib/site";
 
 export const metadata = {
-  title: 'Book a growth call',
-  description: '20 minutes with a senior partner. We review your funnel, channels, and unit economics.',
+  title: "Book a growth call",
+  description:
+    "20 minutes with a senior partner. We review your funnel, channels, and unit economics.",
   robots: { index: false, follow: false },
 };
 
@@ -26,7 +27,7 @@ export default function BookPage() {
           Taking you to the booking page…
         </h1>
         <p className="mt-6 text-muted-foreground">
-          If you are not redirected,{' '}
+          If you are not redirected,{" "}
           <a href={site.bookingUrl} className="underline">
             click here
           </a>
@@ -44,10 +45,9 @@ export default function BookPage() {
         Send us three time windows.
       </h1>
       <p className="mt-6 text-lg text-muted-foreground max-w-xl">
-        We don&rsquo;t use a scheduling tool yet — we reply personally to set up
-        a 20-minute audit. Email us three windows that work in the next two
-        weeks (Algiers / EU / US time zones) and we&rsquo;ll confirm one within
-        one business day.
+        We don&rsquo;t use a scheduling tool yet — we reply personally to set up a 20-minute audit.
+        Email us three windows that work in the next two weeks (Algiers / EU / US time zones) and
+        we&rsquo;ll confirm one within one business day.
       </p>
 
       <div className="mt-10 flex flex-col sm:flex-row gap-3">
@@ -60,7 +60,7 @@ export default function BookPage() {
       </div>
 
       <p className="mt-12 text-sm text-muted-foreground">
-        Prefer to type it out?{' '}
+        Prefer to type it out?{" "}
         <a href={`mailto:${site.email}`} className="underline">
           {site.email}
         </a>

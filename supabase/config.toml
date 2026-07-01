@@ -1,0 +1,44 @@
+# Supabase project config for BAZ Marketing Agency
+# https://supabase.com/docs/guides/local-development/cli/config
+
+project_id = "nextjs-a"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54323
+major_version = 17
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://uyqgmdrzyapbbvmaumvk.supabase.co"]
+jwt_expiry = 3600
+refresh_token_rotation_enabled = true
+refresh_token_reuse_interval = 10
+enable_signup = true
+enable_anonymous_sign_ins = false
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false
+
+[edge_runtime]
+enabled = true
+policy = "per_write_only"
+
+# Functions using @supabase/server with non-"user" auth modes
+# must set verify_jwt = false so the runtime doesn't reject the
+# request before withSupabase can inspect credentials.
+[edge_runtime.functions."api-leads"]
+verify_jwt = false
+
+[edge_runtime.functions."api-health"]
+verify_jwt = false

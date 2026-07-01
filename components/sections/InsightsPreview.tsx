@@ -1,15 +1,18 @@
-import Link from 'next/link';
-import { posts } from '@/content/posts';
-import { Section, Eyebrow, SectionHeading, SectionLede } from '@/components/ui/Section';
-import { Badge } from '@/components/ui/Badge';
+import Link from "next/link";
+import { posts } from "@/content/posts";
+import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
+import { Badge } from "@/components/ui/Badge";
 
-const categoryLabel: Record<string, { name: string; tone: 'accent' | 'info' | 'success' | 'warning' }> = {
-  strategy: { name: 'Strategy', tone: 'accent' },
-  seo: { name: 'SEO', tone: 'info' },
-  paid: { name: 'Paid', tone: 'warning' },
-  analytics: { name: 'Analytics', tone: 'success' },
-  content: { name: 'Content', tone: 'accent' },
-  ai: { name: 'AI', tone: 'info' },
+const categoryLabel: Record<
+  string,
+  { name: string; tone: "accent" | "info" | "success" | "warning" }
+> = {
+  strategy: { name: "Strategy", tone: "accent" },
+  seo: { name: "SEO", tone: "info" },
+  paid: { name: "Paid", tone: "warning" },
+  analytics: { name: "Analytics", tone: "success" },
+  content: { name: "Content", tone: "accent" },
+  ai: { name: "AI", tone: "info" },
 };
 
 export function InsightsPreview() {
@@ -21,8 +24,8 @@ export function InsightsPreview() {
           <Eyebrow>From the playbook</Eyebrow>
           <SectionHeading>Insights, not blog spam.</SectionHeading>
           <SectionLede>
-            Six-pillar perspectives on what's actually working in growth marketing — written
-            by the partners, not by content mills.
+            Six-pillar perspectives on what's actually working in growth marketing — written by the
+            partners, not by content mills.
           </SectionLede>
         </div>
         <div className="lg:col-span-5 flex items-end lg:justify-end">
@@ -47,7 +50,9 @@ export function InsightsPreview() {
             >
               <div className="flex items-center justify-between mb-6">
                 <Badge variant={cat.tone}>{cat.name}</Badge>
-                <span className="text-xs text-muted-foreground/60 font-mono">{p.readingMin} min read</span>
+                <span className="text-xs text-muted-foreground/60 font-mono">
+                  {p.readingMin} min read
+                </span>
               </div>
               <h3 className="font-display text-2xl font-medium tracking-[-0.02em] leading-tight">
                 {p.title}
@@ -55,7 +60,9 @@ export function InsightsPreview() {
               <p className="mt-3 text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>
               <div className="mt-auto pt-6 flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">{p.author}</span>
-                <span className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">Read →</span>
+                <span className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">
+                  Read →
+                </span>
               </div>
             </Link>
           );

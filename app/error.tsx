@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { motion } from 'motion/react';
+import Link from "next/link";
+import { motion } from "motion/react";
 
 export default function Error({
   error,
@@ -35,7 +35,8 @@ export default function Error({
             transition={{ delay: 0.2 }}
             className="mt-6 text-lg text-muted-foreground"
           >
-            {error.message || 'An unexpected error occurred. Try again, or get in touch if it persists.'}
+            {error.message ||
+              "An unexpected error occurred. Try again, or get in touch if it persists."}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}

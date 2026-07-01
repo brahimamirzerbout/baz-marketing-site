@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 interface Hit {
   type: string;
@@ -12,17 +12,17 @@ interface Hit {
 }
 
 const TYPE_LABELS: Record<string, string> = {
-  service: 'Service',
-  'case-study': 'Case study',
-  industry: 'Industry',
-  post: 'Insight',
-  team: 'Team',
-  pricing: 'Pricing',
+  service: "Service",
+  "case-study": "Case study",
+  industry: "Industry",
+  post: "Insight",
+  team: "Team",
+  pricing: "Pricing",
 };
 
 export function SearchBox() {
   const [open, setOpen] = useState(false);
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
   const [busy, setBusy] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -31,15 +31,15 @@ export function SearchBox() {
   // Keyboard shortcut: ⌘K / Ctrl+K
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setOpen((v) => !v);
-      } else if (e.key === 'Escape') {
+      } else if (e.key === "Escape") {
         setOpen(false);
       }
     }
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, []);
 
   // Focus when opened
@@ -52,21 +52,27 @@ export function SearchBox() {
     function onDoc(e: MouseEvent) {
       if (!containerRef.current?.contains(e.target as Node)) setOpen(false);
     }
-    document.addEventListener('mousedown', onDoc);
-    return () => document.removeEventListener('mousedown', onDoc);
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
   }, []);
 
   // Search
   useEffect(() => {
-    if (!q.trim()) { setHits([]); return; }
+    if (!q.trim()) {
+      setHits([]);
+      return;
+    }
     setBusy(true);
     const t = setTimeout(async () => {
       try {
         const r = await fetch(`/api/search?q=${encodeURIComponent(q.trim())}`);
         const j = await r.json();
         if (j.ok) setHits(j.hits ?? []);
-      } catch { /* ignore */ }
-      finally { setBusy(false); }
+      } catch {
+        /* ignore */
+      } finally {
+        setBusy(false);
+      }
     }, 150);
     return () => clearTimeout(t);
   }, [q]);
@@ -79,7 +85,15 @@ export function SearchBox() {
         aria-label="Search (⌘K)"
         className="hidden lg:inline-flex items-center gap-2 h-9 px-3 rounded-full bg-muted hover:bg-muted/70 text-foreground text-xs"
       >
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+        <svg
+          viewBox="0 0 24 24"
+          width="14"
+          height="14"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          aria-hidden
+        >
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3-3" />
         </svg>
@@ -88,13 +102,24 @@ export function SearchBox() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-primary/40 backdrop-blur-sm" onClick={() => setOpen(false)}>
+        <div
+          className="fixed inset-0 z-50 bg-primary/40 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        >
           <div
             className="absolute top-24 left-1/2 -translate-x-1/2 w-[min(640px,calc(100vw-32px))] bg-card rounded-2xl border border-border shadow-lift overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 px-5 py-4 border-b border-border">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                aria-hidden
+              >
                 <circle cx="11" cy="11" r="7" />
                 <path d="m20 20-3-3" />
               </svg>
@@ -106,7 +131,9 @@ export function SearchBox() {
                 placeholder="Search services, case studies, insights…"
                 className="flex-1 bg-transparent outline-none text-foreground placeholder:text-muted-foreground/60 text-base"
               />
-              <kbd className="font-mono text-[10px] text-muted-foreground px-2 py-1 rounded bg-muted">esc</kbd>
+              <kbd className="font-mono text-[10px] text-muted-foreground px-2 py-1 rounded bg-muted">
+                esc
+              </kbd>
             </div>
 
             <div className="max-h-96 overflow-y-auto">
@@ -119,7 +146,9 @@ export function SearchBox() {
                 <div className="px-5 py-6 text-sm text-muted-foreground">Searching…</div>
               )}
               {q.trim() && !busy && hits.length === 0 && (
-                <div className="px-5 py-6 text-sm text-muted-foreground">No matches for &ldquo;{q}&rdquo;.</div>
+                <div className="px-5 py-6 text-sm text-muted-foreground">
+                  No matches for &ldquo;{q}&rdquo;.
+                </div>
               )}
               {hits.length > 0 && (
                 <ul className="divide-y divide-ink-100">

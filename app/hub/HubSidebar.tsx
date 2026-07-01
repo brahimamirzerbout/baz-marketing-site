@@ -1,64 +1,81 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
-  Rocket, Activity, Brain, LayoutDashboard, Target, Zap,
-  GitBranch, BarChart3, Search, Mail, Globe, Newspaper,
-  Users, Settings, CreditCard, ShieldCheck, FileText,
-  ChevronDown, Menu, X, ArrowLeft
-} from 'lucide-react';
-import { cn } from '@/lib/beui/utils';
+  Rocket,
+  Activity,
+  Brain,
+  LayoutDashboard,
+  Target,
+  Zap,
+  GitBranch,
+  BarChart3,
+  Search,
+  Mail,
+  Globe,
+  Newspaper,
+  Users,
+  Settings,
+  CreditCard,
+  ShieldCheck,
+  FileText,
+  ChevronDown,
+  Menu,
+  X,
+  ArrowLeft,
+} from "lucide-react";
+import { cn } from "@/lib/beui/utils";
 
 const NAV_GROUPS = [
   {
-    group: 'Command',
+    group: "Command",
     items: [
-      { href: '/hub', label: 'Dashboard', icon: LayoutDashboard },
-      { href: '/hub/cockpit', label: 'Cockpit', icon: Rocket },
-      { href: '/hub/triangle', label: 'Triangle Loop', icon: Activity },
-      { href: '/hub/nova', label: 'Nova AI', icon: Brain },
+      { href: "/hub", label: "Dashboard", icon: LayoutDashboard },
+      { href: "/hub/cockpit", label: "Cockpit", icon: Rocket },
+      { href: "/hub/triangle", label: "Triangle Loop", icon: Activity },
+      { href: "/hub/nova", label: "Nova AI", icon: Brain },
     ],
   },
   {
-    group: 'Grow',
+    group: "Grow",
     items: [
-      { href: '/hub/sequences', label: 'Sequences', icon: Zap },
-      { href: '/hub/attribution', label: 'Attribution', icon: GitBranch },
-      { href: '/hub/analytics', label: 'Analytics', icon: BarChart3 },
-      { href: '/hub/seo', label: 'SEO Toolkit', icon: Search },
+      { href: "/hub/sequences", label: "Sequences", icon: Zap },
+      { href: "/hub/attribution", label: "Attribution", icon: GitBranch },
+      { href: "/hub/analytics", label: "Analytics", icon: BarChart3 },
+      { href: "/hub/seo", label: "SEO Toolkit", icon: Search },
     ],
   },
   {
-    group: 'Create',
+    group: "Create",
     items: [
-      { href: '/hub/emails', label: 'Email Builder', icon: Mail },
-      { href: '/hub/landing-pages', label: 'Landing Pages', icon: Globe },
+      { href: "/hub/emails", label: "Email Builder", icon: Mail },
+      { href: "/hub/landing-pages", label: "Landing Pages", icon: Globe },
     ],
   },
   {
-    group: 'Intel',
+    group: "Intel",
     items: [
-      { href: '/hub/wire', label: 'The Wire', icon: Newspaper },
-      { href: '/hub/dive', label: 'Marketing Dive', icon: Globe },
-      { href: '/hub/trends', label: 'Trends', icon: BarChart3 },
+      { href: "/hub/wire", label: "The Wire", icon: Newspaper },
+      { href: "/hub/dive", label: "Marketing Dive", icon: Globe },
+      { href: "/hub/trends", label: "Trends", icon: BarChart3 },
     ],
   },
   {
-    group: 'Operate',
+    group: "Operate",
     items: [
-      { href: '/hub/crm', label: 'CRM & Deals', icon: Users },
-      { href: '/hub/audit', label: 'Audit', icon: ShieldCheck },
-      { href: '/hub/billing', label: 'Billing', icon: CreditCard },
-      { href: '/hub/reports', label: 'Reports', icon: FileText },
-      { href: '/hub/settings', label: 'Settings', icon: Settings },
+      { href: "/hub/crm", label: "CRM & Deals", icon: Users },
+      { href: "/hub/audit", label: "Audit", icon: ShieldCheck },
+      { href: "/hub/billing", label: "Billing", icon: CreditCard },
+      { href: "/hub/reports", label: "Reports", icon: FileText },
+      { href: "/hub/settings", label: "Settings", icon: Settings },
     ],
   },
 ];
 
-const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL || 'http://localhost:3001';
+const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL || "http://localhost:3001";
 
 export function HubSidebar() {
   const pathname = usePathname();
@@ -94,12 +111,15 @@ export function HubSidebar() {
               initial={{ x: -300 }}
               animate={{ x: 0 }}
               exit={{ x: -300 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
               className="lg:hidden fixed top-0 bottom-0 left-0 z-50 w-72 bg-primary text-foreground overflow-y-auto"
             >
               <div className="flex items-center justify-between p-4 border-b border-ink-800">
                 <span className="font-display font-bold text-lg">Hub Navigation</span>
-                <button onClick={() => setOpen(false)} className="p-2 rounded-lg hover:bg-primary/90">
+                <button
+                  onClick={() => setOpen(false)}
+                  className="p-2 rounded-lg hover:bg-primary/90"
+                >
                   <X className="w-5 h-5" />
                 </button>
               </div>
@@ -144,10 +164,10 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
                       href={item.href}
                       onClick={onNavigate}
                       className={cn(
-                        'flex items-center gap-3 px-4 py-2 text-sm rounded-r-lg transition-colors',
+                        "flex items-center gap-3 px-4 py-2 text-sm rounded-r-lg transition-colors",
                         active
-                          ? 'bg-accent text-white font-medium'
-                          : 'text-muted-foreground hover:bg-primary/90 hover:text-foreground'
+                          ? "bg-accent text-white font-medium"
+                          : "text-muted-foreground hover:bg-primary/90 hover:text-foreground",
                       )}
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />

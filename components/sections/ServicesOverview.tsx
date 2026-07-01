@@ -1,14 +1,17 @@
-import Link from 'next/link';
-import { services } from '@/content/services';
-import { Section, Eyebrow, SectionHeading, SectionLede } from '@/components/ui/Section';
-import { Badge } from '@/components/ui/Badge';
+import Link from "next/link";
+import { services } from "@/content/services";
+import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
+import { Badge } from "@/components/ui/Badge";
 
-const pillarLabels: Record<string, { name: string; tone: 'accent' | 'info' | 'success' | 'warning' }> = {
-  owned: { name: 'Owned', tone: 'accent' },
-  earned: { name: 'Earned', tone: 'info' },
-  paid: { name: 'Paid', tone: 'warning' },
-  data: { name: 'Data', tone: 'success' },
-  platform: { name: 'Platform', tone: 'accent' },
+const pillarLabels: Record<
+  string,
+  { name: string; tone: "accent" | "info" | "success" | "warning" }
+> = {
+  owned: { name: "Owned", tone: "accent" },
+  earned: { name: "Earned", tone: "info" },
+  paid: { name: "Paid", tone: "warning" },
+  data: { name: "Data", tone: "success" },
+  platform: { name: "Platform", tone: "accent" },
 };
 
 export function ServicesOverview() {
@@ -19,9 +22,9 @@ export function ServicesOverview() {
           <Eyebrow>What we do</Eyebrow>
           <SectionHeading>Eighteen services. One senior team.</SectionHeading>
           <SectionLede>
-            Every type of marketing agency — strategy, performance, SEO, content, brand, CRO, lifecycle,
-            CRM, analytics, AI search, social, influencer, video, partnerships, ABM, PR, research, and
-            internationalization. One tightly integrated system. One senior team.
+            Every type of marketing agency — strategy, performance, SEO, content, brand, CRO,
+            lifecycle, CRM, analytics, AI search, social, influencer, video, partnerships, ABM, PR,
+            research, and internationalization. One tightly integrated system. One senior team.
           </SectionLede>
         </div>
         <div className="lg:col-span-5 flex items-end lg:justify-end">
@@ -45,15 +48,24 @@ export function ServicesOverview() {
               style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className="flex items-center justify-between mb-8">
-                <Badge variant={tone.tone}>{String(i + 1).padStart(2, '0')} · {tone.name}</Badge>
-                <span aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">→</span>
+                <Badge variant={tone.tone}>
+                  {String(i + 1).padStart(2, "0")} · {tone.name}
+                </Badge>
+                <span
+                  aria-hidden
+                  className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all"
+                >
+                  →
+                </span>
               </div>
               <h3 className="font-display text-2xl md:text-[26px] font-medium tracking-[-0.02em] leading-tight">
                 {s.name}
               </h3>
               <p className="mt-3 text-muted-foreground leading-relaxed">{s.tagline}</p>
               <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-sm">
-                <span className="font-mono uppercase tracking-[0.15em] text-[11px] text-muted-foreground/60">{s.deliverables[0]}</span>
+                <span className="font-mono uppercase tracking-[0.15em] text-[11px] text-muted-foreground/60">
+                  {s.deliverables[0]}
+                </span>
                 <span className="text-muted-foreground">{s.deliverables.length} deliverables</span>
               </div>
             </Link>

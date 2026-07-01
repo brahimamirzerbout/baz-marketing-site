@@ -1,35 +1,37 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-export function NewsletterForm({ source = 'newsletter' }: { source?: string }) {
-  const [email, setEmail] = useState('');
-  const [state, setState] = useState<'idle' | 'pending' | 'ok' | 'err'>('idle');
-  const [msg, setMsg] = useState<string>('');
+export function NewsletterForm({ source = "newsletter" }: { source?: string }) {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "pending" | "ok" | "err">("idle");
+  const [msg, setMsg] = useState<string>("");
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setState('err');
-      setMsg('Please enter a valid work email.');
+      setState("err");
+      setMsg("Please enter a valid work email.");
       return;
     }
-    setState('pending');
+    setState("pending");
     try {
       // Lightweight client-side log. Real wiring can POST to /api/newsletter.
       await new Promise((r) => setTimeout(r, 500));
-      setState('ok');
-      setMsg('Subscribed. We send one growth playbook per month.');
-      setEmail('');
+      setState("ok");
+      setMsg("Subscribed. We send one growth playbook per month.");
+      setEmail("");
     } catch {
-      setState('err');
-      setMsg('Something went wrong. Try again.');
+      setState("err");
+      setMsg("Something went wrong. Try again.");
     }
   }
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md">
-      <label htmlFor="newsletter-email" className="sr-only">Email</label>
+      <label htmlFor="newsletter-email" className="sr-only">
+        Email
+      </label>
       <input
         id="newsletter-email"
         type="email"
@@ -41,14 +43,17 @@ export function NewsletterForm({ source = 'newsletter' }: { source?: string }) {
       />
       <button
         type="submit"
-        disabled={state === 'pending'}
+        disabled={state === "pending"}
         className="h-12 px-6 rounded-full bg-primary text-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
         data-source={source}
       >
-        {state === 'pending' ? 'Joining…' : 'Subscribe'}
+        {state === "pending" ? "Joining…" : "Subscribe"}
       </button>
-      {state !== 'idle' && (
-        <p className={`text-sm ${state === 'err' ? 'text-primary' : 'text-muted-foreground'}`} role="status">
+      {state !== "idle" && (
+        <p
+          className={`text-sm ${state === "err" ? "text-primary" : "text-muted-foreground"}`}
+          role="status"
+        >
           {msg}
         </p>
       )}

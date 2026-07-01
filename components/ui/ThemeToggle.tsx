@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { Moon, Sun } from 'lucide-react';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { useEffect, useState } from 'react';
-import { cn } from '@/lib/beui/utils';
+import { Moon, Sun } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/beui/utils";
 
 /**
  * ThemeToggle — beUI-inspired with View Transition API.
  * Works with baz/ existing data-theme attribute system.
  */
 
-const VT_STYLE_ID = 'baz-theme-vt';
+const VT_STYLE_ID = "baz-theme-vt";
 const VT_CSS = `
 html[data-baz-vt="circle"]::view-transition-old(root) {
   animation: none; mix-blend-mode: normal;
@@ -28,20 +28,22 @@ html[data-baz-vt="circle"]::view-transition-new(root) {
 }
 `;
 
-function getTheme(): 'light' | 'dark' {
-  if (typeof document === 'undefined') return 'dark';
-  return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+function getTheme(): "light" | "dark" {
+  if (typeof document === "undefined") return "dark";
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
-function setTheme(mode: 'light' | 'dark') {
+function setTheme(mode: "light" | "dark") {
   const root = document.documentElement;
-  if (mode === 'dark') {
-    root.classList.add('dark');
+  if (mode === "dark") {
+    root.classList.add("dark");
   } else {
-    root.classList.remove('dark');
+    root.classList.remove("dark");
   }
-  root.setAttribute('data-theme', mode);
-  try { localStorage.setItem('baz:theme', mode); } catch {}
+  root.setAttribute("data-theme", mode);
+  try {
+    localStorage.setItem("baz:theme", mode);
+  } catch {}
 }
 
 export function ThemeToggle({ className }: { className?: string }) {
@@ -51,47 +53,53 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   useEffect(() => {
     setMounted(true);
-    setDark(getTheme() === 'dark');
+    setDark(getTheme() === "dark");
   }, []);
 
   useEffect(() => {
     if (document.getElementById(VT_STYLE_ID)) return;
-    const el = document.createElement('style');
+    const el = document.createElement("style");
     el.id = VT_STYLE_ID;
     el.textContent = VT_CSS;
     document.head.appendChild(el);
   }, []);
 
   async function toggle() {
-    const next = dark ? 'light' : 'dark';
+    const next = dark ? "light" : "dark";
     const apply = () => {
       setTheme(next);
-      setDark(next === 'dark');
+      setDark(next === "dark");
     };
 
-    if (reduce || typeof document === 'undefined' || !('startViewTransition' in document)) {
+    if (reduce || typeof document === "undefined" || !("startViewTransition" in document)) {
       apply();
       return;
     }
 
     const root = document.documentElement;
-    root.style.setProperty('--baz-vt-origin', '50% 100%');
-    root.dataset.bazVt = 'circle';
+    root.style.setProperty("--baz-vt-origin", "50% 100%");
+    root.dataset.bazVt = "circle";
 
-    const vt = (document as any).startViewTransition(apply);
-    try { await vt.finished; } finally { delete root.dataset.bazVt; }
+    const vt = (
+      document as Document & { startViewTransition?: (cb: () => void) => void }
+    ).startViewTransition(apply);
+    try {
+      await vt.finished;
+    } finally {
+      delete root.dataset.bazVt;
+    }
   }
 
   return (
     <button
       type="button"
-      aria-label={mounted && dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={mounted && dark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={toggle}
       className={cn(
-        'relative inline-flex items-center justify-center p-2 rounded-full',
-        'border border-border hover:border-foreground transition-colors',
-        'text-foreground hover:text-foreground',
-        className
+        "relative inline-flex items-center justify-center p-2 rounded-full",
+        "border border-border hover:border-foreground transition-colors",
+        "text-foreground hover:text-foreground",
+        className,
       )}
     >
       <AnimatePresence mode="wait" initial={false}>

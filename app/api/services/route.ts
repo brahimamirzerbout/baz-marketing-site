@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
-import { services } from '@/content/services';
+import { NextResponse } from "next/server";
+import { services } from "@/content/services";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 /**
  * GET /api/services
@@ -20,11 +20,16 @@ export const dynamic = 'force-dynamic';
  */
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const pillar = url.searchParams.get('pillar');
-  const format = url.searchParams.get('format');
-  const includeParam = url.searchParams.get('include');
+  const pillar = url.searchParams.get("pillar");
+  const format = url.searchParams.get("format");
+  const includeParam = url.searchParams.get("include");
   const allow = includeParam
-    ? new Set(includeParam.split(',').map((s) => s.trim()).filter(Boolean))
+    ? new Set(
+        includeParam
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean),
+      )
     : null;
 
   let filtered = services;
@@ -38,23 +43,38 @@ export async function GET(req: Request) {
       return acc;
     }, {});
 
-  const allFields: (keyof typeof services[number])[] = [
-    'slug', 'name', 'tagline', 'pillar', 'description',
-    'hero', 'who', 'deliverables', 'kpis', 'process', 'proof', 'faqs', 'cta',
+  const allFields: (keyof (typeof services)[number])[] = [
+    "slug",
+    "name",
+    "tagline",
+    "pillar",
+    "description",
+    "hero",
+    "who",
+    "deliverables",
+    "kpis",
+    "process",
+    "proof",
+    "faqs",
+    "cta",
   ];
 
   const payload = filtered.map((s) => {
     let out: Record<string, unknown>;
     if (allow) {
-      out = pick(s as unknown as Record<string, unknown>, [...allow].filter((k): k is keyof typeof s => k in s));
-    } else if (format === 'summary') {
-      out = pick(s as unknown as Record<string, unknown>, [
-        'slug', 'name', 'tagline', 'pillar', 'description', 'kpis', 'cta',
-      ] as (keyof typeof s)[]);
+      out = pick(
+        s as unknown as Record<string, unknown>,
+        [...allow].filter((k): k is keyof typeof s => k in s),
+      );
+    } else if (format === "summary") {
+      out = pick(
+        s as unknown as Record<string, unknown>,
+        ["slug", "name", "tagline", "pillar", "description", "kpis", "cta"] as (keyof typeof s)[],
+      );
     } else {
       out = pick(s as unknown as Record<string, unknown>, allFields);
     }
-    if (!('placeholder' in out)) out.placeholder = !!s.placeholder;
+    if (!("placeholder" in out)) out.placeholder = !!s.placeholder;
     return out;
   });
 

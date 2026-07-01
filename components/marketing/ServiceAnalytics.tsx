@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { track } from '@/lib/analytics';
-import type { Service } from '@/types';
+import { useEffect } from "react";
+import { track } from "@/lib/analytics";
+import type { Service } from "@/types";
 
 /**
  * Service detail page analytics. Fires:
@@ -15,7 +15,7 @@ import type { Service } from '@/types';
  */
 export function ServiceAnalytics({ service }: { service: Service }) {
   useEffect(() => {
-    track('service_view', {
+    track("service_view", {
       service_slug: service.slug,
       service_name: service.name,
       service_pillar: service.pillar,

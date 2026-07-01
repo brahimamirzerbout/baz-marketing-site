@@ -1,16 +1,16 @@
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import { Section, Eyebrow, SectionHeading, SectionLede } from '@/components/ui/Section';
-import { Breadcrumb } from '@/components/sections/Breadcrumb';
-import { CtaBanner } from '@/components/marketing/CtaBanner';
-import { ServiceCard } from '@/components/marketing/ServiceCard';
-import { CaseStudyCard } from '@/components/marketing/CaseStudyCard';
-import { industries, getIndustry } from '@/content/industries';
-import { services } from '@/content/services';
-import { caseStudies } from '@/content/case-studies';
-import { Button } from '@/components/ui/Button';
-import { site } from '@/lib/site';
-import { buildMetadata } from '@/lib/seo';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
+import { Breadcrumb } from "@/components/sections/Breadcrumb";
+import { CtaBanner } from "@/components/marketing/CtaBanner";
+import { ServiceCard } from "@/components/marketing/ServiceCard";
+import { CaseStudyCard } from "@/components/marketing/CaseStudyCard";
+import { industries, getIndustry } from "@/content/industries";
+import { services } from "@/content/services";
+import { caseStudies } from "@/content/case-studies";
+import { Button } from "@/components/ui/Button";
+import { site } from "@/lib/site";
+import { buildMetadata } from "@/lib/seo";
 
 type Params = { params: { slug: string } };
 
@@ -20,7 +20,12 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: Params): Metadata {
   const ind = getIndustry(params.slug);
-  if (!ind) return buildMetadata({ title: 'Industry not found', path: `/industries/${params.slug}`, noindex: true });
+  if (!ind)
+    return buildMetadata({
+      title: "Industry not found",
+      path: `/industries/${params.slug}`,
+      noindex: true,
+    });
   return buildMetadata({
     title: `${ind.name} growth`,
     description: ind.blurb,
@@ -32,21 +37,39 @@ export default function IndustryDetailPage({ params }: Params) {
   const ind = getIndustry(params.slug);
   if (!ind) notFound();
 
-  const relevantCases = caseStudies.filter((c) => c.industry.toLowerCase().includes(ind.name.toLowerCase().split(' ')[0])).slice(0, 3);
+  const relevantCases = caseStudies
+    .filter((c) => c.industry.toLowerCase().includes(ind.name.toLowerCase().split(" ")[0]))
+    .slice(0, 3);
 
   return (
     <>
       <Section tone="paper" size="lg">
-        <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Industries', href: '/industries' }, { label: ind.name }]} />
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Industries", href: "/industries" },
+            { label: ind.name },
+          ]}
+        />
         <div className="max-w-4xl">
           <Eyebrow>{ind.name}</Eyebrow>
-          <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">{ind.name} growth, with senior-team execution.</h1>
+          <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
+            {ind.name} growth, with senior-team execution.
+          </h1>
           <SectionLede>{ind.blurb}</SectionLede>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Button href={site.bookOrMailto} external variant="secondary" size="lg" trackAs="industry_book_call">
+            <Button
+              href={site.bookOrMailto}
+              external
+              variant="secondary"
+              size="lg"
+              trackAs="industry_book_call"
+            >
               Book a {ind.name} call →
             </Button>
-            <Button href="/contact" variant="outline" size="lg" trackAs="industry_contact">Request an audit</Button>
+            <Button href="/contact" variant="outline" size="lg" trackAs="industry_contact">
+              Request an audit
+            </Button>
           </div>
         </div>
       </Section>

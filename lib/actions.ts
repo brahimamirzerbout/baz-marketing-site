@@ -1,6 +1,6 @@
-'use server';
+"use server";
 
-import { validateLead } from './validate';
+import { validateLead } from "./validate";
 
 export type LeadResult =
   | { ok: true; id: string; score?: number }
@@ -22,13 +22,13 @@ export type LeadResult =
 export async function submitLead(raw: unknown): Promise<LeadResult> {
   const parsed = validateLead(raw);
   if (!parsed.ok) {
-    return { ok: false, error: 'validation_failed', fieldErrors: parsed.errors };
+    return { ok: false, error: "validation_failed", fieldErrors: parsed.errors };
   }
 
   const lead = parsed.data;
   // Honeypot: silently succeed without forwarding.
   if (lead.hp && lead.hp.length > 0) {
-    return { ok: true, id: 'silenced' };
+    return { ok: true, id: "silenced" };
   }
 
   // Strip honeypot before persisting/forwarding
@@ -39,9 +39,9 @@ export async function submitLead(raw: unknown): Promise<LeadResult> {
   // one source of truth. This fixes the dual-store bug from earlier.
   let id: string | null = null;
   try {
-    const { getDb, id: makeId, audit } = await import('./db');
+    const { getDb, id: makeId, audit } = await import("./db");
     const db = getDb();
-    id = makeId('l');
+    id = makeId("l");
     db.prepare(
       `INSERT INTO leads (id, name, email, company, website, phone, budget, message, source, service)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -49,20 +49,20 @@ export async function submitLead(raw: unknown): Promise<LeadResult> {
       id,
       lead.name,
       lead.email.toLowerCase(),
-      (lead.company ?? '').slice(0, 200),
-      (lead.website ?? '').slice(0, 500),
-      '', // phone — not collected by the form
-      (lead.budget ?? '').slice(0, 64),
+      (lead.company ?? "").slice(0, 200),
+      (lead.website ?? "").slice(0, 500),
+      "", // phone — not collected by the form
+      (lead.budget ?? "").slice(0, 64),
       lead.message,
-      (lead.source || 'marketing_site').slice(0, 64),
-      (lead.service || '').slice(0, 96),
+      (lead.source || "marketing_site").slice(0, 64),
+      (lead.service || "").slice(0, 96),
     );
-    audit(null, 'lead.create', id, {
-      source: lead.source || 'marketing_site',
-      service: lead.service || '',
+    audit(null, "lead.create", id, {
+      source: lead.source || "marketing_site",
+      service: lead.service || "",
     });
   } catch (e) {
-    console.error('[baz:lead] db insert failed:', e);
+    console.error("[baz:lead] db insert failed:", e);
     // Don't hard-fail — try the webhook fallback below.
   }
 
@@ -70,11 +70,12 @@ export async function submitLead(raw: unknown): Promise<LeadResult> {
   const baz = process.env.BAZ_API_URL;
   if (baz && id) {
     try {
-      const headers: Record<string, string> = { 'content-type': 'application/json' };
-      if (process.env.BAZ_API_TOKEN) headers['authorization'] = `Bearer ${process.env.BAZ_API_TOKEN}`;
+      const headers: Record<string, string> = { "content-type": "application/json" };
+      if (process.env.BAZ_API_TOKEN)
+        headers["authorization"] = `Bearer ${process.env.BAZ_API_TOKEN}`;
 
-      await fetch(`${baz.replace(/\/$/, '')}/api/leads`, {
-        method: 'POST',
+      await fetch(`${baz.replace(/\/$/, "")}/api/leads`, {
+        method: "POST",
         headers,
         body: JSON.stringify({
           id,
@@ -84,8 +85,8 @@ export async function submitLead(raw: unknown): Promise<LeadResult> {
           website: lead.website,
           budget: lead.budget,
           message: lead.message,
-          source: lead.source || 'marketing_site',
-          service: lead.service || '',
+          source: lead.source || "marketing_site",
+          service: lead.service || "",
         }),
       });
     } catch {
@@ -99,9 +100,9 @@ export async function submitLead(raw: unknown): Promise<LeadResult> {
   if (intake && id) {
     try {
       const r = await fetch(intake, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'content-type': 'application/json',
+          "content-type": "application/json",
           ...(token ? { authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify({
@@ -110,22 +111,22 @@ export async function submitLead(raw: unknown): Promise<LeadResult> {
           ...forwardable,
         }),
       });
-      if (!r.ok) console.warn('[baz:lead] webhook returned', r.status);
+      if (!r.ok) console.warn("[baz:lead] webhook returned", r.status);
     } catch (e) {
-      console.warn('[baz:lead] webhook error:', e);
+      console.warn("[baz:lead] webhook error:", e);
     }
   }
 
   // ─── 4) Fire-and-forget background scoring ───────────────────────────
-  if (id && process.env.LEAD_SCORING !== 'off') {
-    scoreLeadInBackground(id, lead.message, lead.service || '').catch(() => {});
+  if (id && process.env.LEAD_SCORING !== "off") {
+    scoreLeadInBackground(id, lead.message, lead.service || "").catch(() => {});
   }
 
   // ─── 5) Return success if we have an id, otherwise error ──────────────
   if (id) {
     return { ok: true, id };
   }
-  return { ok: false, error: 'db_unavailable' };
+  return { ok: false, error: "db_unavailable" };
 }
 
 /**
@@ -134,21 +135,21 @@ export async function submitLead(raw: unknown): Promise<LeadResult> {
  */
 async function scoreLeadInBackground(leadId: string, message: string, service: string) {
   try {
-    const { complete } = await import('./llm');
+    const { complete } = await import("./llm");
     const result = await complete({
-      prompt: `Score this lead message (the lead is interested in: ${service || 'unspecified'}):\n\n${message.slice(0, 2000)}`,
+      prompt: `Score this lead message (the lead is interested in: ${service || "unspecified"}):\n\n${message.slice(0, 2000)}`,
       system: `You are BAZ LeadGen Agent. Score the lead 0-100 and return JSON: {"score": <int>, "intent": "<buy_now|researching|comparison_shopping|tire_kicker>"}`,
       maxTokens: 300,
       temperature: 0.2,
     });
     if (!result.ok || !result.text) return;
-    const parsed = JSON.parse(result.text.match(/\{[\s\S]*\}/)?.[0] ?? '{}');
+    const parsed = JSON.parse(result.text.match(/\{[\s\S]*\}/)?.[0] ?? "{}");
     const score = Math.max(0, Math.min(100, parseInt(parsed.score, 10) || 0));
-    const intent = String(parsed.intent || '').slice(0, 32);
+    const intent = String(parsed.intent || "").slice(0, 32);
     if (score > 0 || intent) {
-      const { getDb } = await import('./db');
+      const { getDb } = await import("./db");
       const db = getDb();
-      db.prepare('UPDATE leads SET score = ?, intent = ? WHERE id = ?').run(score, intent, leadId);
+      db.prepare("UPDATE leads SET score = ?, intent = ? WHERE id = ?").run(score, intent, leadId);
     }
   } catch {
     // silent — lead is already persisted

@@ -1,15 +1,15 @@
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Section, Eyebrow, SectionHeading } from '@/components/ui/Section';
-import { Button } from '@/components/ui/Button';
-import { CaseStudyHero } from '@/components/marketing/CaseStudyHero';
-import { StatRow } from '@/components/sections/StatRow';
-import { CaseStudyCard } from '@/components/marketing/CaseStudyCard';
-import { CtaBanner } from '@/components/marketing/CtaBanner';
-import { caseStudies, getCaseStudy } from '@/content/case-studies';
-import { site } from '@/lib/site';
-import { buildMetadata, jsonLd, breadcrumbLd } from '@/lib/seo';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Section, Eyebrow, SectionHeading } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { CaseStudyHero } from "@/components/marketing/CaseStudyHero";
+import { StatRow } from "@/components/sections/StatRow";
+import { CaseStudyCard } from "@/components/marketing/CaseStudyCard";
+import { CtaBanner } from "@/components/marketing/CtaBanner";
+import { caseStudies, getCaseStudy } from "@/content/case-studies";
+import { site } from "@/lib/site";
+import { buildMetadata, jsonLd, breadcrumbLd } from "@/lib/seo";
 
 type Params = { params: { slug: string } };
 
@@ -19,7 +19,12 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: Params): Metadata {
   const c = getCaseStudy(params.slug);
-  if (!c) return buildMetadata({ title: 'Case study not found', path: `/case-studies/${params.slug}`, noindex: true });
+  if (!c)
+    return buildMetadata({
+      title: "Case study not found",
+      path: `/case-studies/${params.slug}`,
+      noindex: true,
+    });
   return buildMetadata({
     title: `${c.client} · Case study`,
     description: c.problem,
@@ -81,13 +86,17 @@ export default function CaseStudyDetailPage({ params }: Params) {
       {c.testimonial && (
         <Section tone="ink" size="lg">
           <figure className="max-w-3xl mx-auto text-center">
-            <span aria-hidden className="font-display text-6xl text-accent leading-none">&ldquo;</span>
+            <span aria-hidden className="font-display text-6xl text-accent leading-none">
+              &ldquo;
+            </span>
             <blockquote className="mt-4 font-display text-2xl md:text-4xl tracking-[-0.02em] leading-snug text-foreground">
               {c.testimonial.quote}
             </blockquote>
             <figcaption className="mt-8 text-muted-foreground">
               <p className="font-medium text-foreground">{c.testimonial.author}</p>
-              <p className="text-sm">{c.testimonial.role} · {c.client}</p>
+              <p className="text-sm">
+                {c.testimonial.role} · {c.client}
+              </p>
             </figcaption>
           </figure>
         </Section>
@@ -99,7 +108,13 @@ export default function CaseStudyDetailPage({ params }: Params) {
             <Eyebrow>Want a similar outcome?</Eyebrow>
             <SectionHeading>Book a 30-min growth call.</SectionHeading>
           </div>
-          <Button href={site.bookOrMailto} external variant="secondary" size="lg" trackAs="case_book_call">
+          <Button
+            href={site.bookOrMailto}
+            external
+            variant="secondary"
+            size="lg"
+            trackAs="case_book_call"
+          >
             Book a growth call →
           </Button>
         </div>
@@ -117,11 +132,16 @@ export default function CaseStudyDetailPage({ params }: Params) {
 
       <CtaBanner />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbLd([
-        { name: 'Home', url: '/' },
-        { name: 'Case studies', url: '/case-studies' },
-        { name: c.client, url: `/case-studies/${c.slug}` },
-      ]))} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(
+          breadcrumbLd([
+            { name: "Home", url: "/" },
+            { name: "Case studies", url: "/case-studies" },
+            { name: c.client, url: `/case-studies/${c.slug}` },
+          ]),
+        )}
+      />
     </>
   );
 }

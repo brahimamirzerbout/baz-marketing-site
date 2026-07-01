@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { caseStudies } from '@/content/case-studies';
-import { Section, Eyebrow, SectionHeading, SectionLede } from '@/components/ui/Section';
-import { Badge } from '@/components/ui/Badge';
+import Link from "next/link";
+import { caseStudies } from "@/content/case-studies";
+import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
+import { Badge } from "@/components/ui/Badge";
 
 export function CaseStudies() {
   const featured = caseStudies.slice(0, 3);
@@ -12,8 +12,8 @@ export function CaseStudies() {
           <Eyebrow>Proof, not pitches</Eyebrow>
           <SectionHeading>Work that moved the P&amp;L.</SectionHeading>
           <SectionLede>
-            Senior team. Documented strategy. Measured outcomes. Read the cases — every metric
-            is named, and where it's not yet public, it's labeled.
+            Senior team. Documented strategy. Measured outcomes. Read the cases — every metric is
+            named, and where it's not yet public, it's labeled.
           </SectionLede>
         </div>
         <div className="lg:col-span-5 flex items-end lg:justify-end">
@@ -52,13 +52,20 @@ export function CaseStudies() {
                 {c.metrics.slice(0, 3).map((m) => (
                   <div key={m.label}>
                     <p className="font-display text-lg font-medium tracking-[-0.02em]">{m.value}</p>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{m.label}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
+                      {m.label}
+                    </p>
                   </div>
                 ))}
               </div>
               <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">{c.duration}</span>
-                <span aria-hidden className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all">Read case →</span>
+                <span
+                  aria-hidden
+                  className="text-muted-foreground/40 dark:text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-0.5 transition-all"
+                >
+                  Read case →
+                </span>
               </div>
             </div>
           </Link>

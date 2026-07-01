@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/Button';
-import { site } from '@/lib/site';
+import { Button } from "@/components/ui/Button";
+import { site } from "@/lib/site";
 
 export function FinalCta() {
   return (
@@ -13,18 +13,23 @@ export function FinalCta() {
 
           {/* The closing argument — one sentence */}
           <h2 className="font-display text-display-xl font-medium tracking-[-0.035em] leading-[1.0]">
-            Ready to make growth{' '}
-            <span className="text-[var(--foreground)]">predictable?</span>
+            Ready to make growth <span className="text-[var(--foreground)]">predictable?</span>
           </h2>
 
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            Book a 30-minute call. We&apos;ll review your funnel, channels, and unit economics —
-            and tell you honestly whether BAZ is the right fit.
+            Book a 30-minute call. We&apos;ll review your funnel, channels, and unit economics — and
+            tell you honestly whether BAZ is the right fit.
           </p>
 
           {/* CTAs — one gold, one ghost */}
           <div className="mt-12 flex flex-wrap items-center gap-4">
-            <Button href={site.bookOrMailto} external variant="secondary" size="lg" trackAs="final_book_call">
+            <Button
+              href={site.bookOrMailto}
+              external
+              variant="secondary"
+              size="lg"
+              trackAs="final_book_call"
+            >
               Book a growth call →
             </Button>
             <Button
@@ -41,12 +46,20 @@ export function FinalCta() {
 
         <div className="mt-20 pt-8 border-t border-white/8 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="royal-seal" style={{ width: '32px', height: '32px', fontSize: '13px' }}>B</span>
+            <span
+              className="royal-seal"
+              style={{ width: "32px", height: "32px", fontSize: "13px" }}
+            >
+              B
+            </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/30">
               Senior team · No juniors · Algiers
             </span>
           </div>
-          <a href={`mailto:${site.email}`} className="text-sm text-white/30 hover:text-[var(--foreground)] transition-colors">
+          <a
+            href={`mailto:${site.email}`}
+            className="text-sm text-white/30 hover:text-[var(--foreground)] transition-colors"
+          >
             {site.email}
           </a>
         </div>

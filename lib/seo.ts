@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { site } from './site';
+import type { Metadata } from "next";
+import { site } from "./site";
 
 type SeoInput = {
   title?: string;
   description?: string;
   path?: string;
   image?: string;
-  type?: 'website' | 'article';
+  type?: "website" | "article";
   publishedTime?: string;
   noindex?: boolean;
 };
@@ -19,9 +19,9 @@ type SeoInput = {
 export function buildMetadata({
   title,
   description = site.description,
-  path = '/',
-  image = '/og/default.png',
-  type = 'website',
+  path = "/",
+  image = "/og/default.png",
+  type = "website",
   publishedTime,
   noindex = false,
 }: SeoInput = {}): Metadata {
@@ -44,17 +44,17 @@ export function buildMetadata({
       ...(publishedTime ? { publishedTime } : {}),
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: fullTitle,
       description,
       images: [img],
-      site: '@bazagency',
-      creator: '@bazagency',
+      site: "@bazagency",
+      creator: "@bazagency",
     },
     robots: noindex
       ? { index: false, follow: false }
-      : { index: true, follow: true, googleBot: { index: true, follow: true, 'max-snippet': -1 } },
-    icons: { icon: '/favicon.svg' },
+      : { index: true, follow: true, googleBot: { index: true, follow: true, "max-snippet": -1 } },
+    icons: { icon: "/favicon.svg" },
   };
 }
 
@@ -63,10 +63,10 @@ export function buildMetadata({
  * Apply alongside `metadata` in each page or layout.
  */
 export const viewport = {
-  themeColor: '#ff3b2f',
-  width: 'device-width',
+  themeColor: "#ff3b2f",
+  width: "device-width",
   initialScale: 1,
-  colorScheme: 'light dark',
+  colorScheme: "light dark",
 };
 
 type JsonLd = Record<string, any> | Record<string, any>[];
@@ -77,17 +77,17 @@ type JsonLd = Record<string, any> | Record<string, any>[];
  */
 export function jsonLd(data: JsonLd) {
   return {
-    __html: JSON.stringify(data).replace(/</g, '\\u003c'),
+    __html: JSON.stringify(data).replace(/</g, "\\u003c"),
   };
 }
 
 export function organizationLd() {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    "@context": "https://schema.org",
+    "@type": "Organization",
     name: site.name,
     url: site.url,
-    logo: new URL('/og/logo.svg', site.url).toString(),
+    logo: new URL("/og/logo.svg", site.url).toString(),
     email: site.email,
     sameAs: Object.values(site.social),
   };
@@ -95,28 +95,28 @@ export function organizationLd() {
 
 export function websiteLd() {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     name: site.name,
     url: site.url,
     potentialAction: {
-      '@type': 'SearchAction',
+      "@type": "SearchAction",
       target: `${site.url}/insights?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
+      "query-input": "required name=search_term_string",
     },
   };
 }
 
 export function professionalServiceLd() {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
     name: site.name,
     url: site.url,
-    image: new URL('/og/default.png', site.url).toString(),
+    image: new URL("/og/default.png", site.url).toString(),
     description: site.description,
-    areaServed: ['MENA', 'EU', 'US'],
-    priceRange: '$$$',
+    areaServed: ["MENA", "EU", "US"],
+    priceRange: "$$$",
     email: site.email,
     telephone: site.phone,
   };
@@ -124,22 +124,22 @@ export function professionalServiceLd() {
 
 export function faqLd(faqs: { q: string; a: string }[]) {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     mainEntity: faqs.map(({ q, a }) => ({
-      '@type': 'Question',
+      "@type": "Question",
       name: q,
-      acceptedAnswer: { '@type': 'Answer', text: a },
+      acceptedAnswer: { "@type": "Answer", text: a },
     })),
   };
 }
 
 export function breadcrumbLd(items: { name: string; url: string }[]) {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
     itemListElement: items.map((item, i) => ({
-      '@type': 'ListItem',
+      "@type": "ListItem",
       position: i + 1,
       name: item.name,
       item: new URL(item.url, site.url).toString(),
@@ -147,15 +147,25 @@ export function breadcrumbLd(items: { name: string; url: string }[]) {
   };
 }
 
-export function articleLd(post: { title: string; excerpt: string; slug: string; author: string; publishedAt: string }) {
+export function articleLd(post: {
+  title: string;
+  excerpt: string;
+  slug: string;
+  author: string;
+  publishedAt: string;
+}) {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    "@context": "https://schema.org",
+    "@type": "Article",
     headline: post.title,
     description: post.excerpt,
     url: new URL(`/insights/${post.slug}`, site.url).toString(),
     datePublished: post.publishedAt,
-    author: { '@type': 'Person', name: post.author },
-    publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: new URL('/og/logo.svg', site.url).toString() } },
+    author: { "@type": "Person", name: post.author },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      logo: { "@type": "ImageObject", url: new URL("/og/logo.svg", site.url).toString() },
+    },
   };
 }

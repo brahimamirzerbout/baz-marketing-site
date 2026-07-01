@@ -1,38 +1,34 @@
 export const site = {
-  name: 'BAZ Marketing Agency',
-  shortName: 'BAZ',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://baz.agency',
-  tagline: 'The growth partner for ambitious businesses.',
+  name: "BAZ Marketing Agency",
+  shortName: "BAZ",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://baz.agency",
+  tagline: "The growth partner for ambitious businesses.",
   description:
-    'BAZ is a senior-only growth partner that builds and manages your owned, earned, paid, and data channels — strategy, execution, and reporting in one tightly integrated system.',
-  email: 'zerboutbrahimamir@gmail.com',
+    "BAZ is a senior-only growth partner that builds and manages your owned, earned, paid, and data channels — strategy, execution, and reporting in one tightly integrated system.",
+  email: "zerboutbrahimamir@gmail.com",
   // Phone is optional. Leave blank if you don't want one shown.
   // The contact page will hide the row entirely when this is empty.
-  phone: '',
-  bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || '',
+  phone: "",
+  bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "",
   // Stats for the trust strip. Read from env when available, otherwise
   // fall back to dev-only defaults. The homepage hides a stat entirely
   // when its value is null — we'd rather show nothing than a fabricated
   // number. Set the env vars in .env.local for production.
   stats: {
-    brandsScaled:
-      process.env.NEXT_PUBLIC_BRANDS_SCALED || '60+',
-    countriesServed:
-      process.env.NEXT_PUBLIC_COUNTRIES_SERVED || '3',
-    seniorOnly:
-      process.env.NEXT_PUBLIC_SENIOR_ONLY || '100%',
-    teamSize:
-      process.env.NEXT_PUBLIC_TEAM_SIZE || '6',
+    brandsScaled: process.env.NEXT_PUBLIC_BRANDS_SCALED || "60+",
+    countriesServed: process.env.NEXT_PUBLIC_COUNTRIES_SERVED || "3",
+    seniorOnly: process.env.NEXT_PUBLIC_SENIOR_ONLY || "100%",
+    teamSize: process.env.NEXT_PUBLIC_TEAM_SIZE || "6",
   },
   social: {
-    linkedin: 'https://www.linkedin.com/company/baz-agency',
-    twitter: 'https://twitter.com/bazagency',
-    github: 'https://github.com/baz-agency',
+    linkedin: "https://www.linkedin.com/company/baz-agency",
+    twitter: "https://twitter.com/bazagency",
+    github: "https://github.com/baz-agency",
   },
   // Partner tools BAZ actually uses. Env-overridable for white-label
   // deployments. Default is the public BAZ stack.
-  stack: (process.env.NEXT_PUBLIC_STACK || 'Ollama,GitHub,Vercel,Linear,Stripe,Resend')
-    .split(',')
+  stack: (process.env.NEXT_PUBLIC_STACK || "Ollama,GitHub,Vercel,Linear,Stripe,Resend")
+    .split(",")
     .map((s) => s.trim())
     .filter(Boolean),
 
@@ -44,7 +40,7 @@ export const site = {
    */
   get bookOrMailto(): string {
     if (this.bookingUrl) return this.bookingUrl;
-    const subject = encodeURIComponent('Growth call — BAZ website');
+    const subject = encodeURIComponent("Growth call — BAZ website");
     const body = encodeURIComponent(
       "Hi BAZ,\n\nI'd like to book a 20-minute growth call. A few windows that work for me:\n- \n- \n- \n\nThanks,\n",
     );

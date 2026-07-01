@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, type ReactNode, type CSSProperties } from 'react';
+import { useEffect, useRef, type ReactNode, type CSSProperties } from "react";
 
 /**
  * Wraps any element and pulls it toward the cursor when nearby.
@@ -10,7 +10,7 @@ export function Magnetic({
   children,
   strength = 0.35,
   className,
-  as: Tag = 'div',
+  as: Tag = "div",
 }: {
   children: ReactNode;
   strength?: number;
@@ -22,7 +22,7 @@ export function Magnetic({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia('(hover: none)').matches) return;
+    if (window.matchMedia("(hover: none)").matches) return;
 
     let raf = 0;
     let tx = 0;
@@ -53,17 +53,17 @@ export function Magnetic({
       }
     };
 
-    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener("mousemove", onMove, { passive: true });
     raf = requestAnimationFrame(tick);
     return () => {
-      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };
   }, [strength]);
 
   // Build the intrinsic element dynamically to keep types honest.
-  const Component = Tag as any;
-  const style: CSSProperties = { display: 'inline-block', willChange: 'transform' };
+  const Component = Tag as React.ElementType;
+  const style: CSSProperties = { display: "inline-block", willChange: "transform" };
   return (
     <Component ref={ref} className={className} style={style} data-magnetic>
       {children}

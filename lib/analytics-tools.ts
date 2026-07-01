@@ -15,12 +15,7 @@
 // ============================================================
 
 export type AttributionModel =
-  | 'first-touch'
-  | 'last-touch'
-  | 'linear'
-  | 'time-decay'
-  | 'position-based'
-  | 'data-driven';
+  "first-touch" | "last-touch" | "linear" | "time-decay" | "position-based" | "data-driven";
 
 export interface Touchpoint {
   /** ISO timestamp of the touch */
@@ -49,23 +44,23 @@ export function attributeJourney(j: Journey, model: AttributionModel): Record<st
   if (!j.converted) {
     // Non-converting journeys still count for data-driven and for path analysis;
     // for single-touch models we return 0.
-    if (model === 'data-driven') return shapleyLikeWeights(j);
+    if (model === "data-driven") return shapleyLikeWeights(j);
     return {};
   }
 
   const weights: number[] = new Array(n).fill(0);
 
   switch (model) {
-    case 'first-touch':
+    case "first-touch":
       weights[0] = 1;
       break;
-    case 'last-touch':
+    case "last-touch":
       weights[n - 1] = 1;
       break;
-    case 'linear':
+    case "linear":
       for (let i = 0; i < n; i++) weights[i] = 1 / n;
       break;
-    case 'time-decay':
+    case "time-decay":
       // Exponential decay, half-life 7 days
       const now = Date.parse(j.touchpoints[n - 1].t);
       const halflife = 7 * 86400_000;
@@ -73,18 +68,20 @@ export function attributeJourney(j: Journey, model: AttributionModel): Record<st
       const sum = ws.reduce((a, b) => a + b, 0);
       for (let i = 0; i < n; i++) weights[i] = ws[i] / sum;
       break;
-    case 'position-based':
+    case "position-based":
       // 40% first, 40% last, 20% spread across middle
       if (n === 1) weights[0] = 1;
-      else if (n === 2) { weights[0] = 0.5; weights[1] = 0.5; }
-      else {
+      else if (n === 2) {
+        weights[0] = 0.5;
+        weights[1] = 0.5;
+      } else {
         weights[0] = 0.4;
         weights[n - 1] = 0.4;
         const mid = 0.2 / (n - 2);
         for (let i = 1; i < n - 1; i++) weights[i] = mid;
       }
       break;
-    case 'data-driven':
+    case "data-driven":
       // Shapley-value approximation: average marginal contribution
       // across all permutations of the touchpoint set. Capped at
       // 8! permutations for performance; sampled if longer.
@@ -92,7 +89,9 @@ export function attributeJourney(j: Journey, model: AttributionModel): Record<st
   }
 
   const result: Record<string, number> = {};
-  j.touchpoints.forEach((tp, i) => { result[tp.channel] = (result[tp.channel] || 0) + weights[i]; });
+  j.touchpoints.forEach((tp, i) => {
+    result[tp.channel] = (result[tp.channel] || 0) + weights[i];
+  });
   return result;
 }
 
@@ -170,7 +169,10 @@ function samplePermutations<T>(arr: T[], n: number): T[][] {
 /**
  * Aggregate attribution across many journeys.
  */
-export function attributeAll(journeys: Journey[], model: AttributionModel): {
+export function attributeAll(
+  journeys: Journey[],
+  model: AttributionModel,
+): {
   byChannel: Record<string, { credit: number; conversions: number; revenue: number }>;
   journeys: number;
   conversions: number;
@@ -232,7 +234,10 @@ export function adstock(spend: number[], params: AdStockParams): AdStockResult {
     }
     values.push(spend[t] + carry);
   }
-  const peak = values.reduce((p, v, i) => v > p.value ? { value: v, index: i } : p, { value: -Infinity, index: 0 });
+  const peak = values.reduce((p, v, i) => (v > p.value ? { value: v, index: i } : p), {
+    value: -Infinity,
+    index: 0,
+  });
   const totalCarryover = values.reduce((s, v, i) => s + (i === 0 ? 0 : v - spend[i]), 0);
   const halfLife = retention > 0 ? Math.log(0.5) / Math.log(retention) : 0;
   const max = Math.max(...values, 1);
@@ -265,34 +270,41 @@ export interface RfmRecord {
 }
 
 export type Segment =
-  | 'Champions'
-  | 'Loyal'
-  | 'Potential Loyalist'
-  | 'Recent'
-  | 'Promising'
-  | 'Needs Attention'
-  | 'About to Sleep'
-  | 'At Risk'
-  | 'Cant Lose Them'
-  | 'Hibernating';
+  | "Champions"
+  | "Loyal"
+  | "Potential Loyalist"
+  | "Recent"
+  | "Promising"
+  | "Needs Attention"
+  | "About to Sleep"
+  | "At Risk"
+  | "Cant Lose Them"
+  | "Hibernating";
 
 export interface RfmScored extends RfmRecord {
-  R: number; F: number; M: number;
+  R: number;
+  F: number;
+  M: number;
   score: number;
   segment: Segment;
 }
 
-const SEGMENT_MATRIX: Array<{ r: [number, number]; f: [number, number]; m: [number, number]; segment: Segment }> = [
-  { r: [4, 5], f: [4, 5], m: [4, 5], segment: 'Champions' },
-  { r: [3, 5], f: [3, 5], m: [3, 5], segment: 'Loyal' },
-  { r: [4, 5], f: [0, 2], m: [0, 5], segment: 'Recent' },
-  { r: [3, 4], f: [1, 3], m: [1, 3], segment: 'Potential Loyalist' },
-  { r: [3, 4], f: [0, 1], m: [0, 2], segment: 'Promising' },
-  { r: [2, 3], f: [2, 3], m: [2, 3], segment: 'Needs Attention' },
-  { r: [2, 3], f: [0, 2], m: [0, 2], segment: 'About to Sleep' },
-  { r: [1, 2], f: [3, 5], m: [3, 5], segment: 'At Risk' },
-  { r: [0, 1], f: [4, 5], m: [4, 5], segment: 'Cant Lose Them' },
-  { r: [0, 2], f: [0, 2], m: [0, 2], segment: 'Hibernating' },
+const SEGMENT_MATRIX: Array<{
+  r: [number, number];
+  f: [number, number];
+  m: [number, number];
+  segment: Segment;
+}> = [
+  { r: [4, 5], f: [4, 5], m: [4, 5], segment: "Champions" },
+  { r: [3, 5], f: [3, 5], m: [3, 5], segment: "Loyal" },
+  { r: [4, 5], f: [0, 2], m: [0, 5], segment: "Recent" },
+  { r: [3, 4], f: [1, 3], m: [1, 3], segment: "Potential Loyalist" },
+  { r: [3, 4], f: [0, 1], m: [0, 2], segment: "Promising" },
+  { r: [2, 3], f: [2, 3], m: [2, 3], segment: "Needs Attention" },
+  { r: [2, 3], f: [0, 2], m: [0, 2], segment: "About to Sleep" },
+  { r: [1, 2], f: [3, 5], m: [3, 5], segment: "At Risk" },
+  { r: [0, 1], f: [4, 5], m: [4, 5], segment: "Cant Lose Them" },
+  { r: [0, 2], f: [0, 2], m: [0, 2], segment: "Hibernating" },
 ];
 
 function bucket(value: number, sortedUnique: number[]): number {
@@ -311,7 +323,9 @@ export function rfmScore(records: RfmRecord[], asOf?: Date): RfmScored[] {
   const now = asOf ?? new Date();
 
   // Compute R (days since last purchase, lower = better)
-  const recencies = records.map((r) => Math.max(0, (now.getTime() - Date.parse(r.lastPurchase)) / 86400_000));
+  const recencies = records.map((r) =>
+    Math.max(0, (now.getTime() - Date.parse(r.lastPurchase)) / 86400_000),
+  );
   const freqs = records.map((r) => r.frequency);
   const mons = records.map((r) => r.monetary);
 
@@ -319,7 +333,10 @@ export function rfmScore(records: RfmRecord[], asOf?: Date): RfmScored[] {
     const sorted = [...arr].sort((a, b) => a - b);
     const n = sorted.length;
     const cut = (q: number) => sorted[Math.min(n - 1, Math.floor(q * n))];
-    const q1 = cut(0.2), q2 = cut(0.4), q3 = cut(0.6), q4 = cut(0.8);
+    const q1 = cut(0.2),
+      q2 = cut(0.4),
+      q3 = cut(0.6),
+      q4 = cut(0.8);
     return arr.map((v) => {
       let bucket = 1;
       if (v <= q1) bucket = 1;
@@ -338,12 +355,19 @@ export function rfmScore(records: RfmRecord[], asOf?: Date): RfmScored[] {
   const M = quantize(mons);
 
   return records.map((r, i) => {
-    const rScore = R[i], fScore = F[i], mScore = M[i];
-    let segment: Segment = 'Hibernating';
+    const rScore = R[i],
+      fScore = F[i],
+      mScore = M[i];
+    let segment: Segment = "Hibernating";
     for (const row of SEGMENT_MATRIX) {
-      if (rScore >= row.r[0] && rScore <= row.r[1]
-        && fScore >= row.f[0] && fScore <= row.f[1]
-        && mScore >= row.m[0] && mScore <= row.m[1]) {
+      if (
+        rScore >= row.r[0] &&
+        rScore <= row.r[1] &&
+        fScore >= row.f[0] &&
+        fScore <= row.f[1] &&
+        mScore >= row.m[0] &&
+        mScore <= row.m[1]
+      ) {
         segment = row.segment;
         break;
       }
@@ -352,7 +376,9 @@ export function rfmScore(records: RfmRecord[], asOf?: Date): RfmScored[] {
   });
 }
 
-export function rfmSummary(scored: RfmScored[]): Array<{ segment: Segment; count: number; revenue: number }> {
+export function rfmSummary(
+  scored: RfmScored[],
+): Array<{ segment: Segment; count: number; revenue: number }> {
   const m = new Map<Segment, { count: number; revenue: number }>();
   for (const r of scored) {
     if (!m.has(r.segment)) m.set(r.segment, { count: 0, revenue: 0 });
@@ -360,7 +386,8 @@ export function rfmSummary(scored: RfmScored[]): Array<{ segment: Segment; count
     e.count += 1;
     e.revenue += r.monetary;
   }
-  return [...m.entries()].map(([segment, v]) => ({ segment, count: v.count, revenue: v.revenue }))
+  return [...m.entries()]
+    .map(([segment, v]) => ({ segment, count: v.count, revenue: v.revenue }))
     .sort((a, b) => b.revenue - a.revenue);
 }
 
@@ -417,7 +444,10 @@ export function marginalCac(spend: number, maxConv: number, halfSat: number): nu
  * curves, redistribute spend greedily toward highest marginal return
  * until budget is exhausted.
  */
-export function optimizeBudget(totalBudget: number, channels: ChannelDiminishingReturns[]): ReallocationResult[] {
+export function optimizeBudget(
+  totalBudget: number,
+  channels: ChannelDiminishingReturns[],
+): ReallocationResult[] {
   const minSpendPerChannel = 100; // never go below $100/wk
   const remaining = channels.reduce((s, c) => s + c.spend, 0);
   // Free up any budget that exceeds the cap
@@ -429,11 +459,15 @@ export function optimizeBudget(totalBudget: number, channels: ChannelDiminishing
 
   // Pull from channels with highest marginal CAC first (least efficient)
   if (overshoot > 0) {
-    const indexed = channels.map((c, i) => ({ i, cac: marginalCac(spends[i], c.maxConversions, c.halfSaturation) }))
+    const indexed = channels
+      .map((c, i) => ({ i, cac: marginalCac(spends[i], c.maxConversions, c.halfSaturation) }))
       .sort((a, b) => b.cac - a.cac);
     for (const { i } of indexed) {
       if (free - overshoot < minSpendPerChannel) break;
-      const take = Math.min(spends[i] - minSpendPerChannel, free - overshoot - minSpendPerChannel * (channels.length - 1));
+      const take = Math.min(
+        spends[i] - minSpendPerChannel,
+        free - overshoot - minSpendPerChannel * (channels.length - 1),
+      );
       if (take <= 0) continue;
       spends[i] -= take;
       free -= take;
@@ -472,9 +506,12 @@ export function optimizeBudget(totalBudget: number, channels: ChannelDiminishing
  */
 export function sampleJourneys(seed = 42, n = 120): Journey[] {
   let s = seed;
-  const rand = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 0xffffffff; };
+  const rand = () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 0xffffffff;
+  };
 
-  const channels = ['paid-search', 'paid-social', 'organic', 'email', 'direct', 'referral'];
+  const channels = ["paid-search", "paid-social", "organic", "email", "direct", "referral"];
   const journeys: Journey[] = [];
   const start = Date.now() - 90 * 86400_000;
 
@@ -484,12 +521,14 @@ export function sampleJourneys(seed = 42, n = 120): Journey[] {
     const touchpoints: Touchpoint[] = [];
     for (let t = 0; t < touchCount; t++) {
       const ch = channels[Math.floor(rand() * channels.length)];
-      const ts = new Date(start + Math.floor(rand() * 80 * 86400_000) + t * 86400_000 * Math.floor(rand() * 14)).toISOString();
+      const ts = new Date(
+        start + Math.floor(rand() * 80 * 86400_000) + t * 86400_000 * Math.floor(rand() * 14),
+      ).toISOString();
       touchpoints.push({ t: ts, channel: ch });
     }
     touchpoints.sort((a, b) => Date.parse(a.t) - Date.parse(b.t));
     const revenue = converted ? Math.round(50 + rand() * 450) : 0;
-    journeys.push({ id: `j_${i.toString().padStart(4, '0')}`, touchpoints, converted, revenue });
+    journeys.push({ id: `j_${i.toString().padStart(4, "0")}`, touchpoints, converted, revenue });
   }
   return journeys;
 }
@@ -499,8 +538,13 @@ export function sampleJourneys(seed = 42, n = 120): Journey[] {
  */
 export function sampleSpend(seed = 7, mean = 5000, vol = 0.4): number[] {
   let s = seed;
-  const rand = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 0xffffffff; };
-  return Array.from({ length: 16 }, () => Math.round(mean * (0.6 + rand() * 0.8) * (1 + (rand() - 0.5) * vol)));
+  const rand = () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 0xffffffff;
+  };
+  return Array.from({ length: 16 }, () =>
+    Math.round(mean * (0.6 + rand() * 0.8) * (1 + (rand() - 0.5) * vol)),
+  );
 }
 
 /**
@@ -508,10 +552,13 @@ export function sampleSpend(seed = 7, mean = 5000, vol = 0.4): number[] {
  */
 export function sampleRfm(seed = 99, n = 60): RfmRecord[] {
   let s = seed;
-  const rand = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 0xffffffff; };
+  const rand = () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 0xffffffff;
+  };
   const now = Date.now();
   return Array.from({ length: n }, (_, i) => ({
-    customerId: `c_${i.toString().padStart(4, '0')}`,
+    customerId: `c_${i.toString().padStart(4, "0")}`,
     lastPurchase: new Date(now - Math.floor(rand() * 365 * 86400_000)).toISOString(),
     frequency: Math.max(1, Math.floor(rand() * 12) + 1),
     monetary: Math.round(50 + rand() * 2500),
@@ -523,13 +570,46 @@ export function sampleRfm(seed = 99, n = 60): RfmRecord[] {
  */
 export function sampleChannels(seed = 21): ChannelDiminishingReturns[] {
   let s = seed;
-  const rand = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 0xffffffff; };
+  const rand = () => {
+    s = (s * 1664525 + 1013904223) >>> 0;
+    return s / 0xffffffff;
+  };
   return [
-    { channel: 'Paid Search',  spend: 8000,  conversions: 240, halfSaturation: 12000, maxConversions: 800 },
-    { channel: 'Paid Social',  spend: 6000,  conversions: 150, halfSaturation: 9000,  maxConversions: 600 },
-    { channel: 'SEO/Content',  spend: 4000,  conversions: 90,  halfSaturation: 6000,  maxConversions: 400 },
-    { channel: 'Email/Lifecycle', spend: 1500, conversions: 110, halfSaturation: 2000, maxConversions: 350 },
-    { channel: 'Affiliate',    spend: 3000,  conversions: 70,  halfSaturation: 5000,  maxConversions: 300 },
+    {
+      channel: "Paid Search",
+      spend: 8000,
+      conversions: 240,
+      halfSaturation: 12000,
+      maxConversions: 800,
+    },
+    {
+      channel: "Paid Social",
+      spend: 6000,
+      conversions: 150,
+      halfSaturation: 9000,
+      maxConversions: 600,
+    },
+    {
+      channel: "SEO/Content",
+      spend: 4000,
+      conversions: 90,
+      halfSaturation: 6000,
+      maxConversions: 400,
+    },
+    {
+      channel: "Email/Lifecycle",
+      spend: 1500,
+      conversions: 110,
+      halfSaturation: 2000,
+      maxConversions: 350,
+    },
+    {
+      channel: "Affiliate",
+      spend: 3000,
+      conversions: 70,
+      halfSaturation: 5000,
+      maxConversions: 300,
+    },
   ];
 }
 
@@ -538,7 +618,7 @@ export function sampleChannels(seed = 21): ChannelDiminishingReturns[] {
 // ============================================================
 
 export function formatNumber(n: number, opts: Intl.NumberFormatOptions = {}): string {
-  return new Intl.NumberFormat('en-US', opts).format(n);
+  return new Intl.NumberFormat("en-US", opts).format(n);
 }
 
 export function formatUsd(n: number): string {
@@ -553,10 +633,10 @@ export function csvEscape(v: string | number): string {
 }
 
 export function downloadCsv(filename: string, rows: (string | number)[][]): void {
-  const body = rows.map((r) => r.map(csvEscape).join(',')).join('\n');
-  const blob = new Blob([body], { type: 'text/csv' });
+  const body = rows.map((r) => r.map(csvEscape).join(",")).join("\n");
+  const blob = new Blob([body], { type: "text/csv" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  const a = document.createElement("a");
   a.href = url;
   a.download = filename;
   a.click();
@@ -567,7 +647,7 @@ export function downloadCsv(filename: string, rows: (string | number)[][]): void
 export function parseRfmCsv(text: string): RfmRecord[] {
   const lines = text.split(/\r?\n/).filter(Boolean);
   if (lines.length === 0) return [];
-  const headers = lines[0].split(',').map((h) => h.trim().toLowerCase());
+  const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
   const idx = {
     id: headers.findIndex((h) => /^(customer[_\s-]?id|cid|id)$/.test(h)),
     date: headers.findIndex((h) => /last[_\s-]?purchase|date/.test(h)),
@@ -575,15 +655,18 @@ export function parseRfmCsv(text: string): RfmRecord[] {
     money: headers.findIndex((h) => /monetary|revenue|spend/.test(h)),
   };
   if (idx.id === -1 || idx.date === -1 || idx.freq === -1 || idx.money === -1) {
-    throw new Error('CSV needs columns: customerId, lastPurchase, frequency, monetary');
+    throw new Error("CSV needs columns: customerId, lastPurchase, frequency, monetary");
   }
-  return lines.slice(1).map((line) => {
-    const cells = line.split(',').map((c) => c.trim());
-    return {
-      customerId: cells[idx.id],
-      lastPurchase: new Date(cells[idx.date]).toISOString(),
-      frequency: Number(cells[idx.freq]),
-      monetary: Number(cells[idx.money]),
-    };
-  }).filter((r) => r.customerId && !Number.isNaN(r.frequency) && !Number.isNaN(r.monetary));
+  return lines
+    .slice(1)
+    .map((line) => {
+      const cells = line.split(",").map((c) => c.trim());
+      return {
+        customerId: cells[idx.id],
+        lastPurchase: new Date(cells[idx.date]).toISOString(),
+        frequency: Number(cells[idx.freq]),
+        monetary: Number(cells[idx.money]),
+      };
+    })
+    .filter((r) => r.customerId && !Number.isNaN(r.frequency) && !Number.isNaN(r.monetary));
 }
