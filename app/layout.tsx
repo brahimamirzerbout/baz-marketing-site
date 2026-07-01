@@ -11,6 +11,7 @@ import { Cursor } from '@/components/ui/Cursor';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import './globals.css';
+import './aether-theme.css';
 
 const inter = localFont({
   src: [
@@ -99,14 +100,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('baz:theme');if(!t){t='dark';}if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.setAttribute('data-theme','light');}else{document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}}catch(e){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}})();`,
+            __html: `(function(){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');})();`,
           }}
         />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
-          themes={["light", "dark"]}
+          themes={["dark"]}
           storageKey="baz:theme"
           disableTransitionOnChange
         >

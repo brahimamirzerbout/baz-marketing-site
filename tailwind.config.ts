@@ -84,20 +84,34 @@ const config: Config = {
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
-        'display-2xl': ['clamp(3.5rem, 7vw, 6rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
-        'display-xl': ['clamp(2.75rem, 5.5vw, 4.5rem)', { lineHeight: '1.0', letterSpacing: '-0.035em' }],
-        'display-lg': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.03em' }],
-        'display-md': ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
+        // Fibonacci px scale (Da Vinci: line-height = size × φ)
+        'fib-micro': ['8px', { lineHeight: '13px' }],
+        'fib-tiny': ['10px', { lineHeight: '16px' }],
+        'fib-xs': ['13px', { lineHeight: '21px' }],
+        'fib-sm': ['16px', { lineHeight: '26px' }],
+        'fib-base': ['21px', { lineHeight: '34px' }],
+        'fib-lg': ['34px', { lineHeight: '55px' }],
+        'fib-xl': ['55px', { lineHeight: '89px' }],
+        'fib-xxl': ['89px', { lineHeight: '144px' }],
+        // Display scale — Fibonacci endpoints
+        'display-2xl': ['clamp(3.5rem, 7vw, 9rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],   /* 144px F(12) */
+        'display-xl': ['clamp(2.75rem, 5.5vw, 5.5rem)', { lineHeight: '1.0', letterSpacing: '-0.035em' }], /* 89px F(11) */
+        'display-lg': ['clamp(2rem, 4vw, 3.4rem)', { lineHeight: '1.05', letterSpacing: '-0.03em' }],  /* 55px F(10) */
+        'display-md': ['clamp(1.5rem, 2.5vw, 2.1rem)', { lineHeight: '1.15', letterSpacing: '-0.02em' }], /* 34px F(9) */
       },
-      borderRadius: { xl: '0.875rem', '2xl': '1.25rem', '3xl': '1.75rem' },
+      // Fibonacci radius (px) — 3,5,8,13,21,34,55,89
+      borderRadius: { sm: '5px', DEFAULT: '8px', md: '13px', lg: '21px', xl: '21px', '2xl': '34px', '3xl': '55px' },
       boxShadow: {
-        soft: '0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -8px rgba(0,0,0,0.08)',
-        lift: '0 4px 8px rgba(0,0,0,0.06), 0 24px 48px -12px rgba(0,0,0,0.18)',
-        ring: '0 0 0 1px rgba(0,0,0,0.08)',
+        // Fibonacci blur/spread at 0.377 opacity (F(14)/1000)
+        soft: '0 1px 3px hsla(260,50%,0%,0.377), 0 8px 21px -8px hsla(260,50%,0%,0.233)',
+        lift: '0 3px 8px hsla(260,50%,0%,0.377), 0 13px 34px -13px hsla(260,50%,0%,0.233)',
+        ring: '0 0 0 1px hsla(260,10%,60%,0.144)',
+        // Violet glow (golden-angle 270°)
+        glow: '0 5px 21px hsla(270,85%,55%,0.233)',
       },
       keyframes: {
         'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(12px)' },
+          '0%': { opacity: '0', transform: 'translateY(13px)' },   /* F(7) */
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         marquee: {
@@ -106,13 +120,14 @@ const config: Config = {
         },
         'pulse-dot': {
           '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.3' },
+          '50%': { opacity: '0.377' },   /* F(14)/1000 */
         },
       },
       animation: {
-        'fade-up': 'fade-up 0.6s cubic-bezier(.2,.7,.2,1) both',
-        marquee: 'marquee 28s linear infinite',
-        'pulse-dot': 'pulse-dot 1.6s ease-in-out infinite',
+        // Fibonacci durations + golden-ratio easing
+        'fade-up': 'fade-up 610ms cubic-bezier(0.618,0,0.382,1) both',   /* F(15) float */
+        marquee: 'marquee 32s linear infinite',
+        'pulse-dot': 'pulse-dot 1597ms ease-in-out infinite',           /* F(17) */
       },
     },
   },

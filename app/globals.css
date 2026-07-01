@@ -3,134 +3,115 @@
 @tailwind utilities;
 
 /* ============================================================
-   BAZ — NEUTRAL FOUNDATION (Phase 1)
-   Pure OKLCH greys. Zero chroma. Build features against this.
-   Color comes later via the same variable slots.
+   BAZ — ÆTHER DESIGN SYSTEM (Fibonacci × Da Vinci × Material 3)
+   Every value derived from the Fibonacci sequence and golden ratio.
+   • Layers: 8 darkness layers at hue 260°, Fibonacci luminance (L*=3.9→42)
+   • Typography: Fibonacci px (8,10,13,16,21,34,55,89,144), line-height=size×φ
+   • Radius: Fibonacci (3,5,8,13,21,34,55,89)
+   • Blur: Fibonacci (3,5,8,13,21,34,55)
+   • Opacity: Fibonacci/1000 (0.055,0.089,0.144,0.233,0.377,0.610,0.987)
+   • Duration: Fibonacci ms (89,144,233,377,610,987)
+   • Easing: golden-ratio beziers ([0.618,0,0.618,1] etc.)
+   • Hues: golden-angle 137.5° — primary 270°, success 145°, warning 38°, danger 8°, info 210°
+   • Gradients: midpoint at 61.8% (100/φ), never 50%
+   • Glass: translucent α=0.55 + Fibonacci blur (opaque 0.92 only via .glass-opaque)
+   Structure is monochrome hue-260; the violet 270° accent is the brand color.
    ============================================================ */
 
 :root {
-  /* ─── Dark by default ─── */
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.65 0.22 25);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.65 0.22 25);
-  --chart-2: oklch(0.7 0.15 145);
-  --chart-3: oklch(0.6 0.12 250);
-  --chart-4: oklch(0.8 0.15 85);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* ─── Aether layers mapped to BAZ tokens ─── */
+  /* 8 layers of darkness replace flat OKLCH greys */
+  --background: hsl(260, 14%, 3.9%);       /* Aether L0 — The Void */
+  --foreground: hsl(260, 8%, 98%);         /* Aether text-primary */
+  --card: hsl(260, 11%, 13%);              /* Aether L3 — The Surface */
+  --card-foreground: hsl(260, 8%, 98%);
+  --popover: hsl(260, 12%, 9%);            /* Aether L2 — The Shadow */
+  --popover-foreground: hsl(260, 8%, 98%);
+  --primary: hsl(260, 8%, 98%);
+  --primary-foreground: hsl(260, 14%, 3.9%);
+  --secondary: hsl(260, 10%, 18%);        /* Aether L4 — The Raised */
+  --secondary-foreground: hsl(260, 8%, 98%);
+  --muted: hsl(260, 10%, 18%);            /* Aether L4 */
+  --muted-foreground: hsl(260, 6%, 65%);   /* Aether text-secondary */
+  --accent: hsl(270, 85%, 72%);           /* violet 270° — brand accent (golden angle) */
+  --accent-foreground: hsl(260, 14%, 3.9%);
+  --destructive: hsl(8, 80%, 58%);         /* danger 8° — golden angle */
+  --border: hsla(260, 10%, 60%, 0.144);   /* Fibonacci cloud-opacity hairline */
+  --input: hsl(260, 10%, 18%);            /* Aether L4 */
+  --ring: hsl(264, 15%, 32%);             /* Aether L6 — The Focus */
+  --chart-1: hsl(270, 85%, 72%);          /* violet */
+  --chart-2: hsl(145, 70%, 55%);          /* emerald */
+  --chart-3: hsl(210, 75%, 60%);          /* blue */
+  --chart-4: hsl(38, 85%, 58%);           /* amber */
+  --chart-5: hsl(260, 6%, 45%);           /* neutral */
+  /* Radius — Fibonacci px */
+  --radius: 8px;                           /* F(6) — aether-radius-md */
+  --radius-sm: 5px;                        /* F(5) */
+  --radius-lg: 13px;                       /* F(7) */
+  --radius-xl: 21px;                       /* F(8) */
+  --sidebar: hsl(260, 12%, 9%);            /* Aether L2 */
+  --sidebar-foreground: hsl(260, 8%, 98%);
+  --sidebar-primary: hsl(270, 85%, 72%);  /* violet brand */
+  --sidebar-primary-foreground: hsl(260, 14%, 3.9%);
+  --sidebar-accent: hsl(260, 10%, 18%);   /* Aether L4 */
+  --sidebar-accent-foreground: hsl(260, 8%, 98%);
+  --sidebar-border: hsla(260, 10%, 60%, 0.144);
+  --sidebar-ring: hsl(264, 15%, 32%);     /* Aether L6 */
 
-  /* ─── Accentuation colors ─── */
-  --accent: oklch(0.65 0.22 25);           /* red — CTAs, highlights */
-  --accent-foreground: oklch(0.985 0 0);
-  --success: oklch(0.7 0.15 145);           /* green — wins, confirmations */
-  --warning: oklch(0.8 0.15 85);            /* amber — caution, pending */
-  --info: oklch(0.6 0.12 250);              /* blue — data, analytics */
-  --accent-soft: oklch(0.65 0.22 25 / 10%);
+  /* ─── Accentuation colors (golden-angle functional hues) ─── */
+  --accent-soft: hsla(270, 85%, 72%, 0.089);  /* violet @ frost opacity */
+  --success: hsl(145, 70%, 55%);               /* emerald 145° — wins, confirmations */
+  --warning: hsl(38, 85%, 58%);                /* amber 38° — caution, pending */
+  --info: hsl(210, 75%, 60%);                  /* blue 210° — data, analytics */
 
-  /* ─── Backward-compatible mappings (dark values) ─── */
-  --bg: oklch(0.145 0 0);
-  --paper: oklch(0.205 0 0);
-  --paper-2: oklch(0.269 0 0);
-  --paper-3: oklch(0.371 0 0);
-  --ink: oklch(0.985 0 0);
-  --line: oklch(1 0 0 / 10%);
+  /* ─── Backward-compatible mappings (Aether hue-260° Fibonacci luminance) ─── */
+  --bg: hsl(260, 14%, 3.9%);                /* L0 — The Void */
+  --paper: hsl(260, 11%, 13%);              /* L3 — The Surface */
+  --paper-2: hsl(260, 10%, 18%);            /* L4 — The Raised */
+  --paper-3: hsl(260, 12%, 24%);            /* L5 — The Hover */
+  --ink: hsl(260, 8%, 98%);                /* text-primary */
+  --line: hsla(260, 10%, 60%, 0.089);       /* frost-opacity hairline */
 
-  /* RGB triplets for existing Tailwind color tokens (dark values) */
-  --c-paper: 20 20 20;
-  --c-paper-50: 10 10 10;
-  --c-paper-100: 20 20 20;
-  --c-paper-200: 30 30 30;
-  --c-paper-300: 50 50 50;
-  --c-paper-400: 80 80 80;
-  --c-ink-400: 160 160 160;
-  --c-ink-500: 200 200 200;
-  --c-ink-600: 230 230 230;
-  --c-ink-700: 240 240 240;
-  --c-ink-800: 245 245 245;
-  --c-ink-900: 250 250 250;
-  --c-ink-950: 255 255 255;
+  /* RGB triplets for existing Tailwind color tokens (Aether hue-260° values) */
+  --c-paper: 32 30 37;                      /* L3 */
+  --c-paper-50: 9 9 11;                     /* L0 */
+  --c-paper-100: 22 20 26;                  /* L2 */
+  --c-paper-200: 32 30 37;                  /* L3 */
+  --c-paper-300: 44 41 50;                  /* L4 */
+  --c-paper-400: 59 54 69;                  /* L5 */
+  --c-ink-400: 164 160 171;                /* text-secondary (65%) */
+  --c-ink-500: 190 187 196;                /* 75% */
+  --c-ink-600: 208 206 212;                /* 82% */
+  --c-ink-700: 224 222 227;                /* 88% */
+  --c-ink-800: 237 236 239;                /* 93% */
+  --c-ink-900: 245 244 246;                /* 96% */
+  --c-ink-950: 250 249 250;                /* 98% — text-primary */
 
   /* Semantic slots — empty for now, filled in Phase 2 */
   --color-action: var(--primary);
   --color-trust: var(--foreground);
   --color-surface: var(--card);
-  --color-accent-brand: var(--primary);
+  --color-accent-brand: var(--accent);
 
   /* Type */
   --display: 'Fraunces', ui-serif, Georgia, serif;
   --sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ─── Fibonacci scale aliases (for direct use) ─── */
+  --space-1: 1px;  --space-2: 2px;  --space-3: 3px;  --space-5: 5px;
+  --space-8: 8px;  --space-13: 13px;  --space-21: 21px;  --space-34: 34px;
+  --space-55: 55px;  --space-89: 89px;  --space-144: 144px;
+  --text-micro: 8px;  --text-tiny: 10px;  --text-xs: 13px;  --text-sm: 16px;
+  --text-base: 21px;  --text-lg: 34px;  --text-xl: 55px;  --text-xxl: 89px;  --text-display: 144px;
+  --blur-sm: 5px;  --blur-base: 8px;  --blur-md: 13px;  --blur-lg: 21px;  --blur-xl: 34px;
+  --ease-natural: cubic-bezier(0.618, 0, 0.618, 1);
+  --ease-glide: cubic-bezier(0.236, 0.618, 0.236, 1);
+  --ease-snap: cubic-bezier(0.382, 0, 0.236, 1);
+  --ease-float: cubic-bezier(0.618, 0, 0.382, 1);
 }
 
 /* ─── Light mode (optional, not default) ─── */
-:root:not(.dark) {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  /* Light legacy tokens */
-  --bg: oklch(1 0 0);
-  --paper: oklch(1 0 0);
-  --paper-2: oklch(0.97 0 0);
-  --paper-3: oklch(0.922 0 0);
-  --ink: oklch(0.145 0 0);
-  --line: oklch(0.922 0 0);
-  --c-paper: 255 255 255;
-  --c-paper-50: 255 255 255;
-  --c-paper-100: 252 252 252;
-  --c-paper-200: 247 247 247;
-  --c-paper-300: 237 237 237;
-  --c-paper-400: 220 220 220;
-  --c-ink-400: 140 140 140;
-  --c-ink-500: 100 100 100;
-  --c-ink-600: 70 70 70;
-  --c-ink-700: 50 50 50;
-  --c-ink-800: 30 30 30;
-  --c-ink-900: 20 20 20;
-  --c-ink-950: 10 10 10;
-}
 
 /* .dark is a no-op — :root already has dark values */
 .dark {}
@@ -145,8 +126,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--sans);
+  font-size: var(--text-sm);             /* 16px Fibonacci */
+  line-height: 1.618;                     /* φ */
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  transition: background-color .3s ease, color .3s ease;
+  transition: background-color var(--aether-duration-fast, 233ms) var(--ease-natural),
+              color var(--aether-duration-fast, 233ms) var(--ease-natural);
 }
 
 /* ============================================================
@@ -155,33 +139,34 @@ body {
 .font-display { font-family: var(--display); font-optical-sizing: auto; }
 .font-mono { font-family: var(--mono); }
 
-::selection { background: var(--primary); color: var(--primary-foreground); }
+::selection { background: var(--accent); color: var(--accent-foreground); }
 
 /* ============================================================
-   SCROLLBAR
+   SCROLLBAR — Fibonacci 5px
    ============================================================ */
-::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: var(--aether-radius-pill, 89px); }
 ::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
 
 /* ============================================================
-   REVEAL
+   REVEAL — Fibonacci durations + golden-ratio easing
    ============================================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  transform: translateY(13px);            /* F(7) */
+  transition: opacity var(--aether-duration-smooth, 610ms) var(--ease-float),
+              transform var(--aether-duration-smooth, 610ms) var(--ease-float);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
-.reveal-stagger > * { opacity: 0; transform: translateY(12px); transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
+.reveal-stagger > * { opacity: 0; transform: translateY(13px); transition: opacity var(--aether-duration-smooth, 610ms) var(--ease-float), transform var(--aether-duration-smooth, 610ms) var(--ease-float); }
 .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
 .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
-.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 70ms; }
-.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 140ms; }
-.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 210ms; }
-.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 280ms; }
-.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 350ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 89ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 144ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 233ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 377ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 610ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-stagger > * { opacity: 1; transform: none; transition: none; }
@@ -190,9 +175,9 @@ body {
 /* ============================================================
    A11y
    ============================================================ */
-.skip { position: absolute; left: -9999px; top: 0; background: var(--foreground); color: var(--background); padding: 12px 18px; border-radius: var(--radius); z-index: 100; }
-.skip:focus { left: 12px; top: 12px; }
-:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: 4px; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--foreground); color: var(--background); padding: 13px 21px; border-radius: var(--radius); z-index: 100; }
+.skip:focus { left: 13px; top: 13px; }
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: var(--radius-sm); }
 
 /* ============================================================
    BACKGROUNDS
@@ -201,7 +186,7 @@ body {
   background-image:
     linear-gradient(to right, var(--border) 1px, transparent 1px),
     linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-  background-size: 64px 64px;
+  background-size: 55px 55px;              /* Fibonacci */
 }
 
 .bg-grain { position: relative; }
@@ -214,10 +199,10 @@ body {
 }
 
 /* ============================================================
-   TEXT
+   TEXT — gradient midpoint at 61.8% (100/φ)
    ============================================================ */
 .text-gradient {
-  background: linear-gradient(120deg, var(--foreground) 0%, var(--muted-foreground) 50%, var(--foreground) 100%);
+  background: linear-gradient(120deg, var(--foreground) 0%, var(--muted-foreground) 61.8%, var(--foreground) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -234,113 +219,117 @@ body {
   border-radius: 50%; will-change: transform;
 }
 .cursor-dot {
-  width: 5px; height: 5px;
+  width: 5px; height: 5px;               /* F(5) */
   background: var(--foreground);
   transform: translate(-50%, -50%);
-  transition: opacity .2s ease;
+  transition: opacity var(--aether-duration-swift, 144ms) var(--ease-natural);
 }
 .cursor-ring {
-  width: 28px; height: 28px;
+  width: 34px; height: 34px;             /* F(9) */
   border: 1px solid var(--border); opacity: 0.4;
   transform: translate(-50%, -50%);
-  transition: width .25s cubic-bezier(.2,.7,.2,1), height .25s cubic-bezier(.2,.7,.2,1), border-color .25s ease, opacity .25s ease, background .25s ease;
+  transition: width var(--aether-duration-fast, 233ms) var(--ease-glide),
+              height var(--aether-duration-fast, 233ms) var(--ease-glide),
+              border-color var(--aether-duration-fast, 233ms) var(--ease-natural),
+              opacity var(--aether-duration-fast, 233ms) var(--ease-natural),
+              background var(--aether-duration-fast, 233ms) var(--ease-natural);
 }
-.cursor-ring.hover { width: 44px; height: 44px; border-color: var(--foreground); opacity: 0.5; background: var(--muted); }
-.cursor-ring.cta { width: 52px; height: 52px; border-color: var(--foreground); opacity: 0.6; background: var(--secondary); }
+.cursor-ring.hover { width: 55px; height: 55px; border-color: var(--foreground); opacity: 0.5; background: var(--muted); }
+.cursor-ring.cta { width: 89px; height: 89px; border-color: var(--accent); opacity: 0.6; background: var(--secondary); }
 @media (hover: none), (max-width: 768px) { .cursor-host { display: none; } }
 
 /* ============================================================
    MAGNETIC
    ============================================================ */
-[data-magnetic] { transition: transform .3s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+[data-magnetic] { transition: transform var(--aether-duration-normal, 377ms) var(--ease-glide); will-change: transform; }
 
 /* ============================================================
    THEME TOGGLE
    ============================================================ */
 .theme-toggle {
   display: inline-grid; place-items: center;
-  width: 36px; height: 36px; border-radius: 999px;
+  width: 34px; height: 34px; border-radius: var(--aether-radius-pill, 89px);
   border: 1px solid var(--border); background: transparent; color: var(--foreground);
-  cursor: pointer; transition: all .2s ease;
+  cursor: pointer; transition: all var(--aether-duration-swift, 144ms) var(--ease-natural);
 }
 .theme-toggle:hover { background: var(--muted); }
 
 /* ============================================================
-   SCROLL PROGRESS
+   SCROLL PROGRESS — Fibonacci 89ms
    ============================================================ */
 .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 9998; background: transparent; pointer-events: none; }
-.scroll-progress-bar { height: 100%; background: var(--foreground); transition: width 0.1s linear; }
+.scroll-progress-bar { height: 100%; background: var(--accent); transition: width var(--aether-duration-instant, 89ms) linear; }
 
 /* ============================================================
-   TOAST
+   TOAST — Fibonacci padding/radius + functional hues
    ============================================================ */
-.toast-stack { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 9998; }
+.toast-stack { position: fixed; bottom: 21px; right: 21px; display: flex; flex-direction: column; gap: 13px; z-index: 9998; }
 .toast {
-  background: var(--card); color: var(--card-foreground); padding: 12px 16px; border-radius: var(--radius);
-  font-size: 14px; box-shadow: 0 8px 24px -8px rgba(0,0,0,.15); max-width: 360px;
+  background: var(--card); color: var(--card-foreground); padding: 13px 21px; border-radius: var(--radius);
+  font-size: var(--text-xs); box-shadow: var(--aether-shadow-xl, 0 8px 21px hsla(260,50%,0%,0.377)); max-width: 377px;
   border: 1px solid var(--border);
-  animation: toast-in .35s cubic-bezier(.2,.7,.2,1) both;
+  animation: toast-in var(--aether-duration-normal, 377ms) var(--ease-glide) both;
 }
-.toast--success { background: oklch(0.7 0.15 145); color: oklch(0.15 0 0); }
-.toast--error   { background: var(--destructive); color: white; }
-.toast--warning { background: oklch(0.8 0.15 85); color: oklch(0.15 0 0); }
-@keyframes toast-in { 0% { opacity: 0; transform: translateY(20px) scale(.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+.toast--success { background: var(--success); color: hsl(260, 14%, 3.9%); }
+.toast--error   { background: var(--destructive); color: hsl(260, 8%, 98%); }
+.toast--warning { background: var(--warning); color: hsl(260, 14%, 3.9%); }
+@keyframes toast-in { 0% { opacity: 0; transform: translateY(21px) scale(0.618); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 
 /* ============================================================
    COOKIE BANNER
    ============================================================ */
 .cookie {
-  position: fixed; bottom: 16px; left: 16px; right: 16px; max-width: 520px;
+  position: fixed; bottom: 13px; left: 13px; right: 13px; max-width: 555px;  /* F-ratio width */
   background: var(--card); color: var(--card-foreground);
   border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px 18px; box-shadow: 0 24px 48px -12px rgba(0,0,0,.15);
+  padding: 21px 21px; box-shadow: 0 13px 34px -13px hsla(260,50%,0%,0.377);
   display: none; z-index: 9997;
 }
-.cookie.show { display: flex; gap: 14px; align-items: flex-start; }
+.cookie.show { display: flex; gap: 13px; align-items: flex-start; }
 .cookie button {
-  font: 500 13px var(--sans); padding: 8px 14px; border-radius: 999px;
+  font: 500 var(--text-xs) var(--sans); padding: 8px 13px; border-radius: var(--aether-radius-pill, 89px);
   border: 1px solid var(--border); background: var(--background); color: var(--foreground); cursor: pointer;
   white-space: nowrap;
 }
-.cookie button.primary { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); }
-.cookie p { font-size: 13.5px; line-height: 1.55; margin: 0; }
+.cookie button.primary { background: var(--accent); color: var(--accent-foreground); border-color: var(--accent); }
+.cookie p { font-size: var(--text-xs); line-height: 1.618; margin: 0; }
 .cookie a { text-decoration: underline; }
 
 /* ============================================================
-   ANIMATIONS
+   ANIMATIONS — Fibonacci durations
    ============================================================ */
-@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(1.15); } }
-.animate-pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
-@keyframes float-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-.animate-float-soft { animation: float-soft 6s ease-in-out infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.377; transform: scale(1.144); } }
+.animate-pulse-dot { animation: pulse-dot 1597ms ease-in-out infinite; }
+@keyframes float-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.animate-float-soft { animation: float-soft 6765ms ease-in-out infinite; }
 @keyframes spin-slow { to { transform: rotate(360deg); } }
-.animate-spin-slow { animation: spin-slow 16s linear infinite; }
-@keyframes royal-entrance { 0% { opacity: 0; transform: translateY(8px); filter: blur(6px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
-.royal-entrance { animation: royal-entrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-spin-slow { animation: spin-slow 15970ms linear infinite; }
+@keyframes royal-entrance { 0% { opacity: 0; transform: translateY(8px); filter: blur(8px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
+.royal-entrance { animation: royal-entrance var(--aether-duration-smooth, 610ms) var(--ease-float) both; }
 
 /* ============================================================
-   NAV LINK
+   NAV LINK — golden-ratio easing
    ============================================================ */
-.nav-link { position: relative; display: inline-flex; align-items: center; padding: 6px 2px; color: var(--foreground); transition: color .2s ease; }
-.nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--foreground); transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+.nav-link { position: relative; display: inline-flex; align-items: center; padding: 8px 3px; color: var(--foreground); transition: color var(--aether-duration-swift, 144ms) var(--ease-natural); }
+.nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform var(--aether-duration-normal, 377ms) var(--ease-glide); }
 .nav-link:hover::after, .nav-link[aria-current='page']::after { transform: scaleX(1); }
 
 /* ============================================================
    CARD HOVER
    ============================================================ */
-.card-hover { transition: transform .3s ease, border-color .25s ease; }
-.card-hover:hover { transform: translateY(-2px); border-color: var(--foreground); }
+.card-hover { transition: transform var(--aether-duration-normal, 377ms) var(--ease-natural), border-color var(--aether-duration-fast, 233ms) var(--ease-natural); }
+.card-hover:hover { transform: translateY(-3px); border-color: var(--accent); }
 
 /* ============================================================
    SEAL
    ============================================================ */
 .royal-seal {
-  width: 36px; height: 36px;
+  width: 34px; height: 34px;             /* F(9) */
   border: 1px solid var(--border);
   border-radius: 50%;
   display: grid; place-items: center;
   font-family: var(--display);
-  font-weight: 600; font-size: 16px;
+  font-weight: 600; font-size: var(--text-sm);
   color: var(--foreground);
   flex-shrink: 0;
 }
@@ -363,49 +352,64 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
 /* ============================================================
-   THEME TRANSITION
+   THEME TRANSITION — Fibonacci 144ms
    ============================================================ */
 @media (prefers-reduced-motion: no-preference) {
   html.theme-transition, html.theme-transition * {
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease !important;
+    transition: background-color var(--aether-duration-swift, 144ms) var(--ease-natural),
+                color var(--aether-duration-swift, 144ms) var(--ease-natural),
+                border-color var(--aether-duration-swift, 144ms) var(--ease-natural) !important;
   }
 }
 
 /* ============================================================
-   EYEBROW
+   EYEBROW — Fibonacci typography
    ============================================================ */
 .eyebrow-neutral,
 .eyebrow-gold {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.16em;
+  display: inline-flex; align-items: center; gap: 8px;    /* F(6) */
+  font-family: var(--mono); font-size: var(--text-tiny);  /* 10px Fibonacci */
+  letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--muted-foreground);
 }
 
 /* ============================================================
-   SHIMMER
+   SHIMMER — midpoint at 61.8%
    ============================================================ */
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-.shimmer { background: linear-gradient(90deg, transparent, var(--border) 50%, transparent); background-size: 200% 100%; animation: shimmer 2s linear infinite; }
-/* ═══ TYPEUI SKILLS — Glass Edge Highlights + Premium Shadows ═══ */
+.shimmer { background: linear-gradient(90deg, transparent, var(--border) 61.8%, transparent); background-size: 200% 100%; animation: shimmer 2s linear infinite; }
+
+/* ═══ TYPEUI SKILLS — Glass Edge Highlights + Fibonacci Shadows ═══ */
 .card-glass::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background: linear-gradient(90deg, transparent, hsla(260, 8%, 98%, 0.377), transparent);  /* F(14) opacity */
   pointer-events: none; z-index: 1;
 }
 .card-glass::after {
   content: ""; position: absolute; top: 0; left: 0; width: 1px; height: 100%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(180deg, hsla(260, 8%, 98%, 0.233), transparent);  /* F(13) opacity */
   pointer-events: none; z-index: 1;
 }
-.shadow-glass { box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.15); }
-.shadow-glass-lg { box-shadow: 0 12px 40px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.2); }
-.shadow-glass-xl { box-shadow: 0 20px 50px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.25); }
-.card-marketing { border-radius: 32px; overflow: hidden; position: relative; }
-.card-marketing-pad { padding: 40px; }
-.eyebrow { font-size: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
-.h-hero { font-size: clamp(44px, 8vw, 80px); line-height: 1.05; letter-spacing: -0.04em; font-weight: 700; }
-.h1-premium { font-size: clamp(34px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; }
-.h2-premium { font-size: clamp(32px, 4vw, 48px); line-height: 1.07; letter-spacing: -0.01em; font-weight: 700; }
-.glass, .card-glass, .glass-surface { backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important; }
-.section-pad { padding: 96px 0; }
-.container-xl { max-width: 1152px; margin: 0 auto; padding: 0 24px; }
+.shadow-glass { box-shadow: 0 8px 21px hsla(260, 50%, 0%, 0.089), inset 0 1px 0 hsla(260, 8%, 98%, 0.144); }
+.shadow-glass-lg { box-shadow: 0 13px 34px hsla(260, 50%, 0%, 0.089), inset 0 1px 0 hsla(260, 8%, 98%, 0.233); }
+.shadow-glass-xl { box-shadow: 0 21px 55px hsla(260, 50%, 0%, 0.144), inset 0 1px 0 hsla(260, 8%, 98%, 0.377); }
+.card-marketing { border-radius: 34px; overflow: hidden; position: relative; }  /* F(9) */
+.card-marketing-pad { padding: 34px; }  /* F(9) */
+.eyebrow { font-size: var(--text-sm); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }  /* 16px Fibonacci */
+/* Headings — Fibonacci px endpoints */
+.h-hero { font-size: clamp(34px, 8vw, 89px); line-height: 1.05; letter-spacing: -0.04em; font-weight: 700; }      /* F(8)→F(11) */
+.h1-premium { font-size: clamp(34px, 5vw, 55px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; }    /* F(8)→F(10) */
+.h2-premium { font-size: clamp(34px, 4vw, 55px); line-height: 1.07; letter-spacing: -0.01em; font-weight: 700; }   /* F(8)→F(10) */
+/* Glass — translucent α=0.55 is the default material; opaque 0.92 is a SEPARATE class, never global */
+.glass, .card-glass, .glass-surface {
+  background: hsla(260, 12%, 20%, 0.55);
+  backdrop-filter: blur(13px) saturate(1.618) !important;            /* Fibonacci md blur */
+  -webkit-backdrop-filter: blur(13px) saturate(1.618) !important;
+}
+.glass-opaque {
+  background: hsla(260, 12%, 18%, 0.92);
+  backdrop-filter: blur(13px) saturate(1.618) !important;
+  -webkit-backdrop-filter: blur(13px) saturate(1.618) !important;
+}
+.section-pad { padding: 89px 0; }  /* F(11) */
+.container-xl { max-width: 1152px; margin: 0 auto; padding: 0 21px; }  /* F(8) gutter */

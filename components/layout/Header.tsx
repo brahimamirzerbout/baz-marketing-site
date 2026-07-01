@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { SearchBox } from "./SearchBox";
 import { cn } from "@/lib/cn";
 import { site } from "@/lib/site";
@@ -78,7 +77,6 @@ export function Header() {
         {/* Right actions */}
         <div className="hidden lg:flex items-center gap-2">
           <SearchBox />
-          <ThemeToggle />
           <Button href="/contact" variant="ghost" size="sm" trackAs="header_contact">
             Talk to us
           </Button>
