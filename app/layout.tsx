@@ -10,8 +10,10 @@ import { ScrollReveal } from '@/components/marketing/ScrollReveal';
 import { Cursor } from '@/components/ui/Cursor';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
+import { AetherBackground } from '@/components/ui/AetherBackground';
 import './globals.css';
 import './aether-theme.css';
+import './aether-monochrome.css';
 
 const inter = localFont({
   src: [
@@ -103,6 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');})();`,
           }}
         />
+        <AetherBackground />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

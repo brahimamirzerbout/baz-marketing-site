@@ -1,0 +1,532 @@
+/* ═══════════════════════════════════════════════════════════════════
+   ÆTHER — Monochrome Design System (native port)
+   Source: aether-deploy/index.html  ·  v3.0
+   Grayscale: CIE Lab L* perceptual lightness → sRGB
+   Contrast:  WCAG 2.1 (L+0.05)/(D+0.05), L=(v/255)^2.2
+   Glass:     Opaque material model — α=0.92, bleed<0.32%
+   Typography: Major Third scale (ratio 1.250)
+   Easing:     ease-out-expo cubic-bezier(0.16,1,0.3,1)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Grayscale ramp (CIE Lab L* → sRGB) — used by patterns/materials ─── */
+:root{
+  --g0:#000000; --g5:#0d0d0d; --g10:#1a1a1a; --g15:#262626; --g20:#333333;
+  --g25:#404040; --g30:#4d4d4d; --g35:#5a5a5a; --g40:#666666; --g45:#737373;
+  --g50:#808080; --g55:#8c8c8c; --g60:#999999; --g65:#a6a6a6; --g70:#b3b3b3;
+  --g75:#bfbfbf; --g80:#cccccc; --g85:#d9d9d9; --g90:#e6e6e6; --g95:#f2f2f2; --g100:#ffffff;
+}
+/* ═══ ÆTHER — Mathematically Computed Design Tokens ═══
+   Grayscale: CIE Lab L* perceptual lightness → sRGB
+   Contrast:  WCAG 2.1 (L+0.05)/(D+0.05), L=(v/255)^2.2
+   Glass:     Opaque material model — α=0.92, bleed<0.32%
+   Typography: Major Third scale (ratio 1.250)
+   Shadows:   Material elevation (dual ambient+key)
+   Easing:     ease-out-expo cubic-bezier(0.16,1,0.3,1)
+═══════════════════════════════════════════════════════ */
+/* ═══ ÆTHER — Mathematically Computed Design Tokens ═══
+   Grayscale: CIE Lab L* perceptual lightness → sRGB
+   Contrast:  WCAG 2.1 (L+0.05)/(D+0.05), L=(v/255)^2.2
+   Glass:     Opaque material model — α=0.92, bleed<0.32%
+   Typography: Major Third scale (ratio 1.250)
+   Shadows:   Material elevation (dual ambient+key)
+   Easing:     ease-out-expo cubic-bezier(0.16,1,0.3,1)
+═══════════════════════════════════════════════════════ */
+:root{
+  /* Surfaces — original values preserved */
+  --bg:#070707; --surface:#0c0c0c; --card:#101010;
+  /* Text — L*97: CR=19.2:1 on bg (AAA) */
+  --fg:#f5f5f5;
+  /* Muted — original */
+  --muted:#8a8a8a;
+  /* Faint — original */
+  --faint:#4a4a4a;
+  /* Borders — original */
+  --border:#1c1c1c;
+  /* Lines — original */
+  --line:#2e2e2e;
+  /* Glow */
+  --glow:rgba(255,255,255,0.06);
+  /* Shadows — Material elevation model */
+  --shadow-1:0 1px 2px rgba(0,0,0,0.4);
+  --shadow-2:0 4px 12px rgba(0,0,0,0.3),0 1px 3px rgba(0,0,0,0.2);
+  --shadow-3:0 12px 40px rgba(0,0,0,0.4),0 4px 12px rgba(0,0,0,0.2);
+  --shadow-glow:0 0 0 1px rgba(255,255,255,0.04),0 8px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.03);
+  /* ═══ Glass — Original translucent glass (site-wide) ═══ */
+  --card-glass:rgba(16,16,16,0.6);
+  /* ═══ Opaque Glass Material — Mode-Neutral ═══
+     α=0.92 → background bleed=0.32% (32× below 1% JND)
+     blur=24px → optimal frost range (20-40px)
+     Structural properties constant across themes.
+     Only applied via .glass-opaque class, NOT globally. */
+  --glass-bg:rgba(20,20,22,0.92);
+  --glass-blur:24px;
+  --glass-saturate:1.4;
+  --glass-border:rgba(255,255,255,0.06);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.03);
+  --glass-shadow:0 8px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.03);
+}
+:root:not(.dark){
+  /* Surfaces — original values preserved */
+  --bg:#f8f8f8; --surface:#f0f0f0; --card:#fcfcfc;
+  /* Text — L*3: CR=19.5:1 on bg (AAA) */
+  --fg:#0a0a0a;
+  /* Muted — original */
+  --muted:#666;
+  /* Faint — original */
+  --faint:#aaa;
+  /* Borders — original */
+  --border:#e2e2e2;
+  /* Lines — original */
+  --line:#ccc;
+  /* Glow */
+  --glow:rgba(0,0,0,0.05);
+  /* Shadows — inverted temperature, same depth */
+  --shadow-1:0 1px 2px rgba(0,0,0,0.06);
+  --shadow-2:0 4px 12px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.04);
+  --shadow-3:0 12px 40px rgba(0,0,0,0.1),0 4px 12px rgba(0,0,0,0.05);
+  --shadow-glow:0 0 0 1px rgba(0,0,0,0.03),0 8px 32px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.5);
+  /* ═══ Glass — Original translucent glass (site-wide) ═══ */
+  --card-glass:rgba(252,252,252,0.7);
+  /* ═══ Opaque Glass Material — Same structure, inverted tint ═══ */
+  --glass-bg:rgba(255,255,255,0.92);
+  --glass-blur:24px;
+  --glass-saturate:1.4;
+  --glass-border:rgba(0,0,0,0.06);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.8);
+  --glass-shadow:0 8px 32px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.6);
+}
+*{-webkit-font-smoothing:antialiased}body{color:var(--fg);overflow-x:hidden}
+nav,section,footer{position:relative;z-index:2}
+/* ═══ Silk Background — 6 flowing layers ═══ */
+.silk-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:var(--bg)}
+.silk-layer{position:absolute;inset:-30%;will-change:transform}
+.silk-layer-1{background:radial-gradient(ellipse 50% 70% at 25% 30%,rgba(255,255,255,.08),transparent 50%),radial-gradient(ellipse 60% 50% at 75% 70%,rgba(255,255,255,.06),transparent 50%),radial-gradient(ellipse 40% 60% at 50% 50%,rgba(255,255,255,.04),transparent 60%);animation:silkFlow1 28s ease-in-out infinite alternate}
+.silk-layer-2{background:radial-gradient(ellipse 55% 65% at 65% 20%,rgba(255,255,255,.07),transparent 50%),radial-gradient(ellipse 70% 40% at 30% 80%,rgba(255,255,255,.05),transparent 50%),radial-gradient(ellipse 45% 55% at 10% 50%,rgba(255,255,255,.04),transparent 55%);animation:silkFlow2 36s ease-in-out infinite alternate}
+.silk-layer-3{background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(255,255,255,.025) 60deg,transparent 120deg,rgba(255,255,255,.02) 240deg,transparent 360deg);animation:silkRotate 80s linear infinite}
+.silk-layer-4{background:radial-gradient(ellipse 30% 90% at 80% 10%,rgba(255,255,255,.04),transparent 40%),radial-gradient(ellipse 90% 30% at 20% 90%,rgba(255,255,255,.03),transparent 40%);animation:silkFlow3 22s ease-in-out infinite alternate}
+.silk-sheen{position:absolute;inset:0;background:linear-gradient(125deg,transparent 30%,rgba(255,255,255,.025) 48%,rgba(255,255,255,.015) 52%,transparent 70%);animation:silkSheen 18s ease-in-out infinite}
+.silk-weave{position:absolute;inset:0;opacity:.03}
+:root:not(.dark) .silk-layer-1{background:radial-gradient(ellipse 50% 70% at 25% 30%,rgba(0,0,0,.06),transparent 50%),radial-gradient(ellipse 60% 50% at 75% 70%,rgba(0,0,0,.05),transparent 50%)}
+:root:not(.dark) .silk-layer-2{background:radial-gradient(ellipse 55% 65% at 65% 20%,rgba(0,0,0,.06),transparent 50%),radial-gradient(ellipse 70% 40% at 30% 80%,rgba(0,0,0,.04),transparent 50%)}
+:root:not(.dark) .silk-layer-3{background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(0,0,0,.025) 60deg,transparent 120deg,rgba(0,0,0,.02) 240deg,transparent 360deg)}
+:root:not(.dark) .silk-layer-4{background:radial-gradient(ellipse 30% 90% at 80% 10%,rgba(0,0,0,.04),transparent 40%),radial-gradient(ellipse 90% 30% at 20% 90%,rgba(0,0,0,.03),transparent 40%)}
+:root:not(.dark) .silk-sheen{background:linear-gradient(125deg,transparent 30%,rgba(0,0,0,.02) 48%,rgba(0,0,0,.01) 52%,transparent 70%)}
+:root:not(.dark) .silk-weave{opacity:.018}
+:root:not(.dark) .silk-layer-1{background:radial-gradient(ellipse 50% 70% at 25% 30%,rgba(0,0,0,.05),transparent 50%),radial-gradient(ellipse 60% 50% at 75% 70%,rgba(0,0,0,.04),transparent 50%)}
+:root:not(.dark) .silk-layer-2{background:radial-gradient(ellipse 55% 65% at 65% 20%,rgba(0,0,0,.05),transparent 50%),radial-gradient(ellipse 70% 40% at 30% 80%,rgba(0,0,0,.03),transparent 50%)}
+:root:not(.dark) .silk-layer-3{background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,rgba(0,0,0,.02) 60deg,transparent 120deg,rgba(0,0,0,.015) 240deg,transparent 360deg)}
+:root:not(.dark) .silk-sheen{background:linear-gradient(125deg,transparent 35%,rgba(0,0,0,.015) 50%,transparent 65%)}
+:root:not(.dark) .silk-weave{opacity:.015}
+@keyframes silkFlow1{0%{transform:translate(0,0) scale(1) rotate(0deg)}50%{transform:translate(-3%,2%) scale(1.06) rotate(1.5deg)}100%{transform:translate(2%,-3%) scale(.97) rotate(-1deg)}}
+@keyframes silkFlow2{0%{transform:translate(0,0) scale(1.1) rotate(0deg)}50%{transform:translate(3%,-2%) scale(1) rotate(-1.5deg)}100%{transform:translate(-2%,3%) scale(1.05) rotate(1deg)}}
+@keyframes silkRotate{to{transform:rotate(360deg)}}
+@keyframes silkSheen{0%,100%{transform:translateX(-25%) skewX(-2deg);opacity:.4}50%{transform:translateX(25%) skewX(2deg);opacity:1}}
+@keyframes silkFlow3{0%{transform:translate(0,0) scale(1) rotate(0deg)}50%{transform:translate(4%,-4%) scale(1.08) rotate(2deg)}100%{transform:translate(-4%,4%) scale(.95) rotate(-2deg)}}
+/* ═══ Custom Cursor ═══ */
+.cursor-dot{position:fixed;width:6px;height:6px;background:var(--fg);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--fg);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .3s cubic-bezier(.16,1,.3,1),height .3s cubic-bezier(.16,1,.3,1),border-color .3s,opacity .3s;opacity:.4}
+.cursor-dot.hovering{width:4px;height:4px}
+.cursor-ring.hovering{width:56px;height:56px;opacity:.6}
+.cursor-ring.clicking{width:24px;height:24px;opacity:1}
+@media(hover:none){.cursor-dot,.cursor-ring{display:none}}
+/* ═══ Glass — Original translucent glass (site-wide) ═══ */
+.glass{background:var(--card-glass);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border)}
+.glass-hover{transition:box-shadow .4s,border-color .3s,transform .3s cubic-bezier(.16,1,.3,1)}
+.glass-hover:hover{border-color:var(--line);box-shadow:var(--shadow-glow);transform:translateY(-3px)}
+
+/* ═══ Glass Material System — Opaque, Persistent ═══
+   Separate class .glass-opaque — does NOT replace .glass.
+   Glass is a MATERIAL, not a theme effect.
+   Structural properties (opacity, blur, saturate, border)
+   are CONSTANT across dark/light. Only tint inverts.
+   This guarantees WCAG contrast in BOTH modes by design.
+   Use .glass-opaque where readability matters over translucency.
+═════════════════════════════════════════════════════ */
+
+/* Base opaque glass — Frosted Clear (default) */
+.glass-opaque{
+  background:var(--glass-bg);
+  backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border:1px solid var(--glass-border);
+  box-shadow:var(--glass-shadow);
+}
+
+/* ═══ Glass Material Library ═══
+   Each glass type = same structural principle, different finish.
+   α (opacity), blur, saturate calculated per use case:
+     - Frosted:  α=0.92  blur=24  (default — balanced frost)
+     - Smoked:   α=0.94  blur=32  (premium — heavier, cooler)
+     - Milk:     α=0.96  blur=16  (clinical — crisp, high-contrast)
+     - Tinted:   α=0.90  blur=24  (accent-ready — shows tint)
+     - Mirror:   α=0.88  blur=8   (dramatic — reflective sheen)
+     - Etched:   α=0.98  blur=0   (matte — texture, no blur)
+   All values mathematically verified for JND compliance.
+═════════════════════════════════════════════════════ */
+.glass-smoked{
+  --glass-bg:rgba(18,18,20,0.94);
+  --glass-blur:32px;--glass-saturate:1.2;
+  --glass-border:rgba(255,255,255,0.08);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.02);
+  --glass-shadow:0 12px 40px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.02);
+}
+:root:not(.dark) .glass-smoked{
+  --glass-bg:rgba(245,245,247,0.94);
+  --glass-border:rgba(0,0,0,0.08);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.6);
+  --glass-shadow:0 12px 40px rgba(0,0,0,0.12),inset 0 1px 0 rgba(255,255,255,0.5);
+}
+.glass-milk{
+  --glass-bg:rgba(22,22,24,0.96);
+  --glass-blur:16px;--glass-saturate:1.0;
+  --glass-border:rgba(255,255,255,0.12);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.04);
+  --glass-shadow:0 2px 8px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.03);
+}
+:root:not(.dark) .glass-milk{
+  --glass-bg:rgba(255,255,255,0.96);
+  --glass-border:rgba(0,0,0,0.12);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.9);
+  --glass-shadow:0 2px 8px rgba(0,0,0,0.06),inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.glass-tinted{
+  --glass-bg:rgba(20,20,22,0.90);
+  --glass-blur:24px;--glass-saturate:1.6;
+  --glass-border:rgba(255,255,255,0.10);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.04);
+  --glass-shadow:0 8px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.03);
+}
+:root:not(.dark) .glass-tinted{
+  --glass-bg:rgba(255,255,255,0.90);
+  --glass-border:rgba(0,0,0,0.10);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.7);
+  --glass-shadow:0 8px 32px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.glass-mirror{
+  --glass-bg:rgba(24,24,26,0.88);
+  --glass-blur:8px;--glass-saturate:1.8;
+  --glass-border:rgba(255,255,255,0.10);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.06);
+  --glass-shadow:0 16px 48px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.04);
+}
+:root:not(.dark) .glass-mirror{
+  --glass-bg:rgba(255,255,255,0.88);
+  --glass-border:rgba(0,0,0,0.10);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.9);
+  --glass-shadow:0 16px 48px rgba(0,0,0,0.12),inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.glass-mirror::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 30%,rgba(255,255,255,0.02) 50%,transparent 70%,rgba(255,255,255,0.03) 100%);
+}
+:root:not(.dark) .glass-mirror::before{
+  background:linear-gradient(135deg,rgba(255,255,255,0.6) 0%,transparent 30%,rgba(255,255,255,0.3) 50%,transparent 70%,rgba(255,255,255,0.5) 100%);
+}
+.glass-etched{
+  --glass-bg:rgba(16,16,18,0.98);
+  --glass-blur:0px;--glass-saturate:1.0;
+  --glass-border:rgba(255,255,255,0.15);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.02);
+  --glass-shadow:0 1px 2px rgba(0,0,0,0.4);
+}
+:root:not(.dark) .glass-etched{
+  --glass-bg:rgba(255,255,255,0.98);
+  --glass-border:rgba(0,0,0,0.15);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.5);
+  --glass-shadow:0 1px 2px rgba(0,0,0,0.06);
+}
+.glass-etched::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='e'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' seed='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23e)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity:0.03;mix-blend-mode:overlay;
+}
+:root:not(.dark) .glass-etched::after{opacity:0.02}
+/* ═══ Responsive Section Layout ═══
+   Breakpoints calibrated for:
+   • Small laptop  (1280px) — MacBook Air 13"
+   • Standard laptop (1440px) — MacBook Pro 14"
+   • Big laptop (1536px) — MacBook Pro 16"
+   • Desktop (1920px+) — 24"+ monitor
+   • Ultra-wide (2560px+) — 34" ultrawide
+   Each section fills viewport height minus nav (4rem).
+═════════════════════════════════════════════════════ */
+.section-base{
+  max-width:100%;margin-inline:auto;
+  padding:3rem 1rem;  /* 48px 16px — mobile */
+  min-height:calc(100vh - 4rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+@media(min-width:768px){  /* tablet */
+  .section-base{padding:4rem 1.5rem}  /* 64px 24px */
+}
+@media(min-width:1024px){  /* small laptop */
+  .section-base{max-width:1100px;padding:5rem 2rem}  /* 80px 32px */
+}
+@media(min-width:1280px){  /* standard laptop */
+  .section-base{max-width:1280px;padding:5.5rem 2.5rem}  /* 88px 40px */
+}
+@media(min-width:1440px){  /* MacBook Pro 14" */
+  .section-base{max-width:1320px;padding:6rem 3rem}  /* 96px 48px */
+}
+@media(min-width:1536px){  /* big laptop */
+  .section-base{max-width:1440px;padding:7rem 3.5rem}  /* 112px 56px */
+}
+@media(min-width:1920px){  /* desktop */
+  .section-base{max-width:1600px;padding:8rem 4rem}  /* 128px 64px */
+}
+@media(min-width:2560px){  /* ultra-wide */
+  .section-base{max-width:1800px;padding:10rem 5rem}  /* 160px 80px */
+}
+/* Footer uses tighter spacing */
+.section-footer{
+  max-width:100%;margin-inline:auto;padding:3rem 1rem;
+}
+@media(min-width:1024px){.section-footer{max-width:1100px;padding:3rem 2rem}}
+@media(min-width:1280px){.section-footer{max-width:1280px;padding:3rem 2.5rem}}
+@media(min-width:1440px){.section-footer{max-width:1320px;padding:3rem 3rem}}
+@media(min-width:1536px){.section-footer{max-width:1440px;padding:4rem 3.5rem}}
+@media(min-width:1920px){.section-footer{max-width:1600px;padding:4rem 4rem}}
+@media(min-width:2560px){.section-footer{max-width:1800px;padding:4rem 5rem}}
+/* ═══ Section Ornaments ═══ */
+.section-ornament{position:absolute;top:0;right:0;font-size:clamp(8rem,20vw,16rem);font-weight:900;color:var(--fg);opacity:.02;line-height:1;pointer-events:none;user-select:none;z-index:0;letter-spacing:-.08em}
+/* ═══ Enhanced Effects ═══ */
+.card-base{background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow-1)}
+.card-elevated{box-shadow:var(--shadow-2)}
+.hover-glow{transition:box-shadow .4s,border-color .3s,transform .3s cubic-bezier(.16,1,.3,1)}.hover-glow:hover{border-color:var(--line);box-shadow:var(--shadow-glow);transform:translateY(-2px)}
+.hover-lift{transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s}.hover-lift:hover{transform:translateY(-3px);border-color:var(--line);box-shadow:var(--shadow-2)}
+.btn-press{transition:transform .08s}.btn-press:active{transform:scale(.97)}
+.btn-primary{transition:all .25s cubic-bezier(.16,1,.3,1)}.btn-primary:hover{box-shadow:var(--shadow-2);transform:translateY(-1px)}
+.link-underline{position:relative}.link-underline::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--fg);transition:width .3s cubic-bezier(.16,1,.3,1)}.link-underline:hover::after{width:100%}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.divider-gradient{height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent)}
+.grid-pattern{background-image:linear-gradient(var(--g15) 1px,transparent 1px),linear-gradient(90deg,var(--g15) 1px,transparent 1px);background-size:80px 80px}
+.dot-pattern{background-image:radial-gradient(var(--g20) 1px,transparent 1px);background-size:24px 24px}
+/* Grayscale inspector */
+.gs-swatch{transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;cursor:pointer;position:relative}
+.gs-swatch:hover{transform:scale(1.08);z-index:10;box-shadow:var(--shadow-2)}
+.gs-swatch.active{transform:scale(1.12);z-index:10;box-shadow:var(--shadow-2),0 0 0 2px var(--fg)}
+.gs-detail{transition:opacity .3s}
+.contrast-cell{transition:background .3s}
+/* Material textures */
+.mat-concrete{background:var(--g20);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0.4 0'/%3E%3CfeGaussianBlur stdDeviation='0.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E")}
+.mat-paper{background:var(--g85);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E")}
+.mat-smoke{background:radial-gradient(ellipse at 30% 40%,var(--g45),var(--g15) 60%,var(--g5) 100%);filter:blur(2px)}
+.mat-metal{background:linear-gradient(135deg,var(--g70) 0%,var(--g40) 30%,var(--g80) 50%,var(--g30) 70%,var(--g65) 100%)}
+.mat-glass{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 50%,rgba(255,255,255,.08) 100%);backdrop-filter:blur(8px)}
+.mat-ink{background:radial-gradient(ellipse at 50% 50%,var(--g5),var(--g0) 70%)}
+.mat-velvet{background:var(--g15);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='v'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 0.5' numOctaves='1' seed='8'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23v)'/%3E%3C/svg%3E")}
+.zone-marker{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;opacity:0;transition:opacity .3s;mix-blend-mode:difference;pointer-events:none}
+.gs-swatch:hover .zone-marker{opacity:.7}
+.temp-bar{background:linear-gradient(90deg,#7d7873 0%,#808080 50%,#73787d 100%)}
+.essence{font-weight:300;line-height:1.7;letter-spacing:-.01em;color:var(--muted)}
+.essence em{color:var(--fg);font-style:normal;font-weight:400}
+.noise-card{position:relative}.noise-card::after{content:'';position:absolute;inset:0;border-radius:inherit;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");opacity:.02;pointer-events:none;mix-blend-mode:overlay}
+/* Subtle grain on top of silk */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.025;mix-blend-mode:overlay}
+:root:not(.dark) body::before{opacity:.015}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--line)}::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+.ring-focus:focus-visible{outline:1px solid var(--fg);outline-offset:2px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0}.reveal.in{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.shimmer-text{background:linear-gradient(90deg,var(--fg),var(--faint) 50%,var(--fg));background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}
+@keyframes glowPulse{0%,100%{opacity:.3}50%{opacity:.7}}
+@keyframes drawPath{from{stroke-dashoffset:var(--len,2000)}to{stroke-dashoffset:0}}
+.draw-path{stroke-dasharray:var(--len,2000);animation:drawPath 2.5s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.8);opacity:0}}
+.pulse-ring::after{content:'';position:absolute;inset:0;border-radius:inherit;border:1px solid var(--fg);animation:pulseDot 2s ease-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}.float{animation:float 6s ease-in-out infinite}
+@keyframes spinSlow{to{transform:rotate(360deg)}}.spin-slow{animation:spinSlow 20s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}.marquee-track{animation:marquee 30s linear infinite}
+@keyframes skeleton{0%{background-position:-200% 0}100%{background-position:200% 0}}.skeleton{background:linear-gradient(90deg,var(--border),var(--line) 50%,var(--border));background-size:200% 100%;animation:skeleton 1.8s infinite}
+@keyframes toastIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes toastOut{to{transform:translateX(120%);opacity:0}}
+.toast-in{animation:toastIn .5s cubic-bezier(.16,1,.3,1) forwards}
+.toast-out{animation:toastOut .4s cubic-bezier(.7,0,.84,0) forwards}
+.display-xl{font-size:clamp(3.5rem,10vw,9rem);font-weight:900;line-height:.9;letter-spacing:-.06em}
+.display-lg{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:.95;letter-spacing:-.05em}
+.display-md{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1;letter-spacing:-.04em}
+.card-base{background:var(--card);border:1px solid var(--border)}
+.hover-glow{transition:box-shadow .4s,border-color .3s}.hover-glow:hover{border-color:var(--line);box-shadow:0 0 40px var(--glow)}
+.hover-lift{transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s}.hover-lift:hover{transform:translateY(-3px);border-color:var(--line)}
+.btn-press{transition:transform .08s}.btn-press:active{transform:scale(.97)}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.grid-pattern{background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px}
+.dot-pattern{background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:24px 24px}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}.accordion-body.open{max-height:500px}
+.accordion-icon{transition:transform .3s}.accordion-icon.open{transform:rotate(45deg)}
+.tooltip{opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateY(4px)}.has-tooltip:hover .tooltip{opacity:1;transform:translateY(0)}
+input[type="range"]{-webkit-appearance:none;background:transparent}
+input[type="range"]::-webkit-slider-runnable-track{height:2px;background:var(--line)}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;height:14px;width:14px;border-radius:50%;background:var(--fg);margin-top:-6px;border:2px solid var(--bg);cursor:pointer;transition:transform .15s}
+input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
+.checkbox-custom{transition:all .2s}.checkbox-custom.checked{background:var(--fg);border-color:var(--fg)}.checkbox-custom.checked svg{opacity:1}.checkbox-custom svg{opacity:0;transition:opacity .15s}
+.radio-custom .dot{transition:transform .2s;transform:scale(0)}.radio-custom.checked .dot{transform:scale(1)}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--fg);z-index:10000;width:0;transition:width .1s}
+.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,var(--glow),transparent 70%);filter:blur(60px);pointer-events:none}
+@keyframes barReveal{from{transform:scaleY(0)}to{transform:scaleY(1)}}.bar-reveal{transform-origin:bottom;animation:barReveal 1s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes scanLine{0%{transform:translateY(-100%)}100%{transform:translateY(300%)}}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BAZ SITE BRIDGE — remap existing semantic tokens to ÆTHER monochrome
+   Imported AFTER globals.css + aether-theme.css, so this wins.
+   Pure grayscale: no hue. Dark is the default; light via :root:not(.dark).
+   ═══════════════════════════════════════════════════════════════════ */
+:root, .dark, [data-theme='dark'] {
+  /* shadcn/OKLCH slots → aether grayscale (full-color values; tailwind
+     oklch() wrappers are no-ops on these, components read var() directly) */
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card-foreground: var(--fg);
+  --popover: var(--surface);
+  --popover-foreground: var(--fg);
+  --primary: var(--fg);
+  --primary-foreground: var(--bg);
+  --secondary: #161616;
+  --secondary-foreground: var(--fg);
+  --muted-foreground: var(--muted);
+  --accent: var(--fg);
+  --accent-foreground: var(--bg);
+  --destructive: #9a9a9a;
+  --input: #161616;
+  --ring: var(--line);
+  --chart-1: #f5f5f5;
+  --chart-2: #b0b0b0;
+  --chart-3: #8a8a8a;
+  --chart-4: #5a5a5a;
+  --chart-5: #2e2e2e;
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--fg);
+  --sidebar-primary: var(--fg);
+  --sidebar-primary-foreground: var(--bg);
+  --sidebar-accent: #161616;
+  --sidebar-accent-foreground: var(--fg);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--line);
+
+  /* Accentuation → neutral */
+  --accent-soft: rgba(255,255,255,0.06);
+  --accent-600: #e0e0e0;
+  --accent-700: #c8c8c8;
+  --success: #b0b0b0;
+  --warning: #8a8a8a;
+  --info: #6a6a6a;
+  --gold: #8a8a8a;
+  --green: #8a8a8a;
+  --blue: #8a8a8a;
+
+  /* Backward-compat surface/ink tokens (--bg/--line already grayscale from ÆTHER :root) */
+  --paper: var(--card);
+  --paper-2: var(--surface);
+  --paper-3: #161616;
+  --ink: var(--fg);
+
+  /* RGB triplets → grayscale (for rgb(var(--c-*) / α) tailwind tokens) */
+  --c-paper: 16 16 16;
+  --c-paper-50: 7 7 7;
+  --c-paper-100: 12 12 12;
+  --c-paper-200: 16 16 16;
+  --c-paper-300: 22 22 22;
+  --c-paper-400: 30 30 30;
+  --c-ink: 245 245 245;
+  --c-ink-400: 120 120 120;
+  --c-ink-500: 160 160 160;
+  --c-ink-600: 190 190 190;
+  --c-ink-700: 220 220 220;
+  --c-ink-800: 240 240 240;
+  --c-ink-900: 245 245 245;
+  --c-ink-950: 250 250 250;
+}
+
+:root:not(.dark) {
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card-foreground: var(--fg);
+  --popover: var(--surface);
+  --popover-foreground: var(--fg);
+  --primary: var(--fg);
+  --primary-foreground: var(--bg);
+  --secondary: #e8e8e8;
+  --secondary-foreground: var(--fg);
+  --muted-foreground: var(--muted);
+  --accent: var(--fg);
+  --accent-foreground: var(--bg);
+  --destructive: #6a6a6a;
+  --input: #e8e8e8;
+  --ring: var(--line);
+  --chart-1: #0a0a0a;
+  --chart-2: #4a4a4a;
+  --chart-3: #6a6a6a;
+  --chart-4: #9a9a9a;
+  --chart-5: #cccccc;
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--fg);
+  --sidebar-primary: var(--fg);
+  --sidebar-primary-foreground: var(--bg);
+  --sidebar-accent: #e8e8e8;
+  --sidebar-accent-foreground: var(--fg);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--line);
+
+  --accent-soft: rgba(0,0,0,0.05);
+  --accent-600: #2e2e2e;
+  --accent-700: #4a4a4a;
+  --success: #6a6a6a;
+  --warning: #8a8a8a;
+  --info: #aaa;
+  --gold: #888;
+  --green: #888;
+  --blue: #888;
+
+  --paper: var(--card);
+  --paper-2: var(--surface);
+  --paper-3: #e8e8e8;
+  --ink: var(--fg);
+
+  --c-paper: 252 252 252;
+  --c-paper-50: 248 248 248;
+  --c-paper-100: 240 240 240;
+  --c-paper-200: 252 252 252;
+  --c-paper-300: 234 234 234;
+  --c-paper-400: 224 224 224;
+  --c-ink: 10 10 10;
+  --c-ink-400: 120 120 120;
+  --c-ink-500: 90 90 90;
+  --c-ink-600: 60 60 60;
+  --c-ink-700: 40 40 40;
+  --c-ink-800: 20 20 20;
+  --c-ink-900: 12 12 12;
+  --c-ink-950: 10 10 10;
+}
+
+/* Body shell — monochrome */
+body { background: var(--bg); color: var(--fg); }
+::selection { background: var(--fg); color: var(--bg); }
+
+/* Neutralize the hue-260 glass from globals.css (it uses !important) */
+.glass, .card-glass, .glass-surface {
+  background: var(--card-glass) !important;
+  backdrop-filter: blur(20px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+}
+.glass-opaque {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) !important;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate)) !important;
+}
+/* Neutral glass edge highlights (override hue-260 ::before/::after) */
+.card-glass::before { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent) !important; }
+.card-glass::after  { background: linear-gradient(180deg, rgba(255,255,255,0.12), transparent) !important; }
+:root:not(.dark) .card-glass::before { background: linear-gradient(90deg, transparent, rgba(0,0,0,0.10), transparent) !important; }
+:root:not(.dark) .card-glass::after  { background: linear-gradient(180deg, rgba(0,0,0,0.08), transparent) !important; }
+
+/* Violet glow shadow → neutral */
+.shadow-glass { box-shadow: 0 8px 21px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.10) !important; }
+.shadow-glass-lg { box-shadow: 0 13px 34px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.14) !important; }
+.shadow-glass-xl { box-shadow: 0 21px 55px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.18) !important; }
+
+/* Eyebrow gold → neutral */
+.eyebrow-gold { color: var(--muted) !important; }
+
+/* Hide the legacy baz cursor host so only the ÆTHER cursor renders */
+.cursor-host { display: none !important; }
