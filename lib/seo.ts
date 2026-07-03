@@ -63,10 +63,10 @@ export function buildMetadata({
  * Apply alongside `metadata` in each page or layout.
  */
 export const viewport = {
-  themeColor: "#ff3b2f",
+  themeColor: "#b87adb",
   width: "device-width",
   initialScale: 1,
-  colorScheme: "light dark",
+  colorScheme: "dark",
 };
 
 type JsonLd = Record<string, any> | Record<string, any>[];

@@ -84,7 +84,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#ff3b2f',
+  themeColor: '#b87adb',  // hsl(270, 85%, 72%) — Æther violet accent
   width: 'device-width',
   initialScale: 1,
 };
