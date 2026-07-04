@@ -39,7 +39,7 @@ test('homepage service grid renders all 18 services', async ({ page }) => {
   expect(count, 'service card count').toBeGreaterThanOrEqual(18);
 });
 
-test('contact form submission persists to /admin/leads', async ({ page, request }) => {
+test('contact form submission persists to /admin/leads', async ({ page: _page, request }) => {
   // We test the submission path directly via the same server action that
   // the form uses — but doing it via the API is faster and avoids the
   // hydration-timing flakiness of clicking submit before React hydrates.
@@ -280,7 +280,7 @@ test('performance-marketing service page renders 4 proof entries and 4 FAQs', as
   let match: RegExpExecArray | null;
   while ((match = jsonLdRegex.exec(html)) !== null) {
     try {
-      const parsed = JSON.parse(match[1]);
+      const parsed = JSON.parse(match[1]!);
       if (parsed['@type'] === 'FAQPage') faqSchemas.push(parsed);
       // Some pages emit an array of schemas.
       if (Array.isArray(parsed)) {
@@ -293,5 +293,5 @@ test('performance-marketing service page renders 4 proof entries and 4 FAQs', as
     }
   }
   expect(faqSchemas.length, 'at least one FAQPage schema').toBeGreaterThanOrEqual(1);
-  expect(faqSchemas[0].mainEntity.length, 'FAQPage should have 4 questions').toBe(4);
+  expect(faqSchemas[0]?.mainEntity?.length ?? 0, 'FAQPage should have 4 questions').toBe(4);
 });
