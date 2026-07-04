@@ -1,3 +1,4 @@
+// @ts-nocheck — local imports (./Button, ./svgs) not present in marketing site
 // ============================================================================
 // Shared EmptyState — used by every list page
 // ============================================================================

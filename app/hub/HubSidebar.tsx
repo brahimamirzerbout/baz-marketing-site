@@ -86,14 +86,14 @@ export function HubSidebar() {
     <>
       {/* Mobile toggle */}
       <button
-        className="lg:hidden fixed top-20 left-4 z-50 p-2 rounded-lg bg-primary text-foreground"
+        className="lg:hidden fixed top-20 left-4 z-50 p-2 rounded-lg bg-accent text-accent-foreground"
         onClick={() => setOpen(true)}
       >
         <Menu className="w-5 h-5" />
       </button>
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-64 fixed top-16 bottom-0 left-0 bg-primary text-foreground border-r border-ink-800 overflow-y-auto">
+      <aside className="hidden lg:flex flex-col w-64 fixed top-16 bottom-0 left-0 bg-background text-foreground border-r border-ink-800 overflow-y-auto">
         <SidebarContent pathname={pathname} />
       </aside>
 
@@ -113,13 +113,13 @@ export function HubSidebar() {
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              className="lg:hidden fixed top-0 bottom-0 left-0 z-50 w-72 bg-primary text-foreground overflow-y-auto"
+              className="lg:hidden fixed top-0 bottom-0 left-0 z-50 w-72 bg-background text-foreground overflow-y-auto"
             >
               <div className="flex items-center justify-between p-4 border-b border-ink-800">
                 <span className="font-display font-bold text-lg">Hub Navigation</span>
                 <button
                   onClick={() => setOpen(false)}
-                  className="p-2 rounded-lg hover:bg-primary/90"
+                  className="p-2 rounded-lg hover:bg-surface"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -168,7 +168,7 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
                         "flex items-center gap-3 px-4 py-2 text-sm rounded-r-lg transition-colors",
                         active
                           ? "bg-accent text-accent-foreground font-medium"
-                          : "text-muted-foreground hover:bg-primary/90 hover:text-foreground",
+                          : "text-muted-foreground hover:bg-surface hover:text-foreground",
                       )}
                     >
                       <Icon className="w-4 h-4 flex-shrink-0" />

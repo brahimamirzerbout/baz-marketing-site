@@ -437,10 +437,10 @@ function ScoutPanel() {
           width: 100%;
           padding: 10px 14px;
           border-radius: 12px;
-          background: hsl(260, 14%, 6.5%);
-          border: 1px solid hsl(260, 12%, 18%);
+          background: var(--bg-muted);
+          border: 1px solid var(--border);
           font-size: 14px;
-          color: hsl(260, 8%, 98%);
+          color: var(--fg);
         }
         :global(.input:focus) {
           outline: none;

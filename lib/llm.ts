@@ -39,6 +39,8 @@ interface CompleteArgs {
   system?: string;
   maxTokens?: number;
   temperature?: number;
+  /** Force a specific provider (bypasses env selection). */
+  provider?: LlmProvider;
 }
 
 const PROVIDERS: Record<
@@ -58,8 +60,8 @@ const PROVIDERS: Record<
  * Detect the provider from env. Returns null when nothing is configured.
  * Force a specific provider by setting AI_PROVIDER=openai|anthropic|ollama|stub.
  */
-export function getLlmConfig(): LlmConfig | null {
-  const forced = process.env.AI_PROVIDER?.toLowerCase();
+export function getLlmConfig(override?: LlmProvider): LlmConfig | null {
+  const forced = override ?? process.env.AI_PROVIDER?.toLowerCase() as LlmProvider | undefined;
 
   if (forced === "stub" || (forced === undefined && !hasAnyKey())) {
     return null; // stub mode — caller should handle via complete()
@@ -110,7 +112,7 @@ function hasAnyKey(): boolean {
  * the caller never has to wrap in try/catch for network errors.
  */
 export async function complete(args: CompleteArgs): Promise<LlmResult> {
-  const cfg = getLlmConfig();
+  const cfg = getLlmConfig(args.provider);
   if (!cfg) {
     return {
       ok: false,

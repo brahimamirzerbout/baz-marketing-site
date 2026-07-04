@@ -1,9 +1,10 @@
-// @ts-nocheck
 "use client";
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { createBrowserClient } from "@supabase/ssr";
+import type { Database } from "@/lib/database.types";
 
 function LoginForm() {
   const router = useRouter();
@@ -14,24 +15,35 @@ function LoginForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const supabase = createBrowserClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
     setError(null);
+
     try {
-      const r = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
-      const j = await r.json();
-      if (!j.ok) {
-        setError(j.error || "login_failed");
+
+      if (signInError) {
+        if (signInError.message?.includes("Invalid login credentials")) {
+          setError("invalid_credentials");
+          return;
+        }
+        setError(signInError.message);
         return;
       }
+
       router.push(next);
-    } catch (err: unknown) {
-      setError(err?.message || "network_error");
+      router.refresh();
+    } catch {
+      setError("network_error");
     } finally {
       setBusy(false);
     }

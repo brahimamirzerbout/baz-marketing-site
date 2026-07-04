@@ -209,7 +209,7 @@ export default function CockpitPage() {
                       ) : (
                         <Circle className="w-3 h-3 text-foreground-600" />
                       )}
-                      <span className="font-mono text-xs text-foreground0">{a.kind}</span>
+                      <span className="font-mono text-xs text-foreground">{a.kind}</span>
                       <span>{a.detail}</span>
                     </li>
                   ))}

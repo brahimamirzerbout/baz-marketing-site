@@ -11,7 +11,7 @@ const nextConfig = {
     // Build the site even with pre-existing TS errors (mostly null
     // checks on dynamic DB rows). Fixing 200+ strict-mode errors
     // is tracked separately — the app runs correctly.
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
     ignoreDuringBuilds: true,

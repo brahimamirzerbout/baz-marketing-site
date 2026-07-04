@@ -218,7 +218,7 @@ export default function NovaPage() {
           {/* Input */}
           <div className="border-t border-ink-800 p-3 flex gap-2">
             <input
-              className="flex-1 bg-background border border-ink-800 rounded-xl px-4 py-2.5 text-sm text-foreground placeholder-paper-500 focus:outline-none focus:border-border"
+              className="flex-1 bg-background border border-ink-800 rounded-xl px-4 py-2.5 text-sm text-foreground placeholder-foreground/40 focus:outline-none focus:border-border"
               placeholder="Ask Nova anything..."
               value={input}
               onChange={(e) => setInput(e.target.value)}

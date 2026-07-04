@@ -231,20 +231,20 @@ function ArticleRow({
       href={url}
       target="_blank"
       rel="noreferrer"
-      className="group block border-b border-ink-800 py-3 last:border-0 hover:bg-primary/90/50 -mx-2 px-2 rounded-lg transition-colors"
+      className="group block border-b border-ink-800 py-3 last:border-0 hover:bg-surface -mx-2 px-2 rounded-lg transition-colors"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <p className="text-sm text-foreground group-hover:text-foreground transition-colors">
             {title}
           </p>
-          <p className="text-xs text-foreground0 mt-1">
+          <p className="text-xs text-foreground/60 mt-1">
             {source}
             {author ? ` · ${author}` : ""}
             {date ? ` · ${new Date(date).toLocaleDateString()}` : ""}
           </p>
         </div>
-        <ExternalLink className="w-3.5 h-3.5 text-foreground0 group-hover:text-foreground flex-shrink-0 mt-1 transition-colors" />
+        <ExternalLink className="w-3.5 h-3.5 text-foreground/40 group-hover:text-foreground flex-shrink-0 mt-1 transition-colors" />
       </div>
     </a>
   );

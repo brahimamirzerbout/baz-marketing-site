@@ -1,63 +1,109 @@
 /* ═══════════════════════════════════════════════════════════════════
-   ÆTHER — Monochrome Design System (native port)
-   Source: aether-deploy/index.html  ·  v3.0
-   Grayscale: CIE Lab L* perceptual lightness → sRGB
-   Contrast:  WCAG 2.1 (L+0.05)/(D+0.05), L=(v/255)^2.2
-   Glass:     Opaque material model — α=0.92, bleed<0.32%
-   Typography: Major Third scale (ratio 1.250)
-   Easing:     ease-out-expo cubic-bezier(0.16,1,0.3,1)
+   ÆTHER — Algorithmic Brand Token System (native port)
+   Source: aether-deploy · v3.0
+   One seed. Infinite consistency. The cascade is the algorithm.
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ─── Grayscale ramp (CIE Lab L* → sRGB) — used by patterns/materials ─── */
+/* ─── Seed — change these to rebrand everything ─── */
 :root{
-  --g0:#000000; --g5:#0d0d0d; --g10:#1a1a1a; --g15:#262626; --g20:#333333;
-  --g25:#404040; --g30:#4d4d4d; --g35:#5a5a5a; --g40:#666666; --g45:#737373;
-  --g50:#808080; --g55:#8c8c8c; --g60:#999999; --g65:#a6a6a6; --g70:#b3b3b3;
-  --g75:#bfbfbf; --g80:#cccccc; --g85:#d9d9d9; --g90:#e6e6e6; --g95:#f2f2f2; --g100:#ffffff;
+  --seed-hue:42;      /* Stitch gold */
+  --seed-sat:85%;
+  --seed-lum:55%;
+
+  /* ─── Derived palette — HSL math from seed ─── */
+  --color-primary:      hsl(var(--seed-hue),var(--seed-sat),var(--seed-lum));
+  --color-primary-5:    hsl(var(--seed-hue),var(--seed-sat),95%);
+  --color-primary-10:   hsl(var(--seed-hue),var(--seed-sat),90%);
+  --color-primary-20:   hsl(var(--seed-hue),var(--seed-sat),80%);
+  --color-primary-30:   hsl(var(--seed-hue),var(--seed-sat),70%);
+  --color-primary-40:   hsl(var(--seed-hue),var(--seed-sat),60%);
+  --color-primary-50:   hsl(var(--seed-hue),var(--seed-sat),50%);
+  --color-primary-60:   hsl(var(--seed-hue),var(--seed-sat),40%);
+  --color-primary-70:   hsl(var(--seed-hue),var(--seed-sat),30%);
+  --color-primary-80:   hsl(var(--seed-hue),var(--seed-sat),20%);
+  --color-primary-90:   hsl(var(--seed-hue),var(--seed-sat),12%);
+  --color-accent:       hsl(calc(var(--seed-hue) + 30),85%,55%);
+  --color-accent-10:    hsl(calc(var(--seed-hue) + 30),85%,93%);
+
+  /* ─── Neutral palette (seed-tinted grays) ─── */
+  --color-neutral-0:    hsl(var(--seed-hue),8%,99%);
+  --color-neutral-5:   hsl(var(--seed-hue),6%,96%);
+  --color-neutral-10:  hsl(var(--seed-hue),5%,90%);
+  --color-neutral-20:  hsl(var(--seed-hue),4%,74%);
+  --color-neutral-30:  hsl(var(--seed-hue),3%,58%);
+  --color-neutral-40:  hsl(var(--seed-hue),2%,44%);
+  --color-neutral-50:  hsl(var(--seed-hue),1.5%,32%);
+  --color-neutral-60:  hsl(var(--seed-hue),1%,22%);
+  --color-neutral-70:  hsl(var(--seed-hue),0.8%,16%);
+  --color-neutral-80:  hsl(var(--seed-hue),0.5%,11%);
+  --color-neutral-90:  hsl(var(--seed-hue),0.3%,7%);
+  --color-neutral-100:  hsl(var(--seed-hue),0.2%,4%);
 }
-/* ═══ ÆTHER — Mathematically Computed Design Tokens ═══
-   Grayscale: CIE Lab L* perceptual lightness → sRGB
-   Contrast:  WCAG 2.1 (L+0.05)/(D+0.05), L=(v/255)^2.2
-   Glass:     Opaque material model — α=0.92, bleed<0.32%
-   Typography: Major Third scale (ratio 1.250)
-   Shadows:   Material elevation (dual ambient+key)
-   Easing:     ease-out-expo cubic-bezier(0.16,1,0.3,1)
-═══════════════════════════════════════════════════════ */
-/* ═══ ÆTHER — Mathematically Computed Design Tokens ═══
-   Grayscale: CIE Lab L* perceptual lightness → sRGB
-   Contrast:  WCAG 2.1 (L+0.05)/(D+0.05), L=(v/255)^2.2
-   Glass:     Opaque material model — α=0.92, bleed<0.32%
-   Typography: Major Third scale (ratio 1.250)
-   Shadows:   Material elevation (dual ambient+key)
-   Easing:     ease-out-expo cubic-bezier(0.16,1,0.3,1)
-═══════════════════════════════════════════════════════ */
+
+/* ═══ Semantic Aliases — Dark Mode (default) ═══
+   These make components readable & dark-mode safe.
+   Every token is derived — nothing hardcoded.
+   ═══════════════════════════════════════════════════════════════════ */
 :root{
-  /* Surfaces — original values preserved */
-  --bg:#070707; --surface:#0c0c0c; --card:#101010;
-  /* Text — L*97: CR=19.2:1 on bg (AAA) */
-  --fg:#f5f5f5;
-  /* Muted — original */
-  --muted:#8a8a8a;
-  /* Faint — original */
-  --faint:#4a4a4a;
-  /* Borders — original */
-  --border:#1c1c1c;
-  /* Lines — original */
-  --line:#2e2e2e;
+  /* Grayscale ramp (backward-compat) */
+  --g0: var(--color-neutral-100);   --g5: var(--color-neutral-90);
+  --g10: var(--color-neutral-80);   --g15: var(--color-neutral-70);
+  --g20: var(--color-neutral-60);   --g25: var(--color-neutral-50);
+  --g30: var(--color-neutral-40);   --g35: var(--color-neutral-30);
+  --g40: var(--color-neutral-20);   --g45: var(--color-neutral-10);
+  --g50: var(--color-neutral-5);   --g55: #adb5bd;
+  --g60: #ced4da;   --g65: #dee2e6;
+  --g70: #e9ecef;   --g75: #f0f2f4;
+  --g80: #f8f9fa;   --g85: #fafbfc;
+  --g90: #fcfcfd;   --g95: #fdfdfe;
+  --g100: #ffffff;
+
+  /* Semantic aliases */
+  --fg:              var(--color-neutral-80);
+  --fg-muted:        var(--color-neutral-50);
+  --fg-subtle:       var(--color-neutral-40);
+  --fg-on-primary:   hsl(var(--seed-hue),var(--seed-sat),98%);
+  --fg-inverse:      var(--color-neutral-90);
+  --bg:              var(--color-neutral-0);
+  --bg-muted:        var(--color-neutral-5);
+  --bg-subtle:       var(--color-neutral-10);
+  --bg-emphasis:     var(--color-neutral-50);
+  --border:          hsl(var(--seed-hue),4%,18%);
+  --border-strong:   hsl(var(--seed-hue),4%,26%);
+
+  /* BAZ-specific aliases */
+  --surface: var(--color-neutral-10);
+  --card: var(--color-neutral-5);
+  --muted: var(--fg-muted);
+  --faint: var(--fg-subtle);
+  --line: var(--border-strong);
+
+  /* Primary semantic flips */
+  --color-primary-fg:         hsl(var(--seed-hue),var(--seed-sat),68%);
+  --color-primary-fg-muted:   hsl(var(--seed-hue),var(--seed-sat),58%);
+  --color-primary-fg-subtle:  hsl(var(--seed-hue),var(--seed-sat),48%);
+  --color-primary-hover:      hsl(var(--seed-hue),var(--seed-sat),56%);
+  --color-primary-active:     hsl(var(--seed-hue),var(--seed-sat),48%);
+  --color-primary-border:     hsl(var(--seed-hue),var(--seed-sat),44%);
+  --color-primary-bg:         hsl(var(--seed-hue),var(--seed-sat),14%);
+  --color-primary-bg-hover:   hsl(var(--seed-hue),var(--seed-sat),22%);
+  --color-primary-bg-subtle:  hsl(var(--seed-hue),var(--seed-sat),8%);
+  --color-success:            hsl(152,60%,52%);
+  --color-success-bg:         hsl(152,30%,14%);
+  --color-warning:            hsl(38,80%,58%);
+  --color-warning-bg:         hsl(38,40%,14%);
+  --color-danger:             hsl(0,70%,58%);
+  --color-danger-bg:          hsl(0,35%,14%);
+
   /* Glow */
   --glow:rgba(255,255,255,0.06);
-  /* Shadows — Material elevation model */
-  --shadow-1:0 1px 2px rgba(0,0,0,0.4);
-  --shadow-2:0 4px 12px rgba(0,0,0,0.3),0 1px 3px rgba(0,0,0,0.2);
-  --shadow-3:0 12px 40px rgba(0,0,0,0.4),0 4px 12px rgba(0,0,0,0.2);
+  /* Shadows — Material elevation (dual ambient+key) */
+  --shadow-1:0 1px 2px rgba(0,0,0,0.5);
+  --shadow-2:0 4px 12px rgba(0,0,0,0.4),0 1px 3px rgba(0,0,0,0.3);
+  --shadow-3:0 12px 40px rgba(0,0,0,0.5),0 4px 12px rgba(0,0,0,0.3);
   --shadow-glow:0 0 0 1px rgba(255,255,255,0.04),0 8px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.03);
-  /* ═══ Glass — Original translucent glass (site-wide) ═══ */
+  /* ═══ Glass — Opaque Frost Material ═══ */
   --card-glass:rgba(16,16,16,0.6);
-  /* ═══ Opaque Glass Material — Mode-Neutral ═══
-     α=0.92 → background bleed=0.32% (32× below 1% JND)
-     blur=24px → optimal frost range (20-40px)
-     Structural properties constant across themes.
-     Only applied via .glass-opaque class, NOT globally. */
   --glass-bg:rgba(20,20,22,0.92);
   --glass-blur:24px;
   --glass-saturate:1.4;
@@ -65,29 +111,85 @@
   --glass-highlight:inset 0 1px 0 rgba(255,255,255,0.03);
   --glass-shadow:0 8px 32px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.03);
 }
+
+/* ═══ Light Mode ═══
+   Reversed neutral palette for light backgrounds.
+   ═══════════════════════════════════════════════════════════════════ */
 :root:not(.dark){
-  /* Surfaces — original values preserved */
-  --bg:#f8f8f8; --surface:#f0f0f0; --card:#fcfcfc;
-  /* Text — L*3: CR=19.5:1 on bg (AAA) */
-  --fg:#0a0a0a;
-  /* Muted — original */
-  --muted:#666;
-  /* Faint — original */
-  --faint:#aaa;
-  /* Borders — original */
-  --border:#e2e2e2;
-  /* Lines — original */
-  --line:#ccc;
-  /* Glow */
+  --seed-hue:42;--seed-sat:85%;--seed-lum:55%;
+  --color-primary:hsl(var(--seed-hue),var(--seed-sat),var(--seed-lum));
+  --color-primary-5:hsl(var(--seed-hue),var(--seed-sat),97%);
+  --color-primary-10:hsl(var(--seed-hue),var(--seed-sat),93%);
+  --color-primary-20:hsl(var(--seed-hue),var(--seed-sat),82%);
+  --color-primary-30:hsl(var(--seed-hue),var(--seed-sat),72%);
+  --color-primary-40:hsl(var(--seed-hue),var(--seed-sat),62%);
+  --color-primary-50:hsl(var(--seed-hue),var(--seed-sat),52%);
+  --color-primary-60:hsl(var(--seed-hue),var(--seed-sat),42%);
+  --color-primary-70:hsl(var(--seed-hue),var(--seed-sat),32%);
+  --color-primary-80:hsl(var(--seed-hue),var(--seed-sat),22%);
+  --color-primary-90:hsl(var(--seed-hue),var(--seed-sat),12%);
+  --color-accent:hsl(calc(var(--seed-hue) + 30),85%,55%);
+  --color-accent-10:hsl(calc(var(--seed-hue) + 30),85%,93%);
+  --color-neutral-0:hsl(var(--seed-hue),8%,99%);
+  --color-neutral-5:hsl(var(--seed-hue),6%,96%);
+  --color-neutral-10:hsl(var(--seed-hue),5%,90%);
+  --color-neutral-20:hsl(var(--seed-hue),4%,74%);
+  --color-neutral-30:hsl(var(--seed-hue),3%,58%);
+  --color-neutral-40:hsl(var(--seed-hue),2%,44%);
+  --color-neutral-50:hsl(var(--seed-hue),1.5%,32%);
+  --color-neutral-60:hsl(var(--seed-hue),1%,22%);
+  --color-neutral-70:hsl(var(--seed-hue),0.8%,16%);
+  --color-neutral-80:hsl(var(--seed-hue),0.5%,11%);
+  --color-neutral-90:hsl(var(--seed-hue),0.3%,7%);
+  --color-neutral-100:hsl(var(--seed-hue),0.2%,4%);
+  --color-primary-fg:hsl(var(--seed-hue),var(--seed-sat),30%);
+  --color-primary-fg-muted:hsl(var(--seed-hue),var(--seed-sat),40%);
+  --color-primary-fg-subtle:hsl(var(--seed-hue),var(--seed-sat),50%);
+  --color-primary-hover:hsl(var(--seed-hue),var(--seed-sat),45%);
+  --color-primary-active:hsl(var(--seed-hue),var(--seed-sat),38%);
+  --color-primary-border:hsl(var(--seed-hue),var(--seed-sat),60%);
+  --color-primary-bg:hsl(var(--seed-hue),var(--seed-sat),93%);
+  --color-primary-bg-hover:hsl(var(--seed-hue),var(--seed-sat),82%);
+  --color-primary-bg-subtle:hsl(var(--seed-hue),var(--seed-sat),97%);
+  --color-success:hsl(152,68%,38%);
+  --color-success-bg:hsl(152,68%,93%);
+  --color-warning:hsl(38,92%,45%);
+  --color-warning-bg:hsl(38,92%,93%);
+  --color-danger:hsl(0,78%,50%);
+  --color-danger-bg:hsl(0,78%,93%);
+  --fg:var(--color-neutral-70);
+  --fg-muted:var(--color-neutral-40);
+  --fg-subtle:var(--color-neutral-30);
+  --fg-on-primary:hsl(var(--seed-hue),var(--seed-sat),98%);
+  --fg-inverse:var(--color-neutral-0);
+  --bg:var(--color-neutral-0);
+  --bg-muted:var(--color-neutral-5);
+  --bg-subtle:var(--color-neutral-10);
+  --bg-emphasis:var(--color-neutral-50);
+  --border:var(--color-neutral-10);
+  --border-strong:var(--color-neutral-20);
+  --surface:var(--color-neutral-10);
+  --card:var(--color-neutral-0);
+  --muted:var(--fg-muted);
+  --faint:var(--fg-subtle);
+  --line:var(--border-strong);
+  --g0:var(--color-neutral-100);--g5:var(--color-neutral-90);
+  --g10:var(--color-neutral-80);--g15:var(--color-neutral-70);
+  --g20:var(--color-neutral-60);--g25:var(--color-neutral-50);
+  --g30:var(--color-neutral-40);--g35:var(--color-neutral-30);
+  --g40:var(--color-neutral-20);--g45:var(--color-neutral-10);
+  --g50:var(--color-neutral-5);--g55:#adb5bd;
+  --g60:#ced4da;--g65:#dee2e6;
+  --g70:#e9ecef;--g75:#f0f2f4;
+  --g80:#f8f9fa;--g85:#fafbfc;
+  --g90:#fcfcfd;--g95:#fdfdfe;
+  --g100:#ffffff;
   --glow:rgba(0,0,0,0.05);
-  /* Shadows — inverted temperature, same depth */
   --shadow-1:0 1px 2px rgba(0,0,0,0.06);
   --shadow-2:0 4px 12px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.04);
   --shadow-3:0 12px 40px rgba(0,0,0,0.1),0 4px 12px rgba(0,0,0,0.05);
   --shadow-glow:0 0 0 1px rgba(0,0,0,0.03),0 8px 32px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.5);
-  /* ═══ Glass — Original translucent glass (site-wide) ═══ */
-  --card-glass:rgba(252,252,252,0.7);
-  /* ═══ Opaque Glass Material — Same structure, inverted tint ═══ */
+  --card-glass:rgba(255,255,255,0.7);
   --glass-bg:rgba(255,255,255,0.92);
   --glass-blur:24px;
   --glass-saturate:1.4;
@@ -373,8 +475,7 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
    Pure grayscale: no hue. Dark is the default; light via :root:not(.dark).
    ═══════════════════════════════════════════════════════════════════ */
 :root, .dark, [data-theme='dark'] {
-  /* shadcn/OKLCH slots → aether grayscale (full-color values; tailwind
-     oklch() wrappers are no-ops on these, components read var() directly) */
+  /* shadcn/OKLCH slots → aether grayscale */
   --background: var(--bg);
   --foreground: var(--fg);
   --card-foreground: var(--fg);
@@ -382,60 +483,60 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
   --popover-foreground: var(--fg);
   --primary: var(--fg);
   --primary-foreground: var(--bg);
-  --secondary: #161616;
+  --secondary: var(--card);
   --secondary-foreground: var(--fg);
   --muted-foreground: var(--muted);
   --accent: #E7C274;
-  --accent-foreground: #16130E;
-  --destructive: #9a9a9a;
-  --input: #161616;
+  --accent-foreground: #111315;
+  --destructive: var(--muted);
+  --input: var(--card);
   --ring: var(--line);
-  --chart-1: #f5f5f5;
-  --chart-2: #b0b0b0;
-  --chart-3: #8a8a8a;
-  --chart-4: #5a5a5a;
-  --chart-5: #2e2e2e;
+  --chart-1: var(--fg);
+  --chart-2: var(--muted);
+  --chart-3: var(--faint);
+  --chart-4: var(--line);
+  --chart-5: var(--border);
   --sidebar: var(--surface);
   --sidebar-foreground: var(--fg);
   --sidebar-primary: var(--fg);
   --sidebar-primary-foreground: var(--bg);
-  --sidebar-accent: #161616;
+  --sidebar-accent: var(--card);
   --sidebar-accent-foreground: var(--fg);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--line);
 
   /* Accentuation → neutral */
-  --accent-soft: rgba(255,255,255,0.06);
-  --accent-600: #e0e0e0;
-  --accent-700: #c8c8c8;
-  --success: #b0b0b0;
-  --warning: #8a8a8a;
-  --info: #6a6a6a;
-  --gold: #8a8a8a;
-  --green: #8a8a8a;
-  --blue: #8a8a8a;
+  --accent-soft: rgba(248,249,250,0.06);
+  --accent-600: var(--faint);
+  --accent-700: var(--muted);
+  --success: var(--faint);
+  --warning: var(--line);
+  --info: var(--line);
+  --gold: var(--faint);
+  --green: var(--faint);
+  --blue: var(--faint);
 
-  /* Backward-compat surface/ink tokens (--bg/--line already grayscale from ÆTHER :root) */
+  /* Backward-compat surface/ink tokens */
   --paper: var(--card);
   --paper-2: var(--surface);
-  --paper-3: #161616;
+  --paper-3: #17191b;
   --ink: var(--fg);
 
   /* RGB triplets → grayscale (for rgb(var(--c-*) / α) tailwind tokens) */
-  --c-paper: 16 16 16;
-  --c-paper-50: 7 7 7;
-  --c-paper-100: 12 12 12;
-  --c-paper-200: 16 16 16;
-  --c-paper-300: 22 22 22;
-  --c-paper-400: 30 30 30;
-  --c-ink: 245 245 245;
-  --c-ink-400: 120 120 120;
-  --c-ink-500: 160 160 160;
-  --c-ink-600: 190 190 190;
-  --c-ink-700: 220 220 220;
-  --c-ink-800: 240 240 240;
-  --c-ink-900: 245 245 245;
-  --c-ink-950: 250 250 250;
+  --c-paper: 33 37 41;
+  --c-paper-50: 17 19 21;
+  --c-paper-100: 28 30 34;
+  --c-paper-200: 33 37 41;
+  --c-paper-300: 42 47 52;
+  --c-paper-400: 52 57 64;
+  --c-ink: 248 249 250;
+  --c-ink-400: 173 181 189;
+  --c-ink-500: 206 212 218;
+  --c-ink-600: 222 226 230;
+  --c-ink-700: 233 237 239;
+  --c-ink-800: 240 242 244;
+  --c-ink-900: 248 249 250;
+  --c-ink-950: 250 251 251;
 }
 
 :root:not(.dark) {
@@ -446,57 +547,57 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
   --popover-foreground: var(--fg);
   --primary: var(--fg);
   --primary-foreground: var(--bg);
-  --secondary: #e8e8e8;
+  --secondary: var(--surface);
   --secondary-foreground: var(--fg);
   --muted-foreground: var(--muted);
   --accent: #E7C274;
-  --accent-foreground: #16130E;
-  --destructive: #6a6a6a;
-  --input: #e8e8e8;
+  --accent-foreground: #111315;
+  --destructive: var(--muted);
+  --input: var(--border);
   --ring: var(--line);
-  --chart-1: #0a0a0a;
-  --chart-2: #4a4a4a;
-  --chart-3: #6a6a6a;
-  --chart-4: #9a9a9a;
-  --chart-5: #cccccc;
+  --chart-1: var(--fg);
+  --chart-2: var(--muted);
+  --chart-3: var(--faint);
+  --chart-4: var(--line);
+  --chart-5: var(--border);
   --sidebar: var(--surface);
   --sidebar-foreground: var(--fg);
   --sidebar-primary: var(--fg);
   --sidebar-primary-foreground: var(--bg);
-  --sidebar-accent: #e8e8e8;
+  --sidebar-accent: var(--surface);
   --sidebar-accent-foreground: var(--fg);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--line);
 
-  --accent-soft: rgba(0,0,0,0.05);
-  --accent-600: #2e2e2e;
-  --accent-700: #4a4a4a;
-  --success: #6a6a6a;
-  --warning: #8a8a8a;
-  --info: #aaa;
-  --gold: #888;
-  --green: #888;
-  --blue: #888;
+  --accent-soft: rgba(33,37,41,0.05);
+  --accent-600: var(--muted);
+  --accent-700: var(--fg);
+  --success: var(--muted);
+  --warning: var(--faint);
+  --info: var(--faint);
+  --gold: var(--muted);
+  --green: var(--muted);
+  --blue: var(--muted);
 
   --paper: var(--card);
   --paper-2: var(--surface);
-  --paper-3: #e8e8e8;
+  --paper-3: #ced4da;
   --ink: var(--fg);
 
-  --c-paper: 252 252 252;
-  --c-paper-50: 248 248 248;
-  --c-paper-100: 240 240 240;
-  --c-paper-200: 252 252 252;
-  --c-paper-300: 234 234 234;
-  --c-paper-400: 224 224 224;
-  --c-ink: 10 10 10;
-  --c-ink-400: 120 120 120;
-  --c-ink-500: 90 90 90;
-  --c-ink-600: 60 60 60;
-  --c-ink-700: 40 40 40;
-  --c-ink-800: 20 20 20;
-  --c-ink-900: 12 12 12;
-  --c-ink-950: 10 10 10;
+  --c-paper: 255 255 255;
+  --c-paper-50: 248 249 250;
+  --c-paper-100: 222 226 230;
+  --c-paper-200: 255 255 255;
+  --c-paper-300: 206 212 218;
+  --c-paper-400: 173 181 189;
+  --c-ink: 33 37 41;
+  --c-ink-400: 108 117 125;
+  --c-ink-500: 73 80 87;
+  --c-ink-600: 52 58 64;
+  --c-ink-700: 42 47 52;
+  --c-ink-800: 33 37 41;
+  --c-ink-900: 28 30 34;
+  --c-ink-950: 27 29 33;
 }
 
 /* Body shell — monochrome */

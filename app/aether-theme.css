@@ -13,20 +13,20 @@
 /* ─── CSS CUSTOM PROPERTIES — Generated from design system ─── */
 :root {
   /* 8 Layers of Darkness (Fibonacci luminance) */
-  --aether-l0: hsl(260, 14%, 3.9%);      /* The Void */
-  --aether-l1: hsl(260, 13%, 6.5%);      /* The Deep */
-  --aether-l2: hsl(260, 12%, 9%);        /* The Shadow */
-  --aether-l3: hsl(260, 11%, 13%);       /* The Surface */
-  --aether-l4: hsl(260, 10%, 18%);       /* The Raised */
-  --aether-l5: hsl(262, 12%, 24%);       /* The Hover */
-  --aether-l6: hsl(264, 15%, 32%);       /* The Focus */
-  --aether-l7: hsl(266, 20%, 42%);       /* The Active */
+  --aether-l0: hsl(42, 8%, 3.9%);      /* The Void */
+  --aether-l1: hsl(42, 7%, 6.5%);      /* The Deep */
+  --aether-l2: hsl(42, 6%, 9%);        /* The Shadow */
+  --aether-l3: hsl(42, 5%, 13%);       /* The Surface */
+  --aether-l4: hsl(42, 5%, 18%);       /* The Raised */
+  --aether-l5: hsl(42, 6%, 24%);       /* The Hover */
+  --aether-l6: hsl(42, 8%, 32%);       /* The Focus */
+  --aether-l7: hsl(42, 10%, 42%);      /* The Active */
 
   /* Text on darkness (Fibonacci lightness scale) */
-  --aether-text-primary:   hsl(260, 8%, 98%);   /* F(16)-ish: near white but warm */
-  --aether-text-secondary: hsl(260, 6%, 65%);   /* F(15)/100: clearly readable */
-  --aether-text-tertiary:  hsl(260, 6%, 45%);   /* F(14)/100: subtle metadata */
-  --aether-text-ghost:     hsl(260, 5%, 30%);   /* F(13)/100: barely visible */
+  --aether-text-primary:   hsl(42, 4%, 98%);   /* F(16)-ish: near white but warm */
+  --aether-text-secondary: hsl(42, 3%, 65%);   /* F(15)/100: clearly readable */
+  --aether-text-tertiary:  hsl(42, 3%, 45%);   /* F(14)/100: subtle metadata */
+  --aether-text-ghost:     hsl(42, 2%, 30%);   /* F(13)/100: barely visible */
 
   /* Functional colors — hidden by default, revealed by toggle */
   --aether-primary:   hsl(42, 85%, 55%);   /* gold */
@@ -132,13 +132,13 @@
   --aether-ease-float: cubic-bezier(0.618, 0, 0.382, 1);
 
   /* Gradients */
-  --aether-gradient-void: linear-gradient(180deg, hsl(260, 14%, 3.9%) 0%, hsl(260, 13%, 6.5%) 61.8%, hsl(260, 12%, 9%) 100%);
-  --aether-gradient-surface: linear-gradient(180deg, hsl(260, 11%, 13%) 0%, hsl(260, 10%, 9%) 61.8%, hsl(260, 14%, 3.9%) 100%);
-  --aether-gradient-raised: linear-gradient(135deg, hsl(260, 10%, 18%) 0%, hsl(260, 12%, 13%) 61.8%, hsl(260, 11%, 9%) 100%);
-  --aether-gradient-glass: linear-gradient(135deg, hsla(260, 12%, 20%, 0.055) 0%, hsla(260, 10%, 15%, 0.089) 61.8%, hsla(260, 14%, 5%, 0.144) 100%);
+  --aether-gradient-void: linear-gradient(180deg, hsl(42, 8%, 3.9%) 0%, hsl(42, 7%, 6.5%) 61.8%, hsl(42, 6%, 9%) 100%);
+  --aether-gradient-surface: linear-gradient(180deg, hsl(42, 5%, 13%) 0%, hsl(42, 6%, 9%) 61.8%, hsl(42, 8%, 3.9%) 100%);
+  --aether-gradient-raised: linear-gradient(135deg, hsl(42, 5%, 18%) 0%, hsl(42, 6%, 13%) 61.8%, hsl(42, 5%, 9%) 100%);
+  --aether-gradient-glass: linear-gradient(135deg, hsla(42, 6%, 20%, 0.055) 0%, hsla(42, 5%, 15%, 0.089) 61.8%, hsla(42, 8%, 5%, 0.144) 100%);
   --aether-gradient-veil: linear-gradient(135deg, hsla(42, 85%, 55%, 0.05) 0%, hsla(42, 70%, 45%, 0.03) 61.8%, transparent 100%);
   --aether-gradient-text: linear-gradient(90deg, hsl(42, 85%, 55%) 0%, hsl(42, 70%, 50%) 61.8%);
-  --aether-gradient-shadow: linear-gradient(180deg, transparent 0%, hsla(260, 50%, 0%, 0.5) 61.8%, hsla(260, 50%, 0%, 0.8) 100%);
+  --aether-gradient-shadow: linear-gradient(180deg, transparent 0%, hsla(42, 50%, 0%, 0.5) 61.8%, hsla(42, 50%, 0%, 0.8) 100%);
 
   /* Functional colors state: 0 = OFF (monochrome), 1 = ON */
   --aether-functional-colors: 0;
@@ -443,8 +443,8 @@ html, body, #root {
 .aether-on-surface-variant    { color: var(--aether-text-secondary); }
 .aether-outline              { border-color: var(--aether-border-default); }
 .aether-outline-variant      { border-color: var(--aether-border-subtle); }
-.aether-scrim                { background: hsla(260, 50%, 0%, 0.610); backdrop-filter: blur(8px) saturate(1.618); }
-.aether-shadow-color         { box-shadow-color: hsl(260, 50%, 0%); }
+.aether-scrim                { background: hsla(42, 50%, 0%, 0.610); backdrop-filter: blur(8px) saturate(1.618); }
+.aether-shadow-color         { box-shadow-color: hsl(42, 50%, 0%); }
 
 /* ─── M3 INVERSE SURFACE (light element in dark theme) ─── */
 /* Used for snackbars, inverse text — light surface in dark UI */

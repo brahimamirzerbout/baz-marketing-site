@@ -1,14 +1,4 @@
-// @ts-nocheck
 import { NextResponse } from "next/server";
-
-/**
- * Tiny in-memory rate limiter. For production, swap with Redis/Upstash.
- *
- * Usage:
- *   import { rateLimit } from '@/lib/rate-limit';
- *   const guard = rateLimit(req, { key: 'contact-form', limit: 5, windowMs: 60_000 });
- *   if (!guard.ok) return NextResponse.json({ ok: false, error: 'rate_limited' }, { status: 429 });
- */
 
 interface Bucket {
   count: number;
@@ -17,7 +7,6 @@ interface Bucket {
 
 const buckets = new Map<string, Bucket>();
 
-// Prune every 5 minutes to avoid memory leak
 const PRUNE_INTERVAL = 5 * 60_000;
 if (typeof setInterval !== "undefined") {
   setInterval(() => {
@@ -26,11 +15,16 @@ if (typeof setInterval !== "undefined") {
   }, PRUNE_INTERVAL).unref?.();
 }
 
+export interface RateLimitOpts {
+  key: string;
+  limit: number;
+  windowMs: number;
+}
+
 export function rateLimit(
   req: Request,
-  opts: { key: string; limit: number; windowMs: number },
+  opts: RateLimitOpts,
 ): { ok: true; remaining: number; resetAt: number } | { ok: false; retryAfter: number } {
-  // Key = route key + client IP. IP comes from x-forwarded-for in prod.
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     req.headers.get("x-real-ip") ??
@@ -64,3 +58,26 @@ export function rateLimitHeaders(
   }
   return headers;
 }
+
+export function rateLimitedResponse(result: { retryAfter: number }): NextResponse {
+  return NextResponse.json(
+    { ok: false, error: "rate_limited" },
+    {
+      status: 429,
+      headers: {
+        "Retry-After": String(result.retryAfter),
+        "X-RateLimit-Reset": String(Math.ceil((Date.now() + result.retryAfter * 1000) / 1000)),
+      },
+    },
+  );
+}
+
+export const DEFAULT_LIMITS: Record<string, { limit: number; windowMs: number }> = {
+  "contact-form": { limit: 5, windowMs: 60_000 },
+  "agent-run": { limit: 20, windowMs: 60_000 },
+  "auth-login": { limit: 10, windowMs: 60_000 },
+  "auth-register": { limit: 3, windowMs: 60_000 },
+  "api-leads": { limit: 30, windowMs: 60_000 },
+  "search": { limit: 60, windowMs: 60_000 },
+  "feedback": { limit: 10, windowMs: 60_000 },
+};

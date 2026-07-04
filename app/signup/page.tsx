@@ -1,11 +1,12 @@
-// @ts-nocheck
 "use client";
 
-import { useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createBrowserClient } from "@supabase/ssr";
+import type { Database } from "@/lib/database.types";
 
-export default function SignupPage() {
+function SignupForm() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,24 +14,50 @@ export default function SignupPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const supabaseRef = useRef<ReturnType<typeof createBrowserClient<Database>> | null>(null);
+  function getSupabase() {
+    if (!supabaseRef.current) {
+      supabaseRef.current = createBrowserClient<Database>(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      );
+    }
+    return supabaseRef.current;
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
     setError(null);
+
+    if (password.length < 8) {
+      setError("password_too_short");
+      setBusy(false);
+      return;
+    }
+
     try {
-      const r = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+      const { error: signUpError } = await getSupabase().auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: name },
+        },
       });
-      const j = await r.json();
-      if (!j.ok) {
-        setError(humanizeError(j.error));
+
+      if (signUpError) {
+        if (signUpError.message?.includes("already registered")) {
+          setError("email_taken");
+          return;
+        }
+        setError(signUpError.message);
         return;
       }
+
       router.push("/console");
-    } catch (err: unknown) {
-      setError(err?.message || "network_error");
+      router.refresh();
+    } catch {
+      setError("network_error");
     } finally {
       setBusy(false);
     }
@@ -66,7 +93,7 @@ export default function SignupPage() {
             type="password"
             hint="8 characters minimum"
           />
-          {error && <p className="text-sm text-accent">{error}</p>}
+          {error && <p className="text-sm text-accent">{humanizeError(error)}</p>}
           <button
             type="submit"
             disabled={busy}
@@ -123,4 +150,18 @@ function humanizeError(code: string): string {
     missing_fields: "All fields are required.",
   };
   return map[code] || code;
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen grid place-items-center bg-background">
+          <span className="text-muted-foreground text-sm">Loading…</span>
+        </div>
+      }
+    >
+      <SignupForm />
+    </Suspense>
+  );
 }
