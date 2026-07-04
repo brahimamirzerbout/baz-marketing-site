@@ -110,7 +110,7 @@ export default function CockpitPage() {
           <button
             onClick={runNow}
             disabled={running || !h?.ok}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent hover:bg-primary/90 disabled:opacity-50 text-white font-medium text-sm transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent hover:bg-primary/90 disabled:opacity-50 text-accent-foreground font-medium text-sm transition-colors"
           >
             <Play className="w-4 h-4" />
             {running ? "Running…" : "Run tick now"}
@@ -182,7 +182,7 @@ export default function CockpitPage() {
             <div className="grid grid-cols-5 gap-3 text-center">
               {[
                 { label: "Scored", n: h.last_tick.scored, color: "text-blue-400" },
-                { label: "Routed", n: h.last_tick.routed, color: "text-violet-400" },
+                { label: "Routed", n: h.last_tick.routed, color: "text-accent" },
                 { label: "Stepped", n: h.last_tick.stepped, color: "text-cyan-400" },
                 { label: "Won", n: h.last_tick.won, color: "text-emerald-400" },
                 { label: "Lost", n: h.last_tick.lost, color: "text-rose-400" },

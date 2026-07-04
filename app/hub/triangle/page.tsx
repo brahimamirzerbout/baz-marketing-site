@@ -57,7 +57,7 @@ export default function TrianglePage() {
           <button
             onClick={runNow}
             disabled={running}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent hover:bg-primary/90 disabled:opacity-50 text-white font-medium text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent hover:bg-primary/90 disabled:opacity-50 text-accent-foreground font-medium text-sm"
           >
             <Play className="w-4 h-4" />
             {running ? "Running…" : "Run tick"}
@@ -71,8 +71,8 @@ export default function TrianglePage() {
           <svg viewBox="0 0 400 400" className="w-full max-w-sm" aria-hidden>
             <defs>
               <linearGradient id="grad-edge" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ff5b1f" />
-                <stop offset="100%" stopColor="#c9a961" />
+                <stop offset="0%" stopColor="#C8A55A" />
+                <stop offset="100%" stopColor="#E7C274" />
               </linearGradient>
             </defs>
             <polygon
@@ -82,7 +82,7 @@ export default function TrianglePage() {
               strokeWidth="2"
             />
             <circle cx="200" cy="40" r="44" fill="#0a0a0a" stroke="#ff5b1f" strokeWidth="2" />
-            <circle cx="360" cy="320" r="44" fill="#0a0a0a" stroke="#c9a961" strokeWidth="2" />
+            <circle cx="360" cy="320" r="44" fill="#0a0a0a" stroke="#C8A55A" strokeWidth="2" />
             <circle cx="40" cy="320" r="44" fill="#0a0a0a" stroke="#3ddc97" strokeWidth="2" />
             <text x="200" y="46" textAnchor="middle" fill="#fff" fontSize="14" fontFamily="serif">
               Marketing
@@ -103,7 +103,7 @@ export default function TrianglePage() {
             <path
               d="M 55 285 C 80 220, 170 150, 225 75"
               fill="none"
-              stroke="#c9a961"
+              stroke="#C8A55A"
               strokeWidth="1.5"
               strokeDasharray="4 4"
             />
@@ -114,7 +114,7 @@ export default function TrianglePage() {
               strokeWidth="1.5"
               strokeDasharray="4 4"
             />
-            <text x="280" y="180" fill="#c9a961" fontSize="10" fontFamily="monospace">
+            <text x="280" y="180" fill="#C8A55A" fontSize="10" fontFamily="monospace">
               score → route
             </text>
             <text x="120" y="180" fill="#3ddc97" fontSize="10" fontFamily="monospace">
@@ -139,7 +139,7 @@ export default function TrianglePage() {
             {
               t: "2. Route",
               d: "Score ≥ 50 → enroll into least-loaded active sequence.",
-              color: "#c9a961",
+              color: "#C8A55A",
             },
             {
               t: "3. Step",
@@ -154,7 +154,7 @@ export default function TrianglePage() {
             {
               t: "5. Learn",
               d: "Wins feed back into Nova. Tomorrow is smarter than today.",
-              color: "#7c3aed",
+              color: "#C8A55A",
             },
             {
               t: "6. Report",
@@ -192,7 +192,7 @@ export default function TrianglePage() {
             <div className="grid grid-cols-4 gap-3 text-center">
               {[
                 { l: "Scored 24h", v: h.contacts_scored_24h ?? 0, c: "text-blue-400" },
-                { l: "Active", v: h.enrollments_active ?? 0, c: "text-violet-400" },
+                { l: "Active", v: h.enrollments_active ?? 0, c: "text-brand" },
                 {
                   l: "Pipeline",
                   v: `$${Math.round(h.pipeline_value ?? 0).toLocaleString()}`,

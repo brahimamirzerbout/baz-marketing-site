@@ -1,75 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <!-- BAZ OG Image — 1200×630 for social sharing -->
-  <!-- Ink background, violet accent line, wordmark, headline area -->
   <defs>
     <linearGradient id="og-mesh" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.08"/>
-      <stop offset="50%" stop-color="#0e0e0e" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.04"/>
+      <stop offset="0%" stop-color="#C8A55A" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#16130E" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#E7C274" stop-opacity="0.06"/>
     </linearGradient>
   </defs>
-
-  <!-- Background -->
-  <rect width="1200" height="630" fill="#0e0e0e"/>
-
-  <!-- Mesh gradient overlay -->
+  <rect width="1200" height="630" fill="#16130E"/>
   <rect width="1200" height="630" fill="url(#og-mesh)"/>
-
-  <!-- Grid pattern -->
   <g opacity="0.04">
-    <line x1="0" y1="0" x2="0" y2="630" stroke="#f5f1ea" stroke-width="1" repeat="40"/>
-    <!-- Vertical lines every 40px -->
     <g>
-      <line x1="40" y1="0" x2="40" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="80" y1="0" x2="80" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="120" y1="0" x2="120" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="160" y1="0" x2="160" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="200" y1="0" x2="200" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="240" y1="0" x2="240" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="280" y1="0" x2="280" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="320" y1="0" x2="320" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="360" y1="0" x2="360" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="400" y1="0" x2="400" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="440" y1="0" x2="440" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="480" y1="0" x2="480" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="520" y1="0" x2="520" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="560" y1="0" x2="560" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="600" y1="0" x2="600" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="640" y1="0" x2="640" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="680" y1="0" x2="680" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="720" y1="0" x2="720" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="760" y1="0" x2="760" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="800" y1="0" x2="800" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="840" y1="0" x2="840" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="880" y1="0" x2="880" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="920" y1="0" x2="920" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="960" y1="0" x2="960" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="1000" y1="0" x2="1000" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="1040" y1="0" x2="1040" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="1080" y1="0" x2="1080" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="1120" y1="0" x2="1120" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
-      <line x1="1160" y1="0" x2="1160" y2="630" stroke="#f5f1ea" stroke-width="0.5"/>
+      <line x1="40" y1="0" x2="40" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="80" y1="0" x2="80" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="120" y1="0" x2="120" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="160" y1="0" x2="160" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="200" y1="0" x2="200" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="240" y1="0" x2="240" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="280" y1="0" x2="280" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="320" y1="0" x2="320" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="360" y1="0" x2="360" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="400" y1="0" x2="400" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="440" y1="0" x2="440" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="480" y1="0" x2="480" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="520" y1="0" x2="520" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="560" y1="0" x2="560" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="600" y1="0" x2="600" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="640" y1="0" x2="640" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="680" y1="0" x2="680" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="720" y1="0" x2="720" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="760" y1="0" x2="760" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="800" y1="0" x2="800" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="840" y1="0" x2="840" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="880" y1="0" x2="880" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="920" y1="0" x2="920" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="960" y1="0" x2="960" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="1000" y1="0" x2="1000" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="1040" y1="0" x2="1040" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="1080" y1="0" x2="1080" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="1120" y1="0" x2="1120" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
+      <line x1="1160" y1="0" x2="1160" y2="630" stroke="#E9E1D8" stroke-width="0.5"/>
     </g>
   </g>
-
-  <!-- Accent line — bottom -->
-  <rect x="80" y="560" width="200" height="2" fill="#8b5cf6" rx="1"/>
-
-  <!-- BAZ Wordmark -->
-  <text x="80" y="320" font-family="Fraunces, Georgia, serif" font-size="96" font-weight="300" fill="#f5f1ea" letter-spacing="-4">BAZ</text>
-
-  <!-- Tagline -->
-  <text x="80" y="370" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="400" fill="#737373" letter-spacing="0">Marketing Ventures Agency</text>
-
-  <!-- Eyebrow -->
-  <text x="80" y="240" font-family="JetBrains Mono, monospace" font-size="11" font-weight="400" fill="#8b5cf6" letter-spacing="2.5" text-transform="uppercase">● BRAND &amp; BUZZ</text>
-
-  <!-- Mark — bottom right -->
+  <rect x="80" y="560" width="200" height="2" fill="#E7C274" rx="1"/>
+  <text x="80" y="320" font-family="Outfit, sans-serif" font-size="96" font-weight="500" fill="#E9E1D8" letter-spacing="-4">BAZ</text>
+  <text x="80" y="370" font-family="Poppins, sans-serif" font-size="20" font-weight="300" fill="#D0C5B3" letter-spacing="0">Marketing Ventures Agency</text>
+  <text x="80" y="240" font-family="JetBrains Mono, monospace" font-size="11" font-weight="400" fill="#C8A55A" letter-spacing="2.5" text-transform="uppercase">● BRAND &amp; BUZZ</text>
   <g transform="translate(1080, 530)">
-    <rect x="0" y="0" width="60" height="60" rx="13" fill="#8b5cf6"/>
-    <text x="30" y="46" font-family="Fraunces, Georgia, serif" font-size="46" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-1.5">B</text>
+    <rect x="0" y="0" width="60" height="60" rx="13" fill="#C8A55A"/>
+    <text x="30" y="44" font-family="Outfit, sans-serif" font-size="42" font-weight="600" fill="#16130E" text-anchor="middle" letter-spacing="-1.5">B</text>
   </g>
-
-  <!-- URL -->
-  <text x="1080" y="610" font-family="JetBrains Mono, monospace" font-size="11" font-weight="400" fill="#525252" letter-spacing="1.5" text-anchor="end">BAZAGENCY.COM</text>
+  <text x="1080" y="610" font-family="JetBrains Mono, monospace" font-size="11" font-weight="400" fill="#998F7F" letter-spacing="1.5" text-anchor="end">BAZAGENCY.COM</text>
 </svg>

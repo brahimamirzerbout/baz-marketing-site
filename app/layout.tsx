@@ -1,6 +1,8 @@
 // @ts-nocheck
 import type { Metadata, Viewport } from 'next';
-import { Plus_Jakarta_Sans, Poppins } from 'next/font/google';
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Outfit, Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
 import { site } from '@/lib/site';
 import { organizationLd, websiteLd, jsonLd } from '@/lib/seo';
@@ -16,7 +18,7 @@ import './globals.css';
 import './aether-theme.css';
 import './aether-monochrome.css';
 
-const jakarta = Plus_Jakarta_Sans({
+const outfit = Outfit({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
@@ -73,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#b87adb',  // Æther violet
+  themeColor: '#C8A55A',  // Stitch gold
   width: 'device-width',
   initialScale: 1,
 };
@@ -82,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // next-themes handles the cookie + localStorage + data-theme attribute
   // synchronously via its own inline script. No server-side cookie read here.
   return (
-    <html lang="en" suppressHydrationWarning className={`${jakarta.variable} ${poppins.variable} ${mono.variable} dark`} data-theme="dark">
+    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${poppins.variable} ${mono.variable} dark`} data-theme="dark">
       <body className="bg-background text-foreground antialiased royal-entrance">
         {/*
           Belt-and-braces pre-paint script: next-themes also injects its own
@@ -112,6 +114,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CookieBanner />
           <ScrollReveal />
           <Analytics />
+          <VercelAnalytics />
+          <SpeedInsights />
           <SmoothScroll />
         </ThemeProvider>
 

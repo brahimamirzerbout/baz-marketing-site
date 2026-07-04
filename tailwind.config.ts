@@ -11,14 +11,14 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Æther Design System — BlackSwan seed hue 270 (violet)
-        ink: '#111111',
-        panel: '#1A1A1A',
-        'panel-2': '#2C2C2C',
-        sand: '#E8E4E0',
-        stone: '#B0AAA5',
-        brand: '#b87adb',
-        'brand-2': '#c9a3e5',
+        // Stitch Design System — Gold seed hue 42
+        ink: '#16130E',
+        panel: '#1E1B16',
+        'panel-2': '#2D2924',
+        sand: '#E9E1D8',
+        stone: '#D0C5B3',
+        brand: '#E7C274',
+        'brand-2': '#C8A55A',
         // Semantic tokens for shadcn compatibility
         background: 'var(--background)',
         foreground: 'var(--foreground)',
@@ -38,7 +38,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'sans-serif'],
+        display: ['Outfit', 'ui-sans-serif', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {

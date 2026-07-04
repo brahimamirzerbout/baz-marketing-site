@@ -42,7 +42,7 @@ const QUICK_LINKS = [
     label: "Nova AI",
     desc: "Ask anything about your business",
     icon: Brain,
-    color: "#7c3aed",
+    color: "#C8A55A",
   },
   {
     href: "/hub/sequences",

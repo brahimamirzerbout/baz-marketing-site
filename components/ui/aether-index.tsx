@@ -246,7 +246,7 @@ const BUBBLE_VARIANTS: Record<BubbleVariant, React.CSSProperties> = {
   default:     { background: 'var(--aether-accent-bg, var(--aether-l5))', color: 'var(--aether-text-primary)', border: '1px solid var(--aether-accent-border, var(--aether-border-default))' },
   secondary:   { background: 'var(--aether-l4)', color: 'var(--aether-text-primary)', border: '1px solid var(--aether-border-subtle)' },
   muted:       { background: 'var(--aether-l3)', color: 'var(--aether-text-secondary)', border: '1px solid var(--aether-border-subtle)' },
-  tinted:      { background: 'hsla(270, 85%, 72%, 0.055)', color: 'var(--aether-text-primary)', border: '1px solid hsla(270, 85%, 72%, 0.144)' },
+  tinted:      { background: 'hsla(42, 85%, 55%, 0.055)', color: 'var(--aether-text-primary)', border: '1px solid hsla(42, 85%, 55%, 0.144)' },
   outline:     { background: 'transparent', color: 'var(--aether-text-primary)', border: '1px solid var(--aether-border-default)' },
   ghost:       { background: 'transparent', color: 'var(--aether-text-primary)', border: 'none' },
   destructive: { background: 'hsla(8, 80%, 58%, 0.055)', color: 'var(--aether-danger)', border: '1px solid hsla(8, 80%, 58%, 0.233)' },

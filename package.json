@@ -15,11 +15,19 @@
     "archive": "node scripts/data-archive.mjs",
     "testimonial:ingest": "node scripts/ingest-testimonials.mjs",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "supabase:types": "bash scripts/typegen.sh",
+    "supabase:migrate": "supabase db push --linked",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
     "@supabase/server": "^1.2.0",
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.110.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/og": "^0.11.1",
+    "@vercel/speed-insights": "^2.0.0",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^11.10.0",
     "clsx": "^2.1.1",

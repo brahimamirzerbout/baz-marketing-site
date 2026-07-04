@@ -15,9 +15,12 @@ export function Footer() {
         {/* Top — brand + CTA */}
         <div className="grid lg:grid-cols-12 gap-12 mb-20">
           <div className="lg:col-span-7">
-            <Link href="/" className="flex items-center gap-3" aria-label={site.name}>
-              <span className="royal-seal">B</span>
-              <span className="font-display text-lg tracking-[-0.02em]">BAZ</span>
+            <Link href="/" aria-label={site.name}>
+              <img
+                src="/logo/baz-wordmark-reverse.svg"
+                alt={site.name}
+                className="h-9 md:h-10 w-auto object-contain"
+              />
             </Link>
             <p className="mt-6 text-lg text-muted-foreground max-w-md leading-relaxed font-light">
               Senior-only growth partner. Strategy, execution, and reporting in one system — or pay

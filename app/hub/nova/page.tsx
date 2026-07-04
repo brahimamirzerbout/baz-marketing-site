@@ -95,7 +95,7 @@ export default function NovaPage() {
         <div className="flex items-center gap-3">
           <div
             className="w-12 h-12 rounded-xl grid place-items-center"
-            style={{ background: "linear-gradient(135deg, #7c3aed, #ec4899)" }}
+            style={{ background: "linear-gradient(135deg, #C8A55A, #e7c274)" }}
           >
             <Brain className="w-6 h-6 text-white" />
           </div>
@@ -118,14 +118,14 @@ export default function NovaPage() {
                 {m.role === "nova" && (
                   <div
                     className="w-8 h-8 rounded-full grid place-items-center flex-shrink-0"
-                    style={{ background: "linear-gradient(135deg, #7c3aed, #ec4899)" }}
+                    style={{ background: "linear-gradient(135deg, #C8A55A, #e7c274)" }}
                   >
                     <Brain className="w-4 h-4 text-white" />
                   </div>
                 )}
                 <div
                   className={`max-w-[80%] rounded-2xl p-3 ${
-                    m.role === "user" ? "bg-violet-600 text-white" : "bg-primary/90 text-foreground"
+                    m.role === "user" ? "bg-brand text-white" : "bg-primary/90 text-foreground"
                   }`}
                 >
                   <div className="text-sm leading-relaxed whitespace-pre-wrap">{m.text}</div>
@@ -174,7 +174,7 @@ export default function NovaPage() {
                               <button
                                 key={j}
                                 onClick={() => ask(f)}
-                                className="px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-200 hover:bg-violet-500/30 text-[10px]"
+                                className="px-2 py-0.5 rounded-full bg-brand/20 text-brand hover:bg-brand/30 text-[10px]"
                               >
                                 {f}
                               </button>
@@ -195,7 +195,7 @@ export default function NovaPage() {
               <div className="flex gap-3">
                 <div
                   className="w-8 h-8 rounded-full grid place-items-center flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg, #7c3aed, #ec4899)" }}
+                  style={{ background: "linear-gradient(135deg, #C8A55A, #e7c274)" }}
                 >
                   <Brain className="w-4 h-4 text-white animate-pulse" />
                 </div>
@@ -228,7 +228,7 @@ export default function NovaPage() {
               disabled={busy}
             />
             <button
-              className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-accent hover:bg-primary/90 disabled:opacity-50 text-white transition-colors"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-accent hover:bg-primary/90 disabled:opacity-50 text-accent-foreground transition-colors"
               onClick={() => ask()}
               disabled={busy || !input.trim()}
             >

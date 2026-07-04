@@ -47,12 +47,13 @@ export function Header() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between h-16 md:h-18">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group" aria-label={`${site.name} — home`}>
-          <span className="royal-seal">B</span>
-          <span className="font-display font-bold text-lg tracking-[-0.02em] whitespace-nowrap">
-            BAZ
-          </span>
+        {/* Logo — Stitch gold wordmark */}
+        <Link href="/" aria-label={`${site.name} — home`}>
+          <img
+            src="/logo/baz-wordmark-reverse.svg"
+            alt={site.name}
+            className="h-8 md:h-9 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -65,7 +66,7 @@ export function Header() {
             >
               {item.label}
               {(item as { badge?: React.ReactNode }).badge && (
-                <span className="inline-flex items-center gap-1 text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[hsla(270,85%,72%,0.089)] text-accent">
+                <span className="inline-flex items-center gap-1 text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[hsla(42,85%,55%,0.089)] text-accent">
                   <span className="inline-block w-1 h-1 rounded-full bg-accent animate-pulse" />
                   {(item as { badge?: React.ReactNode }).badge}
                 </span>

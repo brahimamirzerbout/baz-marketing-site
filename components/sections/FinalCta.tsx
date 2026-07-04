@@ -66,12 +66,11 @@ export function FinalCta() {
         {/* Footer signature strip */}
         <div className="mt-20 pt-8 border-t border-white/8 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span
-              className="royal-seal"
-              style={{ width: "32px", height: "32px", fontSize: "13px" }}
-            >
-              B
-            </span>
+            <img
+              src="/logo/baz-mark.svg"
+              alt=""
+              className="w-8 h-8 object-contain"
+            />
             <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/30">
               Senior team · No juniors · Algiers · EU · US
             </span>

@@ -1,7 +1,5 @@
-# Supabase project config for BAZ Marketing Agency
-# https://supabase.com/docs/guides/local-development/cli/config
-
-project_id = "nextjs-a"
+project_id = "baz-marketing"
+managed = false
 
 [api]
 enabled = true
@@ -15,13 +13,17 @@ port = 54322
 shadow_port = 54323
 major_version = 17
 
+[db.pooler]
+enabled = true
+pool_mode = "transaction"
+default_pool_size = 20
+max_client_conn = 100
+
 [auth]
 enabled = true
 site_url = "http://localhost:3000"
 additional_redirect_urls = ["https://uyqgmdrzyapbbvmaumvk.supabase.co"]
 jwt_expiry = 3600
-refresh_token_rotation_enabled = true
-refresh_token_reuse_interval = 10
 enable_signup = true
 enable_anonymous_sign_ins = false
 
@@ -32,13 +34,17 @@ enable_confirmations = false
 
 [edge_runtime]
 enabled = true
-policy = "per_write_only"
+policy = "per_worker"
 
-# Functions using @supabase/server with non-"user" auth modes
-# must set verify_jwt = false so the runtime doesn't reject the
-# request before withSupabase can inspect credentials.
-[edge_runtime.functions."api-leads"]
-verify_jwt = false
+[storage]
+enabled = true
 
-[edge_runtime.functions."api-health"]
-verify_jwt = false
+[storage.buckets.brand]
+public = true
+file_size_limit = 10485760
+allowed_mime_types = ["image/png", "image/jpeg", "image/svg+xml", "image/webp"]
+
+[storage.buckets.leads]
+public = false
+file_size_limit = 5242880
+allowed_mime_types = ["image/png", "image/jpeg", "application/pdf"]

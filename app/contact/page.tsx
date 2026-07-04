@@ -49,6 +49,13 @@ export default function ContactPage({ searchParams }: { searchParams?: { service
     <>
       <ContactAnalytics service={requestedService || undefined} />
       <Section tone="paper" size="lg">
+        {/* Ghost watermark — brand signature */}
+        <div
+          aria-hidden
+          className="absolute -left-20 top-0 font-display text-[20vw] font-medium leading-none text-foreground/[0.04] select-none pointer-events-none"
+        >
+          BAZ
+        </div>
         <Breadcrumb
           items={[
             { label: "Home", href: "/" },
