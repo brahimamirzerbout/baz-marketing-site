@@ -10,10 +10,6 @@
       "schedule": "0 7 * * 1"
     }
   ],
-  "functions": {
-    "app/api/services/route.ts": { "runtime": "edge" },
-    "app/api/health/route.ts": { "runtime": "edge" }
-  },
   "headers": [
     {
       "source": "/(.*)",
