@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
+import { getDb, isSupabase, isSqlite } from "@/lib/db";
 import { llmStatus } from "@/lib/llm";
 
 export const runtime = "nodejs";
@@ -9,6 +9,7 @@ export async function GET() {
   const start = Date.now();
   try {
     const db = getDb();
+    const dbMode = isSupabase() ? "supabase" : isSqlite() ? "sqlite" : "memory";
     const counts = {
       users: (db.prepare("SELECT COUNT(*) AS n FROM users").get() as { n: number }).n,
       leads: (db.prepare("SELECT COUNT(*) AS n FROM leads").get() as { n: number }).n,
@@ -28,10 +29,10 @@ export async function GET() {
     const llm = llmStatus();
     return NextResponse.json({
       ok: true,
-      name: "BAZ Platform API",
+      name: "BAZventures API",
       version: "7.0.0",
       uptime_s: Math.round(process.uptime()),
-      db: "sqlite",
+      db: dbMode,
       llm,
       counts,
       latency_ms: Date.now() - start,
