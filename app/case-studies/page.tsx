@@ -7,12 +7,12 @@ import { CaseStudiesBrowser } from "./CaseStudiesBrowser";
 
 export async function generateMetadata() {
   return buildMetadata({
-    title: "BAZ case studies",
+    title: "BAZventures case studies",
     description:
-      "BAZ case studies across DTC, B2B SaaS, FinTech, hospitality, marketplaces, AI tools, and media. Real metrics. Named clients. Honest outcomes. Filter by your industry.",
+      "BAZventures case studies across DTC, B2B SaaS, FinTech, hospitality, marketplaces, AI tools, and media. Real metrics. Named clients. Honest outcomes. Filter by your industry.",
     path: "/case-studies",
     image:
-      "/case-studies-og?title=BAZ%20case%20studies&subtitle=Work%20that%20moved%20the%20P%26L.",
+      "/case-studies-og?title=BAZventures%20case%20studies&subtitle=Work%20that%20moved%20the%20P%26L.",
   });
 }
 

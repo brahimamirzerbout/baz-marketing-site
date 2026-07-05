@@ -27,7 +27,7 @@ export function FinalCta() {
 
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
             30 minutes. A senior partner reviews your funnel, your channels, and your unit economics
-            — and tells you honestly whether BAZ is the right fit. If we&apos;re not, we&apos;ll refer
+            — and tells you honestly whether BAZventures is the right fit. If we&apos;re not, we&apos;ll refer
             you to someone who is.
           </p>
 

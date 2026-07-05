@@ -1,6 +1,6 @@
 "use client";
 /**
- * BAZ Homepage section that promotes Marketing Hub.
+ * BAZventures Homepage section that promotes Marketing Hub.
  * Pulls live data from the Hub's API (loop health + last ingest) to make the
  * banner feel current instead of a static advertorial.
  */
@@ -65,12 +65,12 @@ export function MarketingHubBanner() {
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           {/* Left: pitch */}
           <div className="lg:col-span-7">
-            <p className="eyebrow-neutral mb-4">BAZ Product · Marketing Hub</p>
+            <p className="eyebrow-neutral mb-4">BAZventures Product · Marketing Hub</p>
             <h2 className="font-display text-display-xl font-medium tracking-[-0.04em] leading-[1.05]">
               The marketing, sales, and finance loop — running itself.
             </h2>
             <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
-              Every contact scored. Every cadence stepped. Every outcome learned from. The BAZ
+              Every contact scored. Every cadence stepped. Every outcome learned from. The BAZventures
               Marketing Hub is the operating system under everything we ship for clients — and it
               runs whether we&apos;re watching or not.
             </p>

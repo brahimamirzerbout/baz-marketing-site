@@ -7,11 +7,11 @@ import { buildMetadata, jsonLd, breadcrumbLd } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Brandbook",
   description:
-    "The BAZ brand system: visual, verbal, and experiential language. Real tokens, real voice rules, downloadable.",
+    "The BAZventures brand system: visual, verbal, and experiential language. Real tokens, real voice rules, downloadable.",
   path: "/brandbook",
 });
 
-// ─── Real BAZ brand values (sourced from tailwind.config.ts) ──────────────
+// ─── Real BAZventures brand values (sourced from tailwind.config.ts) ──────────────
 const PALETTE = [
   {
     name: "Accent",
@@ -87,7 +87,7 @@ const TYPE = [
     weight: "400–600",
     style: "normal",
     sample:
-      "BAZ is a senior-only growth partner that builds and manages your owned, earned, paid, and data channels.",
+      "BAZventures is a senior-only growth partner that builds and manages your owned, earned, paid, and data channels.",
   },
   {
     name: "Mono",
@@ -96,7 +96,7 @@ const TYPE = [
     usage: "Eyebrows, technical labels, code, metric values.",
     weight: "400–500",
     style: "normal",
-    sample: "BUILT 2026 · V4.0 · OWNED BY BAZ ASLAN",
+    sample: "BUILT 2026 · V4.0 · OWNED BY BAZventures ASLAN",
   },
 ];
 
@@ -149,13 +149,13 @@ export default function BrandbookPage() {
           <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Brandbook" }]} />
           <div className="max-w-4xl">
             <p className="font-mono uppercase tracking-[0.18em] text-[11px] mb-6 text-white/80">
-              — BAZ Brand System · v4.0
+              — BAZventures Brand System · v4.0
             </p>
             <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] text-white">
               Our <em className="not-italic font-display italic">brand.</em>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl">
-              The visual, verbal, and experiential language we use to make BAZ unmistakable — across
+              The visual, verbal, and experiential language we use to make BAZventures unmistakable — across
               every surface, channel, and moment.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -168,7 +168,7 @@ export default function BrandbookPage() {
               <DownloadButton />
             </div>
             <div className="mt-10 text-xs font-mono uppercase tracking-[0.15em] text-white/70">
-              Last updated · June 23, 2026 · Owned by BAZ · Marketing Agency
+              Last updated · June 23, 2026 · Owned by BAZventures · Marketing Agency
             </div>
           </div>
         </div>
@@ -179,7 +179,7 @@ export default function BrandbookPage() {
         <Eyebrow>01 · Logo</Eyebrow>
         <SectionHeading>The wordmark is the mark.</SectionHeading>
         <p className="mt-4 text-lg text-foreground max-w-2xl">
-          BAZ is a wordmark — bold, minimal, built for legibility. We don&apos;t use a separate
+          BAZventures is a wordmark — bold, minimal, built for legibility. We don&apos;t use a separate
           symbol. The whole name <em>is</em> the logo. Three B variants cover every surface.
         </p>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -373,7 +373,7 @@ export default function BrandbookPage() {
         <SectionHeading>Pre-approved starting points.</SectionHeading>
         <p className="mt-4 text-lg text-foreground max-w-2xl">
           Use these instead of starting from a blank page. Every template is open, forkable, and
-          versioned in the BAZ design system.
+          versioned in the BAZventures design system.
         </p>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {TEMPLATES.map((t) => (

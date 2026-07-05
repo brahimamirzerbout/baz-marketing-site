@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Terms of Service",
-  description: "The terms governing your use of BAZ marketing services and this site.",
+  description: "The terms governing your use of BAZventures marketing services and this site.",
   path: "/terms",
 });
 
@@ -44,7 +44,7 @@ export default function TermsPage() {
 
           <SubSection title="3. Intellectual property">
             <p>
-              All content on this site is owned by BAZ or its licensors. You may not reproduce it
+              All content on this site is owned by BAZventures or its licensors. You may not reproduce it
               commercially without written permission.
             </p>
           </SubSection>
@@ -59,7 +59,7 @@ export default function TermsPage() {
 
           <SubSection title="5. Limitation of liability">
             <p>
-              To the maximum extent permitted by law, BAZ is not liable for any indirect or
+              To the maximum extent permitted by law, BAZventures is not liable for any indirect or
               consequential damages arising from your use of this site.
             </p>
           </SubSection>

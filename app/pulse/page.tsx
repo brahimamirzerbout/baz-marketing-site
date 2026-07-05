@@ -8,8 +8,8 @@ import { getLeadStats } from "@/lib/leads-store";
 import { getDb } from "@/lib/db";
 
 export const metadata = buildMetadata({
-  title: "BAZ Pulse",
-  description: "A live look at the BAZ loop — leads, scores, and actions across the last 30 days.",
+  title: "BAZventures Pulse",
+  description: "A live look at the BAZventures loop — leads, scores, and actions across the last 30 days.",
   path: "/pulse",
 });
 
@@ -66,14 +66,14 @@ export default async function PulsePage() {
   return (
     <>
       <Section tone="paper" size="lg">
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "BAZ Pulse" }]} />
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "BAZventures Pulse" }]} />
         <div className="max-w-4xl">
           <Eyebrow>Live · last 30 days</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] leading-[0.95]">
             The loop, in <em className="not-italic text-gradient">real numbers.</em>
           </h1>
           <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-            No spin, no deck. Here&apos;s what the BAZ loop is doing right now.
+            No spin, no deck. Here&apos;s what the BAZventures loop is doing right now.
           </p>
         </div>
       </Section>

@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
-  description: "How BAZ collects, uses, and protects your information.",
+  description: "How BAZventures collects, uses, and protects your information.",
   path: "/privacy",
 });
 
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
         <div className="mt-12 space-y-10 text-[15px] leading-[1.75] text-foreground">
           <SubSection title="1. Who we are">
             <p>
-              BAZ Marketing Agency (&ldquo;BAZ&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) operates{" "}
+              BAZventures (&ldquo;BAZventures&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) operates{" "}
               {site.url}. For any privacy question, write to{" "}
               <a href={`mailto:${site.email}`} className="underline">
                 {site.email}

@@ -4,7 +4,7 @@
  *
  * These port the methodology from the Digital Marketing Analytics
  * coursework (AdStock, Attribution, RFM, Budget Optimization) into
- * browser-native math so the BAZ admin tools run anywhere without a
+ * browser-native math so the BAZventures admin tools run anywhere without a
  * Python runtime.
  *
  * Each function is documented with its input/output contract so the

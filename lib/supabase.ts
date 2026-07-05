@@ -1,5 +1,5 @@
 /**
- * BAZ — Supabase server adapter for Next.js App Router.
+ * BAZventures — Supabase server adapter for Next.js App Router.
  *
  * Uses `createSupabaseContext` from @supabase/server to produce an
  * RLS-scoped client (`ctx.supabase`) and an admin client that bypasses

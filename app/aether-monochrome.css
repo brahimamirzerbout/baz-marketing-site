@@ -6,24 +6,26 @@
 
 /* ─── Seed — change these to rebrand everything ─── */
 :root{
-  --seed-hue:42;      /* Stitch gold */
-  --seed-sat:85%;
-  --seed-lum:55%;
+  color-scheme: light dark;
+  --seed-hue:0;          /* neutral greyscale (default) */
+  --seed-sat:0%;
+  --seed-lum:50%;
+  --seed-sat-dark:0%;
 
   /* ─── Derived palette — HSL math from seed ─── */
   --color-primary:      hsl(var(--seed-hue),var(--seed-sat),var(--seed-lum));
   --color-primary-5:    hsl(var(--seed-hue),var(--seed-sat),95%);
-  --color-primary-10:   hsl(var(--seed-hue),var(--seed-sat),90%);
-  --color-primary-20:   hsl(var(--seed-hue),var(--seed-sat),80%);
-  --color-primary-30:   hsl(var(--seed-hue),var(--seed-sat),70%);
-  --color-primary-40:   hsl(var(--seed-hue),var(--seed-sat),60%);
-  --color-primary-50:   hsl(var(--seed-hue),var(--seed-sat),50%);
-  --color-primary-60:   hsl(var(--seed-hue),var(--seed-sat),40%);
-  --color-primary-70:   hsl(var(--seed-hue),var(--seed-sat),30%);
-  --color-primary-80:   hsl(var(--seed-hue),var(--seed-sat),20%);
+  --color-primary-10:   hsl(var(--seed-hue),var(--seed-sat),93%);
+  --color-primary-20:   hsl(var(--seed-hue),var(--seed-sat),82%);
+  --color-primary-30:   hsl(var(--seed-hue),var(--seed-sat),72%);
+  --color-primary-40:   hsl(var(--seed-hue),var(--seed-sat),62%);
+  --color-primary-50:   hsl(var(--seed-hue),var(--seed-sat),52%);
+  --color-primary-60:   hsl(var(--seed-hue),var(--seed-sat),42%);
+  --color-primary-70:   hsl(var(--seed-hue),var(--seed-sat),32%);
+  --color-primary-80:   hsl(var(--seed-hue),var(--seed-sat),22%);
   --color-primary-90:   hsl(var(--seed-hue),var(--seed-sat),12%);
-  --color-accent:       hsl(calc(var(--seed-hue) + 30),85%,55%);
-  --color-accent-10:    hsl(calc(var(--seed-hue) + 30),85%,93%);
+  --color-accent:       hsl(calc(var(--seed-hue) + 30), var(--seed-sat), 55%);
+  --color-accent-10:    hsl(calc(var(--seed-hue) + 30), var(--seed-sat), 93%);
 
   /* ─── Neutral palette (seed-tinted grays) ─── */
   --color-neutral-0:    hsl(var(--seed-hue),8%,99%);
@@ -116,7 +118,7 @@
    Reversed neutral palette for light backgrounds.
    ═══════════════════════════════════════════════════════════════════ */
 :root:not(.dark){
-  --seed-hue:42;--seed-sat:85%;--seed-lum:55%;
+  --seed-hue:0;--seed-sat:0%;--seed-lum:50%;
   --color-primary:hsl(var(--seed-hue),var(--seed-sat),var(--seed-lum));
   --color-primary-5:hsl(var(--seed-hue),var(--seed-sat),97%);
   --color-primary-10:hsl(var(--seed-hue),var(--seed-sat),93%);
@@ -128,8 +130,8 @@
   --color-primary-70:hsl(var(--seed-hue),var(--seed-sat),32%);
   --color-primary-80:hsl(var(--seed-hue),var(--seed-sat),22%);
   --color-primary-90:hsl(var(--seed-hue),var(--seed-sat),12%);
-  --color-accent:hsl(calc(var(--seed-hue) + 30),85%,55%);
-  --color-accent-10:hsl(calc(var(--seed-hue) + 30),85%,93%);
+  --color-accent:hsl(calc(var(--seed-hue) + 30), var(--seed-sat), 55%);
+  --color-accent-10:hsl(calc(var(--seed-hue) + 30), var(--seed-sat), 93%);
   --color-neutral-0:hsl(var(--seed-hue),8%,99%);
   --color-neutral-5:hsl(var(--seed-hue),6%,96%);
   --color-neutral-10:hsl(var(--seed-hue),5%,90%);
@@ -486,8 +488,8 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
   --secondary: var(--card);
   --secondary-foreground: var(--fg);
   --muted-foreground: var(--muted);
-  --accent: #E7C274;
-  --accent-foreground: #111315;
+  --accent: var(--color-primary);
+  --accent-foreground: var(--color-neutral-90);
   --destructive: var(--muted);
   --input: var(--card);
   --ring: var(--line);
@@ -521,6 +523,18 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
   --paper-2: var(--surface);
   --paper-3: #17191b;
   --ink: var(--fg);
+  --brand: var(--color-primary);
+  --brand2: var(--color-primary-50);
+
+  /* Legacy BAZ-specific aliases */
+  --gold-dark: hsl(var(--seed-hue), 0%, 30%);
+  --charcoal: var(--color-neutral-70);
+  --navy: var(--color-neutral-80);
+  --sand: var(--fg);
+  --stone: var(--fg-muted);
+  --outline: var(--border-strong);
+  --panel: var(--color-neutral-5);
+  --panel-2: var(--color-neutral-10);
 
   /* RGB triplets → grayscale (for rgb(var(--c-*) / α) tailwind tokens) */
   --c-paper: 33 37 41;
@@ -550,8 +564,8 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
   --secondary: var(--surface);
   --secondary-foreground: var(--fg);
   --muted-foreground: var(--muted);
-  --accent: #E7C274;
-  --accent-foreground: #111315;
+  --accent: var(--color-primary);
+  --accent-foreground: var(--color-neutral-90);
   --destructive: var(--muted);
   --input: var(--border);
   --ring: var(--line);
@@ -583,6 +597,16 @@ input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.25)}
   --paper-2: var(--surface);
   --paper-3: #ced4da;
   --ink: var(--fg);
+  --brand: var(--color-primary);
+  --brand2: var(--color-primary-50);
+  --gold-dark: hsl(var(--seed-hue), 0%, 60%);
+  --charcoal: var(--color-neutral-30);
+  --navy: var(--color-neutral-40);
+  --sand: var(--fg);
+  --stone: var(--fg-muted);
+  --outline: var(--border-strong);
+  --panel: var(--color-neutral-5);
+  --panel-2: var(--color-neutral-10);
 
   --c-paper: 255 255 255;
   --c-paper-50: 248 249 250;

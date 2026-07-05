@@ -95,7 +95,7 @@ export default function NovaPage() {
         <div className="flex items-center gap-3">
           <div
             className="w-12 h-12 rounded-xl grid place-items-center"
-            style={{ background: "linear-gradient(135deg, #C8A55A, #e7c274)" }}
+            style={{ background: "linear-gradient(135deg, var(--brand2), var(--brand))" }}
           >
             <Brain className="w-6 h-6 text-white" />
           </div>
@@ -118,7 +118,7 @@ export default function NovaPage() {
                 {m.role === "nova" && (
                   <div
                     className="w-8 h-8 rounded-full grid place-items-center flex-shrink-0"
-                    style={{ background: "linear-gradient(135deg, #C8A55A, #e7c274)" }}
+                    style={{ background: "linear-gradient(135deg, var(--brand2), var(--brand))" }}
                   >
                     <Brain className="w-4 h-4 text-white" />
                   </div>
@@ -195,7 +195,7 @@ export default function NovaPage() {
               <div className="flex gap-3">
                 <div
                   className="w-8 h-8 rounded-full grid place-items-center flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg, #C8A55A, #e7c274)" }}
+                  style={{ background: "linear-gradient(135deg, var(--brand2), var(--brand))" }}
                 >
                   <Brain className="w-4 h-4 text-white animate-pulse" />
                 </div>

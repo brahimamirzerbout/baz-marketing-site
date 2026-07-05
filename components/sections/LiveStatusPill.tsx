@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client";
 /**
- * Live status pill — sits inside the BAZ hero.
+ * Live status pill — sits inside the BAZventures hero.
  * Shows whether the Marketing Hub loop is alive by reading the same
  * /api/triangle/health endpoint that powers the homepage banner.
  */

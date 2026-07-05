@@ -230,11 +230,11 @@ export const GRADIENTS = {
   // Raised gradient — interactive lift
   raised: `linear-gradient(135deg, hsl(260, 10%, 18%) 0%, hsl(260, 12%, 13%) ${100 / PHI}%, hsl(260, 11%, 9%) 100%)`,
   // Violet glow — the signature Aether gradient
-  glow: `linear-gradient(135deg, hsl(270, 85%, 72%) 0%, hsl(280, 70%, 55%) ${100 / PHI}%, hsl(260, 60%, 40%) 100%)`,
+  glow: `linear-gradient(135deg, var(--color-primary-30) 0%, hsl(280, 70%, 55%) ${100 / PHI}%, hsl(260, 60%, 40%) 100%)`,
   // Accent overlay — thin violet veil
   veil: `linear-gradient(135deg, hsla(270, 85%, 72%, 0.05) 0%, hsla(280, 70%, 55%, 0.03) ${100 / PHI}%, transparent 100%)`,
   // Text gradient — violet to purple for headings
-  text: `linear-gradient(90deg, hsl(270, 85%, 72%) 0%, hsl(280, 70%, 65%) ${100 / PHI}%)`,
+  text: `linear-gradient(90deg, var(--color-primary-30) 0%, hsl(280, 70%, 65%) ${100 / PHI}%)`,
   // Shadow gradient — depth illusion
   shadow: `linear-gradient(180deg, transparent 0%, hsla(260, 50%, 0%, 0.5) ${100 / PHI}%, hsla(260, 50%, 0%, 0.8) 100%)`,
   // Glass — frosted background

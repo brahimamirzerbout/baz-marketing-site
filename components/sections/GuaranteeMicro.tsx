@@ -24,7 +24,7 @@ export function GuaranteeMicro({
   return (
     <p
       className={`mt-3 text-[11px] font-sans uppercase tracking-[0.25em] ${tone} ${className}`}
-      aria-label="BAZ speed guarantee"
+      aria-label="BAZventures speed guarantee"
     >
       <span aria-hidden>↳ </span>
       First measurable artifact in 14 days, or month 1 free. We&apos;ve never paid out.

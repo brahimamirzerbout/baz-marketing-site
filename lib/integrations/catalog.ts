@@ -1,5 +1,5 @@
 /**
- * BAZ — Integrations catalog
+ * BAZventures — Integrations catalog
  *
  * Source-of-truth for the /admin/integrations page. Each entry has a stable
  * id, a brand color, an icon glyph, a short description, and the "default"
@@ -158,7 +158,7 @@ export const integrations: Integration[] = [
     name: "Zapier",
     icon: "Z",
     color: "#FF4A00",
-    desc: "Connect BAZ to 5,000+ apps via automated workflows (Zaps).",
+    desc: "Connect BAZventures to 5,000+ apps via automated workflows (Zaps).",
     defaultStatus: "Available",
     categories: ["automation"],
   },

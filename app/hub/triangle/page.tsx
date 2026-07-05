@@ -71,8 +71,8 @@ export default function TrianglePage() {
           <svg viewBox="0 0 400 400" className="w-full max-w-sm" aria-hidden>
             <defs>
               <linearGradient id="grad-edge" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#C8A55A" />
-                <stop offset="100%" stopColor="#E7C274" />
+                <stop offset="0%" stopColor="var(--brand2)" />
+                <stop offset="100%" stopColor="var(--brand)" />
               </linearGradient>
             </defs>
             <polygon
@@ -82,7 +82,7 @@ export default function TrianglePage() {
               strokeWidth="2"
             />
             <circle cx="200" cy="40" r="44" fill="#0a0a0a" stroke="#ff5b1f" strokeWidth="2" />
-            <circle cx="360" cy="320" r="44" fill="#0a0a0a" stroke="#C8A55A" strokeWidth="2" />
+            <circle cx="360" cy="320" r="44" fill="#0a0a0a" stroke="var(--brand2)" strokeWidth="2" />
             <circle cx="40" cy="320" r="44" fill="#0a0a0a" stroke="#3ddc97" strokeWidth="2" />
             <text x="200" y="46" textAnchor="middle" fill="#fff" fontSize="14" fontFamily="serif">
               Marketing
@@ -103,7 +103,7 @@ export default function TrianglePage() {
             <path
               d="M 55 285 C 80 220, 170 150, 225 75"
               fill="none"
-              stroke="#C8A55A"
+              stroke="var(--brand2)"
               strokeWidth="1.5"
               strokeDasharray="4 4"
             />
@@ -114,7 +114,7 @@ export default function TrianglePage() {
               strokeWidth="1.5"
               strokeDasharray="4 4"
             />
-            <text x="280" y="180" fill="#C8A55A" fontSize="10" fontFamily="monospace">
+            <text x="280" y="180" fill="var(--brand2)" fontSize="10" fontFamily="monospace">
               score → route
             </text>
             <text x="120" y="180" fill="#3ddc97" fontSize="10" fontFamily="monospace">
@@ -139,7 +139,7 @@ export default function TrianglePage() {
             {
               t: "2. Route",
               d: "Score ≥ 50 → enroll into least-loaded active sequence.",
-              color: "#C8A55A",
+              color: "var(--brand2)",
             },
             {
               t: "3. Step",
@@ -154,7 +154,7 @@ export default function TrianglePage() {
             {
               t: "5. Learn",
               d: "Wins feed back into Nova. Tomorrow is smarter than today.",
-              color: "#C8A55A",
+              color: "var(--brand2)",
             },
             {
               t: "6. Report",

@@ -26,9 +26,9 @@ const methodologyFaqs = [
 
 export async function generateMetadata() {
   return buildMetadata({
-    title: "The BAZ Methodology",
+    title: "The BAZventures Methodology",
     description:
-      "How BAZ plans, ships, scores, and learns. The Triangle Loop: a closed system that runs Marketing ↔ Sales ↔ Nova on its own. Open source, in public, with the math.",
+      "How BAZventures plans, ships, scores, and learns. The Triangle Loop: a closed system that runs Marketing ↔ Sales ↔ Nova on its own. Open source, in public, with the math.",
     path: "/methodology",
     image:
       "/methodology-og?title=The%20BAZ%20Methodology&subtitle=Diagnose.%20Plan.%20Ship.%20Score.%20Learn.",
@@ -124,7 +124,7 @@ export default function MethodologyPage() {
       <Section tone="paper" size="lg">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Methodology" }]} />
         <div className="max-w-4xl">
-          <Eyebrow>BAZ Methodology</Eyebrow>
+          <Eyebrow>BAZventures Methodology</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
             Diagnose. Plan. Ship. Score. Learn.
           </h1>
@@ -222,7 +222,7 @@ export default function MethodologyPage() {
             Three tiers. One promise: measurable outcomes.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Every BAZ engagement has a written outcome, a measurement method, and a guarantee. We
+            Every BAZventures engagement has a written outcome, a measurement method, and a guarantee. We
             get paid for what moves, not what we did.
           </p>
         </div>

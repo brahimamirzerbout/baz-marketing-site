@@ -2,7 +2,7 @@
  * Partner marquee — silent infinite scroll. Pure CSS animation.
  * Used for the "Trusted by" / partner strip on the homepage.
  *
- * Default list is the tools/services BAZ actually uses to run the business —
+ * Default list is the tools/services BAZventures actually uses to run the business —
  * not fake client logos. To swap in real client logos, set the
  * NEXT_PUBLIC_CLIENT_LOGOS env var to a comma-separated list, e.g.
  *   NEXT_PUBLIC_CLIENT_LOGOS="Acme Co.,Beta Inc.,Gamma LLC"

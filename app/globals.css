@@ -10,38 +10,38 @@
 
 :root {
   /* ─── Stitch seed-based tokens ─── */
-  --brand: #E7C274;
-  --brand2: #C8A55A;
-  --gold-dark: #8D6B2E;
-  --charcoal: #1F2933;
-  --navy: #24364A;
-  --ink: #16130E;
-  --panel: #1E1B16;
-  --panel-2: #2D2924;
-  --sand: #E9E1D8;
-  --stone: #D0C5B3;
-  --outline: #998F7F;
+  --brand: var(--color-primary);
+  --brand2: var(--color-primary-50);
+  --gold-dark: var(--color-neutral-50);
+  --charcoal: var(--color-neutral-70);
+  --navy: var(--color-neutral-80);
+  --ink: var(--color-neutral-90);
+  --panel: var(--color-neutral-5);
+  --panel-2: var(--color-neutral-10);
+  --sand: var(--fg);
+  --stone: var(--fg-muted);
+  --outline: var(--border-strong);
   --wa: #25D366;
 
   /* ─── Semantic tokens (Tailwind compat) ─── */
-  --background: #16130E;
-  --foreground: #E9E1D8;
-  --card: #1E1B16;
-  --card-foreground: #E9E1D8;
-  --popover: #1E1B16;
-  --popover-foreground: #E9E1D8;
-  --primary: #E7C274;
-  --primary-foreground: #402D00;
-  --secondary: #C8A55A;
-  --secondary-foreground: #402D00;
-  --muted: #221F1A;
-  --muted-foreground: #D0C5B3;
-  --accent: #E7C274;
-  --accent-foreground: #402D00;
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card: var(--card);
+  --card-foreground: var(--fg);
+  --popover: var(--surface);
+  --popover-foreground: var(--fg);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-neutral-90);
+  --secondary: var(--color-primary-50);
+  --secondary-foreground: var(--color-neutral-90);
+  --muted: var(--color-neutral-5);
+  --muted-foreground: var(--fg-muted);
+  --accent: var(--color-primary);
+  --accent-foreground: var(--color-neutral-90);
   --destructive: #FFB4AB;
-  --border: rgba(255,255,255,0.08);
-  --input: #38342E;
-  --ring: #E7C274;
+  --border: var(--border);
+  --input: var(--border-strong);
+  --ring: var(--color-primary);
   --success: #22C55E;
   --warning: #F59E0B;
   --info: #3B82F6;

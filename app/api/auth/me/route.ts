@@ -39,7 +39,7 @@ export async function GET() {
         name: user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "User",
         role: "member",
         initials: ((user.user_metadata?.full_name as string)?.[0] ?? user.email?.[0] ?? "U").toUpperCase(),
-        color: "#E7C274",
+        color: "var(--brand)",
       },
     });
   }

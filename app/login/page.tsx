@@ -56,7 +56,7 @@ function LoginForm() {
           href="/"
           className="block text-center font-display text-2xl font-medium tracking-[-0.04em] mb-8"
         >
-          BAZ
+          BAZventures
         </Link>
         <form
           onSubmit={onSubmit}

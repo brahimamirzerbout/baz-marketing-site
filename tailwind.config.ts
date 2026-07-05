@@ -11,14 +11,14 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Stitch Design System — Gold seed hue 42
-        ink: '#16130E',
-        panel: '#1E1B16',
-        'panel-2': '#2D2924',
-        sand: '#E9E1D8',
-        stone: '#D0C5B3',
-        brand: '#E7C274',
-        'brand-2': '#C8A55A',
+        // Stitch Design System — Gold seed hue 42 (CSS variable tokens)
+        ink: 'var(--ink)',
+        panel: 'var(--panel)',
+        'panel-2': 'var(--panel-2)',
+        sand: 'var(--sand)',
+        stone: 'var(--stone)',
+        brand: 'var(--brand)',
+        'brand-2': 'var(--brand2)',
         // Semantic tokens for shadcn compatibility
         background: 'var(--background)',
         foreground: 'var(--foreground)',
@@ -67,7 +67,7 @@ const config: Config = {
         soft: '0 1px 3px rgba(0,0,0,0.3), 0 8px 21px -8px rgba(0,0,0,0.2)',
         lift: '0 3px 8px rgba(0,0,0,0.3), 0 13px 34px -13px rgba(0,0,0,0.2)',
         ring: '0 0 0 1px rgba(255,255,255,0.1)',
-        glow: '0 5px 21px rgba(242,87,43,0.25)',
+        glow: '0 5px 21px rgba(255,255,255,0.16)', // neutral (was orange #F2572B) — color-layer manages hue
       },
       keyframes: {
         'fade-up': {

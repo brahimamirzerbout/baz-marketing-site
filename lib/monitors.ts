@@ -1,9 +1,9 @@
 // @ts-nocheck
 /**
- * Monitors: read from the BAZ ecosystem API when configured, fall back to
+ * Monitors: read from the BAZventures ecosystem API when configured, fall back to
  * sensible local snapshots so the dashboard never breaks.
  *
- * Wire NEXT_PUBLIC_API_URL to point at the BAZ API server.
+ * Wire NEXT_PUBLIC_API_URL to point at the BAZventures API server.
  */
 
 export type MonitorStatus = "ok" | "warn" | "down" | "unknown";

@@ -27,8 +27,8 @@ const DEFAULT_TAGLINE = <>Or pay nothing for month four</>;
 
 const DEFAULT_SUBHEAD = (
   <>
-    BAZ is a senior-only growth partner that runs your owned, earned, paid, and data channels on the
-    BAZ Marketing Hub — scores leads, runs cadences, reports attribution. No juniors.
+    BAZventures is a senior-only growth partner that runs your owned, earned, paid, and data channels on the
+    the Hub — scores leads, runs cadences, reports attribution. No juniors.
   </>
 );
 
@@ -43,7 +43,7 @@ const VARIANTS: Record<HeroIcp, Omit<HeroVariant, "icp">> = {
     tagline: <>Senior-only. On the Hub.</>,
     subhead: (
       <>
-        The BAZ Marketing Hub scores PQLs, routes them into sales sequences, and reports attribution
+        The the Hub scores PQLs, routes them into sales sequences, and reports attribution
         on a 60-second loop. No juniors. Pipeline you can forecast.
       </>
     ),
@@ -68,7 +68,7 @@ const VARIANTS: Record<HeroIcp, Omit<HeroVariant, "icp">> = {
     headline: (
       <>
         FinTech growth on the{" "}
-        <span className="not-italic text-gradient">BAZ Marketing Hub</span>
+        <span className="not-italic text-gradient">the Hub</span>
       </>
     ),
     tagline: <>Compliance-grade. Senior-only.</>,

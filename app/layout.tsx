@@ -17,6 +17,7 @@ import { AetherBackground } from '@/components/ui/AetherBackground';
 import './globals.css';
 import './aether-theme.css';
 import './aether-monochrome.css';
+import './color-layer.css'; // BLACK & WHITE layer — imported LAST so it wins. Expert re-adds color here.
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     'analytics agency',
     'AI search optimization',
     'CRO agency',
-    'BAZ',
+    'BAZventures',
   ],
   openGraph: {
     type: 'website',
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#C8A55A',  // Stitch gold
+  themeColor: '#0a0a0a',  // B&W — neutral mobile chrome (color layer manages hue)
   width: 'device-width',
   initialScale: 1,
 };

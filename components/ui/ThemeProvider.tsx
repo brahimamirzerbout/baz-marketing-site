@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * next-themes ThemeProvider for BAZ — dark mode only.
+ * next-themes ThemeProvider for BAZventures — dark mode only.
  * No light mode, no toggle, no system preference. Pure darkness.
  */
 import { ThemeProvider as NextThemesProvider } from "next-themes";

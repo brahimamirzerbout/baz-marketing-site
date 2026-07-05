@@ -6,7 +6,7 @@ export const runtime = "edge";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const title = searchParams.get("title") || "BAZ Marketing Agency";
+    const title = searchParams.get("title") || "BAZventures";
     const subtitle = searchParams.get("subtitle") || "The growth partner for ambitious businesses.";
 
     return new ImageResponse(
@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
             flexDirection: "column",
             alignItems: "flex-start",
             justifyContent: "center",
-            backgroundColor: "#16130E",
+            backgroundColor: "#111111",
             padding: "80px",
           }}
         >
@@ -36,16 +36,16 @@ export async function GET(req: NextRequest) {
                 width: "12px",
                 height: "12px",
                 borderRadius: "2px",
-                backgroundColor: "#E7C274",
+                backgroundColor: "#888888",
               }}
             />
-            <span style={{ color: "#998F7F", fontSize: "18px", letterSpacing: "0.3em", textTransform: "uppercase" }}>
-              BAZ
+            <span style={{ color: "#888888", fontSize: "18px", letterSpacing: "0.3em", textTransform: "uppercase" }}>
+              BAZventures
             </span>
           </div>
           <h1
             style={{
-              color: "#E9E1D8",
+              color: "#e0e0e0",
               fontSize: "64px",
               fontWeight: 600,
               fontFamily: "Outfit",
@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
           </h1>
           <p
             style={{
-              color: "#D0C5B3",
+              color: "#e0e0e0",
               fontSize: "28px",
               fontFamily: "Poppins",
               fontWeight: 300,

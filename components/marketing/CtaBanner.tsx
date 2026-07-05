@@ -22,7 +22,7 @@ export function CtaBanner({
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
               30 minutes with a senior partner. We&apos;ll review your funnel, channels, and unit
-              economics — and tell you honestly whether BAZ is the right fit.
+              economics — and tell you honestly whether BAZventures is the right fit.
             </p>
 
             {/* Reassurance row — the "we respond in 24h" pattern from Apexure's CRO breakdown */}

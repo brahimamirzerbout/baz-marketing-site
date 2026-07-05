@@ -1,5 +1,5 @@
 /**
- * BAZ — LLM adapter
+ * BAZventures — LLM adapter
  * Provider-agnostic. Reads env config at request time.
  * Falls back gracefully if no key is set — returns a structured "unconfigured" reply
  * so the rest of the app never crashes when AI isn't available.

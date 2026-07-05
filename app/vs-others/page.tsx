@@ -5,9 +5,9 @@ import { CtaBanner } from "@/components/marketing/CtaBanner";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "BAZ vs other agencies",
+  title: "BAZventures vs other agencies",
   description:
-    "Honest comparison. What BAZ does that most agencies don't, what other agencies do that we don't, and where we're honest about being the wrong fit.",
+    "Honest comparison. What BAZventures does that most agencies don't, what other agencies do that we don't, and where we're honest about being the wrong fit.",
   path: "/vs-others",
 });
 
@@ -119,7 +119,7 @@ export default function VsOthersPage() {
                 <th className="text-left p-4 font-display font-medium tracking-[-0.02em]">
                   Dimension
                 </th>
-                <th className="text-center p-4 font-display font-medium w-20">BAZ</th>
+                <th className="text-center p-4 font-display font-medium w-32">BAZventures</th>
                 <th className="text-center p-4 font-display font-medium w-20">Typical</th>
                 <th className="text-left p-4 font-display font-medium">Why it matters</th>
               </tr>
@@ -148,7 +148,7 @@ export default function VsOthersPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="rounded-2xl border border-[hsl(145,70%,55%)/30] bg-[hsl(145,70%,55%)/0.05] p-6">
               <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-[hsl(145,70%,55%)] mb-2">
-                Choose BAZ if
+                Choose BAZventures if
               </p>
               <ul className="space-y-2 text-sm text-foreground">
                 <li>• You want senior judgment, not junior hours.</li>

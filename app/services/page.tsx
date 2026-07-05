@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Services — outcomes, not channels",
   description:
-    "BAZ delivers five business outcomes — pipeline, lower CAC, brand that compounds, attribution you trust, and a platform you own. Eighteen services under the hood.",
+    "BAZventures delivers five business outcomes — pipeline, lower CAC, brand that compounds, attribution you trust, and a platform you own. Eighteen services under the hood.",
   path: "/services",
 });
 
@@ -148,7 +148,7 @@ export default function ServicesIndexPage() {
           <Eyebrow>By channel</Eyebrow>
           <SectionHeading>The eighteen services, grouped by where they live.</SectionHeading>
           <p className="mt-3 text-muted-foreground">
-            Most clients engage BAZ across all five outcomes. The implementation lives across five
+            Most clients engage BAZventures across all five outcomes. The implementation lives across five
             traditional pillars. Skip to the one you care about.
           </p>
         </div>

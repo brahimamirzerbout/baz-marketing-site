@@ -1,5 +1,5 @@
 /**
- * BAZ — Integration connection state (browser-side persistence)
+ * BAZventures — Integration connection state (browser-side persistence)
  *
  * Stored in localStorage under `baz.admin.integrations.v1`. The shape is a
  * Record<IntegrationId, boolean>. Missing keys mean "use the default" (which

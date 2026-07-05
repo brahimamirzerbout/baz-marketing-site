@@ -29,8 +29,9 @@ export interface AnimatedBadgeProps extends Omit<HTMLMotionProps<"span">, "child
 const STATUS_CLASS: Record<AnimatedBadgeStatus, string> = {
   neutral: "border-border bg-card text-muted-foreground",
   info: "border-primary/30 bg-primary/10 text-primary",
-  success: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-  warning: "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400",
+  // Token-driven via color-layer.css knobs — neutral in B&W mode, hue when expert sets it.
+  success: "border-[hsl(var(--success-hue),var(--success-sat),55%,0.3)] bg-[hsl(var(--success-hue),var(--success-sat),55%,0.1)] text-[hsl(var(--success-hue),var(--success-sat),55%)]",
+  warning: "border-[hsl(var(--warning-hue),var(--warning-sat),58%,0.3)] bg-[hsl(var(--warning-hue),var(--warning-sat),58%,0.1)] text-[hsl(var(--warning-hue),var(--warning-sat),58%)]",
   danger: "border-destructive/30 bg-destructive/10 text-destructive",
   loading: "border-primary/30 bg-primary/10 text-primary",
 };

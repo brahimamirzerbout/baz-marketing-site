@@ -33,7 +33,7 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>BAZ Marketing Agency — Insights</title>
+    <title>BAZventures — Insights</title>
     <link>${SITE}/insights</link>
     <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml" />
     <description>Senior-team perspectives on growth marketing. New playbooks, no spam.</description>

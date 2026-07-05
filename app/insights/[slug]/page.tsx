@@ -95,7 +95,7 @@ export default function PostDetailPage({ params }: Params) {
             </span>
             <div>
               <p className="font-medium text-foreground">{post.author}</p>
-              <p className="text-sm text-muted-foreground">BAZ Marketing Agency</p>
+              <p className="text-sm text-muted-foreground">BAZventures</p>
             </div>
           </div>
           <div className="mt-10 prose prose-lg max-w-none">

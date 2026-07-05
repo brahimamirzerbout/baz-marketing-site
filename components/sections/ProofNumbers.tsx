@@ -1,6 +1,6 @@
 /**
  * Compact proof strip: 3 case-study outcomes side-by-side.
- * Used on the BAZ homepage right after the Marketing Hub banner so visitors
+ * Used on the BAZventures homepage right after the Marketing Hub banner so visitors
  * see "real product + real outcomes" within the first scroll.
  *
  * Pattern 67: Numerical data with context — every metric is attributed.

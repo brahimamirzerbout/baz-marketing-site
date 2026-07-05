@@ -6,9 +6,9 @@ import { LiveAgentDemo } from "@/components/marketing/LiveAgentDemo";
 import { buildMetadata, jsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "The BAZ Loop",
+  title: "The BAZventures Loop",
   description:
-    "How BAZ turns a homepage visit into a routed, scored, sequenced lead — without a human in the loop until it matters.",
+    "How BAZventures turns a homepage visit into a routed, scored, sequenced lead — without a human in the loop until it matters.",
   path: "/loop",
 });
 
@@ -49,9 +49,9 @@ export default function LoopPage() {
   return (
     <>
       <Section tone="paper" size="lg">
-        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "The BAZ Loop" }]} />
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "The BAZventures Loop" }]} />
         <div className="max-w-4xl">
-          <Eyebrow>The system · how BAZ turns a click into a closed deal</Eyebrow>
+          <Eyebrow>The system · how BAZventures turns a click into a closed deal</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] leading-[0.95]">
             No human in the loop <em className="not-italic text-gradient">until it matters.</em>
           </h1>
@@ -138,7 +138,7 @@ export default function LoopPage() {
         dangerouslySetInnerHTML={jsonLd({
           "@context": "https://schema.org",
           "@type": "HowTo",
-          name: "How BAZ turns a homepage click into a routed lead",
+          name: "How BAZventures turns a homepage click into a routed lead",
           step: stages.map((s, i) => ({
             "@type": "HowToStep",
             position: i + 1,

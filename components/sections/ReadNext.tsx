@@ -7,13 +7,13 @@ const links = [
   {
     href: "/our-story",
     label: "Our story",
-    desc: "How BAZ went from a freelance collective to a four-person agency that ships like thirty. The good years, the bad year, the Hub.",
+    desc: "How BAZventures went from a freelance collective to a four-person agency that ships like thirty. The good years, the bad year, the Hub.",
     cta: "Read the story →",
   },
   {
     href: "/methodology",
     label: "Methodology",
-    desc: "How BAZ plans, ships, scores, and learns. The Triangle Loop, in public.",
+    desc: "How BAZventures plans, ships, scores, and learns. The Triangle Loop, in public.",
     cta: "Read the playbook →",
   },
   {

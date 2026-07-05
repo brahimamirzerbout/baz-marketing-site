@@ -14,7 +14,7 @@ const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL || "http://localhost:3001";
 export const metadata = buildMetadata({
   title: "Marketing Hub",
   description:
-    "BAZ Marketing Hub — an autonomous command center for marketing, sales, and finance. Lead scoring, sales sequences, attribution, the daily Marketing Dive brief, and a triangle loop that runs itself.",
+    "the Hub — an autonomous command center for marketing, sales, and finance. Lead scoring, sales sequences, attribution, the daily Marketing Dive brief, and a triangle loop that runs itself.",
   path: "/marketing-hub",
 });
 
@@ -72,12 +72,12 @@ export default function MarketingHubPage() {
       <Section tone="paper" size="lg">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Marketing Hub" }]} />
         <div className="max-w-4xl">
-          <Eyebrow>Product · BAZ Marketing Hub</Eyebrow>
+          <Eyebrow>Product · the Hub</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
             Your marketing, sales, and finance — running in a closed loop.
           </h1>
           <SectionLede>
-            BAZ Marketing Hub is the operating system under everything we ship for clients. Lead
+            The Hub is the operating system under everything we ship for clients. Lead
             scoring, sales cadences, attribution, the daily industry brief, and a triangle loop that
             scores, routes, sequences, and closes — every 60 seconds, without a human in the chain.
           </SectionLede>
@@ -151,11 +151,11 @@ export default function MarketingHubPage() {
           <div className="lg:col-span-7">
             <div className="relative aspect-square max-w-md mx-auto">
               {/* SVG triangle diagram */}
-              <svg viewBox="0 0 400 400" className="w-full h-full" aria-hidden>
+              <svg viewBox="0 0 400 400" className="w-full h-full text-brand" aria-hidden>
                 <defs>
                   <linearGradient id="grad-edge" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ff5b1f" />
-                    <stop offset="100%" stopColor="#ff8b4d" />
+                    <stop offset="0%" stopColor="currentColor" />
+                    <stop offset="100%" stopColor="currentColor" />
                   </linearGradient>
                 </defs>
                 <polygon
@@ -165,9 +165,9 @@ export default function MarketingHubPage() {
                   strokeWidth="2"
                 />
                 {/* Nodes */}
-                <circle cx="200" cy="40" r="44" fill="#0a0a0a" stroke="#ff5b1f" strokeWidth="2" />
-                <circle cx="360" cy="320" r="44" fill="#0a0a0a" stroke="#ff5b1f" strokeWidth="2" />
-                <circle cx="40" cy="320" r="44" fill="#0a0a0a" stroke="#ff5b1f" strokeWidth="2" />
+                <circle cx="200" cy="40" r="44" fill="#0a0a0a" stroke="currentColor" strokeWidth="2" />
+                <circle cx="360" cy="320" r="44" fill="#0a0a0a" stroke="currentColor" strokeWidth="2" />
+                <circle cx="40" cy="320" r="44" fill="#0a0a0a" stroke="currentColor" strokeWidth="2" />
                 <text
                   x="200"
                   y="46"
@@ -202,32 +202,32 @@ export default function MarketingHubPage() {
                 <path
                   d="M 175 75  C 230 150, 320 220, 345 285"
                   fill="none"
-                  stroke="#ff5b1f"
+                  stroke="currentColor"
                   strokeWidth="1.5"
                   strokeDasharray="4 4"
                 />
                 <path
                   d="M 55  285 C 80  220, 170 150, 225 75"
                   fill="none"
-                  stroke="#ff5b1f"
+                  stroke="currentColor"
                   strokeWidth="1.5"
                   strokeDasharray="4 4"
                 />
                 <path
                   d="M 200 90  C 200 200, 200 200, 200 270"
                   fill="none"
-                  stroke="#ff5b1f"
+                  stroke="currentColor"
                   strokeWidth="1.5"
                   strokeDasharray="4 4"
                 />
                 {/* Edge labels */}
-                <text x="280" y="180" fill="#ff5b1f" fontSize="11" fontFamily="monospace">
+                <text x="280" y="180" fill="currentColor" fontSize="11" fontFamily="monospace">
                   score → route
                 </text>
-                <text x="120" y="180" fill="#ff5b1f" fontSize="11" fontFamily="monospace">
+                <text x="120" y="180" fill="currentColor" fontSize="11" fontFamily="monospace">
                   reason → act
                 </text>
-                <text x="208" y="200" fill="#ff5b1f" fontSize="11" fontFamily="monospace">
+                <text x="208" y="200" fill="currentColor" fontSize="11" fontFamily="monospace">
                   step
                 </text>
               </svg>

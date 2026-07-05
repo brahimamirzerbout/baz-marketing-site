@@ -1,5 +1,5 @@
 /**
- * BAZ — Auth layer
+ * BAZventures — Auth layer
  *
  * Cookie-based session auth (not JWT) so admin pages can read the session
  * server-side without round-tripping the API. Token in `baz_session` httpOnly

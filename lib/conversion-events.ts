@@ -1,5 +1,5 @@
 /**
- * BAZ Conversion Tracking Events
+ * BAZventures Conversion Tracking Events
  *
  * Every significant user action on the marketing site should fire
  * a tracked event. These events feed into:

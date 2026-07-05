@@ -1,5 +1,5 @@
 /**
- * BAZ — small server-side helpers for observability.
+ * BAZventures — small server-side helpers for observability.
  */
 
 export function requestId(): string {

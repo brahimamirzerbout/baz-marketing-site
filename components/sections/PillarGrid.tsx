@@ -19,7 +19,7 @@ export function PillarGrid() {
           </h2>
         </div>
         <p className="text-lg text-muted-foreground max-w-xl">
-          Most agencies run one channel. BAZ runs all four — under one senior team, one plan, one
+          Most agencies run one channel. BAZventures runs all four — under one senior team, one plan, one
           set of dashboards. No channel blame. One P&amp;L.
         </p>
       </div>

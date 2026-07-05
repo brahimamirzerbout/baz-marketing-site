@@ -167,7 +167,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
         <div className="max-w-[86rem] mx-auto px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
             <div>
-              <p className="text-sm font-semibold tracking-[0.3em] uppercase text-brand mb-3">Run a real BAZ agent</p>
+              <p className="text-sm font-semibold tracking-[0.3em] uppercase text-brand mb-3">Run a real BAZventures agent</p>
               <h2 className="font-display text-section font-normal uppercase tracking-tight text-white max-w-2xl">
                 Press play. Watch a senior operator execute.
               </h2>

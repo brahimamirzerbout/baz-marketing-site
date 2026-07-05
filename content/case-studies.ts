@@ -29,7 +29,7 @@ export const caseStudies: CaseStudy[] = [
       "Content & Editorial Engine",
       "Conversion Rate Optimization",
     ],
-    cover: "hsl(270, 85%, 72%)",
+    cover: "var(--color-primary)",
     problem:
       "ViralVista was spending $80K/mo on Meta with a 1.8 ROAS and no compounding asset. Creative fatigue hit every 9 days.",
     strategy:
@@ -88,7 +88,7 @@ export const caseStudies: CaseStudy[] = [
       "CRM & Marketing Operations",
       "Lifecycle, Email & SMS Automation",
     ],
-    cover: "hsl(270, 60%, 52%)",
+    cover: "color-mix(in srgb, var(--color-primary), black 20%)",
     problem:
       "Post-launch, EngageEra had 12K free signups but a 0.6% trial-to-paid conversion. The site wasn't built for product-led growth.",
     strategy:
@@ -194,7 +194,7 @@ export const caseStudies: CaseStudy[] = [
       "Public Relations & Earned Media",
       "Social Media & Community",
     ],
-    cover: "hsl(270, 85%, 72%)",
+    cover: "var(--color-primary)",
     problem:
       "Tessera's founder had strong conviction but no media footprint. They needed a thought-leadership engine that produced content at venture scale without an in-house team.",
     strategy:
@@ -253,7 +253,7 @@ export const caseStudies: CaseStudy[] = [
       "Public Relations & Earned Media",
       "CRM & Marketing Operations",
     ],
-    cover: "hsl(270, 60%, 52%)",
+    cover: "color-mix(in srgb, var(--color-primary), black 20%)",
     problem:
       "Kantara had product-market fit and a $4M run rate, but pipeline was inconsistent. Sales cycle was 11 months and win rate was 18%.",
     strategy:

@@ -6,12 +6,12 @@ import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata() {
   return buildMetadata({
-    title: "BAZ stance on agentic AI",
+    title: "BAZventures stance on agentic AI",
     description:
-      "BAZ stance: agentic AI is leverage, not a replacement for senior judgment. What we ship with agents, what we refuse to ship, and where we draw the line.",
+      "BAZventures stance: agentic AI is leverage, not a replacement for senior judgment. What we ship with agents, what we refuse to ship, and where we draw the line.",
     path: "/stance",
     image:
-      "/stance-og?title=BAZ%20stance%20on%20agentic%20AI&subtitle=What%20we%20ship%2C%20what%20we%20refuse.",
+      "/stance-og?title=BAZventures%20stance%20on%20agentic%20AI&subtitle=What%20we%20ship%2C%20what%20we%20refuse.",
   });
 }
 
@@ -21,7 +21,7 @@ export default function StancePage() {
       <Section tone="paper" size="lg">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Stance" }]} />
         <div className="max-w-3xl">
-          <Eyebrow>BAZ Stance · Q3 2026</Eyebrow>
+          <Eyebrow>BAZventures Stance · Q3 2026</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
             Agentic AI is leverage. It is not a senior.
           </h1>
@@ -75,7 +75,7 @@ export default function StancePage() {
               </li>
               <li>
                 <strong>Dashboards that look live but are screenshots.</strong> If we say it&apos;s
-                live, it&apos;s live. The status card on the BAZ homepage hits a real endpoint every
+                live, it&apos;s live. The status card on the BAZventures homepage hits a real endpoint every
                 60 seconds.
               </li>
               <li>
@@ -104,7 +104,7 @@ export default function StancePage() {
             </p>
             <p className="text-foreground leading-relaxed mt-4">
               <a
-                href="mailto:zerboutbrahimamir@gmail.com?subject=BAZ%20stance%20response"
+                href="mailto:zerboutbrahimamir@gmail.com?subject=BAZventures%20stance%20response"
                 className="text-accent font-medium hover:underline"
               >
                 Reply with your disagreement →

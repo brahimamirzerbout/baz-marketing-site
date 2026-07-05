@@ -42,7 +42,7 @@ const QUICK_LINKS = [
     label: "Nova AI",
     desc: "Ask anything about your business",
     icon: Brain,
-    color: "#C8A55A",
+    color: "var(--brand2)",
   },
   {
     href: "/hub/sequences",
@@ -191,7 +191,7 @@ export default function HubDashboard() {
                     <div className="flex items-start justify-between mb-3">
                       <div
                         className="w-10 h-10 rounded-xl grid place-items-center"
-                        style={{ background: `${link.color}20` }}
+                        style={{ background: `color-mix(in srgb, ${link.color} 12.5%, transparent)` }}
                       >
                         <Icon className="w-5 h-5" style={{ color: link.color }} />
                       </div>

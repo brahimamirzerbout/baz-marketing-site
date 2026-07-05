@@ -54,7 +54,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { service
           aria-hidden
           className="absolute -left-20 top-0 font-display text-[20vw] font-medium leading-none text-foreground/[0.04] select-none pointer-events-none"
         >
-          BAZ
+          BAZventures
         </div>
         <Breadcrumb
           items={[

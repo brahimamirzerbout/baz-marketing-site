@@ -1,5 +1,5 @@
 /**
- * BAZ Lead Scoring Model
+ * BAZventures Lead Scoring Model
  *
  * This is the PUBLIC version of our lead scoring formula.
  * The actual implementation lives in the Marketing Hub at:

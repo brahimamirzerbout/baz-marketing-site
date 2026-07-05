@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Our story",
   description:
-    "How BAZ went from a freelance collective to a four-person agency. The good years, the bad year, the Hub, and the senior-only model that won.",
+    "How BAZventures went from a freelance collective to a four-person agency. The good years, the bad year, the Hub, and the senior-only model that won.",
   path: "/our-story",
 });
 
@@ -16,7 +16,7 @@ const chapters = [
     n: "01",
     title: "The agency that wasn't",
     years: "2019",
-    body: "BAZ started as a freelance collective — three senior operators, no overhead, no junior pipeline. Clients came because the work was good. Then the work got too good, and the calendar filled up. We were turning down work because we couldn't scale without breaking what made us valuable.",
+    body: "BAZventures started as a freelance collective — three senior operators, no overhead, no junior pipeline. Clients came because the work was good. Then the work got too good, and the calendar filled up. We were turning down work because we couldn't scale without breaking what made us valuable.",
   },
   {
     n: "02",
@@ -34,13 +34,13 @@ const chapters = [
     n: "04",
     title: "The Hub",
     years: "2024",
-    body: "We built the BAZ Marketing Hub because we were tired of writing the same monthly report by hand for the eighth time. The first version scored leads against touchpoints. The second routed them. The third stepped them through cadences. By the fourth, the whole loop ran without us. We realized we'd built the junior pipeline back — but as software.",
+    body: "We built the Hub because we were tired of writing the same monthly report by hand for the eighth time. The first version scored leads against touchpoints. The second routed them. The third stepped them through cadences. By the fourth, the whole loop ran without us. We realized we'd built the junior pipeline back — but as software.",
   },
   {
     n: "05",
     title: "Senior-only, by design",
     years: "2025",
-    body: "Today BAZ is a four-person senior team with a Hub that does the busywork of a 30-person agency. We sell outcomes, not hours. We price on pipeline added, not bodies deployed. We publish our methodology, our scoring formula, and the code that runs the loop. Half the industry hedges. We don't.",
+    body: "Today BAZventures is a four-person senior team with a Hub that does the busywork of a 30-person agency. We sell outcomes, not hours. We price on pipeline added, not bodies deployed. We publish our methodology, our scoring formula, and the code that runs the loop. Half the industry hedges. We don't.",
   },
   {
     n: "06",

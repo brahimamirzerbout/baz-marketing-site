@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const title = url.searchParams.get("title") ?? "BAZ stance on agentic AI";
+  const title = url.searchParams.get("title") ?? "BAZventures stance on agentic AI";
   const subtitle = url.searchParams.get("subtitle") ?? "What we ship, what we refuse.";
 
   return new ImageResponse(
@@ -13,7 +13,7 @@ export async function GET(req: Request) {
         height: "100%",
         width: "100%",
         display: "flex",
-        background: "#0e0e10",
+        background: "#111111",
         color: "white",
         fontFamily: "serif",
         padding: 80,
@@ -38,7 +38,7 @@ export async function GET(req: Request) {
             width: 44,
             height: 44,
             borderRadius: 12,
-            background: "#ff3b2f",
+            background: "#888888",
             color: "white",
             display: "flex",
             alignItems: "center",
@@ -49,7 +49,7 @@ export async function GET(req: Request) {
         >
           B
         </div>
-        <span>BAZ</span>
+        <span>BAZventures</span>
       </div>
 
       <div
@@ -75,14 +75,14 @@ export async function GET(req: Request) {
           style={{
             width: 120,
             height: 6,
-            background: "#ff3b2f",
+            background: "#888888",
             display: "flex",
           }}
         />
         <div
           style={{
             fontSize: 32,
-            color: "#ff8b4d",
+            color: "#888888",
             fontFamily: "sans-serif",
             letterSpacing: "-0.01em",
             display: "flex",

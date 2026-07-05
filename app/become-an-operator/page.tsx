@@ -3,16 +3,16 @@ import type { Metadata } from "next";
 import { Section, Eyebrow } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
-  title: "Become a BAZ Operator",
+  title: "Become a BAZventures Operator",
   description:
-    "Run your own senior-only marketing agency on the BAZ platform. Near-zero overhead, ~85% margins. Five phases from launch to first client.",
+    "Run your own senior-only marketing agency on the BAZventures platform. Near-zero overhead, ~85% margins. Five phases from launch to first client.",
 };
 
 const PHASES = [
   {
     n: "01",
     title: "Become a real company",
-    body: "BAZ covers your domain, business cards, and t-shirt. You pick the name, set up the email, build the logo. By the end of week one you look like a business.",
+    body: "BAZventures covers your domain, business cards, and t-shirt. You pick the name, set up the email, build the logo. By the end of week one you look like a business.",
     out: "Domain · Cards · T-shirt",
   },
   {
@@ -74,14 +74,14 @@ export default function BecomeOperatorPage() {
     <>
       <Section tone="paper" size="xl">
         <div className="max-w-4xl">
-          <Eyebrow>BAZ · Operator Track</Eyebrow>
+          <Eyebrow>BAZventures · Operator Track</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em] mt-6">
             Run your own senior-only agency.
             <br />
             <em className="italic text-accent">Near-zero overhead.</em>
           </h1>
           <p className="mt-8 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-            BAZ is the operator platform. You bring the hustle, we bring the engine: the website
+            BAZventures is the operator platform. You bring the hustle, we bring the engine: the website
             builder, the AI agents, the CRM, the lead capture. Cost to deliver one site: ~$60. What
             the market pays: hundreds or thousands. The spread is yours.
           </p>

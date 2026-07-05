@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * BAZ Lead Scoring Engine — deterministic, no-LLM-required.
+ * BAZventures Lead Scoring Engine — deterministic, no-LLM-required.
  *
  * Why deterministic: the prototype must demo even when no API keys are set.
  * LLM-based scoring (lib/llm) is layered on top when available, but the
@@ -342,7 +342,7 @@ export function buildRoutingPlan(result: ScoreResult): RoutingPlan {
     nurture_30d: {
       action: "nurture_30d",
       steps: [
-        { day: 0, channel: "email", subject: "Welcome to the BAZ list" },
+        { day: 0, channel: "email", subject: "Welcome to the BAZventures list" },
         { day: 7, channel: "email", subject: "One thing we shipped this week" },
         { day: 21, channel: "email", subject: "When you’re ready" },
       ],

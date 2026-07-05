@@ -35,13 +35,13 @@ export async function generateMetadata({
         ? `Add $200K+ ${variant.icpLabel} pipeline`
         : "Add $200K+ to pipeline in 90 days";
   const taglineStr = typeof variant.tagline === "string" ? variant.tagline : variant.icpLabel ? `Senior-only, on the Hub` : "Or pay nothing for month four";
-  const subtitle = `${taglineStr} · BAZ Marketing Hub`;
+  const subtitle = `${taglineStr} · the Hub`;
   // Pre-build the OG query string with the variant's text so social previews match the page.
   const ogQuery = `?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(subtitle)}`;
   return buildMetadata({
     title,
     description:
-      "BAZ is a senior-only growth partner that builds and manages your owned, earned, paid, and data channels — on the BAZ Marketing Hub. Strategy, execution, and reporting in one tightly integrated system. Or pay nothing for month four.",
+      "BAZventures is a senior-only growth partner that builds and manages your owned, earned, paid, and data channels — on the Hub. Strategy, execution, and reporting in one tightly integrated system. Or pay nothing for month four.",
     path: "/",
     image: `/og${ogQuery}`,
   });

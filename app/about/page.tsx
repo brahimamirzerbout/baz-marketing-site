@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata = buildMetadata({
   title: "About",
   description:
-    "BAZ is a senior-only growth partner. The people who pitch are the people who ship. Based in Algiers. Working with clients in MENA, EU, and the US.",
+    "BAZventures is a senior-only growth partner. The people who pitch are the people who ship. Based in Algiers. Working with clients in MENA, EU, and the US.",
   path: "/about",
 });
 
@@ -41,12 +41,12 @@ export default function AboutPage() {
       <Section tone="paper" size="lg">
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "About" }]} />
         <div className="max-w-4xl">
-          <Eyebrow>About BAZ</Eyebrow>
+          <Eyebrow>About BAZventures</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
             The boutique growth partner for ambitious brands.
           </h1>
           <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-            BAZ was founded on a simple bet: that a small, senior-only team can outperform a
+            BAZventures was founded on a simple bet: that a small, senior-only team can outperform a
             generalist agency pod — if it ships strategy, execution, and measurement as one tightly
             integrated system.
           </p>

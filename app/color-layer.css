@@ -1,0 +1,60 @@
+/* ═══════════════════════════════════════════════════════════════════
+   BAZ — COLOR LAYER   (imported LAST in app/layout.tsx → always wins)
+   ───────────────────────────────────────────────────────────────────
+   MODE: BLACK & WHITE. Color is a deliberate layer, added later by an
+   expert. Everything below is grayscale by default. The public marketing
+   site reads on hierarchy + type + contrast alone — no hue crutch.
+
+   ── TO RE-ADD COLOR LATER (expert edits ONLY this file): ──
+     Brand accent — set the seed (recolors primary, neutrals, borders,
+     and the Aether dark-surface ramp coherently):
+        --seed-hue: 187;  --seed-sat: 90%;   →  electric cyan
+        --seed-hue: 42;   --seed-sat: 85%;   →  stitch gold
+     Functional states (optional — can stay neutral):
+        --success-hue / --success-sat   (e.g. 142 / 60%  → green)
+        --warning-hue / --warning-sat   (e.g. 38  / 90%  → amber)
+        --info-hue    / --info-sat      (e.g. 210 / 75%  → blue)
+        --danger-hue  / --danger-sat    (e.g. 0   / 80%  → red)
+   One file. Two numbers for the brand. Zero rework elsewhere.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── BRAND SEED (0/0 = pure greyscale) ──
+     Drives --color-primary, the neutral ramp, borders, and the Aether
+     darkness layers below. The whole public site follows this one seed. */
+  --seed-hue: 0;
+  --seed-sat: 0%;
+  --seed-sat-dark: 0%;
+
+  /* ── FUNCTIONAL STATE KNOBS (neutral by default) ── */
+  --success-hue: 0;  --success-sat: 0%;
+  --warning-hue: 0;  --warning-sat: 0%;
+  --info-hue: 0;     --info-sat: 0%;
+  --danger-hue: 0;   --danger-sat: 0%;
+
+  /* ── Aether "darkness" ramp → seed-driven neutral (was hardcoded hue 42).
+     Same lightness + saturation as aether-theme.css; only the hue now
+     follows --seed-hue, so the expert's seed recolors dark surfaces too. */
+  --aether-l0: hsl(var(--seed-hue), 8%, 3.9%);
+  --aether-l1: hsl(var(--seed-hue), 7%, 6.5%);
+  --aether-l2: hsl(var(--seed-hue), 6%, 9%);
+  --aether-l3: hsl(var(--seed-hue), 5%, 13%);
+  --aether-l4: hsl(var(--seed-hue), 5%, 18%);
+  --aether-l5: hsl(var(--seed-hue), 6%, 24%);
+  --aether-l6: hsl(var(--seed-hue), 8%, 32%);
+  --aether-l7: hsl(var(--seed-hue), 10%, 42%);
+  --aether-text-primary:   hsl(var(--seed-hue), 4%, 98%);
+  --aether-text-secondary: hsl(var(--seed-hue), 3%, 65%);
+  --aether-text-tertiary:  hsl(var(--seed-hue), 3%, 45%);
+  --aether-text-ghost:     hsl(var(--seed-hue), 2%, 30%);
+
+  /* ── Functional state tokens (neutral now; expert restores hue) ── */
+  --success:     hsl(var(--success-hue), var(--success-sat), 55%);
+  --warning:     hsl(var(--warning-hue), var(--warning-sat), 58%);
+  --info:        hsl(var(--info-hue),    var(--info-sat),    60%);
+  --destructive: hsl(var(--danger-hue),  var(--danger-sat),  60%);
+  --wa:          var(--info);   /* WhatsApp green → neutral until expert */
+}
+
+/* Selection rides the brand token (gray now, accent when color returns) */
+::selection { background: var(--brand); color: #fff; }

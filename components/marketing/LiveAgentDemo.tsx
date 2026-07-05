@@ -20,7 +20,7 @@ const agents: {
     id: "leadgen",
     name: "LeadGen",
     role: "Research & outreach",
-    color: "#ff3b2f",
+    color: "var(--destructive)", // token — neutral in B&W; red when expert sets --danger-hue/sat
     emoji: "◬",
     prompt:
       "Find 3 qualified B2B SaaS leads in the marketing analytics space, $2M–$50M ARR, hiring growth marketers.",
@@ -29,7 +29,7 @@ const agents: {
     id: "content",
     name: "Content",
     role: "Editorial & SEO",
-    color: "#4f7cff",
+    color: "var(--info)",        // token — neutral in B&W; blue when expert sets --info-hue/sat
     emoji: "✎",
     prompt:
       "Write a 200-word LinkedIn post announcing our new AI search optimization service for B2B SaaS CMOs.",
@@ -38,7 +38,7 @@ const agents: {
     id: "analytics",
     name: "Analytics",
     role: "Attribution & reporting",
-    color: "#3ddc97",
+    color: "var(--success)",     // token — neutral in B&W; green when expert sets --success-hue/sat
     emoji: "◐",
     prompt:
       "A DTC skincare brand spent $80K on Meta last month and got 4,200 purchases averaging $52 AOV. CAC, MER, and the next 90-day reallocation plan?",
@@ -47,7 +47,7 @@ const agents: {
     id: "general",
     name: "General",
     role: "Strategy & copy",
-    color: "#ffb020",
+    color: "var(--warning)",     // token — neutral in B&W; amber when expert sets --warning-hue/sat
     emoji: "✦",
     prompt:
       "Draft a cold email to a DTC beauty founder who is burned out on agency churn and skeptical of AI.",
@@ -64,7 +64,7 @@ interface DemoResult {
 }
 
 /**
- * Live AI demo. Talks to /api/ai on the BAZ backend when NEXT_PUBLIC_API_URL
+ * Live AI demo. Talks to /api/ai on the BAZventures backend when NEXT_PUBLIC_API_URL
  * is set; otherwise simulates a deterministic response so the demo never
  * breaks on the marketing site.
  */
@@ -468,7 +468,7 @@ We flipped it. One flat fee tied to a forecast. Miss the number, we eat the diff
 
 Worth 15 minutes to see if it'd work for {company}? No deck, no pitch — just the model.
 
-— BAZ`,
+— BAZventures`,
   };
   return {
     agent,

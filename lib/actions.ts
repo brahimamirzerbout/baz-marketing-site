@@ -11,7 +11,7 @@ export type LeadResult =
 /**
  * Server action for the contact form. Validates input, persists to the
  * primary database, then fans out to:
- *   1. BAZ meta-ecosystem backend (optional)
+ *   1. BAZventures meta-ecosystem backend (optional)
  *   2. Generic webhook (Slack, HubSpot, etc.) — with retry
  *   3. LLM scoring via router (falls back to deterministic)
  *
@@ -136,7 +136,7 @@ async function scoreLeadInBackground(leadId: string, message: string, service: s
   try {
     const result = await routeComplete({
       prompt: `Score this lead message (the lead is interested in: ${service || "unspecified"}):\n\n${message.slice(0, 2000)}`,
-      system: `You are BAZ LeadGen Agent. Score the lead 0-100 and return JSON: {"score": <int>, "intent": "<buy_now|researching|comparison_shopping|tire_kicker>"}`,
+      system: `You are BAZventures LeadGen Agent. Score the lead 0-100 and return JSON: {"score": <int>, "intent": "<buy_now|researching|comparison_shopping|tire_kicker>"}`,
       maxTokens: 300,
       temperature: 0.2,
     });

@@ -1,13 +1,13 @@
 // @ts-nocheck
 /**
- * BAZ — Single source of truth database.
+ * BAZventures — Single source of truth database.
  *
  * Lives at /home/uzer/baz/data/baz.db. Auto-creates the schema on first boot.
  * WAL mode for concurrent reads + safe writes.
  *
  * Tables (10):
  *   - users            auth + role + team membership
- *   - orgs             agencies / partner orgs that operate BAZ
+ *   - orgs             agencies / partner orgs that operate BAZventures
  *   - leads            inbound prospects from /contact + /brief forms
  *   - customers        signed clients
  *   - subscriptions    recurring engagements (linked to customers + tiers)
@@ -258,7 +258,7 @@ function bootstrap(db: SqliteDb) {
     db.prepare(
       `INSERT INTO users (id, email, name, password_hash, role, team, initials, color)
                 VALUES (?, ?, ?, ?, 'owner', 'strategy', 'BZ', '#ff3b2f')`,
-    ).run(id, ownerEmail, "BAZ Operator", bcrypt.hashSync(ownerPassword, 10));
+    ).run(id, ownerEmail, "BAZventures Operator", bcrypt.hashSync(ownerPassword, 10));
     db.prepare("INSERT INTO audit (actor, action, target, meta) VALUES (?, ?, ?, ?)").run(
       id,
       "bootstrap",
@@ -449,7 +449,7 @@ export function verifyPassword(plain: string, hash: string): boolean {
 
 // ── In-memory fallback for serverless (Vercel) ──────────────
 // A minimal SQL-ish store that supports the subset of operations
-// the BAZ API routes use. Data lives in RAM for the function
+// the BAZventures API routes use. Data lives in RAM for the function
 // instance lifetime (seconds to minutes on Vercel).
 
 function createInMemoryDb(): SqliteDb {
