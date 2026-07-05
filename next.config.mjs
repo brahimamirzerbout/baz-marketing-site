@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -7,13 +9,17 @@ const nextConfig = {
     serverComponentsExternalPackages: ['better-sqlite3', 'pg'],
   },
   typescript: {
-    // Build the site even with pre-existing TS errors (mostly null
-    // checks on dynamic DB rows). Fixing 200+ strict-mode errors
-    // is tracked separately — the app runs correctly.
     ignoreBuildErrors: false,
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(process.cwd()),
+    };
+    return config;
   },
   images: {
     formats: ['image/avif', 'image/webp'],
