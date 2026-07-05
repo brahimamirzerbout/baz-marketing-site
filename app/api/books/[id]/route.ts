@@ -6,9 +6,9 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { getBookStore } from "@/lib/data/book-store";
-import { readSessionFromCookies } from "@/lib/auth";
-import { getDb } from "@/lib/db";
+import { getBookStore } from "../../../../lib/data/book-store";
+import { readSessionFromCookies } from "../../../../lib/auth";
+import { getDb } from "../../../../lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
