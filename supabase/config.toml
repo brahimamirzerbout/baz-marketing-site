@@ -1,5 +1,4 @@
 project_id = "baz-marketing"
-managed = false
 
 [api]
 enabled = true
