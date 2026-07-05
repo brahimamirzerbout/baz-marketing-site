@@ -1,62 +1,44 @@
-# BAZ Project Context
+# BAZventures — Agent Context
 
-## Design System
-This project uses the **BlackSwan Design System** (Fibonacci × Da Vinci × Material 3) with a **Gold Monochrome** seed.
+> Source of truth for the design system: **`DESIGN-SYSTEM.md`** (repo root).
+> This file is quick orientation for any agent working in this repo.
 
-### Three-Layer Architecture
-1. **BlackSwan Seed System** — `--seed-hue: 41` generates the entire monochrome gold palette algorithmically
-2. **Stitch Material 3 Tokens** — Brand-specific dark palette with `#C8A55A` gold and `#1F2933` charcoal
-3. **Protocol Layer** — Fraunces/Inter/JetBrains Mono fonts + Fibonacci radii
+## What this project is
+- **Brand:** BAZventures (marketing agency). **Product:** the Hub (CRM/ops). **Founder:** Brahim ZERBOUT.
+- Next.js 14 App Router + TypeScript + Tailwind v3 + Supabase + Vercel.
+- Live: `github.com/brahimamirzerbout/baz-marketing-site` → Vercel project `baz-marketing-site-y6bq`.
+- Public site is **black & white**; color is added later by a design expert via one file.
 
-### Core Tokens
-- **Seed**: `--seed-hue: 41` (gold), `--seed-sat: 72%`, `--seed-lum: 50%`
-- **Stitch Gold**: `#C8A55A` — primary accent, CTAs, eyebrows, stats
-- **Stitch Gold-dark**: `#8D6B2E` — gradient start, shadows
-- **Stitch Charcoal**: `#1F2933` — base background
-- **Stitch Navy**: `#24364A` — secondary background
-- **Stitch Sand**: `#E8E4E0` — primary text on dark
-- **Stitch Stone**: `#B0AAA5` — muted text
-- **Protocol Paper**: `#f5f1ea` — warm off-white for light sections
-- **Protocol Ink**: `#0e0e0e` — deep black for headings
+## Design system (current live state)
+- **B&W by default.** Color = one file: `app/color-layer.css` (imported **last** in `app/layout.tsx` → always wins). Recolor by setting `--seed-hue`/`--seed-sat` (cyan `187/90%`, gold `42/85%`). State colors have their own hue/sat knobs in the same file.
+- **Dark mode only** — `components/ui/ThemeProvider.tsx` uses `forcedTheme="dark"`, `enableSystem={false}`, `themes={["dark"]}`. Light tokens exist (`:root:not(.dark)`) but are dormant; see `DESIGN-SYSTEM.md` §6 before enabling light.
+- **Fonts:** Outfit (display) · Poppins (body) · JetBrains Mono (code/metrics).
+  - NOTE: an earlier direction used Fraunces/Inter — **superseded**. Do not reintroduce them.
+- **Corners:** square (`* { border-radius: 0 }` in `globals.css`); `rounded-full` only for pills/badges/avatars.
+  - NOTE: an earlier direction used Fibonacci radii — **superseded**. Do not reintroduce them.
+- **4-layer CSS stack:** `globals.css` → `aether-theme.css` → `aether-monochrome.css` → `color-layer.css` (last wins).
+- **Logo:** a text wordmark "BAZventures" rendered in `components/layout/Header.tsx` + `Footer.tsx` (a `bg-foreground` "B" square + wordmark). Legacy SVGs in `public/logo/` are kept for `/brandbook` only.
+- **Rule:** tokens, not hexes. Use semantic Tailwind classes (`text-foreground`, `bg-background`, `text-brand`, `bg-accent`, `border-border`, `text-success`, …) → tokens → `color-layer.css`. Never hardcode color in components.
 
-### Fonts
-- **Display**: Fraunces (variable, optical) — NOT Playfair Display, NOT Outfit
-- **Body**: Inter (variable) — NOT Poppins
-- **Code**: JetBrains Mono
+## Backend / data
+- Database: better-sqlite3 (local) → Supabase (production). Types: `lib/database.types.ts`. Client: `lib/supabase-client.ts`.
+- AI: Gemini (primary).
+- Auth: JWT + cookies, no sessions.
 
-### Radius
-- **Fibonacci**: 3, 5, 8, 13, 21, 34, 55, 89 — NOT 4px flat
-- Exception: Stitch assets use 4px corners (their design system)
+## What NOT to do
+- Do NOT hardcode color hexes in components — use tokens.
+- Do NOT use Fraunces or Inter — live fonts are Outfit + Poppins + JetBrains Mono.
+- Do NOT use Fibonacci radii — corners are square (only `rounded-full` for pills).
+- Do NOT re-enable gold `#C8A55A` / `#E7C274` / orange `#F2572B` ad-hoc — all color flows through `color-layer.css`.
+- Do NOT switch to Tailwind v4 `@theme` syntax (the project is on v3).
+- Do NOT enable light mode piecemeal — the dark UI kit (glass, M2/M3 overlays) is deep; plan it per `DESIGN-SYSTEM.md` §6.
+- Do NOT fabricate metrics — composite proof is flagged `[replace with real]` until real data lands.
+- Do NOT rename the product "the Hub" or the social handles (`@bazagency`, `/baz-agency`, `baz.agency`) — founder confirmed those stay as-is.
 
-### Backend
-- Database: better-sqlite3 (local) → Supabase (production)
-- AI: Gemini (primary), knowledge agent for book RAG
-- Auth: JWT + cookies, no sessions
-
-## Key Files
-- `brand/css/variables-unified.css` — UNIFIED source of truth (BlackSwan + Stitch + Protocol)
-- `brand/css/variables.css` — BlackSwan monochrome gold tokens
-- `app/globals.css` — Current live site (Anderson/Stitch system)
-- `tailwind.config.ts` — Tailwind token mappings
-- `brand-blackswan/tokens/blackswan.css` — BlackSwan seed system source
-- `brand/brand/` — Full brand design system documentation
-- `baz/assets/brand/` — All Stitch-generated brand assets
-
-## What NOT to Do
-- Do NOT use Playfair Display font (use Fraunces)
-- Do NOT use Poppins as the primary body font (use Inter)
-- Do NOT use 4px border-radius for new components (use Fibonacci radii)
-- Do NOT use shadcn/ui (we have hand-rolled BlackSwan components)
-- Do NOT switch to Tailwind v4 `@theme` syntax (we're on v3)
-- Do NOT use `#F2572B` orange-red as the primary brand color (gold `#C8A55A` is the accent)
-- Do NOT use `#ff3b2f` red as a general color (it's only for the logo mark/favicon)
-- Do NOT use violet `hsl(270, 85%, 72%)` as the primary accent (gold monochrome is active)
-- Do NOT replace `app/globals.css` with another design system without merging BlackSwan tokens
-
-## Brand Colors (Active — Gold Monochrome)
-- **BlackSwan Accent**: `hsl(41, 72%, 52%)` — computed gold from seed
-- **Stitch Gold**: `#C8A55A` — primary brand accent
-- **Stitch Charcoal**: `#1F2933` — base background
-- **Stitch Navy**: `#24364A` — secondary background
-- **Protocol Paper**: `#f5f1ea` — warm off-white
-- **Protocol Ink**: `#0e0e0e` — deep black
+## Key files
+- `DESIGN-SYSTEM.md` — design system map (read this first).
+- `AGENTS.md` — project setup, scripts, Supabase/Vercel/CI details.
+- `app/color-layer.css` — the color control layer (expert edits here).
+- `tailwind.config.ts` — tokens → Tailwind classes, type scale, square radii.
+- `lib/site.ts` — brand name (BAZventures), product (the Hub), socials.
+- `components/ui/ThemeProvider.tsx` — dark-only theme config.

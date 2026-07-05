@@ -48,6 +48,20 @@
   --aether-text-tertiary:  hsl(var(--seed-hue), 3%, 45%);
   --aether-text-ghost:     hsl(var(--seed-hue), 2%, 30%);
 
+  /* ── Aether branding gradients + glow → seed-driven (were hardcoded hue 42).
+     Neutral now; recolor coherently when the expert sets --seed-hue/sat.
+     Functional state colors (--aether-success/warning/danger/info) are
+     intentionally LEFT colored — they are status affordances, not branding. ── */
+  --aether-primary:        hsl(var(--seed-hue), var(--seed-sat), 55%);
+  --aether-gradient-text:  linear-gradient(90deg, hsl(var(--seed-hue), var(--seed-sat), 55%) 0%, hsl(var(--seed-hue), var(--seed-sat), 50%) 61.8%);
+  --aether-gradient-veil:  linear-gradient(135deg, hsla(var(--seed-hue), var(--seed-sat), 55%, 0.05) 0%, hsla(var(--seed-hue), var(--seed-sat), 45%, 0.03) 61.8%, transparent 100%);
+  --aether-gradient-void:  linear-gradient(180deg, hsl(var(--seed-hue), 8%, 3.9%) 0%, hsl(var(--seed-hue), 7%, 6.5%) 61.8%, hsl(var(--seed-hue), 6%, 9%) 100%);
+  --aether-gradient-surface: linear-gradient(180deg, hsl(var(--seed-hue), 5%, 13%) 0%, hsl(var(--seed-hue), 6%, 9%) 61.8%, hsl(var(--seed-hue), 8%, 3.9%) 100%);
+  --aether-gradient-raised: linear-gradient(135deg, hsl(var(--seed-hue), 5%, 18%) 0%, hsl(var(--seed-hue), 6%, 13%) 61.8%, hsl(var(--seed-hue), 5%, 9%) 100%);
+  --aether-gradient-glass: linear-gradient(135deg, hsla(var(--seed-hue), 6%, 20%, 0.055) 0%, hsla(var(--seed-hue), 5%, 15%, 0.089) 61.8%, hsla(var(--seed-hue), 8%, 5%, 0.144) 100%);
+  --aether-gradient-shadow: linear-gradient(180deg, transparent 0%, hsla(var(--seed-hue), 50%, 0%, 0.5) 61.8%, hsla(var(--seed-hue), 50%, 0%, 0.8) 100%);
+  --aether-shadow-glow:    0 2px 8px hsla(var(--seed-hue), var(--seed-sat), 45%, 0.233);
+
   /* ── Functional state tokens (neutral now; expert restores hue) ── */
   --success:     hsl(var(--success-hue), var(--success-sat), 55%);
   --warning:     hsl(var(--warning-hue), var(--warning-sat), 58%);
