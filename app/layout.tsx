@@ -76,7 +76,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0a0a0a',  // B&W — neutral mobile chrome (color layer manages hue)
+  themeColor: '#020617',  // Midnight Terminal — mobile chrome matches bg
   width: 'device-width',
   initialScale: 1,
 };

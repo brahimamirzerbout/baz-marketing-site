@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════════
    BAZ — COLOR LAYER   (imported LAST in app/layout.tsx → always wins)
    ───────────────────────────────────────────────────────────────────
-   MODE: BLACK & WHITE. Color is a deliberate layer, added later by an
-   expert. Everything below is grayscale by default. The public marketing
+   MODE: MIDNIGHT TERMINAL — electric cyan (seed 187/90) on seed-driven
+   near-black, ultraviolet depth accent. The public marketing
    site reads on hierarchy + type + contrast alone — no hue crutch.
 
    ── TO RE-ADD COLOR LATER (expert edits ONLY this file): ──
@@ -22,12 +22,15 @@
   /* ── BRAND SEED (0/0 = pure greyscale) ──
      Drives --color-primary, the neutral ramp, borders, and the Aether
      darkness layers below. The whole public site follows this one seed. */
-  --seed-hue: 0;
-  --seed-sat: 0%;
-  --seed-sat-dark: 0%;
+  --seed-hue: 187;      /* electric cyan — Midnight Terminal */
+  --seed-sat: 90%;
+  --seed-sat-dark: 90%;
+
+  /* Midnight depth — ultraviolet secondary (overrides --brand2) */
+  --brand2: #818CF8;
 
   /* ── FUNCTIONAL STATE KNOBS (neutral by default) ── */
-  --success-hue: 0;  --success-sat: 0%;
+  --success-hue: 160;  --success-sat: 84%;   /* #10B981 — metrics only, sparingly */
   --warning-hue: 0;  --warning-sat: 0%;
   --info-hue: 0;     --info-sat: 0%;
   --danger-hue: 0;   --danger-sat: 0%;
