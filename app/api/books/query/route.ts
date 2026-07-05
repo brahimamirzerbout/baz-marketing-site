@@ -23,8 +23,8 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { queryBooks, type RAGQueryOptions } from "../../../../lib/data/book-query";
-import { rateLimit, rateLimitHeaders } from "../../../../lib/rate-limit";
+import { queryBooks, type RAGQueryOptions } from "@/lib/data/book-query";
+import { rateLimit, rateLimitHeaders } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
 /** GET /api/books/query — Get knowledge base summary */
 export async function GET() {
   try {
-    const { getBookKnowledgeSummary } = await import("../../../../lib/data/book-query");
+    const { getBookKnowledgeSummary } = await import("@/lib/data/book-query");
     const summary = await getBookKnowledgeSummary();
     return NextResponse.json({ ok: true, ...summary });
   } catch (err) {

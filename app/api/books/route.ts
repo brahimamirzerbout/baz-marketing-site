@@ -5,9 +5,9 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { ingestBook, type BookMeta } from "../../../lib/data/book-ingest";
-import { getBookStore } from "../../../lib/data/book-store";
-import { getEmbedderConfig } from "../../../lib/data/embed";
+import { ingestBook, type BookMeta } from "@/lib/data/book-ingest";
+import { getBookStore } from "@/lib/data/book-store";
+import { getEmbedderConfig } from "@/lib/data/embed";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
