@@ -58,7 +58,10 @@ export function CaseStudies() {
                       <p className="text-xs text-muted-foreground">{c.industry}</p>
                     </div>
                   </div>
-                  <Badge variant="ink">{c.services.length} services</Badge>
+                  <div className="flex items-center gap-2">
+                    {c.placeholder && <Badge variant="warning">Demo</Badge>}
+                    <Badge variant="ink">{c.services.length} services</Badge>
+                  </div>
                 </div>
 
                 {/* Problem — one sentence */}

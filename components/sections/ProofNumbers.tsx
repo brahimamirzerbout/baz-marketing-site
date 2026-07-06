@@ -7,6 +7,7 @@
  * Pattern 45: Duotone initial instead of generic icon.
  */
 import { caseStudies } from "@/content/case-studies";
+import { Badge } from "@/components/ui/Badge";
 
 export function ProofNumbers() {
   const top = caseStudies.slice(0, 3);
@@ -33,6 +34,7 @@ export function ProofNumbers() {
                       {cs.client} · {cs.industry}
                     </p>
                   </div>
+                  {cs.placeholder && <Badge variant="warning">Demo</Badge>}
                 </div>
 
                 {/* Headline metric */}

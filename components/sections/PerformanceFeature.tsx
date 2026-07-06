@@ -187,12 +187,14 @@ function ProofCard({
   industry,
   metric,
   detail,
+  placeholder = true,
 }: {
   href: string;
   client: string;
   industry: string;
   metric: string;
   detail: string;
+  placeholder?: boolean;
 }) {
   return (
     <Link
@@ -209,6 +211,9 @@ function ProofCard({
         </p>
       </div>
       <p className="text-sm text-muted-foreground leading-relaxed">{detail}</p>
+      {placeholder && (
+        <p className="mt-2"><Badge variant="warning" size="sm">Demo</Badge></p>
+      )}
       <p className="mt-3 text-xs font-medium text-foreground group-hover:text-accent">
         Read case →
       </p>

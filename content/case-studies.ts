@@ -18,7 +18,10 @@ import type { CaseStudy } from "@/types";
  *   - Duration (how long it took)
  *   - Testimonial (optional, from the client)
  */
-export const caseStudies: CaseStudy[] = [
+// All entries below are composites until signed-client material replaces them
+// (see header note). `placeholder` defaults to true here so every composite is
+// flagged in the UI; set `placeholder: false` on any real, releasable case study.
+const _rawCaseStudies: CaseStudy[] = [
   {
     slug: "viralvista-growth-engine",
     client: "ViralVista",
@@ -346,5 +349,11 @@ export const caseStudies: CaseStudy[] = [
     duration: "4 months",
   },
 ];
+
+// Flag every composite until it's replaced with a signed-client case study.
+export const caseStudies: CaseStudy[] = _rawCaseStudies.map((c) => ({
+  ...c,
+  placeholder: c.placeholder ?? true,
+}));
 
 export const getCaseStudy = (slug: string) => caseStudies.find((c) => c.slug === slug);
