@@ -28,8 +28,8 @@ import { resolveHeroVariant } from "@/lib/hero-variant";
 // traffic uses ?icp=). To re-enable ICP hero variants, swap to a client-side
 // override (useSearchParams() in a client Hero wrapper) so `/` stays static.
 export function generateMetadata() {
-  const title = "Add $200K+ to pipeline in 90 days";
-  const subtitle = "Or pay nothing for month four · the Hub";
+  const title = "I don't sell marketing. I sell certainty.";
+  const subtitle = "60+ brands shipped. Senior-only. Or pay nothing for month four";
   const ogQuery = `?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(subtitle)}`;
   return buildMetadata({
     title,

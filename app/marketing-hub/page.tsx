@@ -127,10 +127,10 @@ export default function MarketingHubPage() {
       <div className="max-w-4xl">
         <HubLabel>Product · the Hub</HubLabel>
         <h1 className="font-sans text-display-2xl font-medium tracking-[-0.04em] mt-6">
-          Your marketing, sales, and finance — running in a closed loop.
+          Marketing, sales, and finance — one closed loop.
         </h1>
         <SectionLede>
-          The Hub is the operating system under everything we ship for clients. Lead scoring,
+          The Hub is the operating system under everything I ship for clients. Lead scoring,
           sales cadences, attribution, the daily industry brief, and a triangle loop that scores,
           routes, sequences, and closes — every 60 seconds, without a human in the chain.
         </SectionLede>

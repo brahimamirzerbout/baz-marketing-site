@@ -2,9 +2,9 @@ export const site = {
   name: "BAZventures",
   shortName: "BAZventures",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://baz.agency",
-  tagline: "Senior-partner growth agency for technical founders.",
+  tagline: "Marketing as a forecast, not a hope. The senior operator behind 60+ brands.",
   description:
-    "BAZventures builds engineering-grade marketing systems — strategy, CRM/revenue ops, and performance web for SaaS, AI, and security teams across MENA, EU, US.",
+    "BAZventures is the senior-partner growth agency led by Brahim ZERBOUT — 60+ brands shipped across MENA, EU, US. Strategy, CRM/revenue ops, and performance web, run on the Hub. No juniors. Revenue, not vanity. Or pay nothing for month four.",
   email: "zerboutbrahimamir@gmail.com",
   // Phone is optional. Leave blank if you don't want one shown.
   // The contact page will hide the row entirely when this is empty.

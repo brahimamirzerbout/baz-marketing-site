@@ -1,6 +1,10 @@
 /**
  * Hero variant resolver. Pure server-side: maps a `?icp=` query param
  * (or another matching signal) to a headline + tagline pair.
+ *
+ * Voice: Lucifer's supremacy + Don Draper's pitch + the Godfather's offer.
+ * Supreme, magnetic, irresistible — and grounded in real proof (60+ brands,
+ * senior-only, the guarantee) so every claim is backed, not hype.
  */
 import type { ReactNode } from "react";
 
@@ -9,26 +13,28 @@ export type HeroIcp = "saas" | "ecommerce" | "fintech" | "media";
 export interface HeroVariant {
   icp: HeroIcp | null;
   icpLabel: string | null;
-  /** Headline — line 1, bold */
+  /** Headline — line 1, the Draper hook */
   headline: ReactNode;
-  /** Tagline — line 2, softer */
+  /** Tagline — line 2, the Godfather offer + the proof */
   tagline: ReactNode;
-  /** Subhead — for meta/OG only */
+  /** Subhead — for meta/OG only — the Lucifer pitch + the mechanism */
   subhead: ReactNode;
 }
 
 const DEFAULT_HEADLINE = (
   <>
-    Add <span className="not-italic text-gradient">$200K+</span> pipeline in 90 days
+    I don&rsquo;t sell marketing.{" "}
+    I sell <span className="not-italic text-gradient">certainty</span>.
   </>
 );
 
-const DEFAULT_TAGLINE = <>Or pay nothing for month four</>;
+const DEFAULT_TAGLINE = <>60+ brands shipped. Senior-only. Or pay nothing for month four.</>;
 
 const DEFAULT_SUBHEAD = (
   <>
-    BAZventures is a senior-only growth partner that runs your owned, earned, paid, and data channels on the
-    the Hub — scores leads, runs cadences, reports attribution. No juniors.
+    I&rsquo;m Brahim ZERBOUT. I treat marketing as a business artform — engineered, measurable,
+    and tied to revenue, not vanity. No juniors. No decks nobody reads. No retainers for activity.
+    I ship revenue, or I don&rsquo;t eat. That&rsquo;s the offer.
   </>
 );
 
@@ -37,14 +43,15 @@ const VARIANTS: Record<HeroIcp, Omit<HeroVariant, "icp">> = {
     icpLabel: "B2B SaaS",
     headline: (
       <>
-        Add <span className="not-italic text-gradient">$200K+</span> SaaS pipeline in 90 days
+        I make SaaS pipeline a{" "}
+        <span className="not-italic text-gradient">forecast</span>.
       </>
     ),
-    tagline: <>Senior-only. On the Hub.</>,
+    tagline: <>$200K+ in 90 days. Senior-only. Or you don&rsquo;t pay.</>,
     subhead: (
       <>
-        The the Hub scores PQLs, routes them into sales sequences, and reports attribution
-        on a 60-second loop. No juniors. Pipeline you can forecast.
+        I score your PQLs, route them into sequences, and report attribution on a 60-second loop.
+        No juniors. Pipeline you can take to the board — or pay nothing for month four.
       </>
     ),
   },
@@ -52,14 +59,15 @@ const VARIANTS: Record<HeroIcp, Omit<HeroVariant, "icp">> = {
     icpLabel: "DTC & E-commerce",
     headline: (
       <>
-        Cut eCommerce CAC <span className="not-italic text-gradient">30–60%</span>
+        I cut your CAC. Then I compound your{" "}
+        <span className="not-italic text-gradient">LTV</span>.
       </>
     ),
-    tagline: <>In two quarters. Senior-only.</>,
+    tagline: <>30–60% CAC cut in two quarters. Senior-only.</>,
     subhead: (
       <>
-        Server-side tracking, weekly creative, lifecycle flows that compound LTV. The Hub runs the
-        loop so your senior team focuses on positioning, not ops.
+        Server-side tracking, weekly creative iteration, lifecycle flows that compound. The Hub runs
+        the loop so your team owns the brand, not the ops. Revenue, not vanity.
       </>
     ),
   },
@@ -67,22 +75,27 @@ const VARIANTS: Record<HeroIcp, Omit<HeroVariant, "icp">> = {
     icpLabel: "FinTech",
     headline: (
       <>
-        FinTech growth on the{" "}
-        <span className="not-italic text-gradient">the Hub</span>
+        FinTech growth,{" "}
+        <span className="not-italic text-gradient">compliance-grade</span>.
       </>
     ),
-    tagline: <>Compliance-grade. Senior-only.</>,
+    tagline: <>Category-defining. Senior-only. Built to survive scrutiny.</>,
     subhead: (
       <>
-        Category-defining SERPs, compliance-grade content, attribution that survives regulator
-        scrutiny. No hand-off to a junior after the pitch.
+        SERPs that define the category, content that passes compliance, attribution that holds under
+        regulator review. No hand-off to a junior after the pitch.
       </>
     ),
   },
   media: {
     icpLabel: "Media & Creators",
-    headline: <>Reach + retention for media brands</>,
-    tagline: <>On the Hub. On a 60s loop.</>,
+    headline: (
+      <>
+        Reach that compounds. Retention that{" "}
+        <span className="not-italic text-gradient">holds</span>.
+      </>
+    ),
+    tagline: <>On a 60-second loop. Senior-only.</>,
     subhead: (
       <>
         Lifecycle flows that compound subscribers, partnerships that compound reach, a lead-score loop

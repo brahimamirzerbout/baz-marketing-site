@@ -21,7 +21,7 @@ export function Footer() {
               <span className="font-display font-semibold tracking-[-0.02em] text-foreground text-xl md:text-2xl leading-none">{site.name}</span>
             </Link>
             <p className="mt-6 text-lg text-muted-foreground max-w-md leading-relaxed font-light">
-              Senior-only growth partner. Strategy, execution, and reporting in one system — or pay
+              Marketing as a forecast, not a hope. 60+ brands shipped. Senior-only. Or pay
               nothing for month four.
             </p>
           </div>
@@ -236,7 +236,7 @@ export function Footer() {
             © {new Date().getFullYear()} {site.name}. Algiers · MENA · EU · US
           </p>
           <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/40">
-            Senior team · No juniors
+            The operator you call when marketing needs to win
           </p>
         </div>
       </div>
