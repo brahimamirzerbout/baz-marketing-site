@@ -223,6 +223,12 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Signature */}
+        <div className="flex justify-center md:justify-start mb-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/baz-signature.png" alt="BAZventures signature" className="h-20 md:h-24 w-auto opacity-90" />
+        </div>
+
         {/* Bottom — quiet signature */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground/60">
