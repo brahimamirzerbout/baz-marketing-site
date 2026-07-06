@@ -18,6 +18,7 @@ import './globals.css';
 import './aether-theme.css';
 import './aether-monochrome.css';
 import './color-layer.css'; // BLACK & WHITE layer — imported LAST so it wins. Expert re-adds color here.
+import './aether.css';        // Æther (Lovable) design-system utilities: aether-shell, mono-label, display-xl, chip, glass, watermark.
 
 const inter = Inter({
   subsets: ['latin'],
@@ -79,7 +80,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // synchronously via its own inline script. No server-side cookie read here.
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${mono.variable} dark`} data-theme="dark">
-      <body className="bg-background text-foreground antialiased royal-entrance">
+      <body className="aether-shell bg-background text-foreground antialiased royal-entrance">
+        <div className="aether-bg" aria-hidden />
         {/*
           Belt-and-braces pre-paint script: next-themes also injects its own
           equivalent script, but we keep this one so any non-Chromium browser

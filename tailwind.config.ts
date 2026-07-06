@@ -12,7 +12,21 @@ const config: Config = {
     extend: {
       colors: {
         // Stitch Design System — Gold seed hue 42 (CSS variable tokens)
-        ink: 'var(--ink)',
+        ink: {
+          DEFAULT: 'var(--ink)',
+          0: 'var(--ink-0)',
+          50: 'var(--ink-50)',
+          100: 'var(--ink-100)',
+          200: 'var(--ink-200)',
+          300: 'var(--ink-300)',
+          400: 'var(--ink-400)',
+          500: 'var(--ink-500)',
+          600: 'var(--ink-600)',
+          700: 'var(--ink-700)',
+          800: 'var(--ink-800)',
+          900: 'var(--ink-900)',
+          1000: 'var(--ink-1000)',
+        },
         panel: 'var(--panel)',
         'panel-2': 'var(--panel-2)',
         sand: 'var(--sand)',
@@ -61,8 +75,8 @@ const config: Config = {
         'display-lg': ['clamp(2rem, 4vw, 3.4rem)', { lineHeight: '1.05', letterSpacing: '-0.03em' }],
         'display-md': ['clamp(1.5rem, 2.5vw, 2.1rem)', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
       },
-      // Square corners — 0 everywhere except rounded-full
-      borderRadius: { sm: '0', DEFAULT: '0', md: '0', lg: '0', xl: '0', '2xl': '0', '3xl': '0', full: '9999px' },
+      // Æther radii (Lovable port) — rounded, not square
+      borderRadius: { sm: '0.25rem', DEFAULT: '0.375rem', md: '0.375rem', lg: '0.5rem', xl: '0.625rem', '2xl': '0.75rem', '3xl': '1rem', full: '9999px' },
       boxShadow: {
         soft: '0 1px 3px rgba(0,0,0,0.3), 0 8px 21px -8px rgba(0,0,0,0.2)',
         lift: '0 3px 8px rgba(0,0,0,0.3), 0 13px 34px -13px rgba(0,0,0,0.2)',

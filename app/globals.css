@@ -58,10 +58,10 @@
 /* ─── Dark mode — already dark by default ─── */
 .dark {}
 
-/* ─── Global reset ─── */
-*, *::before, *::after { border-radius: 0 !important; }
-/* Intentional exceptions: pills and circles */
-.rounded-full, .rounded-full *, button.rounded-full, a.rounded-full { border-radius: 9999px !important; }
+/* ─── Global reset ───
+   Square-corner reset REMOVED for the Æther refurbish — radii now come from
+   the tailwind config (Æther rounded scale). rounded-full still works via the
+   config. Keeping only the box-sizing reset below. */
 img, video, svg { border-radius: 0 !important; }
 
 * { box-sizing: border-box; }

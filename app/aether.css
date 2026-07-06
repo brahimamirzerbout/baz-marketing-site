@@ -1,0 +1,110 @@
+/* ═══════════════════════════════════════════════════════════════════
+   ÆTHER — Lovable design-system utilities (native port to Tailwind v3)
+   Source: ~/Downloads/styles.css (Tailwind v4 @utility) → plain CSS here.
+   Tokens (ink scale + semantic) live in app/color-layer.css (control layer).
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Aether shell — the body treatment: dot grid + radial glows + film grain */
+.aether-shell {
+  position: relative;
+  background-color: var(--ink-50);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 50% -5%, oklch(1 0 0 / 8%), transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 100%, oklch(1 0 0 / 4%), transparent 60%),
+    radial-gradient(circle at 1px 1px, oklch(1 0 0 / 5%) 1px, transparent 0);
+  background-size: auto, auto, 28px 28px;
+  background-attachment: fixed, fixed, fixed;
+}
+.aether-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Pinned atmospheric background image (aether-bg.jpg) — masked fade */
+.aether-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/aether-bg.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 90%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 90%);
+}
+
+/* ── Signature utilities ── */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+}
+
+.display-xl {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: oklch(1 0 0 / 3%);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+}
+
+/* Aether glass card — frosted, bordered, subtle inner sheen */
+.glass {
+  background: linear-gradient(180deg, oklch(1 0 0 / 4%), oklch(1 0 0 / 1.5%));
+  border: 1px solid oklch(1 0 0 / 8%);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  box-shadow: inset 0 1px 0 oklch(1 0 0 / 6%), 0 30px 60px -30px oklch(0 0 0 / 60%);
+}
+
+/* Giant outlined section watermark — Aether's signature corner numeral */
+.watermark {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(9rem, 18vw, 18rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1px oklch(1 0 0 / 6%);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.card-surface {
+  background: linear-gradient(180deg, oklch(1 0 0 / 3%), oklch(1 0 0 / 1%));
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aether-shell::before { opacity: 0; }
+}
