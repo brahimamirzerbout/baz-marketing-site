@@ -1,100 +1,124 @@
-import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
+import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// IMPORTANT: use `next/og` (not @vercel/og) + `runtime: "nodejs"` (not edge).
+// The previous version used `@vercel/og` + `runtime: "edge"` + external gstatic font
+// fetches (Outfit/Poppins, stale since the Inter rebrand) and returned 200 + image/png
+// with a 0-byte body, which @vercel/og then cached at the edge as `immutable, max-age=31536000`
+// (1 year) — blank social previews for every share. The working /case-studies-og and
+// /stance-og routes use exactly this pattern (next/og + nodejs + built-in fonts) and render
+// fine. Mirrored here. Explicit short Cache-Control so a bad render can't cache for a year.
+export const runtime = "nodejs";
 
-export async function GET(req: NextRequest) {
-  try {
-    const { searchParams } = new URL(req.url);
-    const title = searchParams.get("title") || "BAZventures";
-    const subtitle = searchParams.get("subtitle") || "The growth partner for ambitious businesses.";
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const title = url.searchParams.get("title") ?? "BAZventures";
+  const subtitle =
+    url.searchParams.get("subtitle") ?? "The growth partner for ambitious businesses.";
 
-    return new ImageResponse(
-      (
+  return new ImageResponse(
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        background: "#111111",
+        color: "white",
+        fontFamily: "serif",
+        padding: 80,
+        flexDirection: "column",
+        justifyContent: "space-between",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          fontFamily: "serif",
+          fontSize: 32,
+          fontWeight: 700,
+          letterSpacing: "-0.02em",
+        }}
+      >
         <div
           style={{
-            height: "100%",
-            width: "100%",
+            width: 44,
+            height: 44,
+            borderRadius: 12,
+            background: "#888888",
+            color: "white",
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#111111",
-            padding: "80px",
+            fontSize: 28,
+            fontWeight: 700,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "16px",
-              marginBottom: "24px",
-            }}
-          >
-            <div
-              style={{
-                width: "12px",
-                height: "12px",
-                borderRadius: "2px",
-                backgroundColor: "#888888",
-              }}
-            />
-            <span style={{ color: "#888888", fontSize: "18px", letterSpacing: "0.3em", textTransform: "uppercase" }}>
-              BAZventures
-            </span>
-          </div>
-          <h1
-            style={{
-              color: "#e0e0e0",
-              fontSize: "64px",
-              fontWeight: 600,
-              fontFamily: "Outfit",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              margin: "0 0 16px 0",
-              maxWidth: "900px",
-            }}
-          >
-            {title}
-          </h1>
-          <p
-            style={{
-              color: "#e0e0e0",
-              fontSize: "28px",
-              fontFamily: "Poppins",
-              fontWeight: 300,
-              lineHeight: 1.4,
-              margin: 0,
-            }}
-          >
-            {subtitle}
-          </p>
+          B
         </div>
-      ),
-      {
-        width: 1200,
-        height: 630,
-        fonts: [
-          {
-            name: "Outfit",
-            data: await fetch(
-              "https://fonts.gstatic.com/s/outfit/v11/QGYvz_MVcBeNP4NJtEtqUYLknw.woff2"
-            ).then((r) => r.arrayBuffer()),
-            weight: 600,
-            style: "normal",
-          },
-          {
-            name: "Poppins",
-            data: await fetch(
-              "https://fonts.gstatic.com/s/poppins/v20/pxiDyp8kv8JHgFVrJJLm21lVF9eO.woff2"
-            ).then((r) => r.arrayBuffer()),
-            weight: 300,
-            style: "normal",
-          },
-        ],
-      }
-    );
-  } catch {
-    return new Response("OG image generation failed", { status: 500 });
-  }
+        <span>BAZventures</span>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 24,
+          maxWidth: 1040,
+        }}
+      >
+        <div
+          style={{
+            fontSize: 88,
+            fontWeight: 500,
+            lineHeight: 1.05,
+            letterSpacing: "-0.03em",
+            display: "flex",
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            width: 120,
+            height: 6,
+            background: "#888888",
+            display: "flex",
+          }}
+        />
+        <div
+          style={{
+            fontSize: 32,
+            color: "#888888",
+            fontFamily: "sans-serif",
+            letterSpacing: "-0.01em",
+            display: "flex",
+          }}
+        >
+          {subtitle}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          fontFamily: "monospace",
+          fontSize: 24,
+          color: "rgba(255,255,255,0.5)",
+          letterSpacing: "0.05em",
+        }}
+      >
+        baz.agency
+      </div>
+    </div>,
+    {
+      width: 1200,
+      height: 630,
+      headers: {
+        "Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400",
+      },
+    },
+  );
 }
