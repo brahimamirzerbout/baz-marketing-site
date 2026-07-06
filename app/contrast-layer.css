@@ -1,0 +1,32 @@
+/* ════════════════════════════════════════════════════════════════
+   BAZ — CONTRAST LAYER  (revertible — imported LAST so it wins)
+   ───────────────────────────────────────────────────────────────────
+   Root cause: Æther sets --primary = oklch(1 0 0) (white). Components
+   use `bg-primary` as a panel/section/button background paired with
+   light text (text-foreground / text-white) → white-on-white, near-
+   invisible. (Affects: agent output, lead-score box, leadgen rail,
+   console tabs, the "marketing/sales/finance loop running itself"
+   homepage banner.)
+
+   Fix: override those combos to a plain DARK Æther panel so the light
+   "paper" text shines, distinct from the dot-grid body. The loop
+   banner goes pure black. Æther grayscale tokens only — no component
+   code touched.
+
+   REVERT: remove the `import './contrast-layer.css'` line in
+   app/layout.tsx  (or: git revert <this commit> / git reset --hard pre-contrast-fix)
+   ════════════════════════════════════════════════════════════════ */
+
+/* Panels & buttons: white bg + light text → plain dark panel + light text.
+   (Does NOT touch `bg-primary text-ink` / `text-primary-foreground` — those
+   are the intentional white-button + black-text combos, left alone.) */
+.bg-primary.text-foreground,
+.bg-primary.text-white {
+  background-color: var(--ink-100) !important;   /* oklch(0.08) — plain dark, distinct from body (0.04) */
+  color: var(--sand) !important;                 /* near-white text shines */
+}
+
+/* The "marketing/sales/finance loop — running itself" banner → pure black. */
+section.bg-primary.text-foreground {
+  background-color: var(--ink-0) !important;     /* oklch(0) — true black */
+}
