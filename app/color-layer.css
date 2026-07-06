@@ -22,9 +22,9 @@
   /* ── BRAND SEED (0/0 = pure greyscale) ──
      Drives --color-primary, the neutral ramp, borders, and the Aether
      darkness layers below. The whole public site follows this one seed. */
-  --seed-hue: 187;      /* electric cyan — Midnight Terminal */
-  --seed-sat: 90%;
-  --seed-sat-dark: 90%;
+  --seed-hue: 187;      /* brand hue retained — sat 0% = Æther/Hub monochrome look now; set --seed-sat > 0 to restore color */
+  --seed-sat: 0%;
+  --seed-sat-dark: 0%;
 
   /* Midnight depth — ultraviolet secondary (overrides --brand2) */
   --brand2: #818CF8;

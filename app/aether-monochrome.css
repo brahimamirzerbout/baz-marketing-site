@@ -226,6 +226,17 @@ nav,section,footer{position:relative}
 @keyframes silkRotate{to{transform:rotate(360deg)}}
 @keyframes silkSheen{0%,100%{transform:translateX(-25%) skewX(-2deg);opacity:.4}50%{transform:translateX(25%) skewX(2deg);opacity:1}}
 @keyframes silkFlow3{0%{transform:translate(0,0) scale(1) rotate(0deg)}50%{transform:translate(4%,-4%) scale(1.08) rotate(2deg)}100%{transform:translate(-4%,4%) scale(.95) rotate(-2deg)}}
+
+/* ═══ SMOKE BACKGROUND — drifting blurred orbs (Æther/Hub atmospheric smoke, monochrome) ═══ */
+.smoke-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.smoke-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;mix-blend-mode:screen;will-change:transform}
+.smoke-orb-1{width:42rem;height:42rem;top:-12rem;right:-8rem;background:radial-gradient(circle,rgba(255,255,255,.5),transparent 65%);animation:smokeDrift1 26s ease-in-out infinite alternate}
+.smoke-orb-2{width:34rem;height:34rem;bottom:-10rem;left:-6rem;background:radial-gradient(circle,rgba(255,255,255,.42),transparent 65%);animation:smokeDrift2 32s ease-in-out infinite alternate}
+.smoke-orb-3{width:24rem;height:24rem;top:44%;left:48%;background:radial-gradient(circle,rgba(255,255,255,.32),transparent 60%);animation:smokeDrift3 22s ease-in-out infinite alternate}
+@keyframes smokeDrift1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-4rem,3rem) scale(1.12)}}
+@keyframes smokeDrift2{0%{transform:translate(0,0) scale(1.05)}100%{transform:translate(5rem,-4rem) scale(.92)}}
+@keyframes smokeDrift3{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-42%,-58%) scale(1.18)}}
+@media (prefers-reduced-motion:reduce){.smoke-orb{animation:none}}
 /* ═══ Custom Cursor ═══ */
 .cursor-dot{position:fixed;width:6px;height:6px;background:var(--fg);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--fg);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .3s cubic-bezier(.16,1,.3,1),height .3s cubic-bezier(.16,1,.3,1),border-color .3s,opacity .3s;opacity:.4}
