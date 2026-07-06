@@ -1,52 +1,51 @@
 import { test, expect } from '@playwright/test';
 
-const pages = [
+/**
+ * Dark-only mode regression.
+ *
+ * The site is dark-only by design: ThemeProvider uses forcedTheme="dark",
+ * enableSystem=false, themes=["dark"], and layout.tsx hardcodes the dark
+ * class + a pre-paint script. There is no light mode and no toggle.
+ */
+
+const publicPages = [
   { path: '/', name: 'home' },
   { path: '/services', name: 'services' },
+  { path: '/pricing', name: 'pricing' },
   { path: '/brandbook', name: 'brandbook' },
   { path: '/insights', name: 'insights' },
   { path: '/contact', name: 'contact' },
-  { path: '/admin/leads', name: 'admin-leads' },
+  { path: '/our-story', name: 'our-story' },
+  { path: '/methodology', name: 'methodology' },
 ];
 
-for (const p of pages) {
-  test(`dark mode renders ${p.path}`, async ({ page }) => {
-    await page.goto(p.path);
-    // Set dark mode by clicking the toggle (or directly via JS)
-    await page.evaluate(() => {
-      document.documentElement.dataset.theme = 'dark';
-      try { localStorage.setItem('baz:theme', 'dark'); } catch {}
+test.describe('Dark-only mode', () => {
+  for (const p of publicPages) {
+    test(`${p.path} loads with data-theme="dark" and the .dark class`, async ({ page }) => {
+      await page.goto(p.path);
+      await page.waitForLoadState('networkidle');
+      const theme = await page.evaluate(() => document.documentElement.dataset.theme);
+      expect(theme, `data-theme on ${p.path}`).toBe('dark');
+      const hasDarkClass = await page.evaluate(() =>
+        document.documentElement.classList.contains('dark'),
+      );
+      expect(hasDarkClass, `html.classList contains "dark" on ${p.path}`).toBe(true);
     });
-    // Give CSS a beat to apply
-    await page.waitForTimeout(300);
-    // Confirm the html element has the data-theme attribute
-    const theme = await page.evaluate(() => document.documentElement.dataset.theme);
-    expect(theme, `theme on ${p.path}`).toBe('dark');
-    // Take a screenshot for visual review
-    await page.screenshot({ path: `tests/e2e/screenshots/dark-${p.name}.png`, fullPage: false });
+  }
+
+  test('no theme-toggle button exists (dark-only, no light mode)', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    const toggles = await page.locator('.theme-toggle').count();
+    expect(toggles, 'a theme toggle must not exist — the site is dark-only').toBe(0);
   });
 
-  test(`light mode renders ${p.path}`, async ({ page }) => {
-    await page.goto(p.path);
-    await page.evaluate(() => {
-      document.documentElement.dataset.theme = 'light';
-      try { localStorage.setItem('baz:theme', 'light'); } catch {}
-    });
-    await page.waitForTimeout(200);
-    const theme = await page.evaluate(() => document.documentElement.dataset.theme);
-    expect(theme, `theme on ${p.path}`).toBe('light');
-    await page.screenshot({ path: `tests/e2e/screenshots/light-${p.name}.png`, fullPage: false });
+  test('color-scheme is dark', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    const cs = await page.evaluate(() =>
+      getComputedStyle(document.documentElement).colorScheme.trim(),
+    );
+    expect(cs).toBe('dark');
   });
-}
-
-test('theme toggle button switches data-theme', async ({ page }) => {
-  await page.goto('/');
-  // Wait for client-side hydration
-  await page.waitForSelector('.theme-toggle');
-  const initial = await page.evaluate(() => document.documentElement.dataset.theme);
-  await page.click('.theme-toggle');
-  await page.waitForTimeout(150);
-  const after = await page.evaluate(() => document.documentElement.dataset.theme);
-  expect(initial).not.toBe(after);
-  expect(['light', 'dark']).toContain(after);
 });

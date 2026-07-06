@@ -9,14 +9,14 @@ import { test, expect } from '@playwright/test';
  */
 
 const criticalRoutes = [
-  { path: '/', contains: ['BAZ', 'growth'] },
+  { path: '/', contains: ['BAZventures', 'growth'] },
   { path: '/services', contains: ['Eighteen services', 'Performance Marketing', 'Lifecycle, Email'] },
   { path: '/pricing', contains: ['Pricing', 'senior'] },
   { path: '/brandbook', contains: ['Our', 'brand', 'wordmark'] },
   { path: '/insights', contains: ['Insights'] },
   { path: '/insights/senior-team-no-juniors', contains: ['senior'] },
   { path: '/contact', contains: ['contact'] },
-  { path: '/admin', contains: ['Admin'] },
+  // /admin is auth-gated (redirects to /login) — not a public smoke route.
 ];
 
 for (const route of criticalRoutes) {
@@ -266,7 +266,7 @@ test('performance-marketing service page renders 4 proof entries and 4 FAQs', as
   // 4 proof case studies in the "Recent outcomes" section. We count the
   // proof card <li>s directly so substring matches elsewhere (nav, related
   // cases, etc.) don't inflate the count.
-  const proofCards = await page.locator('section >> li.bg-paper-50').count();
+  const proofCards = await page.locator('section li.bg-card').count();
   expect(proofCards, 'should have 4 proof cards').toBe(4);
 
   // The 4th FAQ about incrementality
