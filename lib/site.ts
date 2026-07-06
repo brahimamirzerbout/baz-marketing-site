@@ -2,9 +2,9 @@ export const site = {
   name: "BAZventures",
   shortName: "BAZventures",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://baz.agency",
-  tagline: "The growth partner for ambitious businesses.",
+  tagline: "Senior-partner growth agency for technical founders.",
   description:
-    "BAZventures is a senior-only growth partner that builds and manages your owned, earned, paid, and data channels — strategy, execution, and reporting in one tightly integrated system.",
+    "BAZventures builds engineering-grade marketing systems — strategy, CRM/revenue ops, and performance web for SaaS, AI, and security teams across MENA, EU, US.",
   email: "zerboutbrahimamir@gmail.com",
   // Phone is optional. Leave blank if you don't want one shown.
   // The contact page will hide the row entirely when this is empty.
@@ -23,7 +23,7 @@ export const site = {
   social: {
     linkedin: "https://www.linkedin.com/company/baz-agency",
     twitter: "https://twitter.com/bazagency",
-    github: "https://github.com/baz-agency",
+    github: "https://github.com/brahimamirzerbout",
   },
   // Partner tools BAZventures actually uses. Env-overridable for white-label
   // deployments. Default is the public BAZventures stack.
