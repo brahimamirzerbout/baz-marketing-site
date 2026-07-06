@@ -8,7 +8,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 
 // The Hub product is live at roi-marketing-alpha (the recreated deploy).
-const HUB_URL = "https://roi-marketing-alpha.vercel.app";
+const HUB_URL = "https://baz-marketing-site.vercel.app";
 
 export const metadata = buildMetadata({
   title: "Marketing Hub",
