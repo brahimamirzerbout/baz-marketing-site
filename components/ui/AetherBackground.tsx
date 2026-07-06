@@ -60,6 +60,12 @@ export function AetherBackground() {
           <rect width="100%" height="100%" filter="url(#silkWeave)" />
         </svg>
       </div>
+      {/* Smoke background — drifting blurred orbs (Æther/Hub atmospheric smoke) */}
+      <div className="smoke-bg" aria-hidden>
+        <div className="smoke-orb smoke-orb-1" />
+        <div className="smoke-orb smoke-orb-2" />
+        <div className="smoke-orb smoke-orb-3" />
+      </div>
     </>
   );
 }
