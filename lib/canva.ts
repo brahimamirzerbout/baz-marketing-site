@@ -21,7 +21,7 @@ export const defaultBrand: BrandKit = {
   accent: "var(--brand2)",
   ink: "#0e0e10",
   paper: "#faf7f2",
-  displayFont: "Outfit, ui-sans-serif, sans-serif",
+  displayFont: "Inter, ui-sans-serif, sans-serif",
   bodyFont: "Inter, system-ui, sans-serif",
 };
 

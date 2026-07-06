@@ -47,8 +47,8 @@
   --info: #3B82F6;
 
   /* ─── Type ─── */
-  --display: 'Outfit', ui-sans-serif, sans-serif;
-  --sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --display: var(--font-sans), ui-sans-serif, sans-serif;
+  --sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* ─── Easing ─── */

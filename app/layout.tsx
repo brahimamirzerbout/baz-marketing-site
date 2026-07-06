@@ -2,7 +2,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Outfit, Poppins } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import { site } from '@/lib/site';
 import { organizationLd, websiteLd, jsonLd } from '@/lib/seo';
@@ -19,16 +19,9 @@ import './aether-theme.css';
 import './aether-monochrome.css';
 import './color-layer.css'; // BLACK & WHITE layer — imported LAST so it wins. Expert re-adds color here.
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-display',
-});
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
   display: 'swap',
   variable: '--font-sans',
 });
@@ -85,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // next-themes handles the cookie + localStorage + data-theme attribute
   // synchronously via its own inline script. No server-side cookie read here.
   return (
-    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${poppins.variable} ${mono.variable} dark`} data-theme="dark">
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${mono.variable} dark`} data-theme="dark">
       <body className="bg-background text-foreground antialiased royal-entrance">
         {/*
           Belt-and-braces pre-paint script: next-themes also injects its own
