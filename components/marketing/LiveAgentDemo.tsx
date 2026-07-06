@@ -239,7 +239,7 @@ export function LiveAgentDemo() {
 
           <div className="flex items-center justify-between">
             <p className="font-mono text-[11px] text-muted-foreground/60">
-              {process.env.NEXT_PUBLIC_API_URL ? "→ /api/ai" : "simulated (no API configured)"}
+              {process.env.NEXT_PUBLIC_API_URL ? "→ /api/ai" : "simulated output"}
             </p>
             <button
                 type="button"

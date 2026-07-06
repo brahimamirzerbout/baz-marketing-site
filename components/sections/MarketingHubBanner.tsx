@@ -122,7 +122,7 @@ export function MarketingHubBanner() {
                     }`}
                   />
                   <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground dark:text-muted-foreground">
-                    Hub status · {pulse?.ok ? "live" : "warming"}
+                    Hub status · {pulse?.ok ? "live" : "preview"}
                   </span>
                 </div>
                 <a
@@ -135,33 +135,40 @@ export function MarketingHubBanner() {
                 </a>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <Stat
-                  icon={<DotIcon color="hsl(145,70%,55%)" />}
-                  label="Active sequences"
-                  value={pulse?.enrollments_active ?? "—"}
-                />
-                <Stat
-                  icon={<DotIcon color="hsl(187,90%,55%)" />}
-                  label="Velocity (wins/day)"
-                  value={pulse ? pulse.triangle_velocity.toFixed(2) : "—"}
-                />
-                <Stat
-                  icon={<DotIcon color="hsl(38,85%,58%)" />}
-                  label="Pipeline under mgmt"
-                  value={pulse ? fmtCurrency(pulse.pipeline_value) : "—"}
-                />
-                <Stat
-                  icon={<DotIcon color="hsl(8,80%,58%)" />}
-                  label="Marketing Dive"
-                  value={dive?.total ?? "—"}
-                  sub={dive?.total ? `${dive.total} articles indexed` : "not ingested yet"}
-                />
-              </div>
+              {pulse ? (
+                <div className="grid grid-cols-2 gap-3">
+                  <Stat
+                    icon={<DotIcon color="hsl(145,70%,55%)" />}
+                    label="Active sequences"
+                    value={pulse.enrollments_active}
+                  />
+                  <Stat
+                    icon={<DotIcon color="hsl(187,90%,55%)" />}
+                    label="Velocity (wins/day)"
+                    value={pulse.triangle_velocity.toFixed(2)}
+                  />
+                  <Stat
+                    icon={<DotIcon color="hsl(38,85%,58%)" />}
+                    label="Pipeline under mgmt"
+                    value={fmtCurrency(pulse.pipeline_value)}
+                  />
+                  <Stat
+                    icon={<DotIcon color="hsl(8,80%,58%)" />}
+                    label="Marketing Dive"
+                    value={dive?.total ?? 0}
+                    sub={dive?.total ? `${dive.total} articles indexed` : "—"}
+                  />
+                </div>
+              ) : (
+                <div className="rounded-xl bg-muted/70 dark:bg-primary/90 p-4 text-sm text-muted-foreground dark:text-muted-foreground leading-relaxed">
+                  Live loop data — active sequences, win velocity, pipeline under management, and
+                  indexed research — connects here on a 60-second tick.
+                </div>
+              )}
 
               <div className="mt-5 pt-4 border-t border-border dark:border-border flex items-center gap-2 text-xs text-muted-foreground dark:text-muted-foreground">
                 <ShieldIcon />
-                Local · SQLite WAL · triangle loop ticks every 60 s
+                Triangle loop ticks every 60 s
               </div>
             </div>
           </div>
