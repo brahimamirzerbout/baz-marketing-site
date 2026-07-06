@@ -16,7 +16,8 @@ export function Footer() {
         <div className="grid lg:grid-cols-12 gap-12 mb-20">
           <div className="lg:col-span-7">
             <Link href="/" aria-label={site.name} className="flex items-center gap-3">
-              <span className="grid place-items-center h-9 w-9 md:h-10 md:w-10 bg-[#22D3EE] text-[#020617] font-display font-semibold text-xl leading-none">B</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/baz-signature-transparent.png" alt="" aria-hidden="true" className="h-9 w-9 md:h-10 md:w-10" />
               <span className="font-display font-semibold tracking-[-0.02em] text-foreground text-xl md:text-2xl leading-none">{site.name}</span>
             </Link>
             <p className="mt-6 text-lg text-muted-foreground max-w-md leading-relaxed font-light">
