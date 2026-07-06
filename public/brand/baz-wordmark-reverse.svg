@@ -1,10 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
-  <!-- BAZ Wordmark Reverse — For dark/ink backgrounds -->
-  <!-- Mark: paper squircle with violet letter -->
-  <!-- Wordmark: paper text, muted subtitle -->
-  <rect x="0" y="0" width="120" height="120" rx="26" fill="#f5f1ea"/>
-  <text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#8b5cf6" text-anchor="middle" letter-spacing="-3">B</text>
-
-  <text x="148" y="78" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="500" fill="#f5f1ea" letter-spacing="-2">BAZ</text>
-  <text x="148" y="104" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#a3a3a3" letter-spacing="3">MARKETING VENTURES</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120" role="img" aria-label="BAZventures">
+  <title>BAZventures — wordmark (reverse, for dark backgrounds)</title>
+  <!-- Lockup: signature cyan mark + BAZventures wordmark in #F8FAFC. For dark surfaces. -->
+  <rect x="0" y="10" width="100" height="100" fill="#22D3EE"/>
+  <text x="50" y="86" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="66" font-weight="700" fill="#020617" text-anchor="middle" letter-spacing="-2">B</text>
+  <text x="124" y="78" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="56" font-weight="600" fill="#F8FAFC" letter-spacing="-1.5">BAZventures</text>
 </svg>

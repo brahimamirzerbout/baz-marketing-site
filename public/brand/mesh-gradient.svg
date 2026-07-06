@@ -1,16 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
-  <!-- BAZ Mesh Gradient — Radial violet glow for ink/dark backgrounds -->
-  <!-- Use as overlay with opacity 0.08-0.15 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-label="BAZventures — mesh gradient pattern">
+  <title>BAZventures — mesh gradient</title>
   <defs>
-    <radialGradient id="mesh1" cx="20%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="mesh2" cx="80%" cy="20%" r="50%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-    </radialGradient>
+    <radialGradient id="m1" cx="20%" cy="20%" r="50%"><stop offset="0%" stop-color="#22D3EE" stop-opacity="0.22"/><stop offset="100%" stop-color="#020617" stop-opacity="0"/></radialGradient>
+    <radialGradient id="m2" cx="82%" cy="30%" r="45%"><stop offset="0%" stop-color="#818CF8" stop-opacity="0.18"/><stop offset="100%" stop-color="#020617" stop-opacity="0"/></radialGradient>
+    <radialGradient id="m3" cx="60%" cy="85%" r="55%"><stop offset="0%" stop-color="#22D3EE" stop-opacity="0.12"/><stop offset="100%" stop-color="#020617" stop-opacity="0"/></radialGradient>
   </defs>
-  <rect width="400" height="400" fill="url(#mesh1)"/>
-  <rect width="400" height="400" fill="url(#mesh2)"/>
+  <rect width="1200" height="1200" fill="#020617"/>
+  <rect width="1200" height="1200" fill="url(#m1)"/>
+  <rect width="1200" height="1200" fill="url(#m2)"/>
+  <rect width="1200" height="1200" fill="url(#m3)"/>
 </svg>

@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="BAZventures">
-  <title>BAZventures — Apple Touch Icon</title>
+  <title>BAZventures</title>
+  <!-- Apple Touch Icon — full-bleed cyan, OS applies the squircle mask -->
   <rect width="512" height="512" fill="#22D3EE"/>
   <text x="256" y="372" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="360" font-weight="700" fill="#020617" text-anchor="middle" letter-spacing="-12">B</text>
 </svg>
