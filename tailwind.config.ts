@@ -37,9 +37,9 @@ const config: Config = {
         info: 'var(--info)',
       },
       fontFamily: {
-        sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'ui-sans-serif', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-sans)', 'ui-sans-serif', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       fontSize: {
         // Hero H1
