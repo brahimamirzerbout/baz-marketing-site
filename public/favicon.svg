@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect x="0" y="0" width="64" height="64" rx="14" fill="#0a0a0a"/>
-  <text x="32" y="46" font-family="Outfit, sans-serif" font-size="42" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-1.5">B</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="BAZventures">
+  <title>BAZventures</title>
+  <!-- Midnight Terminal signature: cyan tile + midnight B, square corners -->
+  <rect width="64" height="64" fill="#22D3EE"/>
+  <text x="32" y="46" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="44" font-weight="700" fill="#020617" text-anchor="middle" letter-spacing="-1">B</text>
 </svg>
