@@ -49,7 +49,8 @@ export function Header() {
       <div className="container mx-auto flex items-center justify-between h-16 md:h-18">
         {/* Logo — BAZventures wordmark (B&W; recolors via --brand when the expert sets the seed) */}
         <Link href="/" aria-label={`${site.name} — home`} className="flex items-center gap-2.5">
-          <span className="grid place-items-center h-8 w-8 md:h-9 md:w-9 bg-[#22D3EE] text-[#020617] font-display font-semibold text-lg leading-none">B</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/baz-signature-transparent.png" alt="" aria-hidden="true" className="h-8 w-8 md:h-9 md:w-9" />
           <span className="font-display font-semibold tracking-[-0.02em] text-foreground text-lg md:text-xl leading-none">{site.name}</span>
         </Link>
 
