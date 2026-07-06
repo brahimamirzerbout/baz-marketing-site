@@ -17,10 +17,14 @@ function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
 
-  const supabase = createBrowserClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  );
+  // Lazily create the Supabase browser client (only when a sign-in is attempted),
+  // so the page never crashes if the env isn't inlined into the client bundle.
+  function getClient() {
+    return createBrowserClient<Database>(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    );
+  }
 
   // Passwordless: email → magic link
   async function sendMagicLink(e: React.FormEvent) {
@@ -29,6 +33,7 @@ function LoginForm() {
     setError(null);
     setSent(false);
     try {
+      const supabase = getClient();
       const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`;
       const { error: otpError } = await supabase.auth.signInWithOtp({
         email,
@@ -52,6 +57,7 @@ function LoginForm() {
     setBusy(true);
     setError(null);
     try {
+      const supabase = getClient();
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
       if (signInError) {
         setError(

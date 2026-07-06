@@ -34,6 +34,11 @@ export function PipelineTicker() {
   const [dive, setDive] = useState<DiveStatus | null>(null);
 
   useEffect(() => {
+    // Skip fetching a localhost hub from a deployed origin (browser blocks loopback → CORS console noise)
+    const pageIsLocalhost =
+      typeof window !== "undefined" &&
+      (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+    if ((HUB_URL.includes("localhost") || HUB_URL.includes("127.0.0.1")) && !pageIsLocalhost) return;
     let cancelled = false;
     async function load() {
       try {
