@@ -1,3 +1,4 @@
+// build: bake-supabase-envs-v2 (cache-bust for the new NEXT_PUBLIC_SUPABASE keys)
 "use client";
 
 import { Suspense, useState } from "react";
