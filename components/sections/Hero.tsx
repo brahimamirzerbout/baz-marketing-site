@@ -44,10 +44,10 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             className="mb-8"
           >
-            <p className="text-sm font-semibold tracking-[0.3em] uppercase text-brand">
-              <span className="inline-block w-2 h-2 bg-brand rounded-full animate-pulse-dot mr-3" />
+            <div className="chip">
+              <span className="h-1.5 w-1.5 rounded-full bg-ink-1000 animate-pulse-dot" />
               Now booking Q3 — 2 spots left
-            </p>
+            </div>
           </motion.div>
 
           {/* Headline — two lines, uppercase display */}
@@ -55,10 +55,10 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20, filter: "blur(8px)" }}
             animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-            className="font-display text-hero font-normal uppercase tracking-tight leading-[1.05] text-white max-w-5xl"
+            className="display-xl text-[clamp(3rem,9vw,9rem)] text-ink-1000 max-w-5xl"
           >
             <span className="block">{v.headline}</span>
-            <span className="block mt-3 sm:mt-4 text-sand/40">{v.tagline}</span>
+            <span className="block bg-gradient-to-b from-ink-1000 via-ink-800 to-ink-500 bg-clip-text text-transparent">{v.tagline}</span>
           </motion.h1>
 
           {/* CTA — pill button, orange fill */}
@@ -82,6 +82,30 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
           <ScrollReveal y={12} delay={0.6} duration={0.5}>
             <div className="mt-5">
               <GuaranteeMicro variant="default" />
+            </div>
+          </ScrollReveal>
+
+          {/* Æther live-loop console card — the Hub's autonomous loop, live */}
+          <ScrollReveal y={20} delay={0.5} duration={0.5}>
+            <div className="glass mt-16 overflow-hidden">
+              <div className="flex items-center justify-between border-b border-border px-5 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full border border-border" />
+                  <span className="h-2.5 w-2.5 rounded-full border border-border" />
+                  <span className="h-2.5 w-2.5 rounded-full border border-border" />
+                  <span className="mono-label ml-3">hub.local / loop-tick</span>
+                </div>
+                <span className="mono-label">t = 60s</span>
+              </div>
+              <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-6 text-ink-800">
+{`> tick 0001 · scoring 412 contacts     ................. ok  38ms
+> tick 0001 · routing 87 qualified      ................. ok  12ms
+> tick 0001 · sequencing 214 active     ................. ok  44ms
+> tick 0001 · nova reasoning 6 threads  ................. ok  91ms
+> tick 0001 · closing 3 · won 2 · lost 1 ................ ok   7ms
+─────────────────────────────────────────────────────────────────
+  pipeline: $507,140  ·  coverage: 4.0×  ·  wins/day: 2.4  ·  ok`}
+              </pre>
             </div>
           </ScrollReveal>
 
