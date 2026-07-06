@@ -29,7 +29,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
         </div>
       )}
 
-      <section className="relative overflow-hidden bg-ink">
+      <section className="relative overflow-hidden">
         {/* Subtle dark grid overlay */}
         <div
           aria-hidden
@@ -162,7 +162,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
         ].filter((s) => s.v != null && s.v !== "");
         if (stats.length === 0) return null;
         return (
-          <section className="bg-panel border-y border-white/[0.06]">
+          <section className="border-y border-border">
             <div className="max-w-[86rem] mx-auto px-6 lg:px-8 py-12 grid grid-cols-2 lg:grid-cols-4 gap-px">
               {stats.map((s, i) => (
                 <motion.div
@@ -187,7 +187,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
       })()}
 
       {/* Agent demo — bg-ink */}
-      <section className="bg-ink py-24 sm:py-32">
+      <section className="py-24 sm:py-32">
         <div className="max-w-[86rem] mx-auto px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
             <div>
