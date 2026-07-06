@@ -21,22 +21,15 @@ import {
 import { buildMetadata, jsonLd, professionalServiceLd } from "@/lib/seo";
 import { resolveHeroVariant } from "@/lib/hero-variant";
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams?: { icp?: string | string[] };
-}) {
-  const icpRaw = Array.isArray(searchParams?.icp) ? searchParams?.icp[0] : searchParams?.icp;
-  const variant = resolveHeroVariant(icpRaw);
-  const title =
-    typeof variant.headline === "string"
-      ? variant.headline
-      : variant.icpLabel
-        ? `Add $200K+ ${variant.icpLabel} pipeline`
-        : "Add $200K+ to pipeline in 90 days";
-  const taglineStr = typeof variant.tagline === "string" ? variant.tagline : variant.icpLabel ? `Senior-only, on the Hub` : "Or pay nothing for month four";
-  const subtitle = `${taglineStr} · the Hub`;
-  // Pre-build the OG query string with the variant's text so social previews match the page.
+// `/` is rendered fully static (○) for edge caching + sub-1.5s LCP. The `?icp=`
+// hero-personalization feature (lib/hero-variant.tsx) is intentionally NOT read
+// here: reading searchParams opts the route into dynamic rendering (cache-control:
+// no-store, TTFB ~1.3s cold). Default variant is what every visitor sees today (no
+// traffic uses ?icp=). To re-enable ICP hero variants, swap to a client-side
+// override (useSearchParams() in a client Hero wrapper) so `/` stays static.
+export function generateMetadata() {
+  const title = "Add $200K+ to pipeline in 90 days";
+  const subtitle = "Or pay nothing for month four · the Hub";
   const ogQuery = `?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(subtitle)}`;
   return buildMetadata({
     title,
@@ -47,9 +40,8 @@ export async function generateMetadata({
   });
 }
 
-export default function HomePage({ searchParams }: { searchParams?: { icp?: string | string[] } }) {
-  const icpRaw = Array.isArray(searchParams?.icp) ? searchParams?.icp[0] : searchParams?.icp;
-  const heroVariant = resolveHeroVariant(icpRaw);
+export default function HomePage() {
+  const heroVariant = resolveHeroVariant(undefined);
 
   return (
     <>
