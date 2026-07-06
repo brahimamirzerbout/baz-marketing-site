@@ -145,7 +145,10 @@ section[id] { scroll-margin-top: 5rem; }
 .marquee-mask { mask-image: linear-gradient(to right, transparent 0, black 10%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0, black 10%, black 90%, transparent 100%); }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .animate-marquee { animation: marquee 32s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .animate-marquee { animation: none; } }
+/* Partner marquee stays gently active under reduced motion (60s) instead of frozen —
+   a static doubled list behind the edge-mask looks broken, not intentional. The !important +
+   class specificity beats the blanket Æther reduced-motion kill in aether-theme.css (* { animation-duration: 1ms !important }). */
+@media (prefers-reduced-motion: reduce) { .animate-marquee { animation: marquee 60s linear infinite !important; } }
 
 /* ─── Nav link ─── */
 .nav-link { position: relative; display: inline-flex; align-items: center; padding: 8px 3px; color: rgba(255,255,255,0.82); }
