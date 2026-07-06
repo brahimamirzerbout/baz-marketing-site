@@ -5,10 +5,10 @@ type Tone = "default" | "card" | "muted" | "inverse";
 type Size = "sm" | "md" | "lg" | "xl";
 
 const tones: Record<Tone, string> = {
-  default: "bg-background text-foreground",
-  card: "bg-card text-card-foreground",
-  muted: "bg-muted text-foreground",
-  inverse: "bg-primary text-primary-foreground",
+  default: "text-foreground",
+  card: "text-card-foreground",
+  muted: "text-foreground",
+  inverse: "text-foreground",
 };
 
 const sizes: Record<Size, string> = {
