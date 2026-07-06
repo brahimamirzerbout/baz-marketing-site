@@ -122,7 +122,7 @@ export default function MarketingHubPage() {
   // within this page — matching the Hub product's command-center aesthetic.
   <div style={{ "--seed-sat": "0%" } as CSSProperties}>
     {/* Hero */}
-    <Section tone="ink" size="lg">
+    <Section tone="default" size="lg">
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Marketing Hub" }]} />
       <div className="max-w-4xl">
         <HubLabel>Product · the Hub</HubLabel>
@@ -146,7 +146,7 @@ export default function MarketingHubPage() {
     </Section>
 
     {/* Stat band — Æther stat-grid (mono numerals) */}
-    <Section tone="ink" size="md">
+    <Section tone="default" size="md">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-border py-2">
         {stats.map((s) => (
           <div key={s.k} className="py-4">
@@ -162,7 +162,7 @@ export default function MarketingHubPage() {
     </Section>
 
     {/* What it does */}
-    <Section tone="ink" size="lg">
+    <Section tone="default" size="lg">
       <HubLabel>What's inside</HubLabel>
       <SectionHeading>Built for operators, not for show.</SectionHeading>
       <SectionLede>
@@ -178,7 +178,7 @@ export default function MarketingHubPage() {
     </Section>
 
     {/* The Triangle — diagram + prose */}
-    <Section tone="ink" size="lg">
+    <Section tone="default" size="lg">
       <div className="grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-5">
           <HubLabel>The triangle</HubLabel>
@@ -245,7 +245,7 @@ export default function MarketingHubPage() {
     </Section>
 
     {/* Screenshots / live links — Æther card-base grid */}
-    <Section tone="ink" size="lg">
+    <Section tone="default" size="lg">
       <HubLabel>Live, in your browser</HubLabel>
       <SectionHeading>Open any screen directly.</SectionHeading>
       <SectionLede>
