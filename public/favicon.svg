@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="BAZventures">
-  <title>BAZventures</title>
-  <!-- Midnight Terminal signature: cyan tile + midnight B, square corners -->
-  <rect width="64" height="64" fill="#22D3EE"/>
-  <text x="32" y="46" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="44" font-weight="700" fill="#020617" text-anchor="middle" letter-spacing="-1">B</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <defs><linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7E3A8"/><stop offset=".55" stop-color="#C29B5B"/><stop offset="1" stop-color="#8C6A30"/></linearGradient></defs>
+  <rect width="240" height="240" fill="#020617"/>
+  <rect x="20" y="20" width="200" height="200" fill="none" stroke="rgba(255,255,255,.08)"/>
+  <text x="120" y="179.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="175" fill="url(#gold)">B</text>
+  <rect x="196" y="36" width="12" height="12" fill="#22D3EE"/>
 </svg>
