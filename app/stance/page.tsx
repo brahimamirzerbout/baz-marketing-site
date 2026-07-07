@@ -75,8 +75,9 @@ export default function StancePage() {
               </li>
               <li>
                 <strong>Dashboards that look live but are screenshots.</strong> If we say it&apos;s
-                live, it&apos;s live. The status card on the BAZventures homepage hits a real endpoint every
-                60 seconds.
+                live, it&apos;s live — never a screenshot dressed as a dashboard. The Hub&apos;s scoring
+                loop runs on a real endpoint, not a static mock; every client watches their own loop
+                tick, live.
               </li>
               <li>
                 <strong>Black-box attribution.</strong> "AI figured it out" is not a measurement.

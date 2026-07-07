@@ -42,12 +42,12 @@ export default function BookPage() {
     <Section tone="paper" size="lg">
       <Eyebrow>Book a growth call</Eyebrow>
       <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
-        Send us three time windows.
+        20 minutes with a senior partner — not a junior, not a sales rep.
       </h1>
       <p className="mt-6 text-lg text-muted-foreground max-w-xl">
-        We don&rsquo;t use a scheduling tool yet — we reply personally to set up a 20-minute audit.
-        Email us three windows that work in the next two weeks (Algiers / EU / US time zones) and
-        we&rsquo;ll confirm one within one business day.
+        No scheduler queue — a senior partner replies personally. Send three windows in the next
+        two weeks (Algiers / EU / US) and we&rsquo;ll confirm one inside a business day. That&rsquo;s
+        the senior-only model, at the booking step.
       </p>
 
       <div className="mt-10 flex flex-col sm:flex-row gap-3">
@@ -58,6 +58,11 @@ export default function BookPage() {
           Or use the form
         </Button>
       </div>
+
+      <p className="mt-8 text-sm text-muted-foreground">
+        If we&rsquo;re not the right fit, we&rsquo;ll say so on the call and refer you to someone who
+        is. NDA on request.
+      </p>
 
       <p className="mt-12 text-sm text-muted-foreground">
         Prefer to type it out?{" "}

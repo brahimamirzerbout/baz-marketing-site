@@ -54,7 +54,6 @@ export function buildMetadata({
     robots: noindex
       ? { index: false, follow: false }
       : { index: true, follow: true, googleBot: { index: true, follow: true, "max-snippet": -1 } },
-    icons: { icon: "/favicon.svg" },
   };
 }
 

@@ -59,10 +59,17 @@ const phases = [
   },
   {
     n: "04",
-    name: "Score & Learn",
+    name: "Score",
     days: "Every 60s, in public",
-    outputs: ["Loop ticks visible to client", "Nova reasoning audit", "Attribution graph"],
+    outputs: ["Loop ticks visible to client", "Lead scores updated", "Attribution graph"],
     body: "The Marketing Hub triangle ticks every 60 seconds: score leads, route to sequences, advance steps, log outcomes. Every client can watch their own loop live.",
+  },
+  {
+    n: "05",
+    name: "Learn",
+    days: "Bi-weekly",
+    outputs: ["Nova reasoning audit", "Cut list", "Scale list"],
+    body: "Every two weeks we read the loop, cut what didn't move revenue, and double what did. The plan is a living document — strategy documented, then revised against the numbers.",
   },
 ];
 
@@ -207,7 +214,7 @@ export default function MethodologyPage() {
               {scoreFormula}
             </pre>
             <p className="mt-4 text-xs text-muted-foreground/60 dark:text-muted-foreground font-mono">
-              Source: <code>src/lib/triangle.ts → scoreContact()</code> · live at{" "}
+              Source: <code>lib/lead-scoring.ts</code> (public mirror) · runs in the Hub at{" "}
               <code>/api/triangle/health</code>
             </p>
           </div>

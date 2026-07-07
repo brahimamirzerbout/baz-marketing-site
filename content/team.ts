@@ -10,8 +10,8 @@ import type { TeamMember } from "@/types";
 export const team: TeamMember[] = [
   {
     name: "Brahim ZERBOUT",
-    role: "Founder · Strategy",
-    bio: "Sets the bar on growth strategy and the senior-team model. Has shipped plans for 60+ brands across MENA, EU, and the US.",
+    role: "Founder · Strategy & Systems",
+    bio: "Engineer first, operator second. Sets the bar on growth strategy and the senior-team model — and ships the systems other agencies only storyboard. 60+ brands across MENA, EU, and the US.",
     initials: "BZ",
     color: "var(--color-primary)",  // violet — brand accent
   },

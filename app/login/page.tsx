@@ -1,7 +1,7 @@
 // build: bake-supabase-envs-v2 (cache-bust for the new NEXT_PUBLIC_SUPABASE keys)
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createBrowserClient } from "@supabase/ssr";
@@ -11,12 +11,23 @@ function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
   const next = params.get("next") || "/console";
+  const errParam = params.get("error");
   const [mode, setMode] = useState<"magic" | "password">("magic");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+
+  // Surface a Supabase auth error passed via ?error= (e.g. an expired magic
+  // link bounced to /login?error=otp_expired) as a friendly message.
+  useEffect(() => {
+    if (errParam === "otp_expired" || errParam === "access_denied" || errParam === "auth_error") {
+      setError("Your sign-in link has expired or is invalid. Request a new one below.");
+    } else if (errParam) {
+      setError("Sign-in failed. Please request a new link below.");
+    }
+  }, [errParam]);
 
   // Lazily create the Supabase browser client (only when a sign-in is attempted),
   // so the page never crashes if the env isn't inlined into the client bundle.

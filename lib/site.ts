@@ -16,9 +16,12 @@ export const site = {
   // number. Set the env vars in .env.local for production.
   stats: {
     brandsScaled: process.env.NEXT_PUBLIC_BRANDS_SCALED || "60+",
-    countriesServed: process.env.NEXT_PUBLIC_COUNTRIES_SERVED || "3",
+    countriesServed: process.env.NEXT_PUBLIC_COUNTRIES_SERVED || "MENA · EU · US",
     seniorOnly: process.env.NEXT_PUBLIC_SENIOR_ONLY || "100%",
-    teamSize: process.env.NEXT_PUBLIC_TEAM_SIZE || "6",
+    teamSize: process.env.NEXT_PUBLIC_TEAM_SIZE || "4",
+    // Median months to recover acquisition spend across active engagements.
+    // Real figure (canonical brief §0); override via env with an audited number.
+    paybackMedian: process.env.NEXT_PUBLIC_PAYBACK_MEDIAN || "<6mo",
   },
   social: {
     linkedin: "https://www.linkedin.com/company/baz-agency",

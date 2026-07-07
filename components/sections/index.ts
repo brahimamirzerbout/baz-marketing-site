@@ -2,6 +2,7 @@ export { Hero } from "./Hero";
 export { KpiBand } from "./KpiBand";
 export { ServicesOverview } from "./ServicesOverview";
 export { HowWeWork } from "./HowWeWork";
+export { NovaLoop } from "./NovaLoop";
 export { Framework } from "./Framework";
 export { CaseStudies } from "./CaseStudies";
 export { Testimonials } from "./Testimonials";
