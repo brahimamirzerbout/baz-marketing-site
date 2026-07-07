@@ -666,3 +666,4 @@ body { background: var(--bg); color: var(--fg); }
 
 /* Hide the legacy baz cursor host so only the ÆTHER cursor renders */
 .cursor-host { display: none !important; }
+@media(hover:hover){*{cursor:none !important}a,button,input,select,textarea,[role="button"]{cursor:none !important}}
