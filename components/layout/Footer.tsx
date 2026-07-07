@@ -227,7 +227,7 @@ export function Footer() {
         {/* Signature */}
         <div className="flex justify-center md:justify-start mb-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/baz-signature.png" alt="BAZventures signature" className="h-20 md:h-24 w-auto opacity-90" />
+          <img src="/brand/baz-signature-gold.png" alt="BAZventures signature" className="h-20 md:h-24 w-auto opacity-90" />
         </div>
 
         {/* Bottom — quiet signature */}
@@ -236,7 +236,7 @@ export function Footer() {
             © {new Date().getFullYear()} {site.name}. Algiers · MENA · EU · US
           </p>
           <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/40">
-            The operator you call when marketing needs to win
+            The operator you call when marketing needs to ship
           </p>
         </div>
       </div>

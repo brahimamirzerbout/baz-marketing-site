@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Section, Eyebrow } from "@/components/ui/Section";
 
 const pillars = [
-  { href: "/services#owned", label: "Owned", desc: "Website, content, social, listings" },
-  { href: "/services#earned", label: "Earned", desc: "SEO, authority, citations" },
-  { href: "/services#paid", label: "Paid", desc: "Search, social, programmatic" },
-  { href: "/services#data", label: "Data", desc: "Tracking, attribution, reporting" },
+  { href: "/services#owned", label: "Owned", desc: "Site, content, social — the assets you own" },
+  { href: "/services#earned", label: "Earned", desc: "SEO, authority, citations — demand you don't pay for" },
+  { href: "/services#paid", label: "Paid", desc: "Search, social, programmatic — spend as a portfolio" },
+  { href: "/services#data", label: "Data", desc: "Tracking, attribution, reporting — the moat" },
 ];
 
 export function PillarGrid() {

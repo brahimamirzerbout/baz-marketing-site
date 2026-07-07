@@ -15,7 +15,7 @@ export function FinalCta() {
           {/* Argument headline — Pattern 56: headlines as arguments, not slogans */}
           <p className="eyebrow-neutral mb-8">
             <span className="inline-block w-1.5 h-1.5 bg-[var(--foreground)] rounded-full mr-1 animate-pulse-dot" />
-            Booking Q3 · 2 senior partner slots open
+            Booking Q3 · 3 senior partner slots open
           </p>
 
           {/* The closing argument — one sentence, one breath */}
@@ -26,7 +26,7 @@ export function FinalCta() {
           </h2>
 
           <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            30 minutes. A senior partner reviews your funnel, your channels, and your unit economics
+            20 minutes. A senior partner reviews your funnel, your channels, and your unit economics
             — and tells you honestly whether BAZventures is the right fit. If we&apos;re not, we&apos;ll refer
             you to someone who is.
           </p>
@@ -40,7 +40,7 @@ export function FinalCta() {
               size="lg"
               trackAs="final_book_call"
             >
-              Book a 30-minute growth call →
+              Book a 20-minute growth call →
             </Button>
             <Button
               href="/contact"

@@ -43,11 +43,11 @@ export default function AboutPage() {
         <div className="max-w-4xl">
           <Eyebrow>About BAZventures</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">
-            The boutique growth partner for ambitious brands.
+            The senior-only growth partner. We ship the system other agencies storyboard.
           </h1>
           <p className="mt-6 text-lg md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-            BAZventures was founded on a simple bet: that a small, senior-only team can outperform a
-            generalist agency pod — if it ships strategy, execution, and measurement as one tightly
+            BAZventures was founded on a simple bet: a small, senior-only team outperforms a
+            generalist agency pod — by shipping strategy, execution, and measurement as one tightly
             integrated system.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -126,7 +126,7 @@ export default function AboutPage() {
             </SectionLede>
             <p className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warning/10 text-foreground text-xs font-medium border border-warning/30">
               <span aria-hidden>·</span>
-              Senior partners. Bios are illustrative until we publish the full team page.
+              Four operators. Six roles. Bios illustrative until filled.
             </p>
           </div>
         </div>

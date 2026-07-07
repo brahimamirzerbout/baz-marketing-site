@@ -16,9 +16,9 @@ export const tiers: PricingTier[] = [
   {
     id: "retainer-core",
     name: "Core",
-    tagline: "One channel, end-to-end.",
+    tagline: "One channel. One senior partner. End-to-end.",
     description:
-      "A single senior partner ships one BAZ service for your team on a monthly retainer. Most useful when you know exactly which channel to grow.",
+      "A single senior partner ships one BAZ service for your team on a monthly retainer. For teams that already know which channel to grow — and want it run by a senior partner, not handed to a pod.",
     monthly: { min: 6500, max: 9500, label: "per month" },
     cadence: "Monthly retainer · 90-day minimum",
     bestFor: ["Startups at $2M–$10M ARR", "Founders scaling past DIY", "Single-channel focus"],
@@ -37,9 +37,9 @@ export const tiers: PricingTier[] = [
   {
     id: "retainer-growth",
     name: "Growth",
-    tagline: "Full growth stack, one senior team.",
+    tagline: "Full stack. One senior team. No pod layers.",
     description:
-      "Three to five senior partners running an integrated system across your highest-leverage channels. The default engagement for ambitious $5M+ teams.",
+      "Three to five senior partners running an integrated system across your highest-leverage channels. The flagship engagement — for $5M+ teams running the full integrated stack.",
     monthly: { min: 18000, max: 28000, label: "per month" },
     cadence: "Quarterly · renewable",
     bestFor: [
@@ -62,7 +62,7 @@ export const tiers: PricingTier[] = [
   {
     id: "project",
     name: "Project",
-    tagline: "A scoped engagement with a clear finish line.",
+    tagline: "Scoped work. A fixed finish line. No retainer.",
     description:
       "Fixed-scope projects: a rebrand, a website rebuild, a launch campaign, an audit, a 90-day growth sprint. Senior team, defined deliverables, no retainer.",
     monthly: { min: 12000, max: 80000, label: "fixed fee" },

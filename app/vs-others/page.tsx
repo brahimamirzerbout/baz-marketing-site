@@ -108,7 +108,7 @@ export default function VsOthersPage() {
             The honest comparison
           </h2>
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            Twelve dimensions, no marketing copy. If we miss, the row says so. If we win, the proof
+            Ten dimensions, no marketing copy. If we miss, the row says so. If we win, the proof
             is in /case-studies.
           </p>
         </div>
@@ -126,7 +126,7 @@ export default function VsOthersPage() {
             </thead>
             <tbody>
               {dimensions.map((d, i) => (
-                <tr key={d.label} className={i % 2 === 0 ? "" : "bg-muted/70/40"}>
+                <tr key={d.label} className={i % 2 === 0 ? "" : "bg-muted/40"}>
                   <td className="p-4 font-medium text-foreground">{d.label}</td>
                   <td className="p-4 text-center">
                     <Cell value={d.baz} />

@@ -736,7 +736,7 @@ export const services: Service[] = [
   {
     slug: "analytics-attribution",
     name: "Analytics, Tracking & Attribution",
-    tagline: "Numbers you can actually trust.",
+    tagline: "Numbers that hold under scrutiny.",
     pillar: "data",
     description:
       "GA4, server-side tracking, attribution modeling, and dashboards that turn data into decisions — for marketers and boards.",
@@ -1092,7 +1092,7 @@ export const services: Service[] = [
   {
     slug: "video-production",
     name: "Video Production & Podcast Studio",
-    tagline: "The most-watched format on the internet, made for your brand.",
+    tagline: "The format that earns the watch, made for your brand.",
     pillar: "owned",
     description:
       "Brand films, product launches, social-first video, and podcast production — script to edit to distribution, in-house studio.",

@@ -46,7 +46,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
           >
             <div className="chip">
               <span className="h-1.5 w-1.5 rounded-full bg-ink-1000 animate-pulse-dot" />
-              Now booking Q3 — 2 spots left
+              Now booking Q3 — 3 spots left
             </div>
           </motion.div>
 
@@ -106,6 +106,10 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
 ─────────────────────────────────────────────────────────────────
   pipeline: $507,140  ·  coverage: 4.0×  ·  wins/day: 2.4  ·  ok`}
               </pre>
+              <p className="mono-label border-t border-border px-5 py-3 text-stone/70">
+                The Hub&rsquo;s revenue loop — score, route, sequence, close — on a 60-second tick.
+                Running in every active engagement.
+              </p>
             </div>
           </ScrollReveal>
 
@@ -155,10 +159,10 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
       {/* Stats band — alternate bg-panel */}
       {(() => {
         const stats = [
-          { v: site.stats.brandsScaled, l: "Brands scaled" },
-          { v: site.stats.countriesServed, l: "Countries" },
+          { v: site.stats.brandsScaled, l: "Brands shipped" },
+          { v: site.stats.countriesServed, l: "Operating regions" },
           { v: site.stats.teamSize, l: "Senior partners" },
-          { v: site.stats.seniorOnly, l: "Senior team" },
+          { v: site.stats.paybackMedian, l: "Median payback" },
         ].filter((s) => s.v != null && s.v !== "");
         if (stats.length === 0) return null;
         return (

@@ -14,7 +14,7 @@ export function KpiBand() {
             By the numbers
           </p>
           <h2 className="font-display text-display-lg text-foreground font-medium tracking-[-0.03em] leading-[1.05]">
-            What &ldquo;senior-only&rdquo; actually looks like.
+            Proof, not promises.
           </h2>
         </div>
         <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-px bg-background/10 rounded-2xl overflow-hidden border border-border/50">

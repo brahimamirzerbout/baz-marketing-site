@@ -14,6 +14,7 @@ import { ScrollReveal } from '@/components/marketing/ScrollReveal';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { AetherBackground } from '@/components/ui/AetherBackground';
+import { AuthErrorHandler } from '@/components/AuthErrorHandler';
 import './globals.css';
 import './aether-theme.css';
 import './aether-monochrome.css';
@@ -67,7 +68,16 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', site: '@bazagency' },
   alternates: { canonical: site.url },
   robots: { index: true, follow: true },
-  icons: { icon: '/favicon.svg' },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/android-chrome-192x192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/android-chrome-512x512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+  },
 };
 
 export const viewport: Viewport = {
@@ -82,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${mono.variable} dark`} data-theme="dark">
       <body className="aether-shell bg-background text-foreground antialiased royal-entrance">
+        <AuthErrorHandler />
         <div className="aether-bg" aria-hidden />
         {/*
           Belt-and-braces pre-paint script: next-themes also injects its own
