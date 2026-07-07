@@ -33,8 +33,8 @@ function LoginForm() {
   // so the page never crashes if the env isn't inlined into the client bundle.
   function getClient() {
     return createBrowserClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "https://uyqgmdrzyapbbvmaumvk.supabase.co",
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "sb_publishable_RhlyuI-vQGilK1oBhGZd_w_xs11x4ps",
     );
   }
 
