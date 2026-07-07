@@ -113,39 +113,6 @@ export function Footer() {
 
           <div>
             <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/60 mb-4">
-              Hub
-            </p>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>
-                <Link href="/hub" className="hover:text-foreground transition-colors">
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link href="/hub/cockpit" className="hover:text-foreground transition-colors">
-                  Cockpit
-                </Link>
-              </li>
-              <li>
-                <Link href="/hub/triangle" className="hover:text-foreground transition-colors">
-                  Triangle
-                </Link>
-              </li>
-              <li>
-                <Link href="/hub/nova" className="hover:text-foreground transition-colors">
-                  Nova AI
-                </Link>
-              </li>
-              <li>
-                <Link href="/hub/intelligence" className="hover:text-foreground transition-colors">
-                  Intelligence
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground/60 mb-4">
               Services
             </p>
             <ul className="space-y-3 text-sm text-muted-foreground">

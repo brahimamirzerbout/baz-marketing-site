@@ -28,10 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/marketing-hub",
     "/brandbook",
     "/become-an-operator",
-    "/hub",
-    "/hub/cockpit",
-    "/hub/triangle",
-    "/hub/nova",
   ].map((p) => ({
     url: `${base}${p}`,
     lastModified: now,

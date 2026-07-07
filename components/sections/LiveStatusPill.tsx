@@ -7,8 +7,7 @@
  */
 import { useEffect, useState } from "react";
 
-const HUB_URL =
-  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_HUB_URL) || "http://localhost:3010";
+const HUB_URL = "https://marketing-hub-roan.vercel.app";
 
 interface HubPulse {
   ok: boolean;

@@ -12,7 +12,6 @@ const nav = [
   { href: "/services", label: "Services" },
   { href: "/selected", label: "Selected", badge: "3 OPEN" },
   { href: "/marketing-hub", label: "Marketing Hub", badge: "LIVE" },
-  { href: "/hub", label: "Hub" },
   { href: "/methodology", label: "Methodology" },
   { href: "/case-studies", label: "Case studies" },
   { href: "/insights", label: "Insights" },
