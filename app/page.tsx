@@ -20,6 +20,7 @@ import {
 } from "@/components/sections";
 import { buildMetadata, jsonLd, professionalServiceLd } from "@/lib/seo";
 import { resolveHeroVariant } from "@/lib/hero-variant";
+import { SelectedFew } from "@/components/sections/SelectedFew";
 
 // `/` is rendered fully static (○) for edge caching + sub-1.5s LCP. The `?icp=`
 // hero-personalization feature (lib/hero-variant.tsx) is intentionally NOT read
@@ -59,6 +60,7 @@ export default function HomePage() {
       <Testimonials />
       <InsightsPreview />
       <ReadNext />
+      <SelectedFew />
       <FinalCta />
       <StickyCta />
       <script
