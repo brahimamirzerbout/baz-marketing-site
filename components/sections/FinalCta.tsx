@@ -67,7 +67,7 @@ export function FinalCta() {
         <div className="mt-20 pt-8 border-t border-white/8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src="/logo/baz-mark.svg"
+              src="/apple-touch-icon.png"
               alt=""
               className="w-8 h-8 object-contain"
             />

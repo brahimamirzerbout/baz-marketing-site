@@ -17,7 +17,7 @@ export function Footer() {
           <div className="lg:col-span-7">
             <Link href="/" aria-label={site.name} className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/brand/baz-signature-transparent.png" alt="" aria-hidden="true" className="h-9 w-auto md:h-10" />
+              <img src="/apple-touch-icon.png" alt="" aria-hidden="true" className="h-9 w-9 md:h-10 md:w-10 rounded-lg object-cover" />
               <span className="font-display font-semibold tracking-[-0.02em] text-foreground text-xl md:text-2xl leading-none">{site.name}</span>
             </Link>
             <p className="mt-6 text-lg text-muted-foreground max-w-md leading-relaxed font-light">
@@ -194,7 +194,7 @@ export function Footer() {
         {/* Signature */}
         <div className="flex justify-center md:justify-start mb-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/baz-signature-gold.png" alt="BAZventures signature" className="h-20 md:h-24 w-auto opacity-90" />
+          <img src="/apple-touch-icon.png" alt="BAZventures" className="h-16 w-16 md:h-20 md:w-20 rounded-xl object-cover opacity-90" />
         </div>
 
         {/* Bottom — quiet signature */}
