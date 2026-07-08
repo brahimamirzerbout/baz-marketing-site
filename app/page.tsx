@@ -29,8 +29,8 @@ import { SelectedFew } from "@/components/sections/SelectedFew";
 // traffic uses ?icp=). To re-enable ICP hero variants, swap to a client-side
 // override (useSearchParams() in a client Hero wrapper) so `/` stays static.
 export function generateMetadata() {
-  const title = "I don't sell marketing. I sell certainty.";
-  const subtitle = "60+ brands shipped. Senior-only. Or pay nothing for month four";
+  const title = "Growth as a forecast, not a hope.";
+  const subtitle = "Senior-only. 90-day plans. Or pay nothing for month four";
   const ogQuery = `?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(subtitle)}`;
   return buildMetadata({
     title,

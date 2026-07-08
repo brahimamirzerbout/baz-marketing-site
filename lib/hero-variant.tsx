@@ -23,18 +23,17 @@ export interface HeroVariant {
 
 const DEFAULT_HEADLINE = (
   <>
-    I don&rsquo;t sell marketing.{" "}
-    I sell <span className="not-italic text-gradient">certainty</span>.
+    Growth as a <span className="not-italic text-gradient">forecast</span>, not a hope.
   </>
 );
 
-const DEFAULT_TAGLINE = <>60+ brands shipped. Senior-only. Or pay nothing for month four.</>;
+const DEFAULT_TAGLINE = <>Senior-only. 90-day plans. Or pay nothing for month four.</>;
 
 const DEFAULT_SUBHEAD = (
   <>
-    I&rsquo;m Brahim ZERBOUT. I treat marketing as a business artform — engineered, measurable,
-    and tied to revenue, not vanity. No juniors. No decks nobody reads. No retainers for activity.
-    I ship revenue, or I don&rsquo;t eat. That&rsquo;s the offer.
+    We don&rsquo;t chase the market — we engineer it. BAZ is the senior-partner marketing
+    agency that instruments your pipeline, ships the system, and holds the line on what
+    moves revenue. No juniors. No decks nobody reads. No retainers for activity.
   </>
 );
 
