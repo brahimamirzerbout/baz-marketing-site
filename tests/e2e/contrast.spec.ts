@@ -4,13 +4,17 @@ import { test, expect } from "@playwright/test";
 function luminance(rgb: string): number {
   const m = rgb.match(/\d+/g);
   if (!m || m.length < 3) return 999;
-  const [r, g, b] = m.map(Number);
+  const r = Number(m[0]);
+  const g = Number(m[1]);
+  const b = Number(m[2]);
   return (r + g + b) / 3;
 }
 
 // Walk up to find the first ancestor with a non-transparent painted background.
-async function paintedBg(el: Element): Promise<string> {
-  return await el.evaluate((node) => {
+// In Playwright, `page.locator(...).evaluate()` resolves the locator to the
+// first matching Element before calling the callback, so `node` is `Element`.
+async function paintedBg(loc: import("@playwright/test").Locator): Promise<string> {
+  return await loc.evaluate((node: Element) => {
     let cur: Element | null = node;
     for (let i = 0; i < 4 && cur; i++) {
       const bg = getComputedStyle(cur).backgroundColor;
