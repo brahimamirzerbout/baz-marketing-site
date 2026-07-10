@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb, audit, id } from "@/lib/db";
 import { createSession, hashUserPassword, setAuthCookies } from "@/lib/auth";
+import { defaultUserColor } from "@/lib/brand-tokens";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -33,8 +34,8 @@ export async function POST(req: NextRequest) {
       .join("") || "BZ";
   db.prepare(
     `INSERT INTO users (id, email, name, password_hash, role, team, initials, color)
-              VALUES (?, ?, ?, ?, 'member', ?, ?, '#4f7cff')`,
-  ).run(userId, email.toLowerCase(), name, hashUserPassword(password), team ?? null, initials);
+              VALUES (?, ?, ?, ?, 'member', ?, ?, ?)`,
+  ).run(userId, email.toLowerCase(), name, hashUserPassword(password), team ?? null, initials, defaultUserColor("member"));
 
   const sessionToken = await createSession(userId);
   const user = db

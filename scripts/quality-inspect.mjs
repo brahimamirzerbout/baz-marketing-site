@@ -4,13 +4,15 @@
  *
  * Checks:
  *   1. All pages return HTTP 200
- *   2. All API routes respond
+ *   2. All API routes respond (only methods actually exported)
  *   3. Placeholder content flags
  *   4. Broken internal links
  *   5. Missing SEO meta tags
  *   6. Console errors (via HTML inspection)
  *   7. Accessibility issues
  *   8. Performance signals
+ *
+ * Pages and API routes are discovered dynamically by scanning app/.
  *
  * Outputs: quality-report.json + quality-report.md
  */
@@ -23,6 +25,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const SITE = process.env.SITE_URL || 'http://localhost:3000';
 
+// The walker is rooted at `app/` (or `app/api/`), so most of these
+// guards are defensive — the only one that actually matters at the
+// walk root is `api` (skipped by the page walker) and `_next`.
+const SKIP_DIRS = new Set(['_next', 'api', '.git', 'node_modules', '.next']);
+
 const results = {
   timestamp: new Date().toISOString(),
   site: SITE,
@@ -32,16 +39,75 @@ const results = {
   stats: {},
 };
 
+// ─── DISCOVERY ────────────────────────────────────────────
+
+// Recursively walk a directory, collecting files that match `matcher`
+// and converting the path under `root` into a URL. Dynamic segments
+// ([param]) are skipped entirely.
+function walkForUrls(dir, base, root, matcher, out) {
+  let entries;
+  try {
+    entries = readdirSync(dir);
+  } catch (err) {
+    console.warn(`[quality-inspect] cannot read ${dir}: ${err.message}`);
+    return;
+  }
+  for (const e of entries) {
+    if (e.startsWith('.')) continue;
+    if (SKIP_DIRS.has(e)) continue;
+    if (e.startsWith('[')) continue; // skip dynamic segments ([slug], [id]…)
+    const p = join(dir, e);
+    let s;
+    try {
+      s = statSync(p);
+    } catch {
+      continue;
+    }
+    if (s.isDirectory()) {
+      walkForUrls(p, base ? `${base}/${e}` : e, root, matcher, out);
+    } else if (matcher(e)) {
+      out.push({ file: p, url: base === '' ? '/' : `/${base}` });
+    }
+  }
+}
+
+// 1. Discover page routes from app/**\/page.tsx (excluding api/).
+function discoverPages() {
+  const found = [];
+  walkForUrls(join(ROOT, 'app'), '', 'app', (e) => e === 'page.tsx', found);
+  // Known static routes that may not have a matching page.tsx on disk.
+  const knownStatic = ['/', '/login', '/signup'];
+  const urls = new Set(found.map((f) => f.url));
+  for (const u of knownStatic) urls.add(u);
+  return [...urls].sort();
+}
+
+// 2. Discover API routes from app/api/**\/route.ts.
+function discoverApis() {
+  const found = [];
+  walkForUrls(join(ROOT, 'app/api'), '', 'app/api', (e) => e === 'route.ts', found);
+  return found.sort((a, b) => a.url.localeCompare(b.url));
+}
+
+// 3. Determine which HTTP methods an API route actually exports.
+function getExportedMethods(file) {
+  let txt;
+  try {
+    txt = readFileSync(file, 'utf8');
+  } catch {
+    return [];
+  }
+  const methods = [];
+  for (const m of ['GET', 'POST', 'PATCH', 'DELETE', 'PUT']) {
+    const re = new RegExp(`export\\s+(async\\s+)?function\\s+${m}\\s*\\(`);
+    if (re.test(txt)) methods.push(m);
+  }
+  return methods;
+}
+
 // ─── 1. PAGE STATUS CHECK ─────────────────────────────────
 async function checkPages() {
-  const pages = [
-    '/', '/hub', '/hub/cockpit', '/hub/triangle', '/hub/nova',
-    '/services', '/case-studies', '/insights', '/pricing', '/about',
-    '/contact', '/methodology', '/our-story', '/stance', '/vs-others',
-    '/marketing-hub', '/brandbook', '/become-an-operator',
-    '/loop', '/pulse', '/portal', '/portal/client',
-    '/login', '/signup', '/dashboard', '/console', '/admin',
-  ];
+  const pages = discoverPages();
   const ok = []; const fail = [];
   for (const p of pages) {
     try {
@@ -51,30 +117,46 @@ async function checkPages() {
       fail.push({ path: p, status: 'timeout' });
     }
   }
-  results.checks.pages = { passed: ok.length, failed: fail.length, failures: fail };
+  results.checks.pages = { discovered: pages.length, passed: ok.length, failed: fail.length, failures: fail };
   if (fail.length === 0) results.passed.push(`All ${ok.length} pages return 200`);
   else fail.forEach(f => results.issues.push(`Page ${f.path} returned ${f.status}`));
 }
 
 // ─── 2. API ROUTE CHECK ───────────────────────────────────
 async function checkApis() {
-  const routes = [
-    '/api/health', '/api/services', '/api/ai', '/api/auth/me',
-    '/api/leads', '/api/feedback', '/api/agents', '/api/search', '/api/score',
-  ];
-  const ok = []; const fail = [];
-  for (const r of routes) {
-    try {
-      const res = await fetch(`${SITE}${r}`, { signal: AbortSignal.timeout(5000) });
-      // 401 is OK for auth-protected routes
-      if (res.ok || res.status === 401) ok.push(r);
-      else fail.push({ route: r, status: res.status });
-    } catch (e) {
-      fail.push({ route: r, status: 'timeout' });
+  const apis = discoverApis();
+  const ok = []; const fail = []; const skipped = [];
+  for (const { url, file } of apis) {
+    const methods = getExportedMethods(file);
+    if (methods.length === 0) {
+      skipped.push({ route: url, reason: 'no exported methods' });
+      results.issues.push(`API ${url} has no exported HTTP methods — skipped`);
+      continue;
+    }
+    for (const m of methods) {
+      try {
+        const opts = { method: m, signal: AbortSignal.timeout(5000) };
+        // Non-GET/HEAD methods need a body to be well-formed.
+        if (m !== 'GET' && m !== 'HEAD') opts.body = '{}';
+        const res = await fetch(`${SITE}${url}`, opts);
+        // 401 is OK for auth-protected routes
+        if (res.ok || res.status === 401) ok.push(`${m} ${url}`);
+        else fail.push({ route: `${m} ${url}`, status: res.status });
+      } catch (e) {
+        fail.push({ route: `${m} ${url}`, status: 'timeout' });
+      }
     }
   }
-  results.checks.apis = { passed: ok.length, failed: fail.length, failures: fail };
-  if (fail.length === 0) results.passed.push(`All ${ok.length} API routes respond`);
+  results.checks.apis = {
+    discovered: apis.length,
+    passed: ok.length,
+    failed: fail.length,
+    skipped: skipped.length,
+    failures: fail,
+    skippedRoutes: skipped,
+  };
+  if (fail.length === 0 && apis.length > 0) results.passed.push(`All ${ok.length} API method checks pass (${apis.length} routes)`);
+  else if (apis.length === 0) results.passed.push('No API routes discovered');
   else fail.forEach(f => results.issues.push(`API ${f.route} returned ${f.status}`));
 }
 
@@ -119,7 +201,7 @@ function checkPlaceholders() {
 // ─── 4. SEO CHECK ─────────────────────────────────────────
 async function checkSeo() {
   const checks = [];
-  const pages = ['/', '/services', '/case-studies', '/insights', '/pricing', '/about'];
+  const pages = discoverPages();
 
   for (const p of pages) {
     try {
@@ -141,7 +223,7 @@ async function checkSeo() {
 
   const allGood = checks.every(c => c.title && c.description && c.ogTitle && c.canonical);
   results.checks.seo = { pages: checks.length, allPass: allGood, details: checks };
-  if (allGood) results.passed.push(`SEO meta tags present on all ${checks.length} checked pages`);
+  if (allGood) results.passed.push(`SEO meta tags present on all ${checks.length} discovered pages`);
   else checks.filter(c => !c.title || !c.description || !c.ogTitle).forEach(c =>
     results.issues.push(`SEO incomplete on ${c.path}`)
   );
@@ -187,6 +269,10 @@ function checkFiles() {
   countDir('app/api', 'apiRoutes', '.ts');
   countDir('content', 'contentFiles', '.ts');
   countDir('lib', 'libFiles', '.ts');
+
+  // Reflect actually discovered routes instead of re-counting loosely.
+  stats.pages = discoverPages().length;
+  stats.apiRoutes = discoverApis().length;
 
   // Count beUI
   try {
@@ -256,6 +342,7 @@ async function main() {
 }
 
 function generateMarkdown(r) {
+  const apis = r.checks.apis || {};
   return `# BAZ Quality Report
 > Generated: ${r.timestamp}
 
@@ -265,14 +352,15 @@ function generateMarkdown(r) {
 
 ## Checks
 
-### Pages
+### Pages (discovered: ${r.checks.pages?.discovered || 0})
 - Passed: ${r.checks.pages?.passed || 0}
 - Failed: ${r.checks.pages?.failed || 0}
 ${(r.checks.pages?.failures || []).map(f => `- ❌ ${f.path}: ${f.status}`).join('\n')}
 
-### API Routes
-- Passed: ${r.checks.apis?.passed || 0}
-- Failed: ${r.checks.apis?.failed || 0}
+### API Routes (discovered: ${apis.discovered || 0}, checked: ${apis.passed || 0}, skipped: ${apis.skipped || 0})
+- Passed: ${apis.passed || 0}
+- Failed: ${apis.failed || 0}
+${(apis.failures || []).map(f => `- ❌ ${f.route}: ${f.status}`).join('\n')}
 
 ### Placeholders
 - Total flagged: ${r.checks.placeholders?.total || 0}

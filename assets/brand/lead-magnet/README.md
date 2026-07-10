@@ -4,7 +4,7 @@ Lead magnet. Give this away in exchange for an email.
 
 ## Files
 
-- `playbook-cover.svg` — 8.5×11" cover. Use as the first page of the PDF, or as a standalone image in a landing page.
+- `playbook-cover.png` — 8.5×11" cover (PNG, 1200×1600, 219KB). Use as the first page of the PDF, or as a standalone image in a landing page.
 - `playbook-body.md` — 24-page playbook content (markdown). Convert to PDF with pandoc: `pandoc playbook-body.md -o playbook.pdf`
 
 ## The ask

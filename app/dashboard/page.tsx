@@ -3,11 +3,14 @@ import Link from "next/link";
 import nextDynamic from "next/dynamic";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { StatusButtons } from "@/components/dashboard/StatusButtons";
-import { getLeadStats, readLeadsWithStatus } from "@/lib/leads-store";
+import { readSessionFromCookies } from "@/lib/auth";
+import { requireAdmin } from "@/lib/admin-guard";
+import { redirect } from "next/navigation";
+import { getDb } from "@/lib/db";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
-// AgencyGraph uses motion/react (formerly framer-motion) which emits inline <style> tags during SSR
+// AgencyGraph uses motion/react which emits inline <style> tags during SSR
 // that don't match the client output (escaped vs raw quotes). Skipping SSR
 // here eliminates the hydration mismatch without changing the UI.
 const AgencyGraph = nextDynamic(
@@ -28,16 +31,34 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-type Tab = "leads" | "graph";
+type LeadRow = {
+  id: string;
+  name: string;
+  email: string;
+  company: string | null;
+  website: string | null;
+  budget: string | null;
+  message: string;
+  source: string;
+  status: string;
+  score: number | null;
+  service: string | null;
+  intent: string | null;
+  created_at: number;
+  updated_at: number;
+};
 
-function parseTab(v: string | string[] | undefined): Tab {
-  return v === "graph" ? "graph" : "leads";
-}
+type Stats = {
+  total: number;
+  today: number;
+  thisWeek: number;
+  byStatus: Record<string, number>;
+  byBudget: Record<string, number>;
+};
 
-function formatDate(iso: string): string {
+function formatDate(ts: number): string {
   try {
-    const d = new Date(iso);
-    return d.toLocaleString("en-US", {
+    return new Date(ts).toLocaleString("en-US", {
       month: "short",
       day: "numeric",
       hour: "2-digit",
@@ -45,13 +66,12 @@ function formatDate(iso: string): string {
       timeZoneName: "short",
     });
   } catch {
-    return iso;
+    return String(ts);
   }
 }
 
-function relativeTime(iso: string): string {
-  const t = new Date(iso).getTime();
-  const diff = Date.now() - t;
+function relativeTime(ts: number): string {
+  const diff = Date.now() - ts;
   const min = Math.floor(diff / 60000);
   if (min < 1) return "just now";
   if (min < 60) return `${min}m ago`;
@@ -59,7 +79,7 @@ function relativeTime(iso: string): string {
   if (hr < 24) return `${hr}h ago`;
   const days = Math.floor(hr / 24);
   if (days < 7) return `${days}d ago`;
-  return formatDate(iso);
+  return formatDate(ts);
 }
 
 const BUDGET_LABELS: Record<string, string> = {
@@ -76,9 +96,44 @@ export default async function DashboardPage({
 }: {
   searchParams?: { tab?: string | string[] };
 }) {
+  const { user } = await requireAdmin({ nextPath: "/dashboard" });
+
   const tab = parseTab(searchParams?.tab);
 
-  const [leads, stats] = await Promise.all([readLeadsWithStatus(), getLeadStats()]);
+  const db = getDb();
+  // Recent leads for the inbox (paged, newest first).
+  const leads = db.prepare(
+    `SELECT id, name, email, company, website, budget, message, source,
+            service, intent, status, score, created_at, updated_at
+       FROM leads ORDER BY created_at DESC LIMIT 200`,
+  ).all() as LeadRow[];
+
+  // Aggregate stats over the *full* table, not the paged 200 rows.
+  // A separate COUNT avoids the truncation bug where stats.total /
+  // byStatus / byBudget underreported on > 200 leads.
+  const now = Date.now();
+  const dayMs = 24 * 60 * 60 * 1000;
+  const weekMs = 7 * dayMs;
+  const todayStart = now - dayMs;
+  const weekStart = now - weekMs;
+
+  const totalRow = db.prepare("SELECT COUNT(*) AS n FROM leads").get() as { n: number };
+  const todayRow = db.prepare("SELECT COUNT(*) AS n FROM leads WHERE created_at >= ?").get(todayStart) as { n: number };
+  const weekRow = db.prepare("SELECT COUNT(*) AS n FROM leads WHERE created_at >= ?").get(weekStart) as { n: number };
+  const byStatusRows = db.prepare(
+    "SELECT status, COUNT(*) AS n FROM leads GROUP BY status",
+  ).all() as { status: string; n: number }[];
+  const byBudgetRows = db.prepare(
+    "SELECT budget, COUNT(*) AS n FROM leads WHERE budget IS NOT NULL GROUP BY budget",
+  ).all() as { budget: string; n: number }[];
+
+  const stats: Stats = {
+    total: totalRow.n,
+    today: todayRow.n,
+    thisWeek: weekRow.n,
+    byStatus: Object.fromEntries(byStatusRows.map((r) => [r.status, r.n])),
+    byBudget: Object.fromEntries(byBudgetRows.map((r) => [r.budget, r.n])),
+  };
 
   const newLeads = leads.filter((l) => l.status === "new");
   const recent = leads.slice(0, 20);
@@ -126,7 +181,7 @@ export default async function DashboardPage({
         <Stat
           label="Reply rate"
           value={`${replyRate}%`}
-          hint={`${stats.byStatus.replied} replied · ${stats.byStatus.archived} archived`}
+          hint={`${stats.byStatus.replied || 0} replied · ${stats.byStatus.archived || 0} archived`}
           tone={replyRate >= 50 ? "ok" : "neutral"}
         />
       </div>
@@ -174,11 +229,11 @@ export default async function DashboardPage({
                 </span>
                 <span>·</span>
                 <span>
-                  <span className="font-mono">{stats.byStatus.replied}</span> replied
+                  <span className="font-mono">{stats.byStatus.replied || 0}</span> replied
                 </span>
                 <span>·</span>
                 <span>
-                  <span className="font-mono">{stats.byStatus.archived}</span> archived
+                  <span className="font-mono">{stats.byStatus.archived || 0}</span> archived
                 </span>
               </div>
             </div>
@@ -192,7 +247,7 @@ export default async function DashboardPage({
                   </Link>
                   , they&apos;ll land here.
                 </p>
-                <p className="text-xs text-muted-foreground/60 mt-3 font-mono">data/leads.jsonl</p>
+                <p className="text-xs text-muted-foreground/60 mt-3 font-mono">SQLite: leads</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -236,10 +291,10 @@ export default async function DashboardPage({
                       <div className="flex flex-col items-end gap-1">
                         <time
                           className="text-xs text-muted-foreground font-mono"
-                          dateTime={lead.receivedAt}
-                          title={formatDate(lead.receivedAt)}
+                          dateTime={String(lead.created_at)}
+                          title={formatDate(lead.created_at)}
                         >
-                          {relativeTime(lead.receivedAt)}
+                          {relativeTime(lead.created_at)}
                         </time>
                         <span className="text-[10px] text-muted-foreground/60 font-mono">
                           {lead.id.slice(-8)}
@@ -279,7 +334,7 @@ export default async function DashboardPage({
                         >
                           Reply by email →
                         </a>
-                        <StatusButtons leadId={lead.id} initial={lead.status} />
+                        <StatusButtons leadId={lead.id} initial={narrowLeadStatus(lead.status)} />
                       </div>
                     </div>
                   </article>
@@ -373,7 +428,7 @@ export default async function DashboardPage({
 
       <footer className="mt-16 pt-8 border-t border-border flex items-center justify-between text-xs text-muted-foreground/60">
         <span>
-          Stored at <span className="font-mono">data/leads.jsonl</span>
+          Stored at <span className="font-mono">SQLite leads</span>
         </span>
         <span>
           Lead notifications:{" "}
@@ -388,6 +443,17 @@ export default async function DashboardPage({
       </footer>
     </Section>
   );
+}
+
+function parseTab(v: string | string[] | undefined): "leads" | "graph" {
+  return v === "graph" ? "graph" : "leads";
+}
+
+const LEAD_STATUSES = ["new", "replied", "archived"] as const;
+type LeadStatus = (typeof LEAD_STATUSES)[number];
+
+function narrowLeadStatus(s: string): LeadStatus {
+  return (LEAD_STATUSES as readonly string[]).includes(s) ? (s as LeadStatus) : "new";
 }
 
 function Stat({

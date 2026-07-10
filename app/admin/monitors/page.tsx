@@ -1,3 +1,4 @@
+import { requireAdmin } from "@/lib/admin-guard";
 import { headers } from "next/headers";
 import { getMonitors } from "@/lib/monitors";
 
@@ -6,6 +7,7 @@ export const metadata = { title: "Monitors · BAZ", robots: { index: false, foll
 export const dynamic = "force-dynamic";
 
 export default async function MonitorsPage() {
+  await requireAdmin({ nextPath: "/admin/monitors" });
   const { data, live } = await getMonitors();
   const h = headers();
   const ua = h.get("user-agent") || "";

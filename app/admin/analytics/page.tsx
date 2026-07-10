@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { requireAdmin } from "@/lib/admin-guard";
 import { Section, Eyebrow, SectionHeading } from "@/components/ui/Section";
 import { AnalyticsTools } from "@/components/analytics/AnalyticsTools";
 import { buildMetadata } from "@/lib/seo";
@@ -11,7 +12,13 @@ export const metadata = buildMetadata({
   noindex: true,
 });
 
-export default function AnalyticsPage() {
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+export default async function AnalyticsPage() {
+  // Admin / owner only. members and clients are bounced to /.
+  await requireAdmin({ nextPath: "/admin/analytics" });
+
   return (
     <Section tone="paper" size="lg">
       <header className="mb-10">

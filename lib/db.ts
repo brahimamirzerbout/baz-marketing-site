@@ -23,6 +23,7 @@
 import path from "node:path";
 import crypto from "node:crypto";
 import bcrypt from "bcryptjs";
+import { defaultUserColor } from "./brand-tokens";
 
 // ── Database abstraction ──────────────────────────────────
 // Production (Vercel):  uses Supabase PostgreSQL via worker thread
@@ -250,15 +251,19 @@ function bootstrap(db: SqliteDb) {
 
   // First-boot owner account
   const ownerEmail = process.env.OWNER_EMAIL || "owner@baz.agency";
-  const ownerPassword = process.env.OWNER_PASSWORD || "changeme-on-first-login";
+  const ownerPassword = process.env.OWNER_PASSWORD;
+  if (!ownerPassword) {
+    console.warn("[baz:db] OWNER_PASSWORD is not set — skipping owner bootstrap.");
+    return;
+  }
   const existing = db.prepare("SELECT id FROM users WHERE email = ?").get(ownerEmail) as
     { id: string } | undefined;
   if (!existing) {
     const id = `u_${crypto.randomBytes(6).toString("hex")}`;
     db.prepare(
       `INSERT INTO users (id, email, name, password_hash, role, team, initials, color)
-                VALUES (?, ?, ?, ?, 'owner', 'strategy', 'BZ', '#ff3b2f')`,
-    ).run(id, ownerEmail, "BAZventures Operator", bcrypt.hashSync(ownerPassword, 10));
+                VALUES (?, ?, ?, ?, 'owner', 'strategy', 'BZ', ?)`,
+    ).run(id, ownerEmail, "BAZventures Operator", bcrypt.hashSync(ownerPassword, 10), defaultUserColor("owner"));
     db.prepare("INSERT INTO audit (actor, action, target, meta) VALUES (?, ?, ?, ?)").run(
       id,
       "bootstrap",

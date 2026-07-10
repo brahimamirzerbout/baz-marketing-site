@@ -348,7 +348,7 @@ function AdStockPanel() {
         </p>
 
         <Chart
-          bars={spend.map((v) => ({ value: v, color: "#0e0e10" }))}
+          bars={spend.map((v) => ({ value: v, color: "var(--ink-0)" }))}
           line={result.values}
           maxBar={Math.max(...spend, 1)}
           maxLine={max}
@@ -416,7 +416,7 @@ function Chart({
           y1={PAD_T + innerH * p}
           x2={W - PAD_R}
           y2={PAD_T + innerH * p}
-          stroke="#ececea"
+          stroke="var(--border)"
           strokeWidth={1}
         />
       ))}
@@ -431,7 +431,7 @@ function Chart({
       <path
         d={path}
         fill="none"
-        stroke="#ff3b2f"
+        stroke="var(--brand)"
         strokeWidth={2.5}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -439,7 +439,7 @@ function Chart({
       {line.map((v, i) => {
         const x = PAD_L + i * (barW + gap) + barW / 2;
         const y = PAD_T + innerH * (1 - v / maxLine);
-        return <circle key={i} cx={x} cy={y} r={2.5} fill="#ff3b2f" />;
+        return <circle key={i} cx={x} cy={y} r={2.5} fill="var(--brand)" />;
       })}
       {/* X axis labels (every 4th) */}
       {bars.map((_, i) =>
@@ -451,7 +451,7 @@ function Chart({
             textAnchor="middle"
             fontSize="10"
             fontFamily="ui-monospace, monospace"
-            fill="#7e7e79"
+            fill="var(--muted-foreground)"
           >
             w{i + 1}
           </text>
@@ -466,7 +466,7 @@ function Chart({
           textAnchor="end"
           fontSize="10"
           fontFamily="ui-monospace, monospace"
-          fill="#7e7e79"
+          fill="var(--muted-foreground)"
         >
           {formatUsd(maxLine * p)}
         </text>

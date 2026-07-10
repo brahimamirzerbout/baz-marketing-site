@@ -18,9 +18,9 @@ import { AuthErrorHandler } from '@/components/AuthErrorHandler';
 import './globals.css';
 import './aether-theme.css';
 import './aether-monochrome.css';
-import './color-layer.css'; // BLACK & WHITE layer — imported LAST so it wins. Expert re-adds color here.
-import './aether.css';        // Æther (Lovable) design-system utilities: aether-shell, mono-label, display-xl, chip, glass, watermark.
 import './contrast-layer.css'; // REVERTIBLE contrast layer — remove this line to undo
+import './color-layer.css'; // BLACK & WHITE layer — imported LAST so it wins.
+import './aether.css';        // Æther (Lovable) design-system utilities: aether-shell, mono-label, display-xl, chip, glass, watermark.
 
 const inter = Inter({
   subsets: ['latin'],

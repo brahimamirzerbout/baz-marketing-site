@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { readSessionFromCookies } from "@/lib/auth";
+import { getDb } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,18 +31,21 @@ export async function GET() {
   const { data: { session } } = await supabase.auth.getSession();
 
   if (session?.user) {
-    const { user } = session;
-    return NextResponse.json({
-      ok: true,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "User",
-        role: "member",
-        initials: ((user.user_metadata?.full_name as string)?.[0] ?? user.email?.[0] ?? "U").toUpperCase(),
-        color: "var(--brand)",
-      },
-    });
+    const { user: supaUser } = session;
+    const db = getDb();
+    const localUser = db.prepare(
+      "SELECT id, email, name, role, team, initials, color FROM users WHERE email = ?",
+    ).get(supaUser.email ?? "") as { id: string; email: string; name: string; role: string; team: string | null; initials: string; color: string } | undefined;
+    if (localUser) {
+      return NextResponse.json({ ok: true, user: localUser });
+    }
+    // Supabase-authenticated user has no local row → refuse to mint a session.
+    // Either the admin needs to provision them, or the auth provider is wrong
+    // for this app. Do not silently downgrade to a fabricated 'member' role.
+    return NextResponse.json(
+      { ok: false, error: "no_local_user", provider: "supabase" },
+      { status: 401 },
+    );
   }
 
   const { user } = await readSessionFromCookies();

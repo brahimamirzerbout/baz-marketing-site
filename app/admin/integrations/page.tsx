@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { requireAdmin } from "@/lib/admin-guard";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { Breadcrumb } from "@/components/sections/Breadcrumb";
 import { IntegrationsClient } from "./IntegrationsClient";
@@ -10,7 +11,11 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false }, // admin page
 };
 
-export default function IntegrationsPage() {
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+export default async function IntegrationsPage() {
+  await requireAdmin({ nextPath: "/admin/integrations" });
   return (
     <>
       <Section tone="paper" size="lg">

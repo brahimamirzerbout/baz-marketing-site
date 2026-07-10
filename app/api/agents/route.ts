@@ -34,7 +34,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid_json" }, { status: 400 });
   }
 
-  const guard = rateLimit(req, { key: "agents-run", limit: 20, windowMs: 60_000 });
+  const { user } = await readSessionFromCookies();
+  // Authenticated users: bucket by user.id. Anonymous: bucket by IP.
+  const guard = rateLimit(req, {
+    key: "agents-run",
+    limit: 20,
+    windowMs: 60_000,
+    userId: user?.id,
+  });
   if (!guard.ok) {
     return NextResponse.json(
       { ok: false, error: "rate_limited" },
@@ -42,7 +49,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { user } = await readSessionFromCookies();
   const kind = body.kind || "general";
   const agent = getAgent(kind);
   if (!agent) return NextResponse.json({ ok: false, error: "unknown_agent" }, { status: 400 });
