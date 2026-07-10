@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAZventures — Growth as a Forecast</title>
+<meta name="description" content="BAZventures — a senior-only growth partner. Eighteen specialized services, 90-day execution plans, and a performance-based guarantee.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   BAZventures — ÆTHER MONOCHROME + GOLD ACCENT
+   Grayscale ink ramp (chroma 0) for structure; gold is the only hue.
+   Expert knob: --gold / --gold-light / --gold-deep.
+   ═══════════════════════════════════════════════════════════════════ */
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; }
+
+:root {
+  /* Structural neutrals stay monochrome (chroma 0) */
+  --ink-0: oklch(0 0 0);
+  --ink-50: oklch(0.04 0 0);
+  --ink-100: oklch(0.08 0 0);
+  --ink-200: oklch(0.13 0 0);
+  --ink-300: oklch(0.18 0 0);
+  --ink-400: oklch(0.27 0 0);
+  --ink-500: oklch(0.4 0 0);
+  --ink-600: oklch(0.55 0 0);
+  --ink-700: oklch(0.7 0 0);
+  --ink-800: oklch(0.85 0 0);
+  --ink-900: oklch(0.96 0 0);
+  --ink-1000: oklch(1 0 0);
+
+  --background: oklch(0.04 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.08 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.08 0 0);
+  --muted: oklch(0.13 0 0);
+  --muted-foreground: oklch(0.62 0 0);
+  --accent: oklch(0.18 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(1 0 0 / 30%);
+
+  /* GOLD ACCENT — the only hue (from BAZ brand assets) */
+  --gold: #C29B5B;
+  --gold-light: #F7E3A8;
+  --gold-deep: #8C6A30;
+
+  /* Semantic aliases — grayscale structure, gold accent */
+  --ink: oklch(0.04 0 0);
+  --brand: var(--gold);
+  --brand2: var(--gold-deep);
+  --panel: oklch(0.08 0 0);
+  --panel-2: oklch(0.13 0 0);
+  --sand: oklch(0.98 0 0);
+  --stone: oklch(0.62 0 0);
+
+  --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --radius-none: 0;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+html { scroll-behavior: smooth; color-scheme: dark; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--sand);
+  background: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+::selection { background: var(--brand); color: var(--ink-0); }
+a { color: var(--sand); text-decoration: none; }
+a:hover { color: var(--brand); }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--ink-50); }
+::-webkit-scrollbar-thumb { background: var(--ink-400); }
+img, svg { display: block; max-width: 100%; }
+
+/* Layout primitives */
+.wrap { max-width: 84rem; margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 6rem 0; }
+@media (min-width: 1024px) { .section { padding: 8rem 0; } }
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .3em;
+  color: var(--brand);
+  display: inline-flex; align-items: center; gap: .6rem;
+}
+.eyebrow::before {
+  content: ''; width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-bottom: 8px solid var(--brand);
+}
+.display {
+  font-family: var(--font-display);
+  font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
+  color: var(--sand); text-transform: uppercase;
+}
+.text-brand { color: var(--brand); }
+.bg-panel { background: var(--panel); }
+.bg-ink { background: var(--ink); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
+  padding: 1rem 2rem; cursor: pointer; border: 1.5px solid transparent;
+  border-radius: var(--radius-md); transition: all .3s var(--ease);
+}
+.btn-primary { background: var(--brand); color: var(--ink-0); }
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); color: var(--ink-0); }
+.btn-ghost { border-color: oklch(1 0 0 / 50%); color: var(--sand); }
+.btn-ghost:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+.rounded-full { border-radius: 9999px !important; }
+
+/* Header */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  transition: background .3s var(--ease), backdrop-filter .3s var(--ease), box-shadow .3s var(--ease);
+}
+.site-header.is-solid {
+  background: oklch(0.04 0 0 / 72%);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 1px 0 oklch(1 0 0 / 6%);
+}
+.nav-link { position: relative; padding-bottom: 2px; transition: color .25s var(--ease); color: oklch(1 0 0 / 80%); }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--brand); transition: width .3s var(--ease); }
+.nav-link:hover { color: var(--brand) !important; }
+.nav-link:hover::after { width: 100%; }
+.brand-mark {
+  width: 38px; height: 38px; background: var(--sand); border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; color: var(--ink-0); font-size: 1.1rem;
+}
+.hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0; padding: 4px; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--sand); transition: all .3s var(--ease); }
+
+/* Mobile drawer */
+.drawer-scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .5s var(--ease); }
+.drawer-scrim.open { opacity: 1; pointer-events: auto; }
+.mobile-drawer {
+  position: fixed; top: 0; right: -340px; width: 340px; max-width: 80vw; height: 100%; z-index: 45;
+  background: oklch(0.04 0 0 / 92%); backdrop-filter: blur(20px);
+  border-left: 1px solid var(--border); padding: 6rem 2rem 2rem;
+  display: flex; flex-direction: column; gap: 1.5rem; transition: right .5s var(--ease);
+}
+.mobile-drawer.open { right: 0; }
+.mobile-drawer a { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .15em; font-size: 14px; color: var(--sand); }
+.mobile-drawer a:hover { color: var(--brand); }
+
+/* Hero */
+.hero { position: relative; min-height: 88vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, oklch(0.7 0 0 / 6%), transparent 60%); pointer-events: none; }
+.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--ink) 4%, transparent 55%); pointer-events: none; }
+.hero-inner { position: relative; z-index: 10; max-width: 64rem; margin: 0 auto; padding: 7rem 1.5rem 5rem; text-align: center; }
+.hero h1 { font-size: clamp(2.4rem, 9vw, 6rem); margin: 1.25rem 0 1.5rem; }
+.stat-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 3.5rem; margin-top: 3rem; }
+.stat-num { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--sand); font-weight: 600; }
+.stat-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--stone); margin-top: .35rem; }
+
+/* Marquee */
+.marquee { overflow: hidden; border-block: 1px solid var(--border); padding: 1.5rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marquee-track { display: flex; width: max-content; gap: 4rem; animation: marquee 32s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-item { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; letter-spacing: .04em; color: var(--ink-600); white-space: nowrap; transition: color .3s var(--ease); }
+.marquee-item:hover { color: var(--brand); }
+
+/* Services bricks */
+.brick-grid { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; max-width: 64rem; margin: 0 auto; }
+.brick {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .65rem 1.1rem; background: oklch(1 0 0 / 4%);
+  border: 1px solid oklch(1 0 0 / 6%); color: var(--stone);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
+  transition: all .3s var(--ease); cursor: default; border-radius: var(--radius-sm);
+}
+.brick::before { content: ''; width: 6px; height: 6px; border: 1px solid var(--brand); transform: rotate(45deg); transition: background .3s var(--ease); }
+.brick:hover { background: var(--brand); border-color: var(--brand); color: var(--ink-0); transform: translateY(-3px); box-shadow: 0 8px 24px oklch(0.55 0.12 85 / 22%); }
+.brick:hover::before { background: var(--ink-0); border-color: var(--ink-0); }
+
+/* Guarantee / value card */
+.guarantee { position: relative; border: 1px solid var(--border); background: var(--panel); padding: clamp(2rem, 5vw, 4rem); overflow: hidden; border-radius: var(--radius-lg); }
+.guarantee::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--brand); }
+.guarantee-badge { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--brand); border: 1px solid var(--brand); padding: .4rem 1rem; border-radius: var(--radius-full); }
+
+/* Process timeline */
+.timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--border); }
+.tl-phase { position: relative; padding: 2.5rem 1.5rem 1rem; border-left: 1px solid var(--border); }
+.tl-phase:first-child { border-left: 0; }
+.tl-node { position: absolute; top: -7px; left: 1.5rem; width: 12px; height: 12px; background: var(--brand); transform: rotate(45deg); }
+.tl-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; color: var(--stone); }
+.tl-day { font-family: var(--font-display); color: var(--brand); font-weight: 600; font-size: .85rem; margin-left: .5rem; }
+
+/* Portfolio */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.proj { padding: 2.5rem; background: oklch(1 0 0 / 4%); border: 1px solid oklch(1 0 0 / 6%); transition: all .3s var(--ease); border-radius: var(--radius-lg); }
+.proj:hover { transform: translateY(-3px); border-color: oklch(0.55 0.12 85 / 30%); box-shadow: 0 12px 40px oklch(0.55 0.12 85 / 8%); }
+.tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .6rem; border: 1px solid var(--border); color: var(--stone); border-radius: var(--radius-sm); }
+.proj-link { color: var(--brand); font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; display: inline-flex; gap: .5rem; transition: gap .3s var(--ease); }
+.proj-link:hover { gap: .8rem; color: var(--brand); }
+
+/* Metrics */
+.metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+@media (min-width: 640px) { .metric-grid { grid-template-columns: repeat(4, 1fr); } }
+.metric { background: var(--panel); padding: 1.5rem; text-align: center; }
+.metric-num { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--brand); font-weight: 600; }
+.metric-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--stone); margin-top: .35rem; }
+
+/* Contact panel (side drawer) */
+.contact-panel {
+  position: fixed; top: 0; right: -480px; width: 460px; max-width: 92vw; height: 100vh; z-index: 60;
+  background: oklch(0.04 0 0 / 90%); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--border); transition: right .5s var(--ease); overflow-y: auto; display: flex; flex-direction: column;
+  border-top-left-radius: var(--radius-lg); border-bottom-left-radius: var(--radius-lg);
+}
+.contact-panel.open { right: 0; }
+.contact-scrim { position: fixed; inset: 0; z-index: 59; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .4s var(--ease); }
+.contact-scrim.open { opacity: 1; pointer-events: auto; }
+.field { width: 100%; padding: .8rem 1rem; background: var(--panel-2); border: 1px solid var(--input); color: var(--sand); font-family: var(--font-sans); font-size: .85rem; transition: border-color .25s var(--ease); border-radius: var(--radius-sm); }
+.field:focus { outline: none; border-color: var(--brand); background: oklch(0.2 0 0); }
+.field::placeholder { color: var(--stone); }
+.btn-send { width: 100%; padding: 1rem; background: var(--brand); color: var(--ink-0); border: 0; font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: .5rem; transition: all .3s var(--ease); border-radius: var(--radius-sm); }
+.btn-send:hover { filter: brightness(1.08); }
+.btn-send .arr { transition: transform .3s var(--ease); }
+.btn-send:hover .arr { transform: translateX(4px); }
+.nav-close { width: 40px; height: 40px; border: 1px solid var(--border); background: none; color: var(--sand); font-size: 1.2rem; cursor: pointer; transition: all .25s var(--ease); border-radius: var(--radius-md); }
+.nav-close:hover { border-color: var(--brand); color: var(--brand); }
+
+/* Side dock */
+.side-dock { position: fixed; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; z-index: 40; }
+.side-tab { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: oklch(0.1 0 0 / 80%); backdrop-filter: blur(12px); border: 1px solid var(--border); color: var(--stone); cursor: pointer; transition: all .25s var(--ease); border-right: 0; border-top-left-radius: var(--radius-md); border-bottom-left-radius: var(--radius-md); }
+.side-tab:hover { color: var(--brand); background: oklch(0.1 0 0 / 95%); }
+.side-tab--contact { writing-mode: vertical-rl; text-orientation: mixed; font-family: var(--font-mono); font-size: 10px; letter-spacing: .28em; text-transform: uppercase; color: var(--sand); padding: 1rem .65rem; height: auto; }
+
+/* CTA banner */
+.cta-banner { background: var(--brand); transform: translateY(100%); transition: transform .5s var(--ease); }
+.cta-go { background: var(--ink-0); color: var(--sand); font-family: var(--font-display); text-transform: uppercase; letter-spacing: .12em; font-size: 11px; font-weight: 600; padding: .65rem 1.25rem; border: 0; cursor: pointer; transition: all .3s var(--ease); border-radius: var(--radius-sm); }
+.cta-go:hover { filter: brightness(1.2); }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) { .timeline { grid-template-columns: repeat(2, 1fr); } .tl-phase:nth-child(3) { border-left: 0; } }
+@media (max-width: 560px) { .timeline { grid-template-columns: 1fr; } .tl-phase { border-left: 0; border-top: 1px solid var(--border); } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+  .marquee-track { animation: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body class="bg-ink">
+<!-- HEADER -->
+<header id="siteHeader" class="site-header">
+  <div class="wrap" style="padding-top:1.25rem;padding-bottom:1.25rem">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <a href="#top" style="display:flex;align-items:center;gap:.75rem">
+        <span class="brand-mark">B</span>
+        <span class="font-display" style="font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:13px">BAZventures</span>
+      </a>
+      <nav style="display:none;gap:2rem" class="nav-desktop">
+        <a href="#services" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Services</a>
+        <a href="#forecast" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Forecast</a>
+        <a href="#process" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Process</a>
+        <a href="#work" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Work</a>
+        <a href="#contact" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Contact</a>
+      </nav>
+      <button class="hamburger" aria-label="Open menu" onclick="document.body.classList.toggle('nav-open')" style="display:flex">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-scrim" id="drawerScrim" onclick="document.body.classList.remove('nav-open')"></div>
+<aside class="mobile-drawer" id="mobileDrawer">
+  <a href="#services" onclick="document.body.classList.remove('nav-open')">Services</a>
+  <a href="#forecast" onclick="document.body.classList.remove('nav-open')">Forecast</a>
+  <a href="#process" onclick="document.body.classList.remove('nav-open')">Process</a>
+  <a href="#work" onclick="document.body.classList.remove('nav-open')">Work</a>
+  <a href="#contact" onclick="document.body.classList.remove('nav-open')">Contact</a>
+</aside>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <p class="eyebrow" style="justify-content:center">Senior-Only Growth Partner</p>
+    <h1 class="display">Growth as a <span class="text-brand">Forecast.</span></h1>
+    <p style="font-size:1.1rem;color:var(--stone);max-width:42rem;margin:0 auto;line-height:1.7">Eighteen specialized services, a 90-day execution plan, and a number we stake our fee on. No guessing — we model the outcome before we touch a channel.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2.5rem">
+      <a href="#services" class="btn btn-primary rounded-full">View the 18 Services</a>
+      <button class="btn btn-ghost rounded-full" onclick="openContact()">Get in Touch</button>
+    </div>
+    <div class="stat-row">
+      <div><div class="stat-num font-display">18</div><div class="stat-label">Growth Services</div></div>
+      <div><div class="stat-num font-display">90</div><div class="stat-label">Day Execution Plan</div></div>
+      <div><div class="stat-num font-display">04</div><div class="stat-label">Month Guarantee</div></div>
+      <div><div class="stat-num font-display">100%</div><div class="stat-label">Senior Delivery</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-label="Tools and partners">
+  <div class="marquee-track">
+    <span class="marquee-item">GitHub</span><span class="marquee-item">Vercel</span><span class="marquee-item">Stripe</span>
+    <span class="marquee-item">Next.js</span><span class="marquee-item">Supabase</span><span class="marquee-item">Figma</span>
+    <span class="marquee-item">Linear</span><span class="marquee-item">Notion</span>
+    <span class="marquee-item">GitHub</span><span class="marquee-item">Vercel</span><span class="marquee-item">Stripe</span>
+    <span class="marquee-item">Next.js</span><span class="marquee-item">Supabase</span><span class="marquee-item">Figma</span>
+    <span class="marquee-item">Linear</span><span class="marquee-item">Notion</span>
+  </div>
+</div>
+
+<main>
+  <!-- ABOUT -->
+  <section class="section bg-ink" id="about">
+    <div class="wrap">
+      <div class="reveal about-grid" style="display:grid;gap:3rem;grid-template-columns:1fr;align-items:center">
+        <div style="position:relative;min-height:380px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center, oklch(0.55 0.12 85 / 8%), transparent 70%);border-radius:var(--radius-lg)">
+          <svg width="200" height="220" viewBox="0 0 48 56" fill="none" style="opacity:.5"><path d="M24 52 4 40V16L24 4l20 12v24L24 52Z" stroke="var(--brand)" stroke-width="1.5"/><circle cx="24" cy="4" r="3" fill="var(--brand)"/></svg>
+          <p style="position:absolute;bottom:0;left:0;right:0;text-align:center;color:var(--sand);font-weight:500;padding:2.5rem 1.5rem 0;background:linear-gradient(to top, var(--ink), transparent)">One partner. Total accountability.</p>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">Who We Are</p>
+          <h2 class="display" style="font-size:clamp(1.6rem,4.5vw,3rem);margin:1rem 0 2rem">A Senior-Only <span class="text-brand">Partner.</span></h2>
+          <div style="display:flex;flex-direction:column;gap:1.25rem;color:var(--stone)">
+            <p>BAZventures is a growth agency led by Brahim ZERBOUT — built on a simple principle: you work with senior people, or you don't work with us at all. No juniors behind a senior face.</p>
+            <p>Strategy, SEO, performance marketing, and CRM operations under one roof, run by operators who have shipped revenue — not decks.</p>
+            <p><strong style="color:var(--sand);font-weight:600">No chasing, no silence, no surprises.</strong> Transparent forecasting, a 90-day plan you can read, and a guarantee written into the contract.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (18) -->
+  <section class="section bg-panel" id="services">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
+        <p class="eyebrow" style="justify-content:center">What We Do</p>
+        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">Everything Under <span class="text-brand">One Roof.</span></h2>
+        <p style="color:var(--stone)">Eighteen specialized growth services — from first-principles strategy to CRM operations that close the loop.</p>
+      </div>
+      <div class="brick-grid reveal">
+        <span class="brick">Growth Strategy</span>
+        <span class="brick">SEO &amp; Content</span>
+        <span class="brick">Performance Marketing</span>
+        <span class="brick">Paid Social</span>
+        <span class="brick">CRM Operations</span>
+        <span class="brick">Marketing Automation</span>
+        <span class="brick">Conversion Optimization</span>
+        <span class="brick">Lifecycle Email</span>
+        <span class="brick">Analytics &amp; Attribution</span>
+        <span class="brick">Brand Positioning</span>
+        <span class="brick">Funnel Design</span>
+        <span class="brick">Demand Generation</span>
+        <span class="brick">Account-Based Marketing</span>
+        <span class="brick">Retention &amp; Loyalty</span>
+        <span class="brick">Marketing Ops</span>
+        <span class="brick">Landing Page Systems</span>
+        <span class="brick">Copy &amp; Messaging</span>
+        <span class="brick">Forecasting &amp; Reporting</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORECAST / GUARANTEE -->
+  <section class="section bg-ink" id="forecast">
+    <div class="wrap">
+      <div class="guarantee reveal">
+        <span class="guarantee-badge">The Month Four Clause</span>
+        <h2 class="display" style="font-size:clamp(1.6rem,4.5vw,3rem);margin:1.5rem 0 1rem">Growth as a <span class="text-brand">Forecast.</span></h2>
+        <p style="color:var(--stone);max-width:46rem;line-height:1.7">Before a single channel is funded, we model the outcome: pipeline, CAC, and revenue by week. You see the 90-day plan in writing — phases, owners, and the number we are accountable to.</p>
+        <p style="color:var(--sand);max-width:46rem;line-height:1.7;margin-top:1.25rem">If we don't hit the forecasted milestone by <strong class="text-brand" style="font-weight:600">month four</strong>, you don't pay the retainer that month. Performance-based, in the contract — not a promise.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem">
+          <div style="flex:1 1 200px;border:1px solid var(--border);padding:1.5rem;background:var(--ink-50)">
+            <p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">90-Day Plan</p>
+            <p style="color:var(--stone);font-size:.9rem">Phased execution, written down, with owners and weekly targets you can track.</p>
+          </div>
+          <div style="flex:1 1 200px;border:1px solid var(--border);padding:1.5rem;background:var(--ink-50)">
+            <p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Live Transparency</p>
+            <p style="color:var(--stone);font-size:.9rem">Dashboards you can read. No black boxes, no mystery metrics.</p>
+          </div>
+          <div style="flex:1 1 200px;border:1px solid var(--border);padding:1.5rem;background:var(--ink-50)">
+            <p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Month Four</p>
+            <p style="color:var(--stone);font-size:.9rem">Miss the forecast, the retainer is on us. That is the deal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS / TIMELINE -->
+  <section class="section bg-panel" id="process">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
+        <p class="eyebrow" style="justify-content:center">Our Approach</p>
+        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">Considered, Start to <span class="text-brand">Finish.</span></h2>
+        <p style="color:var(--stone)">A deliberate way of working — every phase planned, every milestone on the calendar.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">01</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Discovery</h3><p style="color:var(--stone);font-size:.9rem">We map your stack, goals, and data before a line of code is written.</p></div>
+        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">02</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Architecture</h3><p style="color:var(--stone);font-size:.9rem">Honest timelines and a technical plan you can plan around. No scope creep.</p></div>
+        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">03</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Build</h3><p style="color:var(--stone);font-size:.9rem">Every component coordinated under one point of contact, one quality bar.</p></div>
+        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">04</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Deploy &amp; Forecast</h3><p style="color:var(--stone);font-size:.9rem">Tested, audited, and measured against the forecast — until it is right.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section bg-ink" id="work">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
+        <p class="eyebrow" style="justify-content:center">Selected Work</p>
+        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">Proof, Not <span class="text-brand">Promises.</span></h2>
+        <p style="color:var(--stone)">Production systems we have shipped and operate.</p>
+      </div>
+      <div class="card-grid reveal">
+        <div class="proj" style="display:flex;flex-direction:column">
+          <div class="text-brand font-display" style="font-size:1.75rem;margin-bottom:1rem">&#9650;</div>
+          <h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand)">BAZ Marketing Site</h3>
+          <p style="color:var(--stone);font-size:.9rem;flex:1;margin:1rem 0">Next.js 14 site with AI book RAG, lead scoring, 8 agents, and a full brand system.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span></div>
+          <a href="https://github.com/brahimamirzerbout/baz-marketing-site" target="_blank" class="proj-link">GitHub &#8594;</a>
+        </div>
+        <div class="proj" style="display:flex;flex-direction:column">
+          <div class="text-brand font-display" style="font-size:1.75rem;margin-bottom:1rem">&#9881;</div>
+          <h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand)">the Hub</h3>
+          <p style="color:var(--stone);font-size:.9rem;flex:1;margin:1rem 0">SaaS platform — 117 tables, real CRM data, lifecycle automation end to end.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem"><span class="tag">Next.js</span><span class="tag">shadcn/ui</span><span class="tag">117 Tables</span></div>
+          <a href="https://github.com/brahimamirzerbout/marketing-hub" target="_blank" class="proj-link">GitHub &#8594;</a>
+        </div>
+        <div class="proj" style="display:flex;flex-direction:column">
+          <div class="text-brand font-display" style="font-size:1.75rem;margin-bottom:1rem">&#9650;</div>
+          <h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand)">Nova Intelligence</h3>
+          <p style="color:var(--stone);font-size:.9rem;flex:1;margin:1rem 0">Sovereign AI OS brokering Gemini, Letta, Mem0 — 30+ screens, banking layer.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem"><span class="tag">React 19</span><span class="tag">Firebase</span><span class="tag">Gemini</span></div>
+          <a href="https://github.com/brahimamirzerbout/nova-with-bank" target="_blank" class="proj-link">GitHub &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="section bg-panel">
+    <div class="wrap">
+      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
+        <p class="eyebrow" style="justify-content:center">Live Data</p>
+        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">The <span class="text-brand">Reality Engine.</span></h2>
+        <p style="color:var(--stone)">Real counts from across the ecosystem.</p>
+      </div>
+      <div class="metric-grid reveal">
+        <div class="metric"><div class="metric-num font-display">117</div><div class="metric-label">DB Tables</div></div>
+        <div class="metric"><div class="metric-num font-display">661</div><div class="metric-label">Touchpoints</div></div>
+        <div class="metric"><div class="metric-num font-display">76</div><div class="metric-label">Contacts</div></div>
+        <div class="metric"><div class="metric-num font-display">30</div><div class="metric-label">Deals</div></div>
+        <div class="metric"><div class="metric-num font-display">166</div><div class="metric-label">Leads</div></div>
+        <div class="metric"><div class="metric-num font-display">136</div><div class="metric-label">Articles</div></div>
+        <div class="metric"><div class="metric-num font-display">9</div><div class="metric-label">Campaigns</div></div>
+        <div class="metric"><div class="metric-num font-display">24</div><div class="metric-label">Conversations</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section bg-ink" id="contact">
+    <div class="wrap">
+      <div class="bg-panel" style="position:relative;overflow:hidden;padding:clamp(2rem,5vw,5rem);border-radius:var(--radius-lg)">
+        <div class="reveal" style="position:relative;z-index:10;max-width:48rem;margin:0 auto;text-align:center">
+          <p class="eyebrow" style="justify-content:center">Get in Touch</p>
+          <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1rem">Tell Us About <span class="text-brand">the Project.</span></h2>
+          <p style="color:var(--stone);max-width:36rem;margin:0 auto 2rem">An honest chat, a clear steer, and a real sense of what is possible — no hard sell.</p>
+          <button class="btn btn-primary" onclick="openContact()">Open Enquiry Form</button>
+          <div style="display:grid;grid-template-columns:1fr;gap:2rem;padding-top:2.5rem;margin-top:2.5rem;border-top:1px solid var(--border);max-width:36rem;margin-left:auto;margin-right:auto">
+            <div><p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Email</p><a href="mailto:owner@baz.agency" style="color:var(--sand);font-weight:500;word-break:break-all">owner@baz.agency</a></div>
+            <div><p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Leadership</p><p style="color:var(--sand);font-weight:500">Brahim ZERBOUT</p><p style="color:var(--stone);font-size:.85rem">Founder &amp; Operator</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" id="ctaBanner">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.9rem;padding-bottom:.9rem">
+    <p class="font-display" style="font-size:clamp(.95rem,2vw,1.1rem);color:var(--ink-0)">Ready to forecast your growth? <span style="opacity:.75;font-family:var(--font-sans)">Let's make it a signature finish.</span></p>
+    <button class="cta-go" onclick="openContact()">Get in Touch</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);border-top:1px solid oklch(0.55 0.12 85 / 15%)">
+  <div class="wrap" style="padding-top:4rem;padding-bottom:2rem">
+    <div style="display:grid;gap:3rem;grid-template-columns:1fr" class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem">
+          <span class="brand-mark">B</span>
+          <span class="font-display" style="font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:13px">BAZventures</span>
+        </div>
+        <p style="color:var(--stone);font-size:.9rem;max-width:24rem">A senior-only growth agency. Eighteen services, a 90-day plan, and a guarantee we stake our fee on.</p>
+      </div>
+      <div>
+        <h4 class="font-mono" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:.6;margin-bottom:1.25rem">Explore</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem">
+          <li><a href="#services" style="color:var(--stone);font-size:.9rem">Services</a></li>
+          <li><a href="#forecast" style="color:var(--stone);font-size:.9rem">Forecast</a></li>
+          <li><a href="#process" style="color:var(--stone);font-size:.9rem">Process</a></li>
+          <li><a href="#work" style="color:var(--stone);font-size:.9rem">Work</a></li>
+          <li><a href="#contact" style="color:var(--stone);font-size:.9rem">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-mono" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:.6;margin-bottom:1.25rem">Get in touch</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;font-size:.9rem">
+          <li><a href="mailto:owner@baz.agency" style="color:var(--stone)">owner@baz.agency</a></li>
+          <li style="color:var(--stone)">United Kingdom</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:3.5rem;padding-top:2rem;border-top:1px solid oklch(1 0 0 / 5%);display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
+      <p style="color:var(--stone);opacity:.7;font-size:.75rem;letter-spacing:.02em">&copy; <span id="year">2026</span> BAZventures. All rights reserved.</p>
+      <a href="#top" style="color:var(--stone);opacity:.7;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase">Back to top &#8593;</a>
+    </div>
+  </div>
+</footer>
+
+<!-- SIDE DOCK -->
+<div class="side-dock">
+  <button class="side-tab side-tab--contact" onclick="openContact()"><span>Contact</span></button>
+  <a href="https://github.com/brahimamirzerbout" target="_blank" class="side-tab" title="GitHub" style="height:48px;padding:0;display:flex;align-items:center;justify-content:center">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+  </a>
+</div>
+
+<!-- CONTACT PANEL -->
+<div class="contact-scrim" id="contactScrim" onclick="closeContact()"></div>
+<aside class="contact-panel" id="contactPanel" aria-hidden="true">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:1.5rem 2rem;border-bottom:1px solid var(--border)">
+    <div>
+      <h2 class="font-display" style="text-transform:uppercase;font-size:1.5rem;color:var(--sand)">Get in touch</h2>
+      <p class="font-mono" style="color:var(--stone);margin-top:.5rem;font-size:10px;letter-spacing:.22em;text-transform:uppercase">We'd love to hear about your project</p>
+    </div>
+    <button class="nav-close" onclick="closeContact()" aria-label="Close">&times;</button>
+  </div>
+  <form class="enquiry-form" id="enquiryForm" style="padding:1.75rem 2rem;display:flex;flex-direction:column;gap:1rem">
+    <select class="field" required>
+      <option value="">Select a service</option>
+      <option>Growth Strategy</option>
+      <option>SEO &amp; Content</option>
+      <option>Performance Marketing</option>
+      <option>CRM Operations</option>
+      <option>Other</option>
+    </select>
+    <input type="text" class="field" placeholder="Your name" required>
+    <input type="email" class="field" placeholder="Email address" required>
+    <textarea class="field" placeholder="Tell us about your project..." rows="4" required></textarea>
+    <button type="submit" class="btn-send" onclick="event.preventDefault();submitContact()">Send <span class="arr">&#8594;</span></button>
+  </form>
+  <div style="margin-top:auto;padding:0 2rem 2rem">
+    <a href="mailto:owner@baz.agency" style="display:block;font-family:var(--font-display);font-size:1.1rem;color:var(--sand)">owner@baz.agency</a>
+    <p style="color:var(--stone);margin-top:.5rem;font-size:.9rem">United Kingdom</p>
+  </div>
+</aside>
+
+<script>
+  // Header solid on scroll
+  const header = document.getElementById('siteHeader');
+  const ctaBanner = document.getElementById('ctaBanner');
+  let ctaShown = false;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('is-solid', y > 80);
+    if (y > 500 && !ctaShown) { ctaBanner.style.transform = 'translateY(0)'; ctaShown = true; }
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Contact panel
+  function openContact() {
+    document.getElementById('contactPanel').classList.add('open');
+    document.getElementById('contactPanel').setAttribute('aria-hidden','false');
+    document.getElementById('contactScrim').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeContact() {
+    document.getElementById('contactPanel').classList.remove('open');
+    document.getElementById('contactPanel').setAttribute('aria-hidden','true');
+    document.getElementById('contactScrim').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function submitContact() {
+    document.getElementById('enquiryForm').innerHTML =
+      '<div style="text-align:center;padding:3rem 1rem">' +
+      '<div style="width:56px;height:56px;border:2px solid var(--brand);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem;color:var(--brand)">&#10003;</div>' +
+      '<h3 class="font-display" style="text-transform:uppercase;font-size:1.25rem;color:var(--sand);margin-bottom:.5rem">Thank You</h3>' +
+      '<p style="color:var(--stone);font-size:.9rem">We\'ll be in touch within 24 hours.</p></div>';
+  }
+
+  // Mobile nav + Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeContact(); document.body.classList.remove('nav-open'); }
+  });
+  document.querySelector('.hamburger')?.addEventListener('click', function() {
+    const spans = this.querySelectorAll('span');
+    const open = document.body.classList.contains('nav-open');
+    spans[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+    spans[1].style.opacity = open ? '0' : '';
+    spans[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+  });
+</script>
+</body>
+</html>
