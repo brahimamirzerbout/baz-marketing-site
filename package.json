@@ -33,7 +33,6 @@
     "clsx": "^2.1.1",
     "epub2": "^3.0.2",
     "framer-motion": "^12.42.2",
-    "motion": "^12.42.2",
     "html-to-image": "^1.11.13",
     "jsonwebtoken": "^9.0.3",
     "jszip": "^3.10.1",

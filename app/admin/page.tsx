@@ -2,10 +2,12 @@ import Link from "next/link";
 import { Section, Eyebrow, SectionHeading } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { buildMetadata } from "@/lib/seo";
+import { requireAdmin } from "@/lib/admin-guard";
 
 export const metadata = buildMetadata({ title: "Admin", path: "/admin", noindex: true });
 
-export default function AdminIndexPage() {
+export default async function AdminIndexPage() {
+  await requireAdmin({ nextPath: "/admin" });
   const tiles = [
     {
       href: "/admin/leads",

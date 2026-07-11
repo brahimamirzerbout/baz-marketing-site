@@ -4,7 +4,6 @@ import { Breadcrumb } from "@/components/sections/Breadcrumb";
 import { CtaBanner } from "@/components/marketing/CtaBanner";
 import { Button } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/seo";
-import { getLeadStats } from "@/lib/leads-store";
 import { getDb } from "@/lib/db";
 
 export const metadata = buildMetadata({
@@ -13,7 +12,6 @@ export const metadata = buildMetadata({
   path: "/pulse",
 });
 
-// Always render fresh — this page is meant to be live.
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -22,46 +20,54 @@ function pct(n: number, total: number): string {
   return `${Math.round((n / total) * 100)}%`;
 }
 
-function scoreBand(score: number): { label: string; color: string; lo: number; hi: number } {
-  if (score >= 75) return { label: "Hot", color: "text-accent", lo: 75, hi: 100 };
-  if (score >= 50) return { label: "Warm", color: "text-warning", lo: 50, hi: 74 };
-  if (score >= 25) return { label: "Cool", color: "text-foreground", lo: 25, hi: 49 };
-  return { label: "Cold", color: "text-muted-foreground/60", lo: 0, hi: 24 };
+type ScoreBand = { label: string; cls: string; lo: number; hi: number };
+
+function scoreBand(score: number): ScoreBand {
+  if (score >= 75) return { label: "Hot", cls: "text-accent", lo: 75, hi: 100 };
+  if (score >= 50) return { label: "Warm", cls: "text-warning", lo: 50, hi: 74 };
+  if (score >= 25) return { label: "Cool", cls: "text-foreground", lo: 25, hi: 49 };
+  return { label: "Cold", cls: "text-muted-foreground/60", lo: 0, hi: 24 };
 }
 
 export default async function PulsePage() {
-  const stats = await getLeadStats();
-  const total = stats.total || 0;
+  const db = getDb();
+  const now = Date.now();
+  const dayMs = 24 * 60 * 60 * 1000;
+  const weekMs = 7 * dayMs;
 
-  // Real score bands from SQLite (the source of truth for scoring).
-  let bands = { hot: 0, warm: 0, cool: 0, cold: 0 };
-  try {
-    const db = getDb();
-    const rows = db
-      .prepare(
-        `SELECT
-      SUM(CASE WHEN score >= 75 THEN 1 ELSE 0 END) AS hot,
-      SUM(CASE WHEN score >= 50 AND score < 75 THEN 1 ELSE 0 END) AS warm,
-      SUM(CASE WHEN score >= 25 AND score < 50 THEN 1 ELSE 0 END) AS cool,
-      SUM(CASE WHEN score < 25 THEN 1 ELSE 0 END) AS cold
-    FROM leads`,
-      )
-      .get() as { hot: number; warm: number; cool: number; cold: number };
-    bands = {
-      hot: rows.hot ?? 0,
-      warm: rows.warm ?? 0,
-      cool: rows.cool ?? 0,
-      cold: rows.cold ?? 0,
-    };
-  } catch {
-    // SQLite not seeded — fall back to jsonl totals with synthetic distribution.
-    bands = {
-      hot: Math.round(total * 0.1),
-      warm: Math.round(total * 0.2),
-      cool: Math.round(total * 0.4),
-      cold: Math.round(total * 0.3),
-    };
-  }
+  const totalRow = db.prepare("SELECT COUNT(*) AS n FROM leads").get() as { n: number };
+  const todayRow = db.prepare("SELECT COUNT(*) AS n FROM leads WHERE created_at >= ?").get(now - dayMs) as { n: number };
+  const weekRow = db.prepare("SELECT COUNT(*) AS n FROM leads WHERE created_at >= ?").get(now - weekMs) as { n: number };
+  const byStatusRows = db
+    .prepare("SELECT status, COUNT(*) AS n FROM leads GROUP BY status")
+    .all() as { status: string; n: number }[];
+  const byStatus = Object.fromEntries(byStatusRows.map((r) => [r.status, r.n])) as Record<string, number>;
+
+  const bandRows = db
+    .prepare(
+      `SELECT
+        SUM(CASE WHEN score >= 75 THEN 1 ELSE 0 END) AS hot,
+        SUM(CASE WHEN score >= 50 AND score < 75 THEN 1 ELSE 0 END) AS warm,
+        SUM(CASE WHEN score >= 25 AND score < 50 THEN 1 ELSE 0 END) AS cool,
+        SUM(CASE WHEN score < 25 THEN 1 ELSE 0 END) AS cold
+      FROM leads`,
+    )
+    .get() as { hot: number; warm: number; cool: number; cold: number };
+
+  const total = totalRow.n;
+  const stats = {
+    total,
+    today: todayRow.n,
+    thisWeek: weekRow.n,
+    byStatus,
+  };
+
+  const bands = {
+    hot: bandRows.hot ?? 0,
+    warm: bandRows.warm ?? 0,
+    cool: bandRows.cool ?? 0,
+    cold: bandRows.cold ?? 0,
+  };
 
   return (
     <>

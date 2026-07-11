@@ -1,56 +1,22 @@
 /**
- * BAZ — Rate limiter (in-memory, single-process).
+ * BAZ — Rate limiter (pluggable store).
  *
- * ⚠️ STOPGAP ONLY. On Vercel serverless, each invocation may run on a
- * fresh instance with its own empty bucket map. Limits are therefore
- * per-instance, not global. An attacker can fan out requests across
- * many instances to bypass them.
+ * Defaults to an in-memory store (single-process). On Vercel serverless,
+ * swap the backend by calling `setRateLimitStore(new VercelKvRateLimitStore())`
+ * from a startup path (e.g., a Next.js instrumentation hook or a module
+ * init guarded by `process.env.KV_REST_API_URL`).
  *
- * Migration plan: replace the `buckets` Map with Vercel KV / Upstash
- * Redis (a single shared store, ~1ms latency). Tracked in
- * docs/audits/2026-07-09-baz-site.md §2.1.
- *
- * Until then:
- *   - Keep limits generous enough that a per-instance bucket is still
- *     a real defense (e.g. 5/contact-form, 3/auth-register per minute).
- *   - Pass `userId` for authenticated routes so the bucket follows the
- *     user, not the IP (which is trivially spoofable behind Vercel's
- *     proxy).
- *   - The cold-start error log below is the only signal that this
- *     limiter is doing partial work. Watch for it in the prod logs.
+ * Consumer API (`rateLimit`, `rateLimitHeaders`, `rateLimitedResponse`)
+ * is unchanged.
  */
+
 import { NextResponse } from "next/server";
+import { getRateLimitStore, type Bucket } from "./rate-limit-store";
 
-interface Bucket {
-  count: number;
-  resetAt: number;
-}
-
-const buckets = new Map<string, Bucket>();
-
-// Cold-start de-dupe for the rate-limit warning. We want one loud
-// log per process, not one per request.
-let warnedAboutInMemory = false;
-
-const PRUNE_INTERVAL = 5 * 60_000;
-if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [k, b] of buckets) if (b.resetAt < now) buckets.delete(k);
-  }, PRUNE_INTERVAL).unref?.();
-}
-
-export interface RateLimitOpts {
+interface RateLimitOpts {
   key: string;
   limit: number;
   windowMs: number;
-  /**
-   * Stable identifier for the caller. When provided, the bucket is keyed
-   * on `(key, userId)` instead of `(key, IP)`. Use the authenticated
-   * `user.id` for any route that has a session; leave undefined for
-   * pre-auth routes (login, register, contact form) where the IP is
-   * the best signal we have.
-   */
   userId?: string;
 }
 
@@ -58,23 +24,32 @@ export function rateLimit(
   req: Request,
   opts: RateLimitOpts,
 ): { ok: true; remaining: number; resetAt: number } | { ok: false; retryAfter: number } {
-  if (process.env.NODE_ENV === "production" && !warnedAboutInMemory) {
-    warnedAboutInMemory = true;
-    // console.error so Vercel surfaces it; logged once per cold start.
-    console.error(
-      "[baz:rate-limit] in-memory store is per-Vercel-instance only. Migrate to Vercel KV / Upstash before public launch. See docs/audits/2026-07-09-baz-site.md §2.1.",
-    );
+  if (process.env.NODE_ENV === "production") {
+    const store = getRateLimitStore();
+    if (store instanceof (require("./rate-limit-store").MemoryRateLimitStore || Object)) {
+      // Surface the per-instance warning once per cold start on Vercel.
+      if (!(globalThis as any).__baz_rate_limit_warned) {
+        (globalThis as any).__baz_rate_limit_warned = true;
+        console.error(
+          "[baz:rate-limit] in-memory store is per-instance only. Set Vercel KV / Upstash Redis before public launch.",
+        );
+      }
+    }
   }
+
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     req.headers.get("x-real-ip") ??
     "unknown";
   const k = `${opts.key}:${opts.userId ?? ip}`;
   const now = Date.now();
-  const existing = buckets.get(k);
+  const store = getRateLimitStore();
+  let existing = store.get(k);
 
   if (!existing || existing.resetAt < now) {
-    buckets.set(k, { count: 1, resetAt: now + opts.windowMs });
+    const next: Bucket = { count: 1, resetAt: now + opts.windowMs };
+    store.set(k, next);
+    store.prune(now);
     return { ok: true, remaining: opts.limit - 1, resetAt: now + opts.windowMs };
   }
 
@@ -82,8 +57,9 @@ export function rateLimit(
     return { ok: false, retryAfter: Math.ceil((existing.resetAt - now) / 1000) };
   }
 
-  existing.count += 1;
-  return { ok: true, remaining: opts.limit - existing.count, resetAt: existing.resetAt };
+  const next: Bucket = { ...existing, count: existing.count + 1 };
+  store.set(k, next);
+  return { ok: true, remaining: opts.limit - next.count, resetAt: next.resetAt };
 }
 
 export function rateLimitHeaders(

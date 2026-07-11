@@ -1,9 +1,46 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 // Magnetic removed
 import { defaultBrand, templates, type BrandKit, type TemplateId } from "@/lib/canva";
+
+function CanvaGate({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const [checking, setChecking] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const r = await fetch("/api/auth/me");
+        const j = await r.json();
+        if (!cancelled && j?.ok && j.user && ["owner", "admin"].includes(j.user.role)) {
+          setAuthorized(true);
+        } else if (!cancelled) {
+          router.replace("/login?next=/admin/canva");
+        }
+      } catch {
+        if (!cancelled) router.replace("/login?next=/admin/canva");
+      } finally {
+        if (!cancelled) setChecking(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [router]);
+
+  if (checking) {
+    return (
+      <div className="container mx-auto py-10 text-sm text-muted-foreground">
+        Checking permissions…
+      </div>
+    );
+  }
+  if (!authorized) return null;
+  return <>{children}</>;
+}
 
 type Layer = {
   id: string;
@@ -269,7 +306,7 @@ const ratioStyle = (t: TemplateId) => {
   return { aspectRatio: `${tmpl.w} / ${tmpl.h}` };
 };
 
-export default function CanvaPage() {
+function CanvaPageInner() {
   const [template, setTemplate] = useState<TemplateId>("og-card");
   const [brand, setBrand] = useState<BrandKit>(defaultBrand);
   const [layers, setLayers] = useState<Layer[]>(() => seedLayers("og-card", defaultBrand));
@@ -687,4 +724,8 @@ function renderSvg(w: number, h: number, bg: string, layers: Layer[], brand: Bra
 ${bgRect}
 ${layerXml}
 </svg>`;
+}
+
+export default function CanvaPage() {
+  return <CanvaGate><CanvaPageInner /></CanvaGate>;
 }

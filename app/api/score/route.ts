@@ -32,3 +32,12 @@ export async function POST(req: NextRequest) {
   const plan = buildRoutingPlan(result);
   return NextResponse.json({ ok: true, ...result, plan });
 }
+
+/**
+ * GET /api/score — status check.
+ * The inspector and uptime probes use GET to verify the route exists.
+ * Scoring itself is POST-only to avoid accidental cache hits.
+ */
+export async function GET() {
+  return NextResponse.json({ ok: true, method: "POST" });
+}
