@@ -16,8 +16,12 @@ export const dynamic = "force-static";
 export async function GET() {
   const sorted = [...posts].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
   const items = sorted
-    .map(
-      (p) => `
+    .map((p) => {
+      const bodyHtml = p.body
+        .split(/\n\n+/)
+        .map((par) => `<p>${xmlEscape(par.trim())}</p>`)
+        .join("");
+      return `
     <item>
       <title>${xmlEscape(p.title)}</title>
       <link>${SITE}/insights/${p.slug}</link>
@@ -26,13 +30,14 @@ export async function GET() {
       <description>${xmlEscape(p.excerpt)}</description>
       <author>${xmlEscape(p.author)}</author>
       <category>${xmlEscape(p.category)}</category>
-    </item>`,
-    )
+      <content:encoded><![CDATA[${bodyHtml}]]></content:encoded>
+    </item>`;
+    })
     .join("");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
+ <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+   <channel>
     <title>BAZventures — Insights</title>
     <link>${SITE}/insights</link>
     <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml" />

@@ -231,6 +231,143 @@ We gave up: predictability, scope-creep tolerance, and the ability to say yes to
     publishedAt: "2026-05-02",
     readingMin: 3,
   },
+  {
+    slug: "bazventures-vs-traditional-agencies",
+    title: "BAZventures vs traditional agencies: the senior-only model",
+    excerpt:
+      "Why a 4-person senior team out-executes a 40-person agency — and what it costs you to find out the hard way.",
+    body: `Traditional agencies scale by headcount. More accounts means more juniors, more hand-offs, and more time spent re-briefing than doing. The senior people you met in the pitch are not the people shipping your work.
+
+BAZventures inverts that. The partner you meet is the partner who ships. No translation layer, no account-manager telephone game, no junior learning on your budget.
+
+The trade-off is capacity. We take fewer engagements and we tell prospects honestly when we're not the right fit. What you get in return is speed and judgment that a larger roster can't match — and a renewal rate that compounds because the work actually moves pipeline.
+
+If you need a logo refresh and a billboard, we're the wrong call. If you need a forecast you can take to a board, we're built for exactly that.`,
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-09",
+    readingMin: 4,
+  },
+  {
+    slug: "bazventures-vs-in-house-team",
+    title: "BAZventures vs an in-house growth team",
+    excerpt:
+      "When it's cheaper to rent senior judgment than to hire it — and the hidden cost of building the team too early.",
+    body: `Hiring a full growth team is a $600K+ annual commitment before a single campaign runs. For most companies between $2M and $50M ARR, that team is also underutilized: you don't need five specialists every week, you need one senior operator who knows which specialist to pull in.
+
+An in-house team wins on context and continuity. It loses on breadth of repetition — a senior agency has shipped the same playbook across 60+ brands and sees the pattern you can't from inside one company.
+
+The honest answer is usually both, in sequence: rent the judgment first to find the model, then hire the team to run it. Hiring before the model exists just scales the confusion.`,
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-16",
+    readingMin: 4,
+  },
+  {
+    slug: "bazventures-vs-hubspot-only",
+    title: "BAZventures vs a HubSpot-only stack",
+    excerpt:
+      "A CRM is a database, not a growth strategy. What changes when the software stops being the hero.",
+    body: `HubSpot is a competent system of record. The mistake is treating the subscription as the strategy. A clean CRM with no one interpreting the funnel is just an expensive contact list.
+
+We use the Hub as plumbing and put senior judgment on top: which stage is leaking, what offer resets the curve, where attribution lies. The platform reports; it doesn't decide.
+
+If your "marketing" is mostly configuring workflows and waiting for the tool to convert people, you've bought software instead of growth. The fix isn't a better CRM — it's a human who knows what the numbers mean and what to do Monday.`,
+    category: "analytics",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-23",
+    readingMin: 3,
+  },
+  {
+    slug: "the-90-day-growth-sprint",
+    title: "The 90-day growth sprint: how we run it",
+    excerpt:
+      "A senior-led operating rhythm that turns a vague growth goal into a forecast you can defend to a board.",
+    body: `Every engagement starts the same way: a growth audit, not a deck. We map the funnel, the unit economics, and the channel mix, then model LTV/CAC by source so we know where payback actually happens.
+
+Weeks 1–2 are diagnosis and a 90-day roadmap with owners, budgets, and exit criteria. Weeks 3–10 ship the highest-leverage plays first — usually fixing measurement and one acquisition channel. Weeks 11–12 consolidate what worked into a repeatable system and hand over the dashboard.
+
+The discipline is the point. Monthly embedded reviews with a senior partner keep it honest. If a play isn't moving pipeline by week six, we kill it and reallocate — no sunk-cost loyalty to a tactic.`,
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-05-30",
+    readingMin: 4,
+  },
+  {
+    slug: "our-content-engine",
+    title: "Our content engine: from brief to ranked",
+    excerpt:
+      "Editorial, not a content mill. The repeatable system behind pages that compound instead of decay.",
+    body: `Most content programs fail because they're checklist-driven: publish X posts, hope for traffic. Ours is editorial — we treat SEO as a publishing business that happens to rank.
+
+It starts with a brief tied to a funnel stage and a cluster, not a keyword. We write for a specific reader with a specific objection, then engineer the page for crawlability, internal links, and entity clarity so machines and humans both get it.
+
+Each piece earns its place by linking into a topic cluster and picking up internal references from newer posts. That's what compounds: not volume, but a graph of pages that reinforce each other's authority. A post we shipped two years ago is often still our top performer.`,
+    category: "content",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-06-05",
+    readingMin: 4,
+  },
+  {
+    slug: "server-side-attribution-start-to-finish",
+    title: "Server-side attribution, start to finish",
+    excerpt:
+      "How we get deterministic conversion signal back after iOS and cookie loss — without rebuilding the stack.",
+    body: `Browser-side pixels now miss 30–60% of conversions on iOS. If you're optimizing paid on that signal, you're flying blind. The fix is server-side: fire conversion events from your backend to each platform's API — Meta CAPI, TikTok Events API, LinkedIn Conversions API.
+
+The pattern: capture the event once, server-side, then fan it out. That single source of truth survives browser privacy changes and gives every platform the same signal to train on.
+
+The trap is double-counting — if you leave the client-side pixel on too, you'll report twice the conversions. Turn the pixel to a backup, make the server the system of record, and reconcile weekly. Done right, attribution gets sharper, not weaker, after iOS.`,
+    category: "analytics",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-06-12",
+    readingMin: 4,
+  },
+  {
+    slug: "senior-only-delivery",
+    title: "The senior-only delivery model",
+    excerpt:
+      "Why we don't hire juniors to fulfill client work — and how a 4-person team stays senior.",
+    body: `Juniors aren't a cost problem, they're a translation problem. Every layer between the strategist and the deliverable adds drift, rework, and latency. At scale that drift is invisible; on a senior-led team it simply doesn't exist.
+
+We keep the team small and senior on purpose. The person who audits your funnel is the person who ships the fix. Decisions happen in writing, async, with the people who have the context — not relayed through an account manager.
+
+The constraint is real: we can't take every engagement. We'd rather be the team you trust than the agency that's always "ramping someone up on your account."`,
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-06-19",
+    readingMin: 3,
+  },
+  {
+    slug: "growth-marketing-dubai",
+    title: "Growth marketing in Dubai: what actually moves the needle",
+    excerpt:
+      "Dubai's multilingual, mobile-first SERPs reward brands that localize fast across Arabic and English.",
+    body: `Dubai is a multilingual, mobile-first market where the brands that win treat Arabic and English as first-class, not as translations. Structured data and bilingual content earn the local Knowledge Graph; monolingual builds leave rankings — and trust — on the table.
+
+High-intent B2B buyer traffic concentrates around DIFC and the free zones, so account-based and localized landing pages outperform broad paid blasts. And because summer travel dips, Q3 is the window to build organic before peak season spends.
+
+The throughline is the same as everywhere: clean server-side measurement, a content graph that compounds, and senior judgment on which channel is actually payback-positive for your unit economics.`,
+    category: "strategy",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-06-26",
+    readingMin: 4,
+  },
+  {
+    slug: "growth-marketing-london",
+    title: "Growth marketing in London: earning the SERP",
+    excerpt:
+      "London's crowded SERPs punish thin content. Original data and entity authority are the only durable moat.",
+    body: `London's SERPs are among the most competitive in the world. Translation: thin, recycled content gets buried, and paid CPCs make renting attention expensive. The durable moat is original data and entity authority.
+
+We invest in benchmark studies and primary research that earn UK trade-press links and citations — the kind of link that moves a cluster, not a page. B2B SaaS buyers here research heavily before a first call, so comparison and methodology content does the selling before sales ever picks up.
+
+It's slower than a paid spike and far more durable. A year of compounding authority in London beats a year of rented clicks that stop the day the budget does.`,
+    category: "seo",
+    author: "Brahim ZERBOUT",
+    publishedAt: "2026-07-03",
+    readingMin: 4,
+  },
 ];
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);

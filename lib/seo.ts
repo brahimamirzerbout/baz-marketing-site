@@ -40,6 +40,7 @@ export function buildMetadata({
       title: fullTitle,
       description,
       url,
+      locale: "en_US",
       images: [{ url: img, width: 1200, height: 630, alt: fullTitle }],
       ...(publishedTime ? { publishedTime } : {}),
     },
@@ -114,7 +115,60 @@ export function professionalServiceLd() {
     url: site.url,
     image: new URL("/og/default.png", site.url).toString(),
     description: site.description,
-    areaServed: ["MENA", "EU", "US"],
+    areaServed: site.areasServed,
+    priceRange: "$$$",
+    email: site.email,
+    telephone: site.phone,
+  };
+}
+
+/**
+ * Schema.org Service block for a single service detail page.
+ * `areaServed` comes from the global regions config; `offers` is a
+ * contact-for-quote Offer (no fixed price — engagements are scoped per client).
+ */
+export function serviceLd(service: {
+  name: string;
+  description: string;
+  slug: string;
+  tagline?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    description: service.description,
+    serviceType: service.tagline,
+    url: new URL(`/services/${service.slug}`, site.url).toString(),
+    provider: { "@type": "Organization", name: site.name, url: site.url },
+    areaServed: site.areasServed,
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "USD",
+      description: "Custom engagement — contact for a tailored quote.",
+    },
+  };
+}
+
+/**
+ * LocalBusiness / ProfessionalService block for industry and location pages.
+ * `areaServed` defaults to the global regions but can be overridden with a
+ * specific city + region for location-leaf pages.
+ */
+export function localBusinessLd(opts: {
+  name: string;
+  description: string;
+  url: string;
+  areaServed?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: opts.name,
+    description: opts.description,
+    url: new URL(opts.url, site.url).toString(),
+    image: new URL("/og/default.png", site.url).toString(),
+    areaServed: opts.areaServed ?? site.areasServed,
     priceRange: "$$$",
     email: site.email,
     telephone: site.phone,
@@ -160,7 +214,7 @@ export function articleLd(post: {
     description: post.excerpt,
     url: new URL(`/insights/${post.slug}`, site.url).toString(),
     datePublished: post.publishedAt,
-    author: { "@type": "Person", name: post.author },
+    author: { "@type": "Person", name: post.author, sameAs: site.social.linkedin },
     publisher: {
       "@type": "Organization",
       name: site.name,

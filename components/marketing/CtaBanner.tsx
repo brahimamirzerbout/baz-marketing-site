@@ -68,6 +68,12 @@ export function CtaBanner({
             >
               {ctaLabel}
             </Button>
+            <a
+              href="/vs-others"
+              className="text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline text-center"
+            >
+              See how we compare →
+            </a>
             <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/60 mt-1 text-center">
               Mon–Fri · 9–18 GMT · reply &lt; 24h
             </p>

@@ -10,9 +10,10 @@ import { ProcessTimeline } from "@/components/marketing/ProcessTimeline";
 import { Faq } from "@/components/marketing/Faq";
 import { CtaBanner } from "@/components/marketing/CtaBanner";
 import { ServiceCard } from "@/components/marketing/ServiceCard";
+import { ServiceLeadForm } from "@/components/marketing/ServiceLeadForm";
 import { caseStudies } from "@/content/case-studies";
 import { services, getService } from "@/content/services";
-import { buildMetadata, jsonLd, faqLd, breadcrumbLd } from "@/lib/seo";
+import { buildMetadata, jsonLd, faqLd, breadcrumbLd, serviceLd } from "@/lib/seo";
 
 type Params = { params: { slug: string } };
 
@@ -32,6 +33,7 @@ export function generateMetadata({ params }: Params): Metadata {
     title: service.name,
     description: service.description,
     path: `/services/${service.slug}`,
+    image: `/og/services/${service.slug}`,
   });
 }
 
@@ -210,11 +212,28 @@ export default function ServiceDetailPage({ params }: Params) {
         </div>
       </Section>
 
+      <Section tone="paper" size="lg">
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-7">
+            <Eyebrow>Start a project</Eyebrow>
+            <SectionHeading>Tell us the outcome you need.</SectionHeading>
+            <p className="mt-4 text-muted-foreground">
+              Senior partners review every brief within 24 hours. No SDRs, no forms that
+              vanish into a queue.
+            </p>
+          </div>
+          <div className="lg:col-span-5">
+            <ServiceLeadForm serviceSlug={service.slug} serviceName={service.name} />
+          </div>
+        </div>
+      </Section>
+
       <CtaBanner serviceSlug={service.slug} serviceName={service.name} />
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLd([
+          serviceLd(service),
           faqLd(service.faqs),
           breadcrumbLd([
             { name: "Home", url: "/" },

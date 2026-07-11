@@ -56,7 +56,6 @@ export default function PostDetailPage({ params }: Params) {
     .map((p) => p.trim())
     .filter(Boolean);
   const cat = categoryLabel[post.category];
-  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
     <>
@@ -131,7 +130,7 @@ export default function PostDetailPage({ params }: Params) {
       <Section tone="paper" size="lg">
         <Eyebrow>More from the playbook</Eyebrow>
         <div className="mt-10">
-          <PostsList />
+          <PostsList exclude={post.slug} limit={3} />
         </div>
       </Section>
 

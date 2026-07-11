@@ -4,6 +4,12 @@ import { services } from "@/content/services";
 import { caseStudies } from "@/content/case-studies";
 import { posts } from "@/content/posts";
 import { industries } from "@/content/industries";
+import {
+  cityPages,
+  cityIndustryPages,
+  matrixLeaves,
+  industryServicePages,
+} from "@/lib/matrix";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -63,12 +69,53 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // Phase 3 programmatic matrix — only publishable pages (gated in lib/matrix.ts).
+  const cityRoutes: MetadataRoute.Sitemap = cityPages()
+    .filter((p) => p.publishable)
+    .map((p) => ({
+      url: `${base}/locations/${p.city.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
+
+  const cityIndustryRoutes: MetadataRoute.Sitemap = cityIndustryPages()
+    .filter((p) => p.publishable)
+    .map((p) => ({
+      url: `${base}/locations/${p.city!.slug}/${p.industry.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    }));
+
+  const matrixLeafRoutes: MetadataRoute.Sitemap = matrixLeaves()
+    .filter((p) => p.publishable)
+    .map((p) => ({
+      url: `${base}/locations/${p.city!.slug}/${p.industry.slug}/${p.service!.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    }));
+
+  const industryServiceRoutes: MetadataRoute.Sitemap = industryServicePages()
+    .filter((p) => p.publishable)
+    .map((p) => ({
+      url: `${base}/industries/${p.industry.slug}/${p.service!.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    }));
+
   return [
     ...staticRoutes,
     ...serviceRoutes,
     ...caseRoutes,
     ...postRoutes,
     ...industryRoutes,
+    ...cityRoutes,
+    ...cityIndustryRoutes,
+    ...matrixLeafRoutes,
+    ...industryServiceRoutes,
     { url: `${base}/admin/canva`, lastModified: now, changeFrequency: "monthly", priority: 0.2 },
     {
       url: `${base}/admin/analytics`,

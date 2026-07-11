@@ -11,7 +11,7 @@ import { services } from "@/content/services";
 import { caseStudies } from "@/content/case-studies";
 import { Button } from "@/components/ui/Button";
 import { site } from "@/lib/site";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, jsonLd, breadcrumbLd, localBusinessLd } from "@/lib/seo";
 
 type Params = { params: { slug: string } };
 
@@ -131,6 +131,22 @@ export default function IndustryDetailPage({ params }: Params) {
       </Section>
 
       <CtaBanner />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd([
+          localBusinessLd({
+            name: `${ind.name} growth — ${site.name}`,
+            description: ind.blurb,
+            url: `/industries/${ind.slug}`,
+          }),
+          breadcrumbLd([
+            { name: "Home", url: "/" },
+            { name: "Industries", url: "/industries" },
+            { name: ind.name, url: `/industries/${ind.slug}` },
+          ]),
+        ])}
+      />
     </>
   );
 }

@@ -35,6 +35,9 @@ export const site = {
     .map((s) => s.trim())
     .filter(Boolean),
 
+  // Regions served — drives `areaServed` in LocalBusiness / Service schema.
+  areasServed: ["MENA", "EU", "US"] as string[],
+
   /**
    * What "Book a growth call" buttons should link to.
    * - If `bookingUrl` is set (Cal.com, TidyCal, etc.), use it.

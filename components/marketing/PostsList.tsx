@@ -15,10 +15,18 @@ const categoryLabel: Record<
   ai: { name: "AI", tone: "info" },
 };
 
-export function PostsList() {
+export function PostsList({
+  slugs,
+  exclude,
+  limit,
+}: { slugs?: string[]; exclude?: string; limit?: number } = {}) {
+  let list = posts;
+  if (slugs) list = list.filter((p) => slugs.includes(p.slug));
+  if (exclude) list = list.filter((p) => p.slug !== exclude);
+  if (limit) list = list.slice(0, limit);
   return (
     <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {posts.map((p, i) => {
+      {list.map((p, i) => {
         const cat = categoryLabel[p.category];
         return (
           <li key={p.slug}>
