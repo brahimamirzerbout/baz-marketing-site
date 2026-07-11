@@ -50,7 +50,7 @@ export function Header() {
         {/* Logo — BAZventures wordmark (B&W; recolors via --brand when the expert sets the seed) */}
         <Link href="/" aria-label={`${site.name} — home`} className="flex items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/apple-touch-icon.png" alt="" aria-hidden="true" className="h-8 w-8 md:h-9 md:w-9 rounded-lg object-cover" />
+          <img src="/apple-touch-icon.png" alt="" aria-hidden="true" width="32" height="32" className="h-8 w-8 md:h-9 md:w-9 rounded-lg object-cover" />
           <span className="font-display font-semibold tracking-[-0.02em] text-foreground text-lg md:text-xl leading-none">{site.name}</span>
         </Link>
 

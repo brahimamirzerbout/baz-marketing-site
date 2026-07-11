@@ -52,9 +52,9 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
 
           {/* Headline — two lines, uppercase display */}
           <motion.h1
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20, filter: "blur(8px)" }}
-            animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.05 }}
             className="display-xl text-[clamp(3rem,9vw,9rem)] text-ink-1000 max-w-5xl"
           >
             <span className="block">{v.headline}</span>
