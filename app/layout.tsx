@@ -78,6 +78,12 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
+  other: {
+    'link[rel=preconnect][href=https://fonts.googleapis.com]': 'true',
+    'link[rel=preconnect][href=https://fonts.gstatic.com]': 'true',
+    'link[rel=dns-prefetch][href=https://fonts.googleapis.com]': 'true',
+    'link[rel=dns-prefetch][href=https://fonts.gstatic.com]': 'true',
+  },
 };
 
 export const viewport: Viewport = {

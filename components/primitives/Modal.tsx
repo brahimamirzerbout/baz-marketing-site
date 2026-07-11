@@ -1,10 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PHI, DURATION } from '../../styles/aether-design-system';
-
-// ═══════════════════════════════════════════════════════════════════
-// MODAL — Golden ratio centered overlay with glassmorphism
-// ═══════════════════════════════════════════════════════════════════
 
 interface ModalProps {
   isOpen: boolean;
@@ -16,6 +12,57 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, title, children, width = 610, closeOnBackdrop = true }: ModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<Element | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    previousActiveElement.current = document.activeElement;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (event.key === 'Tab') {
+        const modal = modalRef.current;
+        if (!modal) return;
+        const focusable = modal.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey) {
+          if (document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+
+    const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    );
+    firstFocusable?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+      (previousActiveElement.current as HTMLElement | null)?.focus();
+    };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -29,6 +76,7 @@ export function Modal({ isOpen, onClose, title, children, width = 610, closeOnBa
           onClick={() => closeOnBackdrop && onClose()}
         >
           <motion.div
+            ref={modalRef}
             initial={{ opacity: 0, scale: 1 / PHI, y: 21 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 1 / PHI, y: 21 }}
@@ -36,13 +84,16 @@ export function Modal({ isOpen, onClose, title, children, width = 610, closeOnBa
             className="aether-glass rounded-[21px] overflow-hidden flex flex-col max-h-[80vh]"
             style={{ width: `${width}px`, maxWidth: '90vw', background: 'var(--aether-gradient-surface)' }}
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={title ? 'modal-title' : undefined}
           >
             {title && (
               <div
                 className="flex items-center justify-between px-[21px] py-[13px] border-b"
                 style={{ borderColor: 'var(--aether-border-subtle)' }}
               >
-                <h2 className="text-[13px] font-bold aether-gradient-text">{title}</h2>
+                <h2 id="modal-title" className="text-[13px] font-bold aether-gradient-text">{title}</h2>
                 <button
                   onClick={onClose}
                   className="w-[21px] h-[21px] flex items-center justify-center rounded-[8px] aether-transition-colors"

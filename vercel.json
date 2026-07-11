@@ -29,6 +29,18 @@
       ]
     },
     {
+      "source": "/(_next/static/media|_next/image)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600" }
+      ]
+    },
+    {
+      "source": "/(_next/static/chunks|_next/static/css|_next/static/webpack)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600" }
+      ]
+    },
+    {
       "source": "/og/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600" }
