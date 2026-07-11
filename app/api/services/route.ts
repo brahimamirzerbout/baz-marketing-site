@@ -74,7 +74,6 @@ export async function GET(req: Request) {
     } else {
       out = pick(s as unknown as Record<string, unknown>, allFields);
     }
-    if (!("placeholder" in out)) out.placeholder = !!s.placeholder;
     return out;
   });
 

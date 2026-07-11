@@ -1,5 +1,4 @@
 import type { Testimonial } from "@/types";
-import { Badge } from "@/components/ui/Badge";
 
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
@@ -18,7 +17,6 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           </p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          {testimonial.placeholder && <Badge variant="warning">Demo</Badge>}
           {testimonial.metric && (
             <span className="text-xs font-mono uppercase tracking-[0.15em] text-accent text-right">
               {testimonial.metric}

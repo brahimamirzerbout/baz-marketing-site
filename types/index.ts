@@ -12,7 +12,6 @@ export type Service = {
   proof: { client: string; metric: string; detail: string }[];
   faqs: { q: string; a: string }[];
   cta: { primary: string; secondary?: string };
-  placeholder?: boolean;
 };
 
 export type CaseStudy = {
@@ -27,7 +26,6 @@ export type CaseStudy = {
   metrics: { label: string; value: string }[];
   duration: string;
   testimonial?: { quote: string; author: string; role: string };
-  placeholder?: boolean;
 };
 
 export type Post = {
@@ -47,6 +45,17 @@ export type Industry = {
   blurb: string;
   challenges: string[];
   outcomes: string[];
+};
+
+export type City = {
+  slug: string;
+  name: string;
+  country: string;
+  region: "MENA" | "EU" | "US";
+  locale: string;       // BCP-47, e.g. "en_AE"
+  marketBlurb: string; // qualitative local-market context (no fabricated stats)
+  localProof: string[]; // >=2 unique, non-boilerplate local observations
+  launch?: boolean;     // included in the gated launch subset
 };
 
 export type PricingTier = {
@@ -70,7 +79,6 @@ export type Testimonial = {
   role: string;
   company: string;
   metric?: string;
-  placeholder?: boolean;
 };
 
 export type TeamMember = {

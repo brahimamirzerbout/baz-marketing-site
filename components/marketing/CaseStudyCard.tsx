@@ -18,7 +18,6 @@ export function CaseStudyCard({ caseStudy, index = 0 }: { caseStudy: CaseStudy; 
         </span>
         <span className="absolute top-4 left-4 flex gap-2">
           <Badge variant="ink">{caseStudy.industry}</Badge>
-          {caseStudy.placeholder && <Badge variant="warning">Demo</Badge>}
         </span>
         <span className="absolute bottom-4 right-4 text-foreground/80 text-xs font-mono uppercase tracking-[0.15em]">
           {caseStudy.duration}

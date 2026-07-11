@@ -49,14 +49,9 @@ export function Testimonials() {
                   <span className="font-mono text-xs uppercase tracking-[0.15em] text-accent">
                     {t.metric}
                   </span>
-                </div>
-                {t.placeholder && (
-                  <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/30">
-                    illustrative
-                  </span>
-                )}
-              </figcaption>
-            )}
+                 </div>
+               </figcaption>
+             )}
           </figure>
         ))}
       </div>

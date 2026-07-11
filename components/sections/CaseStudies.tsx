@@ -59,7 +59,6 @@ export function CaseStudies() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    {c.placeholder && <Badge variant="warning">Demo</Badge>}
                     <Badge variant="ink">{c.services.length} services</Badge>
                   </div>
                 </div>

@@ -34,7 +34,7 @@ export function ProofNumbers() {
                       {cs.client} · {cs.industry}
                     </p>
                   </div>
-                  {cs.placeholder && <Badge variant="warning">Demo</Badge>}
+                  <Badge variant="ink">{cs.services.slice(0, 2).join(", ")}</Badge>
                 </div>
 
                 {/* Headline metric */}
