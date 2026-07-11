@@ -1,641 +1,841 @@
 <!DOCTYPE html>
-<html lang="en" class="dark" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BAZventures — Growth as a Forecast</title>
-<meta name="description" content="BAZventures — a senior-only growth partner. Eighteen specialized services, 90-day execution plans, and a performance-based guarantee.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════════════════
-   BAZventures — ÆTHER MONOCHROME + GOLD ACCENT
-   Grayscale ink ramp (chroma 0) for structure; gold is the only hue.
-   Expert knob: --gold / --gold-light / --gold-deep.
-   ═══════════════════════════════════════════════════════════════════ */
-
-*,*::before,*::after { box-sizing: border-box; margin: 0; }
-
+*,*::before,*::after { border-radius: 0 !important; }
+.rounded-full, .rounded-full * { border-radius: 9999px !important; }
 :root {
-  /* Structural neutrals stay monochrome (chroma 0) */
-  --ink-0: oklch(0 0 0);
-  --ink-50: oklch(0.04 0 0);
-  --ink-100: oklch(0.08 0 0);
-  --ink-200: oklch(0.13 0 0);
-  --ink-300: oklch(0.18 0 0);
-  --ink-400: oklch(0.27 0 0);
-  --ink-500: oklch(0.4 0 0);
-  --ink-600: oklch(0.55 0 0);
-  --ink-700: oklch(0.7 0 0);
-  --ink-800: oklch(0.85 0 0);
-  --ink-900: oklch(0.96 0 0);
-  --ink-1000: oklch(1 0 0);
-
-  --background: oklch(0.04 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.08 0 0);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.08 0 0);
-  --muted: oklch(0.13 0 0);
-  --muted-foreground: oklch(0.62 0 0);
-  --accent: oklch(0.18 0 0);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(1 0 0 / 30%);
-
-  /* GOLD ACCENT — the only hue (from BAZ brand assets) */
-  --gold: #C29B5B;
-  --gold-light: #F7E3A8;
-  --gold-deep: #8C6A30;
-
-  /* Semantic aliases — grayscale structure, gold accent */
-  --ink: oklch(0.04 0 0);
-  --brand: var(--gold);
-  --brand2: var(--gold-deep);
-  --panel: oklch(0.08 0 0);
-  --panel-2: oklch(0.13 0 0);
-  --sand: oklch(0.98 0 0);
-  --stone: oklch(0.62 0 0);
-
-  --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --brand: #f2572b; --brand2: #E4B8BF; --ink: #111; --panel: #1A1A1A; --panel2: #2C2C2C;
+  --paper: #f5f1ea; --white: #ffffff; --sand: #E8E4E0; --stone: #B0AAA5;
+  --violet: hsl(270, 85%, 72%); --ease: cubic-bezier(.4,0,.2,1);
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, sans-serif;
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
-
-  --radius-none: 0;
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 26px;
-  --radius-full: 9999px;
-  --ease: cubic-bezier(.4,0,.2,1);
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; background: var(--ink); color: var(--sand); margin: 0; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font-family: inherit; }
 
-html { scroll-behavior: smooth; color-scheme: dark; -webkit-text-size-adjust: 100%; }
-body {
-  font-family: var(--font-sans);
-  font-weight: 300;
-  color: var(--sand);
-  background: var(--ink);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-::selection { background: var(--brand); color: var(--ink-0); }
-a { color: var(--sand); text-decoration: none; }
-a:hover { color: var(--brand); }
-:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--ink-50); }
-::-webkit-scrollbar-thumb { background: var(--ink-400); }
-img, svg { display: block; max-width: 100%; }
-
-/* Layout primitives */
-.wrap { max-width: 84rem; margin: 0 auto; padding: 0 1.5rem; }
-.section { padding: 6rem 0; }
-@media (min-width: 1024px) { .section { padding: 8rem 0; } }
+/* Typography */
 .font-display { font-family: var(--font-display); }
 .font-mono { font-family: var(--font-mono); }
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px; font-weight: 500;
-  text-transform: uppercase; letter-spacing: .3em;
-  color: var(--brand);
-  display: inline-flex; align-items: center; gap: .6rem;
-}
-.eyebrow::before {
-  content: ''; width: 0; height: 0;
-  border-left: 5px solid transparent; border-right: 5px solid transparent;
-  border-bottom: 8px solid var(--brand);
-}
-.display {
-  font-family: var(--font-display);
-  font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
-  color: var(--sand); text-transform: uppercase;
-}
 .text-brand { color: var(--brand); }
-.bg-panel { background: var(--panel); }
+.text-violet { color: var(--violet); }
+.bg-brand { background-color: var(--brand); }
+.bg-paper { background: var(--paper); }
 .bg-ink { background: var(--ink); }
+.bg-panel { background: var(--panel); }
+.bg-panel2 { background: var(--panel2); }
+.bg-white { background: var(--white); }
+.text-ink { color: var(--ink); }
+.text-white { color: #fff; }
+.text-sand { color: var(--sand); }
+.text-stone { color: var(--stone); }
+.uppercase { text-transform: uppercase; }
+.tracking-wide { letter-spacing: .1em; }
+.tracking-wider { letter-spacing: .2em; }
+.leading-tight { line-height: 1.2; }
+.leading-relaxed { line-height: 1.7; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
 
-/* Buttons */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
-  font-family: var(--font-display); font-weight: 600;
-  font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
-  padding: 1rem 2rem; cursor: pointer; border: 1.5px solid transparent;
-  border-radius: var(--radius-md); transition: all .3s var(--ease);
-}
-.btn-primary { background: var(--brand); color: var(--ink-0); }
-.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); color: var(--ink-0); }
-.btn-ghost { border-color: oklch(1 0 0 / 50%); color: var(--sand); }
-.btn-ghost:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
-.rounded-full { border-radius: 9999px !important; }
+/* Layout */
+.container { max-width: 90rem; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+.section { padding-top: 6rem; padding-bottom: 6rem; }
+.section-sm { padding-top: 4rem; padding-bottom: 4rem; }
+@media (min-width: 640px) { .section { padding-top: 8rem; padding-bottom: 8rem; } }
 
 /* Header */
-.site-header {
-  position: fixed; inset: 0 0 auto 0; z-index: 50;
-  transition: background .3s var(--ease), backdrop-filter .3s var(--ease), box-shadow .3s var(--ease);
-}
-.site-header.is-solid {
-  background: oklch(0.04 0 0 / 72%);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  box-shadow: 0 1px 0 oklch(1 0 0 / 6%);
-}
-.nav-link { position: relative; padding-bottom: 2px; transition: color .25s var(--ease); color: oklch(1 0 0 / 80%); }
-.nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--brand); transition: width .3s var(--ease); }
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 5rem; transition: background .3s var(--ease), backdrop-filter .3s var(--ease), box-shadow .3s var(--ease); }
+.site-header.is-solid { background: rgba(17,17,17,.72); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+.nav-link { position: relative; padding-bottom: 2px; transition: color .25s var(--ease); text-decoration: none; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--brand); transition: width .3s var(--ease); }
 .nav-link:hover { color: var(--brand) !important; }
 .nav-link:hover::after { width: 100%; }
-.brand-mark {
-  width: 38px; height: 38px; background: var(--sand); border-radius: var(--radius-md);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 800; color: var(--ink-0); font-size: 1.1rem;
-}
-.hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: 0; padding: 4px; cursor: pointer; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--sand); transition: all .3s var(--ease); }
+.mobile-toggle { display: none; flex-direction: column; gap: .375rem; background: none; border: 0; padding: .25rem; cursor: pointer; }
+.mobile-toggle span { display: block; width: 1.5rem; height: 2px; background: #fff; transition: all .3s var(--ease); }
+@media (max-width: 767px) { .desktop-nav { display: none; } .mobile-toggle { display: flex; } }
 
 /* Mobile drawer */
-.drawer-scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .5s var(--ease); }
+.drawer-scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .4s var(--ease); }
 .drawer-scrim.open { opacity: 1; pointer-events: auto; }
-.mobile-drawer {
-  position: fixed; top: 0; right: -340px; width: 340px; max-width: 80vw; height: 100%; z-index: 45;
-  background: oklch(0.04 0 0 / 92%); backdrop-filter: blur(20px);
-  border-left: 1px solid var(--border); padding: 6rem 2rem 2rem;
-  display: flex; flex-direction: column; gap: 1.5rem; transition: right .5s var(--ease);
-}
+.mobile-drawer { position: fixed; top: 0; right: -340px; width: 340px; max-width: 80vw; height: 100vh; z-index: 40; background: rgba(17,17,17,.92); backdrop-filter: blur(24px); border-left: 1px solid rgba(255,255,255,.1); padding: 6rem 2rem 2rem; display: flex; flex-direction: column; gap: 1.5rem; transition: right .5s var(--ease); }
 .mobile-drawer.open { right: 0; }
-.mobile-drawer a { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .15em; font-size: 14px; color: var(--sand); }
+.mobile-drawer a { font-family: var(--font-display); font-size: .875rem; letter-spacing: .15em; text-transform: uppercase; color: var(--sand); text-decoration: none; transition: color .25s; }
 .mobile-drawer a:hover { color: var(--brand); }
 
 /* Hero */
-.hero { position: relative; min-height: 88vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, oklch(0.7 0 0 / 6%), transparent 60%); pointer-events: none; }
-.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--ink) 4%, transparent 55%); pointer-events: none; }
-.hero-inner { position: relative; z-index: 10; max-width: 64rem; margin: 0 auto; padding: 7rem 1.5rem 5rem; text-align: center; }
-.hero h1 { font-size: clamp(2.4rem, 9vw, 6rem); margin: 1.25rem 0 1.5rem; }
-.stat-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem 3.5rem; margin-top: 3rem; }
-.stat-num { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--sand); font-weight: 600; }
-.stat-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--stone); margin-top: .35rem; }
+.hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.12) 1px, transparent 0); background-size: 40px 40px; opacity: .15; pointer-events: none; }
+.hero-inner { position: relative; z-index: 2; max-width: 72rem; margin: 0 auto; padding: 8rem 1.5rem 4rem; width: 100%; }
+.hero-eyebrow { font-family: var(--font-mono); font-size: .6875rem; font-weight: 500; letter-spacing: .35em; text-transform: uppercase; color: var(--brand); display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1.5rem; }
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--brand); display: inline-block; }
+.hero-title { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(2rem, 6.5vw, 5rem); font-weight: 700; line-height: 1.05; letter-spacing: -.02em; color: #fff; margin: 0 0 1.5rem; }
+.hero-subtitle { font-size: 1.125rem; color: rgba(232,228,224,.85); font-weight: 500; letter-spacing: .04em; max-width: 42rem; margin: 0 0 2rem; }
+@media (min-width: 640px) { .hero-subtitle { font-size: 1.25rem; } }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: .5rem; padding: 1rem 2rem; font-size: .6875rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; text-decoration: none; transition: all .3s var(--ease); cursor: pointer; border: 0; }
+.btn-primary { background: var(--brand); color: #fff; }
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); }
+.btn-ghost { border: 1.5px solid rgba(255,255,255,.35); color: #fff; background: transparent; }
+.btn-ghost:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+.btn-ghost-dark { border: 1.5px solid var(--ink); color: var(--ink); background: transparent; }
+.btn-ghost-dark:hover { background: var(--ink); color: #fff; }
+.btn-round { border-radius: 9999px; }
 
 /* Marquee */
-.marquee { overflow: hidden; border-block: 1px solid var(--border); padding: 1.5rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-.marquee-track { display: flex; width: max-content; gap: 4rem; animation: marquee 32s linear infinite; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(-50%); } }
-.marquee-item { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; letter-spacing: .04em; color: var(--ink-600); white-space: nowrap; transition: color .3s var(--ease); }
-.marquee-item:hover { color: var(--brand); }
+.marquee-wrap { border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); background: var(--panel); padding: 1.25rem 0; overflow: hidden; }
+.marquee { display: flex; gap: 3rem; animation: marquee 30s linear infinite; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.marquee-item { font-family: var(--font-display); font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--stone); white-space: nowrap; }
+.marquee-sep { color: var(--stone); opacity: .3; }
 
-/* Services bricks */
-.brick-grid { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; max-width: 64rem; margin: 0 auto; }
-.brick {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .65rem 1.1rem; background: oklch(1 0 0 / 4%);
-  border: 1px solid oklch(1 0 0 / 6%); color: var(--stone);
-  font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
-  transition: all .3s var(--ease); cursor: default; border-radius: var(--radius-sm);
-}
-.brick::before { content: ''; width: 6px; height: 6px; border: 1px solid var(--brand); transform: rotate(45deg); transition: background .3s var(--ease); }
-.brick:hover { background: var(--brand); border-color: var(--brand); color: var(--ink-0); transform: translateY(-3px); box-shadow: 0 8px 24px oklch(0.55 0.12 85 / 22%); }
-.brick:hover::before { background: var(--ink-0); border-color: var(--ink-0); }
+/* Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 640px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-box { background: var(--panel); border: 1px solid rgba(255,255,255,.05); padding: 2rem 1.5rem; text-align: center; }
+.stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--brand); }
+.stat-label { font-size: .6875rem; letter-spacing: .2em; text-transform: uppercase; color: var(--stone); margin-top: .25rem; }
 
-/* Guarantee / value card */
-.guarantee { position: relative; border: 1px solid var(--border); background: var(--panel); padding: clamp(2rem, 5vw, 4rem); overflow: hidden; border-radius: var(--radius-lg); }
-.guarantee::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--brand); }
-.guarantee-badge { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--brand); border: 1px solid var(--brand); padding: .4rem 1rem; border-radius: var(--radius-full); }
+/* Section headers */
+.section-header { text-align: center; max-width: 48rem; margin-left: auto; margin-right: auto; margin-bottom: 3.5rem; }
+@media (min-width: 640px) { .section-header { margin-bottom: 4rem; } }
+.section-eyebrow { font-family: var(--font-mono); font-size: .6875rem; font-weight: 500; letter-spacing: .35em; text-transform: uppercase; color: var(--brand); display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+.section-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--brand); display: inline-block; }
+.section-title { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.5rem, 4.5vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; color: #fff; margin: 0; }
+.section-subtitle { color: var(--stone); margin-top: 1rem; max-width: 36rem; margin-left: auto; margin-right: auto; }
 
-/* Process timeline */
-.timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--border); }
-.tl-phase { position: relative; padding: 2.5rem 1.5rem 1rem; border-left: 1px solid var(--border); }
-.tl-phase:first-child { border-left: 0; }
-.tl-node { position: absolute; top: -7px; left: 1.5rem; width: 12px; height: 12px; background: var(--brand); transform: rotate(45deg); }
-.tl-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; color: var(--stone); }
-.tl-day { font-family: var(--font-display); color: var(--brand); font-weight: 600; font-size: .85rem; margin-left: .5rem; }
+/* Grid */
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.grid-4 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(2, 1fr); } .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-2 { gap: 5rem; } .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
 
-/* Portfolio */
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-.proj { padding: 2.5rem; background: oklch(1 0 0 / 4%); border: 1px solid oklch(1 0 0 / 6%); transition: all .3s var(--ease); border-radius: var(--radius-lg); }
-.proj:hover { transform: translateY(-3px); border-color: oklch(0.55 0.12 85 / 30%); box-shadow: 0 12px 40px oklch(0.55 0.12 85 / 8%); }
-.tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .6rem; border: 1px solid var(--border); color: var(--stone); border-radius: var(--radius-sm); }
-.proj-link { color: var(--brand); font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; display: inline-flex; gap: .5rem; transition: gap .3s var(--ease); }
-.proj-link:hover { gap: .8rem; color: var(--brand); }
+/* Service cards */
+.service-card { padding: 2rem; background: var(--panel2); border: 1px solid rgba(255,255,255,.06); transition: all .3s var(--ease); }
+.service-card:hover { transform: translateY(-4px); border-color: rgba(242,87,43,.3); box-shadow: 0 12px 40px rgba(242,87,43,.08); }
+.svc-num { font-family: var(--font-mono); font-size: .6875rem; color: var(--brand); letter-spacing: .2em; }
+.service-card h3 { font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; color: #fff; margin: .5rem 0 .75rem; text-transform: uppercase; letter-spacing: .04em; }
+.service-card p { font-size: .85rem; color: var(--stone); line-height: 1.65; margin: 0; }
 
-/* Metrics */
-.metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-@media (min-width: 640px) { .metric-grid { grid-template-columns: repeat(4, 1fr); } }
-.metric { background: var(--panel); padding: 1.5rem; text-align: center; }
-.metric-num { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--brand); font-weight: 600; }
-.metric-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--stone); margin-top: .35rem; }
+/* Case cards */
+.case-card { padding: 1.5rem 2rem; background: var(--panel); border: 1px solid rgba(255,255,255,.06); transition: all .3s var(--ease); }
+.case-card:hover { border-color: rgba(242,87,43,.2); }
+.case-industry { font-family: var(--font-mono); font-size: .625rem; letter-spacing: .25em; text-transform: uppercase; color: var(--brand); }
+.case-card h4 { font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600; color: #fff; margin: .35rem 0 .5rem; text-transform: uppercase; }
+.case-metric { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--brand); line-height: 1.2; }
+.case-result { font-size: .8rem; color: var(--stone); margin-top: .25rem; }
+.case-duration { font-size: .7rem; color: var(--stone); opacity: .6; margin-top: .5rem; text-transform: uppercase; letter-spacing: .1em; }
 
-/* Contact panel (side drawer) */
-.contact-panel {
-  position: fixed; top: 0; right: -480px; width: 460px; max-width: 92vw; height: 100vh; z-index: 60;
-  background: oklch(0.04 0 0 / 90%); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-left: 1px solid var(--border); transition: right .5s var(--ease); overflow-y: auto; display: flex; flex-direction: column;
-  border-top-left-radius: var(--radius-lg); border-bottom-left-radius: var(--radius-lg);
-}
-.contact-panel.open { right: 0; }
+/* Pillars */
+.pillar { padding: 2.5rem 2rem; background: var(--panel); border: 1px solid rgba(255,255,255,.06); text-align: center; transition: all .3s var(--ease); }
+.pillar:hover { border-color: rgba(242,87,43,.2); transform: translateY(-3px); }
+.pillar-icon { font-size: 1.5rem; margin-bottom: 1rem; color: var(--brand); }
+.pillar h4 { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 .75rem; }
+.pillar p { font-size: .85rem; color: var(--stone); line-height: 1.65; margin: 0; }
+
+/* Timeline */
+.timeline { display: grid; grid-template-columns: 1fr; gap: 1px; background: rgba(255,255,255,.06); }
+@media (min-width: 768px) { .timeline { grid-template-columns: repeat(5, 1fr); } }
+.timeline-cell { background: var(--panel); padding: 1.5rem; }
+.tl-num { font-family: var(--font-mono); font-size: .6875rem; color: var(--brand); letter-spacing: .2em; }
+.timeline-cell h4 { font-family: var(--font-display); font-size: .95rem; font-weight: 600; color: #fff; margin: .35rem 0 .5rem; text-transform: uppercase; letter-spacing: .05em; }
+.timeline-cell p { font-size: .75rem; color: var(--stone); line-height: 1.6; margin: 0; }
+
+/* Framework */
+.framework-item { padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; gap: 1.5rem; align-items: flex-start; }
+.framework-item:last-child { border-bottom: 0; }
+.framework-num { font-family: var(--font-mono); font-size: .6875rem; color: var(--violet); letter-spacing: .15em; min-width: 28px; padding-top: .15rem; }
+.framework-item h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 .35rem; }
+.framework-item p { font-size: .85rem; color: var(--stone); line-height: 1.65; margin: 0; }
+
+/* Testimonials */
+.testimonial { padding: 2rem; background: var(--panel2); border: 1px solid rgba(255,255,255,.06); }
+.testimonial blockquote { font-size: 1rem; color: var(--sand); line-height: 1.7; margin: 0 0 1.25rem; font-style: italic; }
+.testimonial .attr { font-family: var(--font-display); font-size: .8rem; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .08em; }
+.testimonial .attr span { color: var(--stone); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+/* Pricing */
+.pricing-card { padding: 2.5rem 2rem; background: var(--panel); border: 1px solid rgba(255,255,255,.06); transition: all .3s var(--ease); }
+.pricing-card.featured { border-color: rgba(242,87,43,.3); background: linear-gradient(180deg, rgba(242,87,43,.06), var(--panel)); }
+.pricing-card h3 { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 .5rem; }
+.pricing-card .price { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--brand); }
+.pricing-card .price-sub { font-size: .75rem; color: var(--stone); margin-top: .25rem; }
+.pricing-card ul { list-style: none; padding: 0; margin: 1.5rem 0; }
+.pricing-card ul li { font-size: .85rem; color: var(--sand); padding: .4rem 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+.pricing-card ul li:last-child { border-bottom: 0; }
+
+/* Forms */
+.form-field { width: 100%; padding: .75rem 1rem; background: transparent; border: 1px solid rgba(255,255,255,.18); color: var(--sand); font-family: var(--font-sans); font-size: .85rem; transition: border-color .25s var(--ease); }
+.form-field:focus { outline: none; border-color: var(--brand); background: #333; }
+.form-field::placeholder { color: var(--stone); }
+.form-label { display: block; font-size: .6875rem; letter-spacing: .15em; text-transform: uppercase; color: var(--stone); margin-bottom: .5rem; }
+.btn-submit { width: 100%; padding: 1rem; background: var(--brand); color: #fff; border: 0; font-family: var(--font-display); font-size: .6875rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: .5rem; transition: all .3s var(--ease); }
+.btn-submit:hover { filter: brightness(1.08); }
+.btn-submit .arr { transition: transform .3s var(--ease); }
+.btn-submit:hover .arr { transform: translateX(4px); }
+
+/* Contact panel */
 .contact-scrim { position: fixed; inset: 0; z-index: 59; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .4s var(--ease); }
 .contact-scrim.open { opacity: 1; pointer-events: auto; }
-.field { width: 100%; padding: .8rem 1rem; background: var(--panel-2); border: 1px solid var(--input); color: var(--sand); font-family: var(--font-sans); font-size: .85rem; transition: border-color .25s var(--ease); border-radius: var(--radius-sm); }
-.field:focus { outline: none; border-color: var(--brand); background: oklch(0.2 0 0); }
-.field::placeholder { color: var(--stone); }
-.btn-send { width: 100%; padding: 1rem; background: var(--brand); color: var(--ink-0); border: 0; font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: .5rem; transition: all .3s var(--ease); border-radius: var(--radius-sm); }
-.btn-send:hover { filter: brightness(1.08); }
-.btn-send .arr { transition: transform .3s var(--ease); }
-.btn-send:hover .arr { transform: translateX(4px); }
-.nav-close { width: 40px; height: 40px; border: 1px solid var(--border); background: none; color: var(--sand); font-size: 1.2rem; cursor: pointer; transition: all .25s var(--ease); border-radius: var(--radius-md); }
-.nav-close:hover { border-color: var(--brand); color: var(--brand); }
-
-/* Side dock */
-.side-dock { position: fixed; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; z-index: 40; }
-.side-tab { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: oklch(0.1 0 0 / 80%); backdrop-filter: blur(12px); border: 1px solid var(--border); color: var(--stone); cursor: pointer; transition: all .25s var(--ease); border-right: 0; border-top-left-radius: var(--radius-md); border-bottom-left-radius: var(--radius-md); }
-.side-tab:hover { color: var(--brand); background: oklch(0.1 0 0 / 95%); }
-.side-tab--contact { writing-mode: vertical-rl; text-orientation: mixed; font-family: var(--font-mono); font-size: 10px; letter-spacing: .28em; text-transform: uppercase; color: var(--sand); padding: 1rem .65rem; height: auto; }
+.contact-panel { position: fixed; top: 0; right: -460px; width: 460px; max-width: 90vw; height: 100vh; z-index: 60; background: rgba(17,17,17,.95); backdrop-filter: blur(20px); border-left: 1px solid rgba(255,255,255,.06); transition: right .5s var(--ease); overflow-y: auto; display: flex; flex-direction: column; }
+.contact-panel.open { right: 0; }
+.panel-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.05); }
+.panel-close { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.1); background: none; color: #fff; font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .25s var(--ease); }
+.panel-close:hover { border-color: var(--brand); color: var(--brand); }
+.panel-body { flex: 1; overflow-y: auto; padding: 1.5rem; }
+.panel-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,.05); font-size: .6875rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(176,170,165,.4); }
+.enq-field { width: 100%; padding: .75rem 1rem; background: var(--panel2); border: 1px solid rgba(255,255,255,.18); color: var(--sand); font-family: var(--font-sans); font-size: .85rem; transition: border-color .25s var(--ease); }
+.enq-field:focus { outline: none; border-color: var(--brand); background: #333; }
+.enq-field::placeholder { color: var(--stone); }
+.enq-submit { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 2rem; background: var(--brand); color: #fff; border: 0; font-family: var(--font-display); font-size: .6875rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; transition: all .3s var(--ease); }
+.enq-submit:hover { filter: brightness(1.08); transform: translateY(-2px); }
 
 /* CTA banner */
-.cta-banner { background: var(--brand); transform: translateY(100%); transition: transform .5s var(--ease); }
-.cta-go { background: var(--ink-0); color: var(--sand); font-family: var(--font-display); text-transform: uppercase; letter-spacing: .12em; font-size: 11px; font-weight: 600; padding: .65rem 1.25rem; border: 0; cursor: pointer; transition: all .3s var(--ease); border-radius: var(--radius-sm); }
+.cta-banner { background: var(--brand); padding: 4rem 0; }
+.cta-go { display: inline-flex; align-items: center; gap: .5rem; padding: 1rem 2rem; background: var(--ink); color: #fff; text-transform: uppercase; letter-spacing: .15em; font-family: var(--font-display); text-decoration: none; transition: all .3s var(--ease); }
 .cta-go:hover { filter: brightness(1.2); }
 
-/* Reveal */
+/* Footer */
+.site-footer { border-top: 1px solid rgba(255,255,255,.05); padding: 3rem 0; }
+.footer-inner { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1.5rem; }
+@media (min-width: 640px) { .footer-inner { flex-direction: row; } }
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+.footer-nav a { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--stone); text-decoration: none; transition: color .25s; }
+.footer-nav a:hover { color: var(--brand); }
+.footer-copy { font-size: .6875rem; color: rgba(176,170,165,.4); }
+
+/* Side dock */
+.side-dock { position: fixed; right: 0; bottom: 1.5rem; z-index: 50; display: flex; flex-direction: column; gap: .5rem; }
+.side-tab { width: 48px; display: flex; align-items: center; justify-content: center; background: rgba(26,26,26,.9); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.06); color: var(--stone); cursor: pointer; transition: all .25s var(--ease); text-decoration: none; border-right: 0; }
+.side-tab:hover { color: var(--brand); }
+.side-tab--contact { writing-mode: vertical-rl; text-orientation: mixed; font-size: .625rem; letter-spacing: .28em; text-transform: uppercase; font-family: var(--font-display); font-weight: 500; color: var(--sand); padding: 1rem .65rem; height: auto; border-radius: 0 !important; }
+.side-tab--gh { border-radius: 9999px 0 0 9999px !important; padding: .5rem .75rem; font-family: var(--font-mono); font-size: .625rem; font-weight: 500; }
+
+/* Reveal animation */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 900px) { .timeline { grid-template-columns: repeat(2, 1fr); } .tl-phase:nth-child(3) { border-left: 0; } }
-@media (max-width: 560px) { .timeline { grid-template-columns: 1fr; } .tl-phase { border-left: 0; border-top: 1px solid var(--border); } }
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
-  .marquee-track { animation: none; }
-  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-}
+/* Utilities */
+.mx-auto { margin-left: auto; margin-right: auto; }
+.text-center { text-align: center; }
+.no-underline { text-decoration: none; }
+.cursor-pointer { cursor: pointer; }
+.hidden { display: none; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-2 { gap: .5rem; }
+.gap-3 { gap: .75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.gap-10 { gap: 2.5rem; }
+.gap-12 { gap: 3rem; }
+.mt-1 { margin-top: .25rem; }
+.mt-2 { margin-top: .5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-5 { margin-top: 1.25rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-10 { margin-top: 2.5rem; }
+.mt-12 { margin-top: 3rem; }
+.mb-1 { margin-bottom: .25rem; }
+.mb-2 { margin-bottom: .5rem; }
+.mb-3 { margin-bottom: .75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-5 { margin-bottom: 1.25rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+.mb-12 { margin-bottom: 3rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-7 { padding-left: 1.75rem; padding-right: 1.75rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-3 { padding-top: .75rem; padding-bottom: .75rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+@media (min-width: 640px) { .sm\:py-20 { padding-top: 5rem; padding-bottom: 5rem; } }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-h-\[88vh\] { min-height: 88vh; }
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+.relative { position: relative; }
+.top-0 { top: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.bottom-6 { bottom: 1.5rem; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-10 { z-index: 10; }
+.z-40 { z-index: 40; }
+.z-50 { z-index: 50; }
+.z-59 { z-index: 59; }
+.z-60 { z-index: 60; }
+.overflow-hidden { overflow: hidden; }
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+.opacity-0 { opacity: 0; }
+.opacity-20 { opacity: .2; }
+.opacity-60 { opacity: .6; }
+.opacity-80 { opacity: .8; }
+.transition-opacity { transition-property: opacity; transition-timing-function: var(--ease); }
+.transition-all { transition-property: all; transition-timing-function: var(--ease); }
+.duration-300 { transition-duration: .3s; }
+.duration-400 { transition-duration: .4s; }
+.duration-500 { transition-duration: .5s; }
+.border { border-width: 1px; }
+.border-y { border-top-width: 1px; border-bottom-width: 1px; }
+.border-t { border-top-width: 1px; }
+.border-l { border-left-width: 1px; }
+.border-white\/5 { border-color: rgba(255,255,255,.05); }
+.border-white\/6 { border-color: rgba(255,255,255,.06); }
+.border-white\/10 { border-color: rgba(255,255,255,.1); }
+.border-white\/18 { border-color: rgba(255,255,255,.18); }
+.border-brand { border-color: rgba(242,87,43,.2); }
+.border-violet { border-color: rgba(162,130,255,.2); }
+.backdrop-blur-xl { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.backdrop-blur-2xl { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+.transform { transform: translateY(0); }
+.hover\:translateY-\[-2px\]:hover { transform: translateY(-2px); }
+.hover\:translateY-\[-3px\]:hover { transform: translateY(-3px); }
+.hover\:translateY-\[-4px\]:hover { transform: translateY(-4px); }
+.hover\:text-brand:hover { color: var(--brand) !important; }
+.hover\:border-brand:hover { border-color: rgba(242,87,43,.3) !important; }
+.hover\:border-violet:hover { border-color: rgba(162,130,255,.3) !important; }
+.hover\:brightness-110:hover { filter: brightness(1.1); }
+.hover\:brightness-125:hover { filter: brightness(1.25); }
+.group:hover .group-hover\:text-brand { color: var(--brand); }
+@media (min-width: 640px) { .sm\:flex-row { flex-direction: row; } .sm\:items-start { align-items: flex-start; } .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); } .sm\:gap-10 { gap: 2.5rem; } .sm\:px-8 { padding-left: 2rem; padding-right: 2rem; } .sm\:text-xl { font-size: 1.25rem; } .sm\:text-3xl { font-size: 1.875rem; } }
+@media (min-width: 768px) { .md\:flex { display: flex; } }
+@media (min-width: 1024px) { .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); } .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); } .lg\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); } .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; } .lg\:gap-20 { gap: 5rem; } }
+.rounded-full { border-radius: 9999px !important; }
 </style>
 </head>
-<body class="bg-ink">
+<body>
 <!-- HEADER -->
 <header id="siteHeader" class="site-header">
-  <div class="wrap" style="padding-top:1.25rem;padding-bottom:1.25rem">
-    <div style="display:flex;align-items:center;justify-content:space-between">
-      <a href="#top" style="display:flex;align-items:center;gap:.75rem">
-        <span class="brand-mark">B</span>
-        <span class="font-display" style="font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:13px">BAZventures</span>
+  <div class="container">
+    <div class="header-inner">
+      <a href="#top" class="flex items-center gap-3 no-underline">
+        <svg width="36" height="42" viewBox="0 0 48 56" fill="none" style="height:3rem;width:auto;">
+          <path d="M24 52 4 40V16L24 4l20 12v24L24 52Z" stroke="rgba(255,255,255,.2)" stroke-width="1" fill="none"/>
+          <path d="M24 52 4 40V16L24 4l20 12v24L24 52Z" stroke="#f2572b" stroke-width="1.5" fill="none"/>
+          <circle cx="24" cy="4" r="3" fill="#f2572b"/>
+        </svg>
+        <span class="text-brand" style="font-family:var(--font-display);font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:rgba(232,228,224,.8);">BAZventures</span>
       </a>
-      <nav style="display:none;gap:2rem" class="nav-desktop">
-        <a href="#services" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Services</a>
-        <a href="#forecast" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Forecast</a>
-        <a href="#process" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Process</a>
-        <a href="#work" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Work</a>
-        <a href="#contact" class="nav-link font-mono" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase">Contact</a>
+      <nav class="desktop-nav flex items-center gap-8">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </nav>
-      <button class="hamburger" aria-label="Open menu" onclick="document.body.classList.toggle('nav-open')" style="display:flex">
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
-<div class="drawer-scrim" id="drawerScrim" onclick="document.body.classList.remove('nav-open')"></div>
-<aside class="mobile-drawer" id="mobileDrawer">
-  <a href="#services" onclick="document.body.classList.remove('nav-open')">Services</a>
-  <a href="#forecast" onclick="document.body.classList.remove('nav-open')">Forecast</a>
-  <a href="#process" onclick="document.body.classList.remove('nav-open')">Process</a>
-  <a href="#work" onclick="document.body.classList.remove('nav-open')">Work</a>
-  <a href="#contact" onclick="document.body.classList.remove('nav-open')">Contact</a>
-</aside>
+<div class="drawer-scrim" id="drawerScrim"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#services" class="drawer-link">Services</a>
+  <a href="#work" class="drawer-link">Work</a>
+  <a href="#process" class="drawer-link">Process</a>
+  <a href="#testimonials" class="drawer-link">Testimonials</a>
+  <a href="#contact" class="drawer-link">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-inner">
-    <p class="eyebrow" style="justify-content:center">Senior-Only Growth Partner</p>
-    <h1 class="display">Growth as a <span class="text-brand">Forecast.</span></h1>
-    <p style="font-size:1.1rem;color:var(--stone);max-width:42rem;margin:0 auto;line-height:1.7">Eighteen specialized services, a 90-day execution plan, and a number we stake our fee on. No guessing — we model the outcome before we touch a channel.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2.5rem">
-      <a href="#services" class="btn btn-primary rounded-full">View the 18 Services</a>
-      <button class="btn btn-ghost rounded-full" onclick="openContact()">Get in Touch</button>
+    <div class="hero-eyebrow">Now booking Q3 — 3 spots left</div>
+    <h1 class="hero-title">Make growth a<br>forecast, not a <span class="text-brand">hope.</span></h1>
+    <p class="hero-subtitle">Senior-only. 90-day plans. Or pay nothing for month four.<br>The senior operator behind 60+ brands across MENA, EU, and US.</p>
+    <div class="flex flex-col sm:flex-row items-start gap-4 mb-12">
+      <a href="#contact" class="btn btn-primary btn-round">Book a growth call &rarr;</a>
+      <a href="#services" class="btn btn-ghost btn-round">See what we do</a>
     </div>
-    <div class="stat-row">
-      <div><div class="stat-num font-display">18</div><div class="stat-label">Growth Services</div></div>
-      <div><div class="stat-num font-display">90</div><div class="stat-label">Day Execution Plan</div></div>
-      <div><div class="stat-num font-display">04</div><div class="stat-label">Month Guarantee</div></div>
-      <div><div class="stat-num font-display">100%</div><div class="stat-label">Senior Delivery</div></div>
+    <div class="flex flex-wrap gap-6 sm:gap-10">
+      <div><div class="font-display text-2xl sm:text-3xl text-white">60+</div><div class="text-brand mt-1" style="font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;">Brands Scaled</div></div>
+      <div><div class="font-display text-2xl sm:text-3xl text-white">MENA &middot; EU &middot; US</div><div class="text-brand mt-1" style="font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;">Operating Regions</div></div>
+      <div><div class="font-display text-2xl sm:text-3xl text-white">4</div><div class="text-brand mt-1" style="font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;">Senior Partners</div></div>
+      <div><div class="font-display text-2xl sm:text-3xl text-white">&lt;6mo</div><div class="text-brand mt-1" style="font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;">Median Payback</div></div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-label="Tools and partners">
-  <div class="marquee-track">
-    <span class="marquee-item">GitHub</span><span class="marquee-item">Vercel</span><span class="marquee-item">Stripe</span>
-    <span class="marquee-item">Next.js</span><span class="marquee-item">Supabase</span><span class="marquee-item">Figma</span>
-    <span class="marquee-item">Linear</span><span class="marquee-item">Notion</span>
-    <span class="marquee-item">GitHub</span><span class="marquee-item">Vercel</span><span class="marquee-item">Stripe</span>
-    <span class="marquee-item">Next.js</span><span class="marquee-item">Supabase</span><span class="marquee-item">Figma</span>
-    <span class="marquee-item">Linear</span><span class="marquee-item">Notion</span>
+<!-- LOGO MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span class="marquee-item">Ollama</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">GitHub</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Vercel</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Linear</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Stripe</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Resend</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Cal.com</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Figma</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Notion</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Slack</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Ollama</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">GitHub</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Vercel</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Linear</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Stripe</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Resend</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Cal.com</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Figma</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Notion</span><span class="marquee-sep">&bull;</span>
+    <span class="marquee-item">Slack</span>
   </div>
 </div>
-
-<main>
-  <!-- ABOUT -->
-  <section class="section bg-ink" id="about">
-    <div class="wrap">
-      <div class="reveal about-grid" style="display:grid;gap:3rem;grid-template-columns:1fr;align-items:center">
-        <div style="position:relative;min-height:380px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center, oklch(0.55 0.12 85 / 8%), transparent 70%);border-radius:var(--radius-lg)">
-          <svg width="200" height="220" viewBox="0 0 48 56" fill="none" style="opacity:.5"><path d="M24 52 4 40V16L24 4l20 12v24L24 52Z" stroke="var(--brand)" stroke-width="1.5"/><circle cx="24" cy="4" r="3" fill="var(--brand)"/></svg>
-          <p style="position:absolute;bottom:0;left:0;right:0;text-align:center;color:var(--sand);font-weight:500;padding:2.5rem 1.5rem 0;background:linear-gradient(to top, var(--ink), transparent)">One partner. Total accountability.</p>
+<!-- ABOUT -->
+<section class="section bg-ink" id="about">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div class="reveal">
+        <div class="section-eyebrow">Who we are</div>
+        <h2 class="section-title" style="text-align:left;">One team.<br><span class="text-brand">Total accountability.</span></h2>
+        <div class="mt-6 space-y-5 text-stone leading-relaxed">
+          <p>BAZventures is the senior-partner growth agency led by Brahim ZERBOUT — 60+ brands shipped across MENA, EU, and US. Strategy, CRM/revenue ops, and performance web, run on the Hub.</p>
+          <p>Our core team runs the stack. When specialist infrastructure is needed, we bring in the best tools and manage them directly. One point of contact, one standard, end to end.</p>
+          <p><strong class="text-white font-semibold">No chasing, no silence, no surprises.</strong> We keep you in the loop, flag anything early, and stay reachable from first conversation to final deployment.</p>
         </div>
-        <div class="reveal">
-          <p class="eyebrow">Who We Are</p>
-          <h2 class="display" style="font-size:clamp(1.6rem,4.5vw,3rem);margin:1rem 0 2rem">A Senior-Only <span class="text-brand">Partner.</span></h2>
-          <div style="display:flex;flex-direction:column;gap:1.25rem;color:var(--stone)">
-            <p>BAZventures is a growth agency led by Brahim ZERBOUT — built on a simple principle: you work with senior people, or you don't work with us at all. No juniors behind a senior face.</p>
-            <p>Strategy, SEO, performance marketing, and CRM operations under one roof, run by operators who have shipped revenue — not decks.</p>
-            <p><strong style="color:var(--sand);font-weight:600">No chasing, no silence, no surprises.</strong> Transparent forecasting, a 90-day plan you can read, and a guarantee written into the contract.</p>
-          </div>
+        <div class="flex flex-col sm:flex-row gap-3 mt-10">
+          <a href="https://github.com/brahimamirzerbout" target="_blank" class="btn btn-ghost-dark btn-round">Follow the Build</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- SERVICES (18) -->
-  <section class="section bg-panel" id="services">
-    <div class="wrap">
-      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
-        <p class="eyebrow" style="justify-content:center">What We Do</p>
-        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">Everything Under <span class="text-brand">One Roof.</span></h2>
-        <p style="color:var(--stone)">Eighteen specialized growth services — from first-principles strategy to CRM operations that close the loop.</p>
-      </div>
-      <div class="brick-grid reveal">
-        <span class="brick">Growth Strategy</span>
-        <span class="brick">SEO &amp; Content</span>
-        <span class="brick">Performance Marketing</span>
-        <span class="brick">Paid Social</span>
-        <span class="brick">CRM Operations</span>
-        <span class="brick">Marketing Automation</span>
-        <span class="brick">Conversion Optimization</span>
-        <span class="brick">Lifecycle Email</span>
-        <span class="brick">Analytics &amp; Attribution</span>
-        <span class="brick">Brand Positioning</span>
-        <span class="brick">Funnel Design</span>
-        <span class="brick">Demand Generation</span>
-        <span class="brick">Account-Based Marketing</span>
-        <span class="brick">Retention &amp; Loyalty</span>
-        <span class="brick">Marketing Ops</span>
-        <span class="brick">Landing Page Systems</span>
-        <span class="brick">Copy &amp; Messaging</span>
-        <span class="brick">Forecasting &amp; Reporting</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- FORECAST / GUARANTEE -->
-  <section class="section bg-ink" id="forecast">
-    <div class="wrap">
-      <div class="guarantee reveal">
-        <span class="guarantee-badge">The Month Four Clause</span>
-        <h2 class="display" style="font-size:clamp(1.6rem,4.5vw,3rem);margin:1.5rem 0 1rem">Growth as a <span class="text-brand">Forecast.</span></h2>
-        <p style="color:var(--stone);max-width:46rem;line-height:1.7">Before a single channel is funded, we model the outcome: pipeline, CAC, and revenue by week. You see the 90-day plan in writing — phases, owners, and the number we are accountable to.</p>
-        <p style="color:var(--sand);max-width:46rem;line-height:1.7;margin-top:1.25rem">If we don't hit the forecasted milestone by <strong class="text-brand" style="font-weight:600">month four</strong>, you don't pay the retainer that month. Performance-based, in the contract — not a promise.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem">
-          <div style="flex:1 1 200px;border:1px solid var(--border);padding:1.5rem;background:var(--ink-50)">
-            <p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">90-Day Plan</p>
-            <p style="color:var(--stone);font-size:.9rem">Phased execution, written down, with owners and weekly targets you can track.</p>
-          </div>
-          <div style="flex:1 1 200px;border:1px solid var(--border);padding:1.5rem;background:var(--ink-50)">
-            <p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Live Transparency</p>
-            <p style="color:var(--stone);font-size:.9rem">Dashboards you can read. No black boxes, no mystery metrics.</p>
-          </div>
-          <div style="flex:1 1 200px;border:1px solid var(--border);padding:1.5rem;background:var(--ink-50)">
-            <p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Month Four</p>
-            <p style="color:var(--stone);font-size:.9rem">Miss the forecast, the retainer is on us. That is the deal.</p>
-          </div>
+      <div class="reveal">
+        <div class="stats-grid">
+          <div class="stat-box"><div class="stat-num">60+</div><div class="stat-label">Brands Scaled</div></div>
+          <div class="stat-box"><div class="stat-num">$24M+</div><div class="stat-label">Spend Managed</div></div>
+          <div class="stat-box"><div class="stat-num">+214%</div><div class="stat-label">Avg Organic Lift</div></div>
+          <div class="stat-box"><div class="stat-num">94%</div><div class="stat-label">Renewal Rate</div></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROCESS / TIMELINE -->
-  <section class="section bg-panel" id="process">
-    <div class="wrap">
-      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
-        <p class="eyebrow" style="justify-content:center">Our Approach</p>
-        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">Considered, Start to <span class="text-brand">Finish.</span></h2>
-        <p style="color:var(--stone)">A deliberate way of working — every phase planned, every milestone on the calendar.</p>
+<!-- SERVICES -->
+<section class="section bg-panel" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow justify-center">What we do</div>
+      <h2 class="section-title">Eighteen services.<br><span class="text-brand">One senior team.</span></h2>
+      <p class="text-stone section-subtitle">Every type of marketing agency — strategy, performance, SEO, content, brand, CRO, lifecycle, CRM, analytics, AI search, social, influencer, video, partnerships, ABM, PR, research, and internationalization. One tightly integrated system.</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="service-card"><div class="svc-num">01</div><h3>Strategy &amp; Growth Consulting</h3><p>A growth plan that survives the org chart. Senior partners diagnose, model, and architect your next 90 days.</p></div>
+      <div class="service-card"><div class="svc-num">02</div><h3>Performance Marketing</h3><p>Paid search, paid social, programmatic, and connected TV — built on clean tracking and creative that converts.</p></div>
+      <div class="service-card"><div class="svc-num">03</div><h3>SEO &amp; Organic Growth</h3><p>Compound traffic. Own the SERP. 340+ top-3 rankings and 120+ DR70+ domains in market.</p></div>
+      <div class="service-card"><div class="svc-num">04</div><h3>Content &amp; Editorial Engine</h3><p>Editorial that moves pipeline, not just readers. 12 posts/mo, 94% indexed within 90 days.</p></div>
+      <div class="service-card"><div class="svc-num">05</div><h3>Brand &amp; Identity</h3><p>A brand people remember, recognize, and repeat. 70+ rebrands with +58% aided recall.</p></div>
+      <div class="service-card"><div class="svc-num">06</div><h3>Conversion Rate Optimization</h3><p>A/B testing as a system, not a series of bets. +31% CVR across 60+ tests per quarter.</p></div>
+      <div class="service-card"><div class="svc-num">07</div><h3>Lifecycle, Email &amp; SMS</h3><p>Monetize the list you already have. $48M+ revenue, 42% open rate, 97% inbox placement.</p></div>
+      <div class="service-card"><div class="svc-num">08</div><h3>CRM &amp; Marketing Operations</h3><p>The plumbing that makes every channel work. 40+ migrations, 92% forecast accuracy.</p></div>
+      <div class="service-card"><div class="svc-num">09</div><h3>Analytics, Tracking &amp; Attribution</h3><p>Numbers that hold under scrutiny. 180+ dashboards, 99.4% accuracy, 92% exec adoption.</p></div>
+      <div class="service-card"><div class="svc-num">10</div><h3>AI Search Optimization (GEO &amp; AEO)</h3><p>Win the answer box, not just the blue link. 1,200+ citations, 380+ hrs automated per month.</p></div>
+      <div class="service-card"><div class="svc-num">11</div><h3>Social Media &amp; Community</h3><p>Owned channels that build audience and demand. 110+ channels, +184% follower growth.</p></div>
+      <div class="service-card"><div class="svc-num">12</div><h3>Influencer &amp; Creator Marketing</h3><p>Borrowed trust, measured results. 2,800+ creators, $5.20 EMV per dollar spent.</p></div>
+      <div class="service-card"><div class="svc-num">13</div><h3>Video Production &amp; Podcast</h3><p>The format that earns the watch, made for your brand. 1,400+ videos, 62% VTR, 24 podcasts.</p></div>
+      <div class="service-card"><div class="svc-num">14</div><h3>Affiliate, Partnership &amp; Referral</h3><p>A revenue channel that pays for performance. 60+ programs, +38% partner revenue.</p></div>
+      <div class="service-card"><div class="svc-num">15</div><h3>ABM &amp; B2B Demand Generation</h3><p>Pipeline you can forecast, not just hope for. 60+ ABM programs, +142% pipeline, -27% cycle.</p></div>
+      <div class="service-card"><div class="svc-num">16</div><h3>Public Relations &amp; Earned Media</h3><p>Earned media that shapes category narrative. 420+ tier-1 placements, domain authority 78.</p></div>
+      <div class="service-card"><div class="svc-num">17</div><h3>Market Research &amp; Category Design</h3><p>Decisions backed by evidence, not opinions. 120+ studies, 1,800 respondents, 34 markets.</p></div>
+      <div class="service-card"><div class="svc-num">18</div><h3>Internationalization &amp; Market Entry</h3><p>Go global without sounding like you just went global. 34 markets, &lt;6mo to traction.</p></div>
+    </div>
+  </div>
+</section>
+<!-- KPI BAND -->
+<div class="grid-4" style="background:var(--ink);">
+  <div class="stat-box reveal"><div class="stat-num">$24M+</div><div class="stat-label">Ad Spend Managed</div><div class="stat-label" style="opacity:.5;margin-top:.15rem;">Global footprint</div></div>
+  <div class="stat-box reveal"><div class="stat-num">340+</div><div class="stat-label">Top-3 Rankings</div><div class="stat-label" style="opacity:.5;margin-top:.15rem;">Across paid &amp; organic</div></div>
+  <div class="stat-box reveal"><div class="stat-num">+214%</div><div class="stat-label">Avg Organic Lift</div><div class="stat-label" style="opacity:.5;margin-top:.15rem;">Year-over-year</div></div>
+  <div class="stat-box reveal"><div class="stat-num">94%</div><div class="stat-label">Client Renewal</div><div class="stat-label" style="opacity:.5;margin-top:.15rem;">Retention-driven model</div></div>
+</div>
+
+<!-- PILLARS -->
+<section class="section bg-ink" id="pillars">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow justify-center">How we operate</div>
+      <h2 class="section-title">Built on<br><span class="text-brand">four pillars.</span></h2>
+    </div>
+    <div class="grid-4 reveal">
+      <div class="pillar"><div class="pillar-icon">&#9672;</div><h4>Senior Team</h4><p>No juniors, no account coordinators, no handoffs. Every touchpoint is handled by a partner with 10+ years in the chair.</p></div>
+      <div class="pillar"><div class="pillar-icon">&#9672;</div><h4>Single Operating System</h4><p>One CRM, one roadmap, one weekly review. No spreadsheets flying between agencies. We own the full chain end to end.</p></div>
+      <div class="pillar"><div class="pillar-icon">&#9672;</div><h4>Numbers That Hold Up</h4><p>Every claim is auditable. We track from impression to revenue, with closed-loop attribution and fortnightly governance.</p></div>
+      <div class="pillar"><div class="pillar-icon">&#9672;</div><h4>Total Transparency</h4><p>Weekly metrics, monthly reviews, and an always-on line to the partner. No opacity, no fluff, no silence between updates.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section bg-panel" id="work">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow justify-center">Case Studies</div>
+      <h2 class="section-title">Eight markets.<br><span class="text-brand">Eight wins.</span></h2>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="case-card">
+        <div class="case-industry">Fintech</div>
+        <h4>ZeedPay</h4>
+        <div class="case-metric">+85%</div>
+        <div class="case-result">Uplift in qualified sign-ups across paid and organic</div>
+        <div class="case-duration">8 months</div>
       </div>
-      <div class="timeline reveal">
-        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">01</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Discovery</h3><p style="color:var(--stone);font-size:.9rem">We map your stack, goals, and data before a line of code is written.</p></div>
-        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">02</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Architecture</h3><p style="color:var(--stone);font-size:.9rem">Honest timelines and a technical plan you can plan around. No scope creep.</p></div>
-        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">03</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Build</h3><p style="color:var(--stone);font-size:.9rem">Every component coordinated under one point of contact, one quality bar.</p></div>
-        <div class="tl-phase"><span class="tl-node"></span><span class="tl-num">04</span><span class="tl-day">/ 90d</span><h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand);margin:.75rem 0 .5rem">Deploy &amp; Forecast</h3><p style="color:var(--stone);font-size:.9rem">Tested, audited, and measured against the forecast — until it is right.</p></div>
+      <div class="case-card">
+        <div class="case-industry">PropTech</div>
+        <h4>SakanReal</h4>
+        <div class="case-metric">&times;2.4</div>
+        <div class="case-result">Organic visibility increase through multilingual SEO</div>
+        <div class="case-duration">6 months</div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">Health</div>
+        <h4>MyDrug</h4>
+        <div class="case-metric">+72%</div>
+        <div class="case-result">ROAS improvement from creative testing and funnel rebuild</div>
+        <div class="case-duration">5 months</div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">Consumer</div>
+        <h4>AlloBebe</h4>
+        <div class="case-metric">&times;3.1</div>
+        <div class="case-result">Revenue growth through lifecycle and retention optimization</div>
+        <div class="case-duration">10 months</div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">SaaS</div>
+        <h4>Kanbrick</h4>
+        <div class="case-metric">+94%</div>
+        <div class="case-result">Increase in pipeline through ABM and content strategy</div>
+        <div class="case-duration">7 months</div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">Marketplace</div>
+        <h4>ZeedShop</h4>
+        <div class="case-metric">&times;1.9</div>
+        <div class="case-result">GMV growth from SEO, paid, and email automation</div>
+        <div class="case-duration">6 months</div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">EdTech</div>
+        <h4>DisruptiveX</h4>
+        <div class="case-metric">+64%</div>
+        <div class="case-result">Enrollment growth from lead-gen and nurture sequences</div>
+        <div class="case-duration">9 months</div>
+      </div>
+      <div class="case-card">
+        <div class="case-industry">Infrastructure</div>
+        <h4>ArdoWork</h4>
+        <div class="case-metric">&times;2.7</div>
+        <div class="case-result">Enterprise pipeline through ABM and analyst relations</div>
+        <div class="case-duration">11 months</div>
       </div>
     </div>
-  </section>
-
-  <!-- WORK -->
-  <section class="section bg-ink" id="work">
-    <div class="wrap">
-      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
-        <p class="eyebrow" style="justify-content:center">Selected Work</p>
-        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">Proof, Not <span class="text-brand">Promises.</span></h2>
-        <p style="color:var(--stone)">Production systems we have shipped and operate.</p>
+  </div>
+</section>
+<!-- PROCESS -->
+<section class="section bg-ink" id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow justify-center">How we work</div>
+      <h2 class="section-title">Five phases.<br><span class="text-brand">No fluff.</span></h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-cell">
+        <div class="tl-num">01</div>
+        <h4>Discovery</h4>
+        <p>Two hours with a senior partner. We learn your market, model, and momentum — then map exactly where growth is hiding.</p>
       </div>
-      <div class="card-grid reveal">
-        <div class="proj" style="display:flex;flex-direction:column">
-          <div class="text-brand font-display" style="font-size:1.75rem;margin-bottom:1rem">&#9650;</div>
-          <h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand)">BAZ Marketing Site</h3>
-          <p style="color:var(--stone);font-size:.9rem;flex:1;margin:1rem 0">Next.js 14 site with AI book RAG, lead scoring, 8 agents, and a full brand system.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span></div>
-          <a href="https://github.com/brahimamirzerbout/baz-marketing-site" target="_blank" class="proj-link">GitHub &#8594;</a>
+      <div class="timeline-cell">
+        <div class="tl-num">02</div>
+        <h4>Diagnosis</h4>
+        <p>A red-team audit of your current stack: tracking, creative, messaging, and funnel. We name the leaks.</p>
+      </div>
+      <div class="timeline-cell">
+        <div class="tl-num">03</div>
+        <h4>Design</h4>
+        <p>A 90-day execution blueprint with milestones, KPIs, owners, and a weekly rhythm. Reviewed and approved by you.</p>
+      </div>
+      <div class="timeline-cell">
+        <div class="tl-num">04</div>
+        <h4>Deploy</h4>
+        <p>The senior team executes on schedule: campaigns, content, build, and automation. Weekly updates, fortnightly reviews.</p>
+      </div>
+      <div class="timeline-cell">
+        <div class="tl-num">05</div>
+        <h4>Scale</h4>
+        <p>We optimize what works, cut what does not, and evolve the plan every 90 days. Renewal happens on results, not contracts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="section bg-panel" id="framework">
+  <div class="container">
+    <div class="grid-2 items-start">
+      <div class="reveal">
+        <div class="section-eyebrow">Our framework</div>
+        <h2 class="section-title" style="text-align:left;">Six principles.<br><span class="text-brand">Enduring growth.</span></h2>
+      </div>
+      <div class="reveal">
+        <div class="framework-item">
+          <div class="framework-num">01</div>
+          <div><h4>Quality over quantity</h4><p>One great creative outperforms ten average ones. We invest in craft, not volume.</p></div>
         </div>
-        <div class="proj" style="display:flex;flex-direction:column">
-          <div class="text-brand font-display" style="font-size:1.75rem;margin-bottom:1rem">&#9881;</div>
-          <h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand)">the Hub</h3>
-          <p style="color:var(--stone);font-size:.9rem;flex:1;margin:1rem 0">SaaS platform — 117 tables, real CRM data, lifecycle automation end to end.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem"><span class="tag">Next.js</span><span class="tag">shadcn/ui</span><span class="tag">117 Tables</span></div>
-          <a href="https://github.com/brahimamirzerbout/marketing-hub" target="_blank" class="proj-link">GitHub &#8594;</a>
+        <div class="framework-item">
+          <div class="framework-num">02</div>
+          <div><h4>Speed wins</h4><p>Launch fast, measure immediately, and iterate in days, not quarters.</p></div>
         </div>
-        <div class="proj" style="display:flex;flex-direction:column">
-          <div class="text-brand font-display" style="font-size:1.75rem;margin-bottom:1rem">&#9650;</div>
-          <h3 class="font-display" style="text-transform:uppercase;font-size:1.1rem;color:var(--sand)">Nova Intelligence</h3>
-          <p style="color:var(--stone);font-size:.9rem;flex:1;margin:1rem 0">Sovereign AI OS brokering Gemini, Letta, Mem0 — 30+ screens, banking layer.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem"><span class="tag">React 19</span><span class="tag">Firebase</span><span class="tag">Gemini</span></div>
-          <a href="https://github.com/brahimamirzerbout/nova-with-bank" target="_blank" class="proj-link">GitHub &#8594;</a>
+        <div class="framework-item">
+          <div class="framework-num">03</div>
+          <div><h4>Client alignment</h4><p>You sit at the table. Your goals shape our priorities. We succeed only when you grow.</p></div>
+        </div>
+        <div class="framework-item">
+          <div class="framework-num">04</div>
+          <div><h4>Full integration</h4><p>One system, not many. Strategy, creative, paid, and SEO share one roadmap and one CRM.</p></div>
+        </div>
+        <div class="framework-item">
+          <div class="framework-num">05</div>
+          <div><h4>Radical transparency</h4><p>Every metric, decision, and update is visible. Trust is built in the open.</p></div>
+        </div>
+        <div class="framework-item">
+          <div class="framework-num">06</div>
+          <div><h4>Continuous improvement</h4><p>Best practices change. We change with them. Research, test, and repeat.</p></div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- METRICS -->
-  <section class="section bg-panel">
-    <div class="wrap">
-      <div class="reveal" style="text-align:center;max-width:48rem;margin:0 auto 3.5rem">
-        <p class="eyebrow" style="justify-content:center">Live Data</p>
-        <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1.25rem">The <span class="text-brand">Reality Engine.</span></h2>
-        <p style="color:var(--stone)">Real counts from across the ecosystem.</p>
+  </div>
+</section>
+<!-- TESTIMONIALS -->
+<section class="section bg-ink" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow justify-center">Testimonials</div>
+      <h2 class="section-title">Trusted by<br><span class="text-brand">operators.</span></h2>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="testimonial">
+        <blockquote>"They do not flatter us. They tell us what needs fixing and then fix it. Our pipeline doubled in six months."</blockquote>
+        <div class="attr">Youssef A. <span>— CEO, Zeechain</span></div>
       </div>
-      <div class="metric-grid reveal">
-        <div class="metric"><div class="metric-num font-display">117</div><div class="metric-label">DB Tables</div></div>
-        <div class="metric"><div class="metric-num font-display">661</div><div class="metric-label">Touchpoints</div></div>
-        <div class="metric"><div class="metric-num font-display">76</div><div class="metric-label">Contacts</div></div>
-        <div class="metric"><div class="metric-num font-display">30</div><div class="metric-label">Deals</div></div>
-        <div class="metric"><div class="metric-num font-display">166</div><div class="metric-label">Leads</div></div>
-        <div class="metric"><div class="metric-num font-display">136</div><div class="metric-label">Articles</div></div>
-        <div class="metric"><div class="metric-num font-display">9</div><div class="metric-label">Campaigns</div></div>
-        <div class="metric"><div class="metric-num font-display">24</div><div class="metric-label">Conversations</div></div>
+      <div class="testimonial">
+        <blockquote>"BAZventures replaced three agencies and still delivered better numbers. One team, one view, one result."</blockquote>
+        <div class="attr">Sarah M. <span>— VP Growth, ZeedPay</span></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"The transparency is different. Weekly reports are accurate, honest, and actionable. We finally trust our data."</blockquote>
+        <div class="attr">David L. <span>— CMO, ZeedShop</span></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Seniority matters. These are people who have done this before. Our SEO traffic grew 320% in under a year."</blockquote>
+        <div class="attr">Amina K. <span>— Head of Digital, MyDrug</span></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"From strategy to creative to paid — every layer is connected. We are not paying for coordination anymore, we are paying for execution."</blockquote>
+        <div class="attr">Karim E. <span>— Founder, SakanReal</span></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"The lifecycle work alone paid our fees ten times over. We recovered churn we did not know we had."</blockquote>
+        <div class="attr">Rania B. <span>— CPO, AlloBebe</span></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"We tested four agencies. BAZventures is the only one that stayed past day 90 because they actually deliver."</blockquote>
+        <div class="attr">Tariq H. <span>— CEO, Kanbrick</span></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"No surprises, no empty decks, no junior fluff. Just steady, measurable improvement that compounds."</blockquote>
+        <div class="attr">Lena C. <span>— CMO, DisruptiveX</span></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"They built our demand engine from scratch and handed us a playbook we still run today."</blockquote>
+        <div class="attr">Marc D. <span>— CRO, ArdoWork</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section class="section bg-ink" id="contact">
-    <div class="wrap">
-      <div class="bg-panel" style="position:relative;overflow:hidden;padding:clamp(2rem,5vw,5rem);border-radius:var(--radius-lg)">
-        <div class="reveal" style="position:relative;z-index:10;max-width:48rem;margin:0 auto;text-align:center">
-          <p class="eyebrow" style="justify-content:center">Get in Touch</p>
-          <h2 class="display" style="font-size:clamp(1.6rem,5vw,3.25rem);margin:1rem 0 1rem">Tell Us About <span class="text-brand">the Project.</span></h2>
-          <p style="color:var(--stone);max-width:36rem;margin:0 auto 2rem">An honest chat, a clear steer, and a real sense of what is possible — no hard sell.</p>
-          <button class="btn btn-primary" onclick="openContact()">Open Enquiry Form</button>
-          <div style="display:grid;grid-template-columns:1fr;gap:2rem;padding-top:2.5rem;margin-top:2.5rem;border-top:1px solid var(--border);max-width:36rem;margin-left:auto;margin-right:auto">
-            <div><p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Email</p><a href="mailto:owner@baz.agency" style="color:var(--sand);font-weight:500;word-break:break-all">owner@baz.agency</a></div>
-            <div><p class="font-mono text-brand" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem">Leadership</p><p style="color:var(--sand);font-weight:500">Brahim ZERBOUT</p><p style="color:var(--stone);font-size:.85rem">Founder &amp; Operator</p></div>
-          </div>
+<!-- PRICING -->
+<section class="section bg-panel" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow justify-center">Engagement</div>
+      <h2 class="section-title">Simple, clear,<br><span class="text-brand">performance-based.</span></h2>
+      <p class="text-stone section-subtitle">Start with a 90-day plan. If we do not deliver, you do not pay month four.</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="pricing-card">
+        <h3>Launchpad</h3>
+        <div class="price">$2,500</div>
+        <div class="price-sub">per month</div>
+        <ul>
+          <li>Strategy &amp; monthly roadmap</li>
+          <li>SEO foundation &amp; content plan</li>
+          <li>Lifecycle email setup</li>
+          <li>Basic analytics &amp; reporting</li>
+          <li>1 weekly sync</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost-dark btn-round no-underline" style="width:100%;justify-content:center;">Start</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="section-eyebrow mb-3">Most popular</div>
+        <h3>Growth</h3>
+        <div class="price">$5,500</div>
+        <div class="price-sub">per month</div>
+        <ul>
+          <li>Full 18-service suite access</li>
+          <li>Paid, SEO, social &amp; email</li>
+          <li>CRO &amp; creative production</li>
+          <li>Advanced analytics &amp; attribution</li>
+          <li>2 weekly syncs with senior partner</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary btn-round no-underline" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Scale</h3>
+        <div class="price">$9,500</div>
+        <div class="price-sub">per month</div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Dedicated senior partner</li>
+          <li>ABM &amp; enterprise pipeline</li>
+          <li>Custom integrations &amp; stack</li>
+          <li>Unlimited requests &amp; edits</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost-dark btn-round no-underline" style="width:100%;justify-content:center;">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CONTACT -->
+<section class="section bg-ink" id="contact">
+  <div class="container">
+    <div class="grid-2 items-start">
+      <div class="reveal">
+        <div class="section-eyebrow">Start a conversation</div>
+        <h2 class="section-title" style="text-align:left;">Let us build your<br><span class="text-brand">next chapter.</span></h2>
+        <p class="text-stone mt-6 leading-relaxed">Tell us what you are working on. We reply within 24 hours with a tailored proposal — or a clear "not right now." No ghosting.</p>
+        <div class="mt-8 space-y-4 text-sm text-sand/80">
+          <div><div class="text-white font-semibold">Email</div><a href="mailto:zerboutbrahimamir@gmail.com" class="no-underline hover:text-brand text-sand/80 transition-colors duration-300">zerboutbrahimamir@gmail.com</a></div>
+          <div><div class="text-white font-semibold">Phone</div><a href="tel:+12165551234" class="no-underline hover:text-brand text-sand/80 transition-colors duration-300">+1 (216) 555-1234</a></div>
+          <div><div class="text-white font-semibold">Address</div>1209 Mountain Road Pl N<br>Garrettsville, OH 44231</div>
         </div>
       </div>
+      <form class="reveal space-y-4" onsubmit="event.preventDefault(); alert('Message sent'); this.reset();">
+        <div class="grid-2" style="gap:1rem;">
+          <div><label class="form-label">First name</label><input type="text" class="form-field" placeholder="John" required></div>
+          <div><label class="form-label">Last name</label><input type="text" class="form-field" placeholder="Doe" required></div>
+        </div>
+        <div><label class="form-label">Work email</label><input type="email" class="form-field" placeholder="john@company.com" required></div>
+        <div><label class="form-label">Company</label><input type="text" class="form-field" placeholder="Acme Inc."></div>
+        <div><label class="form-label">Message</label><textarea class="form-field" rows="5" placeholder="Tell us about your goals..." required></textarea></div>
+        <button type="submit" class="btn-submit btn-round">Send message <span class="arr">&rarr;</span></button>
+      </form>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
 <!-- CTA BANNER -->
-<div class="cta-banner" id="ctaBanner">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.9rem;padding-bottom:.9rem">
-    <p class="font-display" style="font-size:clamp(.95rem,2vw,1.1rem);color:var(--ink-0)">Ready to forecast your growth? <span style="opacity:.75;font-family:var(--font-sans)">Let's make it a signature finish.</span></p>
-    <button class="cta-go" onclick="openContact()">Get in Touch</button>
+<div class="cta-banner">
+  <div class="container flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div>
+      <div class="font-display uppercase text-xl sm:text-2xl tracking-tight font-bold text-white">Ready to make growth a forecast?</div>
+      <div class="text-white/80 text-sm mt-1">Three spots left for Q3. Secure yours today.</div>
+    </div>
+    <a href="#contact" class="cta-go btn-round">Book a growth call &rarr;</a>
   </div>
 </div>
 
 <!-- FOOTER -->
-<footer style="background:var(--ink);border-top:1px solid oklch(0.55 0.12 85 / 15%)">
-  <div class="wrap" style="padding-top:4rem;padding-bottom:2rem">
-    <div style="display:grid;gap:3rem;grid-template-columns:1fr" class="footer-grid">
-      <div>
-        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem">
-          <span class="brand-mark">B</span>
-          <span class="font-display" style="font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:13px">BAZventures</span>
-        </div>
-        <p style="color:var(--stone);font-size:.9rem;max-width:24rem">A senior-only growth agency. Eighteen services, a 90-day plan, and a guarantee we stake our fee on.</p>
+<footer class="site-footer bg-panel">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="flex items-center gap-3">
+        <svg width="28" height="32" viewBox="0 0 48 56" fill="none">
+          <path d="M24 52 4 40V16L24 4l20 12v24L24 52Z" stroke="rgba(255,255,255,.2)" stroke-width="1" fill="none"/>
+          <path d="M24 52 4 40V16L24 4l20 12v24L24 52Z" stroke="#f2572b" stroke-width="1.5" fill="none"/>
+          <circle cx="24" cy="4" r="3" fill="#f2572b"/>
+        </svg>
+        <span class="text-brand" style="font-family:var(--font-display);font-size:.625rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--stone);">BAZventures</span>
       </div>
-      <div>
-        <h4 class="font-mono" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:.6;margin-bottom:1.25rem">Explore</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem">
-          <li><a href="#services" style="color:var(--stone);font-size:.9rem">Services</a></li>
-          <li><a href="#forecast" style="color:var(--stone);font-size:.9rem">Forecast</a></li>
-          <li><a href="#process" style="color:var(--stone);font-size:.9rem">Process</a></li>
-          <li><a href="#work" style="color:var(--stone);font-size:.9rem">Work</a></li>
-          <li><a href="#contact" style="color:var(--stone);font-size:.9rem">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-mono" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:.6;margin-bottom:1.25rem">Get in touch</h4>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;font-size:.9rem">
-          <li><a href="mailto:owner@baz.agency" style="color:var(--stone)">owner@baz.agency</a></li>
-          <li style="color:var(--stone)">United Kingdom</li>
-        </ul>
-      </div>
-    </div>
-    <div style="margin-top:3.5rem;padding-top:2rem;border-top:1px solid oklch(1 0 0 / 5%);display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
-      <p style="color:var(--stone);opacity:.7;font-size:.75rem;letter-spacing:.02em">&copy; <span id="year">2026</span> BAZventures. All rights reserved.</p>
-      <a href="#top" style="color:var(--stone);opacity:.7;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase">Back to top &#8593;</a>
+      <nav class="footer-nav">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer-copy">&copy; 2025 BAZventures. All rights reserved.</div>
     </div>
   </div>
 </footer>
 
 <!-- SIDE DOCK -->
 <div class="side-dock">
-  <button class="side-tab side-tab--contact" onclick="openContact()"><span>Contact</span></button>
-  <a href="https://github.com/brahimamirzerbout" target="_blank" class="side-tab" title="GitHub" style="height:48px;padding:0;display:flex;align-items:center;justify-content:center">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-  </a>
+  <a href="#contact" class="side-tab side-tab--contact">CONTACT</a>
+  <a href="https://github.com/brahimamirzerbout" target="_blank" class="side-tab side-tab--gh">GH</a>
 </div>
 
 <!-- CONTACT PANEL -->
-<div class="contact-scrim" id="contactScrim" onclick="closeContact()"></div>
-<aside class="contact-panel" id="contactPanel" aria-hidden="true">
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:1.5rem 2rem;border-bottom:1px solid var(--border)">
-    <div>
-      <h2 class="font-display" style="text-transform:uppercase;font-size:1.5rem;color:var(--sand)">Get in touch</h2>
-      <p class="font-mono" style="color:var(--stone);margin-top:.5rem;font-size:10px;letter-spacing:.22em;text-transform:uppercase">We'd love to hear about your project</p>
-    </div>
-    <button class="nav-close" onclick="closeContact()" aria-label="Close">&times;</button>
+<div class="contact-scrim" id="contactScrim"></div>
+<aside class="contact-panel" id="contactPanel">
+  <div class="panel-header">
+    <div><div class="font-display text-sm font-bold text-white uppercase tracking-wider">Inquiry</div><div class="mt-0.5 tracking-wide text-stone" style="font-size:.6875rem;">We reply within 24 hours</div></div>
+    <button class="panel-close" id="panelClose">&times;</button>
   </div>
-  <form class="enquiry-form" id="enquiryForm" style="padding:1.75rem 2rem;display:flex;flex-direction:column;gap:1rem">
-    <select class="field" required>
-      <option value="">Select a service</option>
-      <option>Growth Strategy</option>
-      <option>SEO &amp; Content</option>
-      <option>Performance Marketing</option>
-      <option>CRM Operations</option>
-      <option>Other</option>
-    </select>
-    <input type="text" class="field" placeholder="Your name" required>
-    <input type="email" class="field" placeholder="Email address" required>
-    <textarea class="field" placeholder="Tell us about your project..." rows="4" required></textarea>
-    <button type="submit" class="btn-send" onclick="event.preventDefault();submitContact()">Send <span class="arr">&#8594;</span></button>
+  <form class="panel-body space-y-4" onsubmit="event.preventDefault(); alert('Inquiry sent'); document.getElementById('contactPanel').classList.remove('open'); document.getElementById('contactScrim').classList.remove('open'); this.reset();">
+    <div><label class="form-label">First name</label><input type="text" class="enq-field" placeholder="John" required></div>
+    <div><label class="form-label">Last name</label><input type="text" class="enq-field" placeholder="Doe" required></div>
+    <div><label class="form-label">Work email</label><input type="email" class="enq-field" placeholder="john@company.com" required></div>
+    <div><label class="form-label">Company</label><input type="text" class="enq-field" placeholder="Acme Inc."></div>
+    <div><label class="form-label">Message</label><textarea class="enq-field" rows="4" placeholder="Tell us about your goals..." required></textarea></div>
+    <button type="submit" class="enq-submit btn-round">Send inquiry &rarr;</button>
   </form>
-  <div style="margin-top:auto;padding:0 2rem 2rem">
-    <a href="mailto:owner@baz.agency" style="display:block;font-family:var(--font-display);font-size:1.1rem;color:var(--sand)">owner@baz.agency</a>
-    <p style="color:var(--stone);margin-top:.5rem;font-size:.9rem">United Kingdom</p>
-  </div>
+  <div class="panel-footer">Powered by BAZventures</div>
 </aside>
 
 <script>
-  // Header solid on scroll
-  const header = document.getElementById('siteHeader');
-  const ctaBanner = document.getElementById('ctaBanner');
-  let ctaShown = false;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    header.classList.toggle('is-solid', y > 80);
-    if (y > 500 && !ctaShown) { ctaBanner.style.transform = 'translateY(0)'; ctaShown = true; }
-  });
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Contact panel
-  function openContact() {
-    document.getElementById('contactPanel').classList.add('open');
-    document.getElementById('contactPanel').setAttribute('aria-hidden','false');
-    document.getElementById('contactScrim').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeContact() {
-    document.getElementById('contactPanel').classList.remove('open');
-    document.getElementById('contactPanel').setAttribute('aria-hidden','true');
-    document.getElementById('contactScrim').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function submitContact() {
-    document.getElementById('enquiryForm').innerHTML =
-      '<div style="text-align:center;padding:3rem 1rem">' +
-      '<div style="width:56px;height:56px;border:2px solid var(--brand);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem;color:var(--brand)">&#10003;</div>' +
-      '<h3 class="font-display" style="text-transform:uppercase;font-size:1.25rem;color:var(--sand);margin-bottom:.5rem">Thank You</h3>' +
-      '<p style="color:var(--stone);font-size:.9rem">We\'ll be in touch within 24 hours.</p></div>';
-  }
-
-  // Mobile nav + Escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeContact(); document.body.classList.remove('nav-open'); }
-  });
-  document.querySelector('.hamburger')?.addEventListener('click', function() {
-    const spans = this.querySelectorAll('span');
-    const open = document.body.classList.contains('nav-open');
-    spans[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
-    spans[1].style.opacity = open ? '0' : '';
-    spans[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
-  });
+  const panel = document.getElementById("contactPanel");
+  const scrim = document.getElementById("contactScrim");
+  function openPanel() { panel.classList.add("open"); scrim.classList.add("open"); }
+  function closePanel() { panel.classList.remove("open"); scrim.classList.remove("open"); }
+  document.querySelectorAll("[href='#contact']").forEach(a => { if (!a.closest(".contact-panel")) a.addEventListener("click", openPanel); });
+  document.getElementById("panelClose").addEventListener("click", closePanel);
+  scrim.addEventListener("click", closePanel);
+  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  window.addEventListener("scroll", () => { const h = document.getElementById("siteHeader"); if (!h) return; if (window.scrollY > 60) h.classList.add("is-solid"); else h.classList.remove("is-solid"); });
+  document.querySelectorAll(".nav-link, .side-tab").forEach(a => a.addEventListener("click", (e) => { const id = a.getAttribute("href"); if (id && id.startsWith("#") && id.length > 1) { e.preventDefault(); const t = document.getElementById(id.slice(1)); if (t) t.scrollIntoView({ behavior: "smooth" }); } }));
+  document.getElementById("mobileToggle").addEventListener("click", () => { document.getElementById("mobileDrawer").classList.toggle("open"); document.getElementById("drawerScrim").classList.toggle("open"); });
+  document.getElementById("drawerScrim").addEventListener("click", () => { document.getElementById("mobileDrawer").classList.remove("open"); document.getElementById("drawerScrim").classList.remove("open"); });
+  document.querySelectorAll(".drawer-link").forEach(a => a.addEventListener("click", () => { document.getElementById("mobileDrawer").classList.remove("open"); document.getElementById("drawerScrim").classList.remove("open"); }));
 </script>
 </body>
 </html>
