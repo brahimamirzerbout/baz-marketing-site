@@ -26,7 +26,7 @@ export function MatrixView({
   breadcrumb: Crumb[];
   areaServed?: string[];
 }) {
-  const { industry, service, city, h1, intro, angle, serviceLine, challenges, outcomes, process, localProof } = page;
+  const { industry, service, city, h1, intro, body, challenges, outcomes, process, localProof } = page;
 
   return (
     <>
@@ -44,11 +44,12 @@ export function MatrixView({
         </div>
       </Section>
 
-      {angle && (
+      {body && (
         <Section tone="white" size="lg">
           <div className="max-w-3xl space-y-6 text-[15px] leading-relaxed text-foreground/90">
-            <p>{angle}</p>
-            {serviceLine && <p>{serviceLine}</p>}
+            {body.split('\n\n').map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
           </div>
         </Section>
       )}
