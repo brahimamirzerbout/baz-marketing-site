@@ -7,6 +7,7 @@ export function BattleCardForm() {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [competitor, setCompetitor] = useState<string>("traditional-agencies");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -16,8 +17,9 @@ export function BattleCardForm() {
     const name = (fd.get("name") as string) || "";
     const email = (fd.get("email") as string) || "";
     const company = (fd.get("company") as string) || "";
-    const competitor = (fd.get("competitor") as string) || "";
-    const payload = { name, email, company, competitor };
+    const competitorValue = (fd.get("competitor") as string) || competitor;
+    setCompetitor(competitorValue);
+    const payload = { name, email, company, competitor: competitorValue };
     try {
       const r = await fetch("/api/battle-cards", {
         method: "POST",
@@ -41,9 +43,16 @@ export function BattleCardForm() {
     return (
       <div className="bg-success/10 border border-success/30 rounded-2xl p-8 text-center">
         <p className="font-display text-2xl text-foreground mb-2">Battle card requested.</p>
-        <p className="text-sm text-foreground">
-          A senior partner will send your BAZvetures battle card within 24 hours.
+        <p className="text-sm text-foreground mb-4">
+          A senior partner will send your BAZventures battle card within 24 hours.
         </p>
+        <a
+          href={`/api/battle-cards/${competitor}`}
+          className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+          download
+        >
+          Download battle card now
+        </a>
       </div>
     );
   }
@@ -54,7 +63,7 @@ export function BattleCardForm() {
       className="space-y-5 bg-card rounded-2xl border border-border p-6 md:p-8"
     >
       <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-        Get the BAZvetures battle card
+        Get the BAZventures battle card
       </p>
       <p className="text-sm text-muted-foreground leading-relaxed">
         Pick the competitor you&apos;re evaluating and we&apos;ll send the honest breakdown —
@@ -102,9 +111,10 @@ export function BattleCardForm() {
         <select
           name="competitor"
           required
+          value={competitor}
+          onChange={(e) => setCompetitor(e.target.value)}
           className="mt-1 w-full px-3 h-11 rounded-xl bg-background border border-border text-sm focus:outline-none focus:border-accent"
         >
-          <option value="">Select one</option>
           <option value="traditional-agencies">Traditional agencies</option>
           <option value="in-house-team">In-house growth team</option>
           <option value="hubspot-only">HubSpot-only stack</option>
