@@ -1,4 +1,5 @@
 import { posts } from "@/content/posts";
+import { cacPost } from "@/content/posts-cac";
 
 const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://baz.agency").replace(/\/$/, "");
 
@@ -14,7 +15,7 @@ function xmlEscape(s: string): string {
 export const dynamic = "force-static";
 
 export async function GET() {
-  const sorted = [...posts].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+  const sorted = [...posts, cacPost].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
   const items = sorted
     .map((p) => {
       const bodyHtml = p.body

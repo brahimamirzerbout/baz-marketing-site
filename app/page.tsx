@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { Suspense } from "react";
 import {
   Hero,
   PillarGrid,
@@ -18,6 +19,7 @@ import {
   PipelineTicker,
   StickyCta,
 } from "@/components/sections";
+import { ServiceIntentCta } from "@/components/marketing/ServiceIntentCta";
 import { buildMetadata, jsonLd, professionalServiceLd } from "@/lib/seo";
 import { resolveHeroVariant } from "@/lib/hero-variant";
 import { SelectedFew } from "@/components/sections/SelectedFew";
@@ -53,6 +55,9 @@ export default function HomePage() {
       <PerformanceFeature />
       <PillarGrid />
       <ServicesOverview />
+      <Suspense fallback={null}>
+        <ServiceIntentCta />
+      </Suspense>
       <HowWeWork />
       <KpiBand />
       <Framework />

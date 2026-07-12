@@ -17,18 +17,9 @@ export function BattleCardForm() {
     const email = (fd.get("email") as string) || "";
     const company = (fd.get("company") as string) || "";
     const competitor = (fd.get("competitor") as string) || "";
-    const payload = {
-      name,
-      email,
-      company,
-      message: competitor
-        ? `Battle card request for competitor: ${competitor}`
-        : "Battle card request",
-      source: "battle_card",
-      service: "strategy-consulting",
-    };
+    const payload = { name, email, company, competitor };
     try {
-      const r = await fetch("/api/leads", {
+      const r = await fetch("/api/battle-cards", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),

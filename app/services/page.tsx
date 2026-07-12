@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
 import { Breadcrumb } from "@/components/sections/Breadcrumb";
 import { StickyCta } from "@/components/sections/StickyCta";
@@ -196,12 +196,29 @@ export default function ServicesIndexPage() {
                     {p.desc}
                   </h2>
                 </div>
-                <Link
-                  href="/contact"
-                  className="text-sm font-medium hover:text-accent transition-colors"
-                >
-                  Discuss {p.name.toLowerCase()} →
-                </Link>
+                {(() => {
+                  const lead = list[0];
+                  if (!lead) return null;
+                  return (
+                    <div className="flex flex-col items-start sm:items-end gap-3">
+                      <Button
+                        href={`/contact?service=${encodeURIComponent(lead.slug)}`}
+                        variant="secondary"
+                        size="md"
+                        trackAs="services_pillar_cta"
+                        trackPayload={{ pillar: p.id, service: lead.slug }}
+                      >
+                        Start a {lead.name} engagement →
+                      </Button>
+                      <a
+                        href="/vs-others"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground underline-offset-4 hover:underline transition-colors"
+                      >
+                        See how we compare →
+                      </a>
+                    </div>
+                  );
+                })()}
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {list.map((s, i) => (
@@ -213,7 +230,7 @@ export default function ServicesIndexPage() {
         );
       })}
 
-      <CtaBanner serviceSlug="outcomes" serviceName="outcomes" />
+      <CtaBanner />
       <StickyCta />
     </>
   );

@@ -3,6 +3,7 @@ import { site } from "@/lib/site";
 import { services } from "@/content/services";
 import { caseStudies } from "@/content/case-studies";
 import { posts } from "@/content/posts";
+import { cacPost } from "@/content/posts-cac";
 import { industries } from "@/content/industries";
 import {
   cityPages,
@@ -62,6 +63,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const cacRoute: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/insights/${cacPost.slug}`,
+      lastModified: new Date(cacPost.publishedAt),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+  ];
+
   const industryRoutes: MetadataRoute.Sitemap = industries.map((i) => ({
     url: `${base}/industries/${i.slug}`,
     lastModified: now,
@@ -111,6 +121,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...serviceRoutes,
     ...caseRoutes,
     ...postRoutes,
+    ...cacRoute,
     ...industryRoutes,
     ...cityRoutes,
     ...cityIndustryRoutes,

@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import { CaseStudyCard } from "@/components/marketing/CaseStudyCard";
+import { Button } from "@/components/ui/Button";
 import { caseStudies } from "@/content/case-studies";
 import { industries } from "@/content/industries";
 
@@ -100,6 +101,49 @@ export function CaseStudiesBrowser() {
           </div>
         )}
       </div>
+
+      {/* Context-aware CTA — reflects the industry filter currently active. */}
+      <section className="mt-16 bg-primary text-foreground">
+        <div className="container mx-auto py-16 md:py-20">
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-8">
+            <p className="font-mono uppercase tracking-[0.18em] text-[11px] text-accent mb-4">
+              Want results like these?
+            </p>
+            <h2 className="font-display text-display-md font-medium tracking-[-0.02em] leading-[1.05] text-foreground">
+              {active === "all"
+                ? "Request similar results for your business."
+                : `Request ${presentIndustries.find((i) => i.slug === active)?.name} results like these.`}
+            </h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl">
+              A senior partner reviews your goals within 24 hours and tells you honestly whether
+              BAZventures is the right fit — and what it would take to beat these numbers.
+            </p>
+          </div>
+          <div className="lg:col-span-4 flex flex-col gap-3">
+            <Button
+              href={
+                active === "all"
+                  ? "/contact?interest=case-studies"
+                  : `/contact?industry=${encodeURIComponent(active)}`
+              }
+              variant="secondary"
+              size="lg"
+              trackAs="casestudies_request_results"
+              trackPayload={{ industry: active }}
+            >
+              Request similar results →
+            </Button>
+            <a
+              href="/vs-others"
+              className="text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline text-center"
+            >
+              See how we compare →
+            </a>
+          </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
