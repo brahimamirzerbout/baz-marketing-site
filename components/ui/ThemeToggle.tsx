@@ -2,7 +2,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/beui/utils";
 

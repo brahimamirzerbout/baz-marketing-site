@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   type HTMLMotionProps,
   type Variants,
-} from "motion/react";
+} from "framer-motion";
 import type { ReactNode } from "react";
 import { EASE_OUT } from "@/lib/beui/ease";
 import { cn } from "@/lib/beui/utils";

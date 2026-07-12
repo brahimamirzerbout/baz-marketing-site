@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client";
 
-import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { LiveAgentDemo } from "@/components/marketing/LiveAgentDemo";
 import { ScrollReveal } from "@/components/beui/ScrollReveal";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { EDGES, GRAPH_VIEWBOX, NODES, RING_LABELS, layoutNodes, type NodeId } from "./graph-data";
 
 const RING_STROKE: Record<"acquisition" | "delivery" | "outcomes", string> = {

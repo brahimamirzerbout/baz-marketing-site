@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { type ReactNode, type RefObject, useRef } from "react";
 
 import { EASE_OUT } from "@/lib/beui/ease";

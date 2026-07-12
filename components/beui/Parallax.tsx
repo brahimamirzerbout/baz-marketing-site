@@ -8,7 +8,7 @@ import {
   useScroll,
   useSpring,
   useTransform,
-} from "motion/react";
+} from "framer-motion";
 import { type ReactNode, type RefObject, useRef } from "react";
 
 import { cn } from "@/lib/beui/utils";

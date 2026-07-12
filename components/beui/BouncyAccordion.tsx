@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, type Transition } from "motion/react";
+import { motion, useReducedMotion, type Transition } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useCallback, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { EASE_OUT } from "@/lib/beui/ease";
