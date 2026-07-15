@@ -4,7 +4,6 @@ import {
   Hero,
   PillarGrid,
   PerformanceFeature,
-  ServicesOverview,
   HowWeWork,
   KpiBand,
   Framework,
@@ -18,8 +17,10 @@ import {
   ReadNext,
   PipelineTicker,
   StickyCta,
+  RefocusManifesto,
 } from "@/components/sections";
 import { ServiceIntentCta } from "@/components/marketing/ServiceIntentCta";
+import Link from "next/link";
 import { buildMetadata, jsonLd, professionalServiceLd } from "@/lib/seo";
 import { resolveHeroVariant } from "@/lib/hero-variant";
 import { SelectedFew } from "@/components/sections/SelectedFew";
@@ -31,8 +32,8 @@ import { SelectedFew } from "@/components/sections/SelectedFew";
 // traffic uses ?icp=). To re-enable ICP hero variants, swap to a client-side
 // override (useSearchParams() in a client Hero wrapper) so `/` stays static.
 export function generateMetadata() {
-  const title = "Growth as a forecast, not a hope.";
-  const subtitle = "Senior-only. 90-day plans. Or pay nothing for month four";
+  const title = "Your marketing system, live in 45 days.";
+  const subtitle = "Senior-only. One channel. Or pay nothing for month four";
   const ogQuery = `?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(subtitle)}`;
   return buildMetadata({
     title,
@@ -49,12 +50,33 @@ export default function HomePage() {
   return (
     <>
       <Hero variant={heroVariant} />
+      <RefocusManifesto />
       <MarketingHubBanner />
       <ProofNumbers />
       <LogoMarquee />
       <PerformanceFeature />
       <PillarGrid />
-      <ServicesOverview />
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto max-w-3xl text-center">
+          <p className="font-mono uppercase tracking-[0.16em] text-[11px] mb-4 text-muted-foreground">
+            One offer, not a menu
+          </p>
+          <h2 className="font-display text-display-lg font-medium tracking-[-0.03em] leading-[1.05] text-foreground">
+            We do fourteen things. You need one.
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
+            The full service catalog exists — strategy, CRM, paid, content, analytics. It
+            stays behind a single door. Start with the 45-day system; we expand once it
+            compounds.
+          </p>
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center h-12 px-6 mt-8 rounded-full border border-border hover:border-foreground font-medium text-foreground"
+          >
+            See the full service catalog
+          </Link>
+        </div>
+      </section>
       <Suspense fallback={null}>
         <ServiceIntentCta />
       </Suspense>

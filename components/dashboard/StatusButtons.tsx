@@ -2,7 +2,10 @@
 
 import { useState, useTransition } from "react";
 import { cn } from "@/lib/cn";
-import type { LeadStatus } from "@/lib/leads-store";
+
+// Canonical lead status — mirrors the `leads` table. Previously imported from
+// the orphaned @/lib/leads-store (JSONL); leads are now SQLite-only via /api/leads.
+export type LeadStatus = "new" | "replied" | "archived";
 
 interface StatusButtonsProps {
   leadId: string;

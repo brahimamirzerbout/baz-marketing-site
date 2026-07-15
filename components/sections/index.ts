@@ -21,3 +21,4 @@ export { GuaranteeMicro } from "./GuaranteeMicro";
 export { ChapterDivider } from "./ChapterDivider";
 export { LiveStatusPill } from "./LiveStatusPill";
 export { PipelineTicker } from "./PipelineTicker";
+export { RefocusManifesto } from "./RefocusManifesto";

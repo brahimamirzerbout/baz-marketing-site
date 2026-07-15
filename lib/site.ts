@@ -2,7 +2,8 @@ export const site = {
   name: "BAZventures",
   shortName: "BAZventures",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://baz.agency",
-  tagline: "Marketing as a forecast, not a hope. The senior operator behind 60+ brands.",
+  tagline:
+    "Intensity beats extensity. Senior-only marketing, built and live in 45 days — or you don't pay.",
   description:
     "BAZventures is the senior-partner growth agency led by Brahim ZERBOUT — 60+ brands shipped across MENA, EU, US. Strategy, CRM/revenue ops, and performance web, run on the Hub. No juniors. Revenue, not vanity. Or pay nothing for month four.",
   email: "zerboutbrahimamir@gmail.com",
