@@ -75,6 +75,12 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
                 Book a growth call
                 <span aria-hidden className="ml-2">→</span>
               </Button>
+              <a
+                href="/roadmap"
+                className="mt-4 inline-block text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
+              >
+                or get a free 90-day roadmap in 30 seconds →
+              </a>
             </div>
           </ScrollReveal>
 

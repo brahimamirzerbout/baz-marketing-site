@@ -69,6 +69,12 @@ export function CtaBanner({
               {ctaLabel}
             </Button>
             <a
+              href="/roadmap"
+              className="text-sm font-semibold text-accent hover:text-accent/80 underline-offset-4 hover:underline text-center"
+            >
+              Get a free 90-day roadmap instead →
+            </a>
+            <a
               href="/vs-others"
               className="text-sm text-muted-foreground hover:text-foreground underline-offset-4 hover:underline text-center"
             >
