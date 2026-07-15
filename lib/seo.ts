@@ -222,3 +222,39 @@ export function articleLd(post: {
     },
   };
 }
+
+/**
+ * Article schema for programmatic matrix pages (GEO/AEO: Article with
+ * dateModified + author sameAs signals entity trust + freshness to answer
+ * engines). `path` is the page's own route; `dateModified` should be an honest
+ * ISO stamp bumped only on substantive change.
+ */
+export function matrixArticleLd(opts: {
+  title: string;
+  description: string;
+  path: string;
+  dateModified: string;
+  author?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.title,
+    description: opts.description,
+    url: new URL(opts.path, site.url).toString(),
+    datePublished: opts.dateModified,
+    dateModified: opts.dateModified,
+    author: {
+      "@type": "Person",
+      name: opts.author ?? "Brahim Zerbout",
+      sameAs: [site.social.linkedin, site.social.twitter, site.social.github],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+      logo: { "@type": "ImageObject", url: new URL("/og/logo.svg", site.url).toString() },
+      sameAs: Object.values(site.social),
+    },
+  };
+}

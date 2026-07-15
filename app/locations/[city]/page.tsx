@@ -6,7 +6,7 @@ import { CtaBanner } from "@/components/marketing/CtaBanner";
 import { ServiceCard } from "@/components/marketing/ServiceCard";
 import { services } from "@/content/services";
 import { cityPages, getCityPage } from "@/lib/matrix";
-import { buildMetadata, jsonLd, breadcrumbLd, localBusinessLd } from "@/lib/seo";
+import { buildMetadata, jsonLd, breadcrumbLd, localBusinessLd, matrixArticleLd, faqLd } from "@/lib/seo";
 
 type Params = { city: string };
 
@@ -46,6 +46,10 @@ export default function CityPage({ params }: { params: Params }) {
           </Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">{page.h1}</h1>
           <SectionLede>{page.intro}</SectionLede>
+          {/* Answer-first extractable passage (GEO) */}
+          <p className="mt-8 max-w-3xl rounded-lg border border-border bg-surface px-5 py-4 text-[15px] leading-relaxed text-foreground">
+            <strong className="font-semibold text-accent">TL;DR</strong> — {page.tldr}
+          </p>
           <div className="mt-10 max-w-3xl space-y-6 text-[15px] leading-relaxed text-foreground/90">
             {page.body.split('\n\n').map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
@@ -68,6 +72,39 @@ export default function CityPage({ params }: { params: Params }) {
       </Section>
 
       <Section tone="paper" size="lg">
+        <div className="max-w-3xl">
+          <Eyebrow>Key data</Eyebrow>
+          <SectionHeading>What the research says.</SectionHeading>
+          <ul className="mt-8 space-y-4">
+            {page.citations.map((c) => (
+              <li key={c.stat} className="flex items-start gap-3 text-[15px] text-foreground">
+                <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-accent" />
+                <span>
+                  {c.stat}.{" "}
+                  <span className="text-foreground/60">Source: {c.source}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      <Section tone="white" size="lg">
+        <div className="max-w-3xl">
+          <Eyebrow>Questions</Eyebrow>
+          <SectionHeading>{city.name} teams ask us.</SectionHeading>
+          <div className="mt-8 space-y-8">
+            {page.faqs.map((f) => (
+              <div key={f.q}>
+                <h2 className="font-display text-xl font-medium tracking-[-0.02em] text-foreground">{f.q}</h2>
+                <p className="mt-3 text-[15px] leading-relaxed text-foreground/80">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section tone="paper" size="lg">
         <div className="grid lg:grid-cols-12 gap-10 mb-12">
           <div className="lg:col-span-7">
             <Eyebrow>Common services</Eyebrow>
@@ -83,6 +120,10 @@ export default function CityPage({ params }: { params: Params }) {
 
       <CtaBanner />
 
+      <p className="mx-auto max-w-3xl px-6 pb-10 text-center text-[13px] text-foreground/40">
+        Last reviewed {new Date(page.dateModified).toLocaleDateString("en-GB", { month: "long", year: "numeric" })}. Reviewed against BAZ GEO/AEO research, July 2026.
+      </p>
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLd([
@@ -92,6 +133,13 @@ export default function CityPage({ params }: { params: Params }) {
             url: path,
             areaServed: [city.name, city.region],
           }),
+          matrixArticleLd({
+            title: page.title,
+            description: page.description,
+            path,
+            dateModified: page.dateModified,
+          }),
+          faqLd(page.faqs),
           breadcrumbLd([{ name: "Home", url: "/" }, { name: "Locations", url: "/locations" }, { name: city.name, url: path }]),
         ])}
       />

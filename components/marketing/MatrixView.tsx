@@ -4,7 +4,7 @@ import { ProcessTimeline } from "@/components/marketing/ProcessTimeline";
 import { CtaBanner } from "@/components/marketing/CtaBanner";
 import { ServiceCard } from "@/components/marketing/ServiceCard";
 import { services } from "@/content/services";
-import { jsonLd, breadcrumbLd, localBusinessLd } from "@/lib/seo";
+import { jsonLd, breadcrumbLd, localBusinessLd, matrixArticleLd, faqLd } from "@/lib/seo";
 import type { MatrixPage } from "@/lib/matrix";
 
 type Crumb = { label: string; href?: string };
@@ -26,7 +26,7 @@ export function MatrixView({
   breadcrumb: Crumb[];
   areaServed?: string[];
 }) {
-  const { industry, service, city, h1, intro, body, challenges, outcomes, process, localProof } = page;
+  const { industry, service, city, h1, intro, body, challenges, outcomes, process, localProof, tldr, citations, faqs, dateModified } = page;
 
   return (
     <>
@@ -41,6 +41,10 @@ export function MatrixView({
           <Eyebrow>{city ? `${city.name} · ${industry.name}` : industry.name}</Eyebrow>
           <h1 className="font-display text-display-2xl font-medium tracking-[-0.04em]">{h1}</h1>
           <SectionLede>{intro}</SectionLede>
+          {/* Answer-first extractable passage (GEO: Perplexity lifts direct answers near the top) */}
+          <p className="mt-8 max-w-3xl rounded-lg border border-border bg-surface px-5 py-4 text-[15px] leading-relaxed text-foreground">
+            <strong className="font-semibold text-accent">TL;DR</strong> — {tldr}
+          </p>
         </div>
       </Section>
 
@@ -108,6 +112,43 @@ export function MatrixView({
         </Section>
       )}
 
+      {citations.length > 0 && (
+        <Section tone="white" size="lg">
+          <div className="max-w-3xl">
+            <Eyebrow>Key data</Eyebrow>
+            <SectionHeading>What the research says.</SectionHeading>
+            <ul className="mt-8 space-y-4">
+              {citations.map((c) => (
+                <li key={c.stat} className="flex items-start gap-3 text-[15px] text-foreground">
+                  <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-accent" />
+                  <span>
+                    {c.stat}.{" "}
+                    <span className="text-foreground/60">Source: {c.source}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      )}
+
+      {faqs.length > 0 && (
+        <Section tone="white" size="lg">
+          <div className="max-w-3xl">
+            <Eyebrow>Questions</Eyebrow>
+            <SectionHeading>{industry.name} teams ask us.</SectionHeading>
+            <div className="mt-8 space-y-8">
+              {faqs.map((f) => (
+                <div key={f.q}>
+                  <h2 className="font-display text-xl font-medium tracking-[-0.02em] text-foreground">{f.q}</h2>
+                  <p className="mt-3 text-[15px] leading-relaxed text-foreground/80">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
       <Section tone="paper" size="lg">
         <div className="grid lg:grid-cols-12 gap-10 mb-12">
           <div className="lg:col-span-7">
@@ -124,6 +165,10 @@ export function MatrixView({
 
       <CtaBanner />
 
+      <p className="mx-auto max-w-3xl px-6 pb-10 text-center text-[13px] text-foreground/40">
+        Last reviewed {new Date(dateModified).toLocaleDateString("en-GB", { month: "long", year: "numeric" })}. Reviewed against BAZ GEO/AEO research, July 2026.
+      </p>
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLd([
@@ -133,6 +178,13 @@ export function MatrixView({
             url: path,
             areaServed,
           }),
+          matrixArticleLd({
+            title: page.title,
+            description: page.description,
+            path,
+            dateModified,
+          }),
+          faqLd(faqs),
           breadcrumbLd([
             { name: "Home", url: "/" },
             ...breadcrumb.map((b) => ({ name: b.label, url: b.href ?? "/" })),

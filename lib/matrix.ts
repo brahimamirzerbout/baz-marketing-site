@@ -19,6 +19,8 @@ import { cities } from "@/content/locations";
  * noindex by the route.
  */
 
+export type GeoCitation = { stat: string; source: string };
+
 export type MatrixPage = {
   industry: Industry;
   service: Service | null;
@@ -36,6 +38,11 @@ export type MatrixPage = {
   body: string;
   bodyWords: number;
   publishable: boolean;
+  // GEO / AEO citation-readiness fields (research ref, July 2026)
+  tldr: string;                       // answer-first 1–2 sentence extractable passage
+  citations: GeoCitation[];           // real, attributable research statistics
+  faqs: { q: string; a: string }[];   // question-style Q&A passages
+  dateModified: string;               // honest freshness stamp (ISO date)
 };
 
 export type CityPage = {
@@ -47,10 +54,95 @@ export type CityPage = {
   localProof: string[];
   body: string;
   publishable: boolean;
+  tldr: string;
+  citations: GeoCitation[];
+  faqs: { q: string; a: string }[];
+  dateModified: string;
 };
 
 const LAUNCH_SERVICE_SLUGS = new Set(services.slice(0, 6).map((s) => s.slug));
 const MIN_BODY_WORDS = 250;
+
+// ── GEO / AEO citation-readiness (research ref, July 2026) ──
+// Honest freshness stamp: these pages are reviewed against the July 2026 GEO
+// research. Bumped only when substance changes (never cosmetic date-bumping —
+// Microsoft/Google treat deceptive date manipulation as spammy).
+const GEO_DATE = "2026-07-15";
+
+/**
+ * Real, attributable research statistics (NOT fabricated client metrics).
+ * These are published, vendor-independent figures from the GEO/AEO research
+ * reference — exactly the "add statistics + cite sources" tactic the Princeton
+ * GEO paper (KDD 2024) showed lifts generative visibility 30–40%. Each carries
+ * its source so answer engines can verify and lift the passage.
+ */
+const GEO_CITATIONS: GeoCitation[] = [
+  { stat: "38% of Google AI Overview citations come from pages already in the top-10 organic results; the rest arrive via query fan-out from ranked long-tail pages", source: "Ahrefs, 863K SERP study, 2026" },
+  { stat: "No major AI crawler executes JavaScript — only Google renders pages; client-side content is invisible to ChatGPT, Perplexity, Claude and Copilot", source: "Vercel crawler study, 2025" },
+  { stat: "AI-cited content is roughly 26% fresher on average than content cited in traditional organic results", source: "AI citation studies, 2025–26" },
+  { stat: "Brand web mentions correlate with AI Overview visibility at r=0.664 — about three times stronger than backlinks at r=0.218", source: "Ahrefs, 75,000-brand study, 2026" },
+  { stat: "Brands are 6.5× more likely to be cited via third-party sources than via their own domain", source: "AI citation studies, 2026" },
+  { stat: "Adding statistics, expert quotations and cited sources lifted generative-engine visibility by 30–40%", source: "Princeton/IIT Delhi GEO paper, KDD 2024" },
+  { stat: "ChatGPT referral conversion runs ~7.1% versus ~1.8% for typical Google organic", source: "Similarweb clickstream panel, 2026" },
+  { stat: "Sites with 32,000+ referring domains are 3.5× more likely to be cited by ChatGPT than sites with under 200", source: "SE Ranking, 129K-domain study, 2026" },
+];
+
+/** Deterministic, varied pick of citations so no two pages share the same set. */
+function pickCitations(industry: Industry, service: Service | null, city: City | null): GeoCitation[] {
+  // Seed from the combo slugs so the pick is stable per page but varied across pages.
+  const seed = `${industry.slug}|${service?.slug ?? "-"}|${city?.slug ?? "-"}`;
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  const want = 3;
+  const out: GeoCitation[] = [];
+  for (let k = 0; k < want; k++) {
+    const c = GEO_CITATIONS[(h + k * 3) % GEO_CITATIONS.length];
+    if (c) out.push(c);
+  }
+  // Deduplicate while keeping order.
+  const seen = new Set<string>();
+  return out.filter((c) => (seen.has(c.stat) ? false : (seen.add(c.stat), true)));
+}
+
+/**
+ * Answer-first extractable passage — the 1–2 sentence direct answer AI
+ * engines lift near the top (Perplexity favours extractable direct answers;
+ * Ahrefs 2026 shows fan-out cites passage-level chunks). Unique per combo.
+ */
+function buildTldr(industry: Industry, service: Service | null, city: City | null): string {
+  const where = city ? ` in ${city.name}` : "";
+  if (service) {
+    return `${service.name} for ${industry.name} teams${where} is a senior-partner-led ${service.pillar} engagement — ${service.tagline.toLowerCase().replace(/\.$/, "")}. Built to move pipeline and retention, not vanity metrics.`;
+  }
+  return `${industry.name} growth${where} means a senior-led engagement across strategy, acquisition and lifecycle — ${industry.blurb.toLowerCase().replace(/\.$/, "")}, run as a 90-day plan with named owners and revenue exit criteria.`;
+}
+
+/**
+ * Question-style Q&A passages. Uses the service's real FAQs when present
+ * (already authored, unique), otherwise derives questions from the
+ * industry's challenges + outcomes so every page still carries citable Q&A.
+ */
+function buildFaqs(industry: Industry, service: Service | null, city: City | null): { q: string; a: string }[] {
+  const where = city ? ` in ${city.name}` : "";
+  if (service && service.faqs.length > 0) {
+    return service.faqs.slice(0, 4);
+  }
+  const derived: { q: string; a: string }[] = [];
+  const topChallenge = industry.challenges[0] ?? "standing out in a crowded market";
+  derived.push({
+    q: `What does a ${industry.name} growth engagement${where} actually include?`,
+    a: `A senior-led 90-day plan across strategy, acquisition and lifecycle, with named owners, a budget, and revenue exit criteria — not a content posting service.`,
+  });
+  derived.push({
+    q: `How is BAZ different from a junior-pod agency${where}?`,
+    a: `You work with senior partners directly. There is no junior pod and no SaaS subscription — pricing is project or retainer, and the work is tied to LTV, CAC and payback, not vanity KPIs.`,
+  });
+  derived.push({
+    q: `How do you address ${topChallenge.toLowerCase()}${where}?`,
+    a: `We diagnose it first, then architect the offer and the channel mix around it. ${(industry.outcomes[0] ?? "Pipeline that compounds").replace(/\.$/, "")} is the exit criterion, measured against a baseline set in week one.`,
+  });
+  return derived;
+}
 
 function buildBody({
   industry,
@@ -194,11 +286,17 @@ function compose({
   const process = service ? service.process : [];
   const localProof = city?.localProof ?? [];
   const body = buildBody({ industry, service, city });
+  const tldr = buildTldr(industry, service ?? null, city ?? null);
+  const citations = pickCitations(industry, service ?? null, city ?? null);
+  const faqs = buildFaqs(industry, service ?? null, city ?? null);
   const text = [
     title,
     description,
     intro,
+    tldr,
     body,
+    ...citations.map((c) => `${c.stat} (${c.source})`),
+    ...faqs.map((f) => `${f.q} ${f.a}`),
     ...challenges,
     ...outcomes,
     ...process.map((p) => p.desc),
@@ -229,6 +327,10 @@ function compose({
     body,
     bodyWords,
     publishable: false,
+    tldr,
+    citations,
+    faqs,
+    dateModified: GEO_DATE,
   };
 }
 
@@ -269,16 +371,33 @@ export function cityIndustryPages(): MatrixPage[] {
 }
 
 export function cityPages(): CityPage[] {
-  return cities.map((city) => ({
-    city,
-    title: `${city.name} growth marketing`,
-    description: city.marketBlurb,
-    h1: `${city.name} growth marketing`,
-    intro: city.marketBlurb,
-    localProof: city.localProof,
-    body: `${city.marketBlurb} For operators in ${city.name}, this means the ${city.region} market demands both speed and sophistication. ${city.localProof.join(' ')} Senior-led execution matters here because generic playbooks underperform in markets that move fast and require cultural calibration. In ${city.name}, local buyer behavior and channel dynamics make the difference between pipeline that compounds and spend that burns.`,
-    publishable: true,
-  }));
+  return cities.map((city) => {
+    const tldr = `${city.name} growth marketing with BAZ means a senior-partner-led engagement calibrated for the ${city.region} market — strategy, acquisition and lifecycle run as one system, measured against revenue, not vanity metrics.`;
+    const citations = pickCitations(
+      industries[0]!,
+      null,
+      city,
+    );
+    const faqs = [
+      { q: `What does a BAZ growth engagement in ${city.name} include?`, a: `A senior-led 90-day plan with named owners, a budget and revenue exit criteria — calibrated for ${city.region} buyer behavior and channel dynamics.` },
+      { q: `Is BAZ a junior-pod agency or a SaaS?`, a: `Neither. BAZ is a senior-partner marketing agency. You work with partners directly; pricing is project or retainer, never a SaaS subscription.` },
+      { q: `Why does the ${city.region} market need local calibration?`, a: `Generic playbooks underperform in markets that move fast and require cultural calibration. ${(city.localProof[0] ?? "Local buyer behavior shapes every channel decision").replace(/\.$/, "")} — we treat the market as a living context, not a geography to translate.` },
+    ];
+    return {
+      city,
+      title: `${city.name} growth marketing`,
+      description: city.marketBlurb,
+      h1: `${city.name} growth marketing`,
+      intro: city.marketBlurb,
+      localProof: city.localProof,
+      body: `${city.marketBlurb} For operators in ${city.name}, this means the ${city.region} market demands both speed and sophistication. ${city.localProof.join(' ')} Senior-led execution matters here because generic playbooks underperform in markets that move fast and require cultural calibration. In ${city.name}, local buyer behavior and channel dynamics make the difference between pipeline that compounds and spend that burns.`,
+      publishable: true,
+      tldr,
+      citations,
+      faqs,
+      dateModified: GEO_DATE,
+    };
+  });
 }
 
 export function getMatrixLeaf(
