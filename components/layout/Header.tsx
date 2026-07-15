@@ -10,6 +10,7 @@ import { services } from "@/content/services";
 
 const nav = [
   { href: "/services", label: "Services" },
+  { href: "/roadmap", label: "Free Roadmap", badge: "NEW" },
   { href: "/selected", label: "Selected", badge: "3 OPEN" },
   { href: "/marketing-hub", label: "Marketing Hub", badge: "LIVE" },
   { href: "/methodology", label: "Methodology" },
