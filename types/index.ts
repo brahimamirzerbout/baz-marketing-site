@@ -39,12 +39,26 @@ export type Post = {
   readingMin: number;
 };
 
+export type EstimatedOutcomes = {
+  // Methodology-based estimates of what the engagement model is built to
+  // deliver. NOT guaranteed past-client results — framed as forecasts.
+  successRate: string;
+  roi: string;
+  improvements: string[];
+};
+
 export type Industry = {
   slug: string;
   name: string;
   blurb: string;
   challenges: string[];
   outcomes: string[];
+  // Catalogue of how BAZ specifically excels with this business type.
+  // Truthful, drawn from the real service offerings / founder methodology.
+  howWeExcel: string[];
+  // Methodology-based estimates — what the engagement model is built to
+  // deliver, never fabricated past-client metrics.
+  estimatedOutcomes: EstimatedOutcomes;
 };
 
 export type City = {

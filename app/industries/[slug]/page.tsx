@@ -104,6 +104,63 @@ export default function IndustryDetailPage({ params }: Params) {
         </div>
       </Section>
 
+      <Section tone="paper" size="lg">
+        <Eyebrow>How we excel</Eyebrow>
+        <SectionHeading>How we excel with {ind.name}.</SectionHeading>
+        <SectionLede>
+          Where our senior-only model creates the most leverage for {ind.name.toLowerCase()} — drawn
+          from how we actually run engagements, not hypotheticals.
+        </SectionLede>
+        <ul className="mt-10 grid md:grid-cols-2 gap-x-8 gap-y-5">
+          {ind.howWeExcel.map((h) => (
+            <li key={h} className="flex items-start gap-3 text-[15px] leading-relaxed text-foreground">
+              <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-brand" />
+              {h}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section tone="white" size="lg">
+        <div className="grid lg:grid-cols-12 gap-10 mb-10">
+          <div className="lg:col-span-8">
+            <Eyebrow>Estimated outcomes</Eyebrow>
+            <SectionHeading>What the engagement model is built to deliver.</SectionHeading>
+            <SectionLede>
+              Methodology-based estimates from our 90-day sprint model and published engagement
+              stats — not guaranteed past-client results.
+            </SectionLede>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-2 gap-5">
+          <div className="border border-border bg-background p-6 md:p-7">
+            <p className="font-mono uppercase tracking-[0.16em] text-[11px] text-muted-foreground mb-3">
+              Estimated success rate
+            </p>
+            <p className="text-[15px] leading-relaxed text-foreground">{ind.estimatedOutcomes.successRate}</p>
+          </div>
+          <div className="border border-border bg-background p-6 md:p-7">
+            <p className="font-mono uppercase tracking-[0.16em] text-[11px] text-muted-foreground mb-3">
+              Estimated ROI
+            </p>
+            <p className="text-[15px] leading-relaxed text-foreground">{ind.estimatedOutcomes.roi}</p>
+          </div>
+        </div>
+        <div className="mt-5 border border-border bg-background p-6 md:p-7">
+          <p className="font-mono uppercase tracking-[0.16em] text-[11px] text-muted-foreground mb-4">
+            Expected improvements
+          </p>
+          <ul className="grid md:grid-cols-3 gap-x-8 gap-y-3">
+            {ind.estimatedOutcomes.improvements.map((imp) => (
+              <li key={imp} className="flex items-start gap-3 text-[15px] text-foreground">
+                <span aria-hidden className="shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-success" />
+                {imp}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
       {relevantCases.length > 0 && (
         <Section tone="paper" size="lg">
           <Eyebrow>Adjacent work</Eyebrow>
