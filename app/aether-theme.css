@@ -12,6 +12,7 @@
 
 /* ─── CSS CUSTOM PROPERTIES — Generated from design system ─── */
 :root {
+  --ease-phi: cubic-bezier(0.618, 0, 0.618, 1); --ease-phi-glide: cubic-bezier(0.236, 0.618, 0.236, 1); --motion-fast: 144ms; --motion-base: 233ms; --motion-slow: 377ms;
   /* 8 Layers of Darkness (Fibonacci luminance) */
   --aether-l0: hsl(42, 8%, 3.9%);      /* The Void */
   --aether-l1: hsl(42, 7%, 6.5%);      /* The Deep */

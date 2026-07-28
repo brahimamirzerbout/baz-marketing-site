@@ -42,7 +42,7 @@
   --border: var(--border);
   --input: var(--border-strong);
   --ring: var(--color-primary);
-  --success: #22C55E;
+  --success: var(--color-primary);
   --warning: #F59E0B;
   --info: #3B82F6;
 
