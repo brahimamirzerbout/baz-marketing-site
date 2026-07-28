@@ -30,7 +30,7 @@
   --brand2: var(--color-primary-70);
 
   /* ── FUNCTIONAL STATE KNOBS (neutral by default) ── */
-  --success-hue: 160;  --success-sat: 84%;   /* #10B981 — metrics only, sparingly */
+  --success-hue: 42;  --success-sat: 85%;   /* gold — no green */
   --warning-hue: 0;  --warning-sat: 0%;
   --info-hue: 0;     --info-sat: 0%;
   --danger-hue: 0;   --danger-sat: 0%;
