@@ -64,12 +64,12 @@ test.describe("Stitch theme — BAZventures Midnight Terminal design", () => {
     expect(content).toBe("#020617");
   });
 
-  test("favicon is not the old gold/violet", async ({ page }) => {
+  test("favicon is not the legacy palette", async ({ page }) => {
     const res = await page.goto("/favicon.svg");
     expect(res?.status()).toBe(200);
     const svg = (await res?.text()) ?? "";
     expect(svg, "favicon must not be the old gold").not.toContain("#C8A55A");
-    expect(svg, "favicon must not be violet").not.toContain("#8b5cf6");
+    expect(svg, "favicon must not be the legacy hue").not.toContain("#8b5cf6");
   });
 
   test("header uses the BAZventures wordmark (no legacy gold SVG)", async ({ page }) => {

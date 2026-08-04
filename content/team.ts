@@ -13,7 +13,7 @@ export const team: TeamMember[] = [
     role: "Founder · Strategy & Systems",
     bio: "Engineer first, operator second. Sets the bar on growth strategy and the senior-team model — and ships the systems other agencies only storyboard. 60+ brands across MENA, EU, and the US.",
     initials: "BZ",
-    color: "var(--color-primary)",  // violet — brand accent
+    color: "var(--color-primary)",  // cyan — brand accent
   },
   {
     name: "Partner · SEO & Content",
@@ -34,7 +34,7 @@ export const team: TeamMember[] = [
     role: "Senior Partner · Brand & Creative",
     bio: "Brand systems and creative direction tied to the metric they own. From naming to launch toolkit.",
     initials: "BC",
-    color: "color-mix(in srgb, var(--color-primary), black 20%)",  // violet dimmed
+    color: "color-mix(in srgb, var(--color-primary), black 20%)",  // cyan dimmed
   },
   {
     name: "Partner · Analytics",

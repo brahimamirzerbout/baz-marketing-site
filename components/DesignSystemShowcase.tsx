@@ -12,7 +12,7 @@ import { StatusBar, Terminal } from "@/components/structure/index";
  * The components resolve to --aether-* tokens, which app/color-layer.css
  * drives from the electric-cyan seed (187/90), so they render in the live
  * Midnight Terminal palette. The brand assets are the legacy Stitch palette
- * (gold/violet) and are shown as-is pending a cyan recolor pass.
+ * (legacy) shown as-is pending a recolor pass.
  */
 
 const ASSETS: { src: string; label: string }[] = [
@@ -199,7 +199,7 @@ export function DesignSystemShowcase() {
       {/* Asset library */}
       <Section id="assets" eyebrow="Brand · 07" title="Asset library (legacy Stitch palette)">
         <p className="text-sm text-muted-foreground max-w-2xl">
-          Every brand asset, surfaced. These SVGs are the legacy Stitch palette (gold/violet) —
+          Every brand asset, surfaced. These SVGs are the legacy Stitch palette —
           shown as-is pending a cyan recolor pass to match Midnight Terminal.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
