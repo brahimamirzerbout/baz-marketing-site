@@ -5,7 +5,7 @@
    THREE SYSTEMS, ONE CASCADE:
    1. BlackSwan seed system: --seed-hue: 41 → gold monochrome palette
    2. Stitch Material 3 tokens: brand-specific dark palette
-   3. Protocol: Fraunces/Inter/JetBrains Mono + Fibonacci radii
+   3. Protocol: Inter/Inter/JetBrains Mono + Fibonacci radii
 
    Source of truth: docs/BRAND-BRIEF.md (voice), this file (visual),
    brand-blackswan/tokens/blackswan.css (algorithmic tokens).
@@ -38,7 +38,7 @@
 
   /* ━━━ Stitch Material 3 Brand Tokens (overrides) ━━━ ━━━ ━━━ ━━━ ━━━ */
   /* These are the exact colors from the Stitch-generated DESIGN.md */
-  --baz-gold:            #C8A55A;
+  --baz-gold:            #C29B5B;
   --baz-gold-dark:       #8D6B2E;
   --baz-charcoal:        #1F2933;
   --baz-navy:            #24364A;
@@ -65,7 +65,7 @@
   /* Stitch primary tokens */
   --baz-primary:               #e7c274;
   --baz-on-primary:            #402d00;
-  --baz-primary-container:     #c8a55a;
+  --baz-primary-container:     #C29B5B;
   --baz-on-primary-container:  #513b00;
   --baz-inverse-primary:       #765a16;
   --baz-primary-fixed:         #ffdf9f;
@@ -127,9 +127,9 @@
   --color-neutral-90:   hsl(var(--seed-hue), 0.3%, 7%);
   --color-neutral-100:  hsl(var(--seed-hue), 0.2%, 4%);
 
-  /* ━━━ Typography ━━━ Protocol: Fraunces × Inter × JetBrains Mono ━━━ ━━━ */
+  /* ━━━ Typography ━━━ Protocol: Inter × Inter × JetBrains Mono ━━━ ━━━ */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Fraunces', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
+  --font-serif: 'Inter', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
   --font-display: var(--font-serif);
 

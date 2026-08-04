@@ -27,7 +27,7 @@ brand/
 ├── README.md                ← You are here
 ├── design.md                ← Visual philosophy, layout, elevation, guardrails
 ├── colors.md                ← Palette, gradients, tokens, accessibility ratios
-├── typography.md            ← Fraunces / Inter / JetBrains Mono hierarchy
+├── typography.md            ← Inter / Inter / JetBrains Mono hierarchy
 ├── logo.md                  ← Mark, wordmark, favicon, usage rules
 ├── components.md            ← Full UI component inventory
 ├── spacing.md               ← Fibonacci grid, 8pt rhythm, breakpoints
@@ -120,7 +120,7 @@ import tokens from './brand/tokens.json'
 | **Company** | BAZ Marketing Ventures Agency |
 | **Tagline** | *Powering Your Path To Growth* |
 | **Personality** | Premium, confident, editorial, precise |
-| **Display font** | Fraunces (variable, optical) |
+| **Display font** | Inter (variable, optical) |
 | **Body font** | Inter (variable) |
 | **Code font** | JetBrains Mono |
 | **Primary accent** | Gold `hsl(41, 72%, 52%)` (BlackSwan seed) |
@@ -149,19 +149,19 @@ All 28 Stitch-generated brand assets are organized in `baz/assets/brand/`:
 | `presentation/` | 5 | Folder flat, mockup, matte, front, print |
 | `web/` | 3 | Full page screenshot, Stitch HTML, Stitch DESIGN.md |
 
-The Stitch design system (Material 3 based) uses a complementary palette:
+The Midnight Terminal system (Material 3 based) uses a complementary palette:
 
 | Token | Hex | Role |
 |-------|-----|------|
-| Gold | `#C8A55A` | Primary accent |
-| Gold-dark | `#8D6B2E` | Gradient start / shadows |
-| Charcoal | `#1F2933` | Base background |
+| Cyan | `#22D3EE` | Functional signal (links, focus, nav, metrics) |
+| Signature gold | `#C29B5B` | Signature mark (favicon only) — never an accent/CTA |
+| Midnight | `#020617` | Base background |
 | Navy | `#24364A` | Secondary background |
 | Sand | `#E8E4E0` | Primary text on dark |
 | Stone | `#B0AAA5` | Muted text |
 | White | `#FFFFFF` | Headings / maximum contrast |
 
-Stitch uses **Outfit** (display) + **Poppins** (body) with 4px radius. The BlackSwan system uses **Fraunces** + **Inter** + **JetBrains Mono** with Fibonacci radii. Both share the gold + charcoal foundation and can coexist.
+Stitch uses **Outfit** (display) + **Poppins** (body) with 4px radius. The BlackSwan system uses **Inter** + **Inter** + **JetBrains Mono** with Fibonacci radii. Both share the gold + charcoal foundation and can coexist.
 
 ---
 

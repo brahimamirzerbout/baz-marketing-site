@@ -58,14 +58,14 @@ BAZ writes like a magazine, not a brochure. Every word must earn its place.
 
 BAZ headlines follow a consistent structure:
 
-### Hero Headlines (Fraunces 300, 64–96px)
+### Hero Headlines (Inter 300, 64–96px)
 Short. Punchy. Period-optional.
 
 - "Brand & Buzz."
 - "We make brands unignorable."
 - "From 0 to 100M views."
 
-### Section Headlines (Fraunces 400, 36–48px)
+### Section Headlines (Inter 400, 36–48px)
 Declarative. Specific. No questions.
 
 - "240+ brands trust BAZ"
@@ -82,7 +82,7 @@ Supportive. Expanding. Never repeating the headline.
 
 ## 4. Eyebrows
 
-Every section starts with an eyebrow in JetBrains Mono, 11px, uppercase, tracking 0.18em, violet accent color, preceded by a `●` bullet.
+Every section starts with an eyebrow in JetBrains Mono, 11px, uppercase, tracking 0.18em, cyan accent color, preceded by a `●` bullet.
 
 ```
 ● Brand & Identity
@@ -95,7 +95,7 @@ Every section starts with an eyebrow in JetBrains Mono, 11px, uppercase, trackin
 - Always uppercase
 - Always preceded by `●` with a space
 - Maximum 3 words ideal, 5 words maximum
-- Always in accent color (violet)
+- Always in accent color (cyan)
 - Never a full sentence — it's a label, not a headline
 
 ---

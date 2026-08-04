@@ -1,6 +1,6 @@
 # Color Palette & Token System
 
-The BAZ color architecture is built on the BlackSwan algorithmic system. Three seed variables generate the entire palette — change `--seed-hue` and every derived color recomputes. For BAZ, the seed is locked to **270** (violet).
+The BAZ color architecture is built on the BlackSwan algorithmic system. Three seed variables generate the entire palette — change `--seed-hue` and every derived color recomputes. For BAZ, the seed is locked to **270** (cyan).
 
 ---
 
@@ -8,7 +8,7 @@ The BAZ color architecture is built on the BlackSwan algorithmic system. Three s
 
 ```css
 :root {
-  --seed-hue: 270;     /* Violet — the BAZ accent */
+  --seed-hue: 270;     /* Cyan — the BAZ accent */
   --seed-sat: 72%;     /* High saturation for brand vibrancy */
   --seed-lum: 50%;     /* Balanced lightness */
 }
@@ -37,26 +37,26 @@ The BAZ color architecture is built on the BlackSwan algorithmic system. Three s
 
 | Token | Role | Value | Use |
 |-------|------|-------|-----|
-| `--accent` | Primary accent | `hsl(270, 85%, 72%)` | CTAs, highlights, focus rings, active states |
-| `--accent-600` | Hover | `hsl(270, 80%, 64%)` | CTA hover |
-| `--accent-700` | Active | `hsl(270, 75%, 55%)` | Active/pressed states |
-| `--accent-gold` | Secondary accent | `#f9a01f` | Brand moments only — never as primary |
+| `--accent` | Primary accent | `hsl(187, 85%, 72%)` | CTAs, highlights, focus rings, active states |
+| `--accent-600` | Hover | `hsl(187, 80%, 64%)` | CTA hover |
+| `--accent-700` | Active | `hsl(187, 75%, 55%)` | Active/pressed states |
+| `--accent-gold` | Secondary accent | `#22D3EE` | Brand moments only — never as primary |
 | `--accent-red` | Tertiary accent | `#ff3b2f` | Urgency, errors — never as primary |
 
-### Violet Accent Breakdown
+### Cyan Signal Breakdown
 
 | Shade | HEX | HSL | Use |
 |-------|-----|-----|-----|
-| Violet 50 | `#f5f0ff` | `hsl(270, 100%, 97%)` | Backgrounds, subtle fills |
-| Violet 100 | `#ebe3ff` | `hsl(270, 100%, 94%)` | Hover surfaces |
-| Violet 200 | `#d5c7ff` | `hsl(270, 100%, 88%)` | Borders on dark |
-| Violet 300 | `#baabff` | `hsl(270, 100%, 81%)` | Text on ink |
-| Violet 400 | `#9985ff` | `hsl(270, 85%, 76%)` | Icons, secondary accents |
-| Violet 500 | `#8b5cf6` | `hsl(270, 85%, 72%)` | **Primary accent** |
-| Violet 600 | `#7c3aed` | `hsl(270, 80%, 64%)` | Hover |
-| Violet 700 | `#6d28d9` | `hsl(270, 75%, 55%)` | Active/pressed |
-| Violet 800 | `#5b21b6` | `hsl(270, 70%, 42%)` | Dark accent |
-| Violet 900 | `#4c1d95` | `hsl(270, 65%, 35%)` | Deepest accent |
+| Cyan 50 | `#f5f0ff` | `hsl(187, 100%, 97%)` | Backgrounds, subtle fills |
+| Cyan 100 | `#ebe3ff` | `hsl(187, 100%, 94%)` | Hover surfaces |
+| Cyan 200 | `#d5c7ff` | `hsl(187, 100%, 88%)` | Borders on dark |
+| Cyan 300 | `#baabff` | `hsl(187, 100%, 81%)` | Text on ink |
+| Cyan 400 | `#22d3ee` | `hsl(187, 85%, 76%)` | Icons, secondary accents |
+| Cyan 500 | `#22D3EE` | `hsl(187, 85%, 72%)` | **Primary accent** |
+| Cyan 600 | `#0891b2` | `hsl(187, 80%, 64%)` | Hover |
+| Cyan 700 | `#0e7490` | `hsl(187, 75%, 55%)` | Active/pressed |
+| Cyan 800 | `#155e75` | `hsl(187, 70%, 42%)` | Dark accent |
+| Cyan 900 | `#4c1d95` | `hsl(187, 65%, 35%)` | Deepest accent |
 
 ---
 
@@ -67,19 +67,19 @@ These tokens are computed from the seed variables and used throughout the compon
 ```css
 :root {
   /* Primary spectrum — computed from seed */
-  --color-primary:      hsl(270, 72%, 50%);
-  --color-primary-5:    hsl(270, 72%, 97%);
-  --color-primary-10:   hsl(270, 72%, 93%);
-  --color-primary-20:   hsl(270, 72%, 82%);
-  --color-primary-30:   hsl(270, 72%, 72%);
-  --color-primary-40:   hsl(270, 72%, 62%);
-  --color-primary-50:   hsl(270, 72%, 52%);
-  --color-primary-60:   hsl(270, 72%, 42%);
-  --color-primary-70:   hsl(270, 72%, 32%);
-  --color-primary-80:   hsl(270, 72%, 22%);
-  --color-primary-90:   hsl(270, 72%, 12%);
+  --color-primary:      hsl(187, 72%, 50%);
+  --color-primary-5:    hsl(187, 72%, 97%);
+  --color-primary-10:   hsl(187, 72%, 93%);
+  --color-primary-20:   hsl(187, 72%, 82%);
+  --color-primary-30:   hsl(187, 72%, 72%);
+  --color-primary-40:   hsl(187, 72%, 62%);
+  --color-primary-50:   hsl(187, 72%, 52%);
+  --color-primary-60:   hsl(187, 72%, 42%);
+  --color-primary-70:   hsl(187, 72%, 32%);
+  --color-primary-80:   hsl(187, 72%, 22%);
+  --color-primary-90:   hsl(187, 72%, 12%);
 
-  /* Accent — seed hue + 30 = 300 (magenta-violet) */
+  /* Accent — seed hue + 30 = 300 (magenta-cyan) */
   --color-accent:       hsl(300, 85%, 55%);
   --color-accent-10:    hsl(300, 85%, 93%);
   --color-accent-20:    hsl(300, 85%, 82%);
@@ -105,12 +105,12 @@ Highly desaturated to maintain the luxury palette. Never saturated greens or red
 
 ## 5. Gradient System
 
-### Violet Gradient (Primary CTA)
+### Cyan Gradient (Primary CTA)
 ```css
-background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+background: linear-gradient(135deg, #22D3EE 0%, #0891b2 50%, #0e7490 100%);
 ```
 
-### Violet Shimmer (Borders, Decorative)
+### Cyan Shimmer (Borders, Decorative)
 ```css
 background: linear-gradient(
   90deg,
@@ -120,7 +120,7 @@ background: linear-gradient(
 );
 ```
 
-### Ink-to-Violet (Hero backgrounds)
+### Ink-to-Cyan (Hero backgrounds)
 ```css
 background: radial-gradient(
   ellipse at 50% 0%,
@@ -142,15 +142,15 @@ background: linear-gradient(180deg, #faf7f1 0%, #f5f1ea 50%, #f0ebe0 100%);
 |-----------|------------|---------------|-------|
 | `#0e0e0e` (ink-900) | `#f5f1ea` (paper) | 17.2:1 | ✅ AA + AAA |
 | `#f5f1ea` (paper) | `#0e0e0e` (ink) | 17.2:1 | ✅ AA + AAA |
-| `#8b5cf6` (violet) | `#0e0e0e` (ink) | 5.9:1 | ✅ AA (large + normal) |
-| `#8b5cf6` (violet) | `#f5f1ea` (paper) | 3.7:1 | ⚠️ AA large only — add text-shadow or use ink-800 |
+| `#22D3EE` (cyan) | `#0e0e0e` (ink) | 5.9:1 | ✅ AA (large + normal) |
+| `#22D3EE` (cyan) | `#f5f1ea` (paper) | 3.7:1 | ⚠️ AA large only — add text-shadow or use ink-800 |
 | `#ffffff` (white) | `#0e0e0e` (ink) | 18.1:1 | ✅ AA + AAA |
 | `#737373` (ink-500) | `#f5f1ea` (paper) | 4.6:1 | ✅ AA normal |
 | `#a3a3a3` (ink-400) | `#f5f1ea` (paper) | 2.9:1 | ❌ Fails — use ink-500 minimum on paper |
 
 ### Key Rules
-1. **Never** use violet-500 text on paper backgrounds for body copy (fails AA for normal text)
-2. Violet-500 on ink is ✅ safe for all text sizes
+1. **Never** use cyan-500 text on paper backgrounds for body copy (fails AA for normal text)
+2. Cyan-500 on ink is ✅ safe for all text sizes
 3. White on ink is ✅ safe for all text sizes
 4. Ink-500 (#737373) is the **minimum** gray for readable body text on paper
 
@@ -171,23 +171,23 @@ background: linear-gradient(180deg, #faf7f1 0%, #f5f1ea 50%, #f0ebe0 100%);
   --c-paper-50: #faf7f1;
   --c-paper-100: #f0ebe0;
 
-  --accent: hsl(270, 85%, 72%);
-  --accent-600: hsl(270, 80%, 64%);
-  --accent-700: hsl(270, 75%, 55%);
-  --accent-gold: #f9a01f;
+  --accent: hsl(187, 85%, 72%);
+  --accent-600: hsl(187, 80%, 64%);
+  --accent-700: hsl(187, 75%, 55%);
+  --accent-gold: #22D3EE;
   --accent-red: #ff3b2f;
 
-  /* ── Violet Spectrum ── */
-  --violet-50: #f5f0ff;
-  --violet-100: #ebe3ff;
-  --violet-200: #d5c7ff;
-  --violet-300: #baabff;
-  --violet-400: #9985ff;
-  --violet-500: #8b5cf6;
-  --violet-600: #7c3aed;
-  --violet-700: #6d28d9;
-  --violet-800: #5b21b6;
-  --violet-900: #4c1d95;
+  /* ── Cyan Spectrum ── */
+  --cyan-50: #f5f0ff;
+  --cyan-100: #ebe3ff;
+  --cyan-200: #d5c7ff;
+  --cyan-300: #baabff;
+  --cyan-400: #22d3ee;
+  --cyan-500: #22D3EE;
+  --cyan-600: #0891b2;
+  --cyan-700: #0e7490;
+  --cyan-800: #155e75;
+  --cyan-900: #4c1d95;
 
   /* ── Semantic ── */
   --color-success: hsl(152, 68%, 38%);
@@ -223,22 +223,22 @@ colors: {
     300: '#c9bfb0',
   },
   accent: {
-    DEFAULT: 'hsl(270, 85%, 72%)',
-    600: 'hsl(270, 80%, 64%)',
-    700: 'hsl(270, 75%, 55%)',
-    gold: '#f9a01f',
+    DEFAULT: 'hsl(187, 85%, 72%)',
+    600: 'hsl(187, 80%, 64%)',
+    700: 'hsl(187, 75%, 55%)',
+    gold: '#22D3EE',
     red: '#ff3b2f',
   },
-  violet: {
+  cyan: {
     50: '#f5f0ff',
     100: '#ebe3ff',
     200: '#d5c7ff',
     300: '#baabff',
-    400: '#9985ff',
-    500: '#8b5cf6',
-    600: '#7c3aed',
-    700: '#6d28d9',
-    800: '#5b21b6',
+    400: '#22d3ee',
+    500: '#22D3EE',
+    600: '#0891b2',
+    700: '#0e7490',
+    800: '#155e75',
     900: '#4c1d95',
   },
 }
@@ -260,22 +260,22 @@ $paper: #f5f1ea;
 $paper-50: #faf7f1;
 $paper-100: #f0ebe0;
 
-$accent: hsl(270, 85%, 72%);
-$accent-600: hsl(270, 80%, 64%);
-$accent-700: hsl(270, 75%, 55%);
-$accent-gold: #f9a01f;
+$accent: hsl(187, 85%, 72%);
+$accent-600: hsl(187, 80%, 64%);
+$accent-700: hsl(187, 75%, 55%);
+$accent-gold: #22D3EE;
 $accent-red: #ff3b2f;
 
-$violet: (
+$cyan: (
   '50': #f5f0ff,
   '100': #ebe3ff,
   '200': #d5c7ff,
   '300': #baabff,
-  '400': #9985ff,
-  '500': #8b5cf6,
-  '600': #7c3aed,
-  '700': #6d28d9,
-  '800': #5b21b6,
+  '400': #22d3ee,
+  '500': #22D3EE,
+  '600': #0891b2,
+  '700': #0e7490,
+  '800': #155e75,
   '900': #4c1d95,
 );
 

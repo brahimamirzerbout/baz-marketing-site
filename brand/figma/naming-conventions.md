@@ -95,7 +95,7 @@ radius/fib13
     🟣 50–900
     🟡 gold
     🔴 red
-  📁 violet/
+  📁 cyan/
     🟣 50–900
   📁 semantic/
     🟢 success

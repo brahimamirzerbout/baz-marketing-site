@@ -15,12 +15,12 @@ Primary interaction element for all CTAs, form submissions, and navigation actio
 
 | Variant | Background | Text | Border | Use |
 |---------|-----------|------|--------|-----|
-| `primary` | `bg-accent` (violet) | `text-white` | none | Main CTAs, form submits |
+| `primary` | `bg-accent` (cyan) | `text-white` | none | Main CTAs, form submits |
 | `secondary` | `bg-ink-900` | `text-white` | none | Dark CTAs, secondary actions |
 | `outline` | transparent | `text-ink-900` | `border-ink-200` | Tertiary actions |
 | `ghost` | transparent | `text-ink-600` | none | Inline actions, icon buttons |
 | `danger` | `bg-danger` | `text-white` | none | Destructive actions |
-| `accent-outline` | transparent | `text-accent` | `border-accent` | Violet-bordered CTAs |
+| `accent-outline` | transparent | `text-accent` | `border-accent` | Cyan-bordered CTAs |
 
 ### Sizes
 

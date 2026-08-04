@@ -1,4 +1,4 @@
-# Typography — Fraunces × Inter × JetBrains Mono
+# Typography — Inter × Inter × JetBrains Mono
 
 BAZ's typographic system balances the editorial authority of a premium serif display font against the geometric clarity of a modern sans-serif for body and UI. JetBrains Mono handles data, code, and metadata.
 
@@ -6,9 +6,9 @@ BAZ's typographic system balances the editorial authority of a premium serif dis
 
 ## 1. Font Stack
 
-### Display & Heading: Fraunces
+### Display & Heading: Inter
 ```css
-font-family: 'Fraunces', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
+font-family: 'Inter', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
 ```
 - **Character:** Variable optical sizing, soft serif, editorial luxury
 - **Source:** Self-hosted in `public/fonts/` via `next/font/local`
@@ -36,20 +36,20 @@ font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monos
 ```css
 font-family: 'Merriweather', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
 ```
-- **Usage:** Fallback in BlackSwan component system when Fraunces is unavailable
+- **Usage:** Fallback in BlackSwan component system when Inter is unavailable
 
 ---
 
 ## 2. Typographic Scale
 
-The scale uses a **Major Third** ratio (1.25) with optical size adjustments for Fraunces.
+The scale uses a **Major Third** ratio (1.25) with optical size adjustments for Inter.
 
 | Token | Element | Size (px) | Size (rem) | Font | Weight | Line Height | Tracking | Use |
 |-------|---------|-----------|-----------|------|--------|------------|----------|-----|
-| `--text-display` | Hero `h1` | 96 | 6.0 | Fraunces | 300 | 0.95 | -0.04em | Hero headlines |
-| `--text-display-xl` | Display XL | 72 | 4.5 | Fraunces | 400 | 1.0 | -0.035em | Large marketing headlines |
-| `--text-display-l` | Display L / `h2` | 48 | 3.0 | Fraunces | 400 | 1.05 | -0.03em | Section headers |
-| `--text-display-m` | Display M | 32 | 2.0 | Fraunces | 500 | 1.15 | -0.02em | Card titles, sub-headers |
+| `--text-display` | Hero `h1` | 96 | 6.0 | Inter | 300 | 0.95 | -0.04em | Hero headlines |
+| `--text-display-xl` | Display XL | 72 | 4.5 | Inter | 400 | 1.0 | -0.035em | Large marketing headlines |
+| `--text-display-l` | Display L / `h2` | 48 | 3.0 | Inter | 400 | 1.05 | -0.03em | Section headers |
+| `--text-display-m` | Display M | 32 | 2.0 | Inter | 500 | 1.15 | -0.02em | Card titles, sub-headers |
 | `--text-2xl` | H2 | 39 | 2.441 | Inter | 600 | 1.15 | -0.02em | Dashboard headings |
 | `--text-xl` | H3 | 31 | 1.953 | Inter | 500 | 1.15 | -0.01em | Panel titles |
 | `--text-lg` | H4 | 25 | 1.563 | Inter | 500 | 1.3 | 0 | Component headings |
@@ -68,7 +68,7 @@ The scale uses a **Major Third** ratio (1.25) with optical size adjustments for 
 ### Fluid Scale (CSS Clamp)
 
 ```css
-/* Hero headline — Fraunces */
+/* Hero headline — Inter */
 .baz-display-hero {
   font-family: var(--font-fraunces);
   font-size: clamp(2.5rem, 7vw, 6rem);
@@ -78,7 +78,7 @@ The scale uses a **Major Third** ratio (1.25) with optical size adjustments for 
   color: var(--c-ink-900);
 }
 
-/* Section heading — Fraunces */
+/* Section heading — Inter */
 .baz-display-l {
   font-family: var(--font-fraunces);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -118,7 +118,7 @@ The scale uses a **Major Third** ratio (1.25) with optical size adjustments for 
   Brand & Buzz.
 </h1>
 ```
-- Font: Fraunces 300 (Light)
+- Font: Inter 300 (Light)
 - Minimum: 40px | Maximum: 96px
 - Tracking: -0.04em (tight)
 
@@ -128,7 +128,7 @@ The scale uses a **Major Third** ratio (1.25) with optical size adjustments for 
   Powering Your Path To Growth
 </h2>
 ```
-- Font: Fraunces 400 (Regular)
+- Font: Inter 400 (Regular)
 - Tracking: -0.03em
 
 ### H3 — Panel Title
@@ -159,7 +159,7 @@ The scale uses a **Major Third** ratio (1.25) with optical size adjustments for 
 :root {
   /* Font Stacks */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Fraunces', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
+  --font-serif: 'Inter', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
   --font-display: var(--font-serif); /* Alias for clarity */
 
@@ -174,7 +174,7 @@ The scale uses a **Major Third** ratio (1.25) with optical size adjustments for 
   --text-xl:   calc(1rem * var(--ratio) * var(--ratio) * var(--ratio));  /* ~31px */
   --text-2xl:  calc(1rem * var(--ratio) * var(--ratio) * var(--ratio) * var(--ratio)); /* ~39px */
 
-  /* Display sizes (Fraunces — not on scale) */
+  /* Display sizes (Inter — not on scale) */
   --text-display-m: 2rem;     /* 32px */
   --text-display-l: 3rem;     /* 48px */
   --text-display-xl: 4.5rem;  /* 72px */
@@ -214,7 +214,7 @@ The scale uses a **Major Third** ratio (1.25) with optical size adjustments for 
 ```js
 // tailwind.theme.js → fontFamily
 fontFamily: {
-  display: ['Fraunces', 'Iowan Old Style', 'Noto Serif', 'Georgia', 'serif'],
+  display: ['Inter', 'Iowan Old Style', 'Noto Serif', 'Georgia', 'serif'],
   sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
   mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'ui-monospace', 'monospace'],
 },
@@ -241,6 +241,6 @@ fontSize: {
 1. **Minimum readable body text:** 16px (1rem) at weight 400
 2. **Minimum contrast for body text:** 4.5:1 (WCAG AA) — use `ink-600` on `paper` or `ink-500` minimum
 3. **Eyebrow text** at 11px requires 700 weight OR 4.5:1 contrast ratio
-4. **Never use Fraunces below 20px** for running text — optical sizing handles this, but below 20px, switch to Inter
+4. **Never use Inter below 20px** for running text — optical sizing handles this, but below 20px, switch to Inter
 5. **All-caps eyebrow text** must have 0.15em+ letter spacing for legibility
 6. **Fluid clamp values** must maintain readability at all breakpoints — test at 320px

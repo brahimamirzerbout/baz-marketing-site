@@ -220,7 +220,7 @@
 ```
 1. Create unified tailwind.config.ts:
    - Colors: paper/ink (light) + ink/gold/cream (dark) + accent-red (both)
-   - Fonts: Fraunces (display) + Inter (body) + Playfair (alt display) + JetBrains Mono
+   - Fonts: Inter (display) + Inter (body) + Playfair (alt display) + JetBrains Mono
    - Border radius: 4px (sharp) + existing rounded-full (buttons)
    - Shadows: existing + gold glow
 2. Port gold effects from greatness:

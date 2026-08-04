@@ -189,10 +189,10 @@ Additional specifications (not yet generated as assets):
 ```
 ┌──────────────────────────────────────────┐
 │                                          │
-│   ● Eyebrow text (violet, mono, 11px)   │
+│   ● Eyebrow text (cyan, mono, 11px)   │
 │                                          │
 │   Headline here                          │
-│   (Fraunces, 48-64px, ink-900)          │
+│   (Inter, 48-64px, ink-900)          │
 │                                          │
 │   Supporting text goes here              │
 │   (Inter, 16px, ink-500)                │
@@ -200,7 +200,7 @@ Additional specifications (not yet generated as assets):
 │                                          │
 │   [CTA Button]                           │
 │                                          │
-│   ─── violet line ───                    │
+│   ─── cyan line ───                    │
 │   BAZ Marketing Ventures Agency          │
 │   bazagency.com                          │
 └──────────────────────────────────────────┘
@@ -215,10 +215,10 @@ Additional specifications (not yet generated as assets):
 ┌──────────────────────────────────────────────────┐
 │  ████████████████████  INK BG  ████████████████  │
 │                                                  │
-│     ● Section Label (violet, mono, 11px)         │
+│     ● Section Label (cyan, mono, 11px)         │
 │                                                  │
 │     Presentation Title Here                       │
-│     (Fraunces 300, 72px, paper)                  │
+│     (Inter 300, 72px, paper)                  │
 │                                                  │
 │     Subtitle or date                              │
 │     (Inter 400, 20px, ink-400)                  │
@@ -232,9 +232,9 @@ Additional specifications (not yet generated as assets):
 ┌──────────────────────────────────────────────────┐
 │  ████████████████  PAPER BG  ██████████████████  │
 │                                                  │
-│  ● Section Label (violet, mono, 11px)            │
+│  ● Section Label (cyan, mono, 11px)            │
 │                                                  │
-│  Content Heading (Fraunces, 48px, ink-900)       │
+│  Content Heading (Inter, 48px, ink-900)       │
 │                                                  │
 │  • Point one (Inter, 16px, ink-600)               │
 │  • Point two                                      │
@@ -250,7 +250,7 @@ Additional specifications (not yet generated as assets):
 
 When custom illustrations are required:
 - **Flat geometric** — No skeuomorphism, no gradients
-- **Paper-toned palette** — Use ink/paper/violet only
+- **Paper-toned palette** — Use ink/paper/cyan only
 - **Stroke-based** — Consistent 2px strokes, round caps
 - **Isometric** — When dimension is needed, use isometric perspective
 - **No clip art** — Ever

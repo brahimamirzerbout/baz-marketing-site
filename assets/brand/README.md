@@ -99,12 +99,12 @@ The Stitch assets use a complementary design system based on **Material 3** toke
 
 | Token | Hex | Role |
 |-------|-----|------|
-| Gold | `#C8A55A` | Primary accent |
+| Gold | `#22D3EE` | Primary accent |
 | Gold-dark | `#8D6B2E` | Gradient start / shadows |
-| Charcoal | `#1F2933` | Base background |
+| Charcoal | `#020617` | Base background |
 | Navy | `#24364A` | Secondary background |
 | Sand | `#E8E4E0` | Primary text on dark |
 | Stone | `#B0AAA5` | Muted text |
 | White | `#FFFFFF` | Headings |
 
-**Note:** The Stitch system uses **Outfit** (display) and **Poppins** (body) fonts with 4px radius. The Æther system uses **Fraunces**, **Inter**, **JetBrains Mono** with Fibonacci radii. Both palettes share the same gold + charcoal foundation and can coexist.
+**Note:** The Stitch system uses **Outfit** (display) and **Poppins** (body) fonts with 4px radius. The Æther system uses **Inter**, **Inter**, **JetBrains Mono** with Fibonacci radii. Both palettes share the same gold + charcoal foundation and can coexist.

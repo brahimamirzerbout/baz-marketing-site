@@ -8,14 +8,14 @@
     /* BAZ pitch deck — print as PDF from your browser (Cmd/Ctrl-P, save as PDF).
        Each slide is 1280x720, sized to 16:9 deck masters. */
     :root {
-      --accent: #ff3b2f;
+      --accent: #22D3EE;
       --accent-600: #e0281c;
       --ink: #0e0e10;
       --ink-2: #1a1a1a;
-      --paper: #f5f1ea;
+      --paper: #020617;
       --paper-2: #faf7f2;
       --paper-300: #f0ebe0;
-      --gold: #f9a01f;
+      --gold: #22D3EE;
       --green: #3ddc97;
       --blue: #4f7cff;
     }
@@ -50,7 +50,7 @@
       margin-bottom: 24px;
     }
     .eyebrow.light { color: var(--paper-300); }
-    h1, h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.03em; line-height: 1.0; }
+    h1, h2 { font-family: 'Inter', Georgia, serif; font-weight: 500; letter-spacing: -0.03em; line-height: 1.0; }
     .display-1 { font-size: 96px; }
     .display-2 { font-size: 64px; }
     .display-3 { font-size: 44px; }
@@ -81,18 +81,18 @@
     .footer .brand { display: flex; align-items: center; gap: 12px; }
     .footer .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
     .stat { display: flex; flex-direction: column; }
-    .stat .v { font-family: 'Fraunces', Georgia, serif; font-size: 80px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+    .stat .v { font-family: 'Inter', Georgia, serif; font-size: 80px; font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
     .stat .l { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 12px; opacity: 0.7; }
     .pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: var(--paper-300); font-size: 13px; }
     .slide.dark .pill { background: rgba(255,255,255,0.08); color: var(--paper-2); }
     .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
     .mark { width: 56px; height: 56px; border-radius: 12px; background: var(--accent); display: grid; place-items: center; }
-    .mark span { font-family: 'Fraunces', Georgia, serif; font-size: 36px; font-weight: 600; color: var(--paper-2); }
+    .mark span { font-family: 'Inter', Georgia, serif; font-size: 36px; font-weight: 600; color: var(--paper-2); }
     .table { width: 100%; border-collapse: collapse; font-size: 16px; }
     .table th, .table td { padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.08); text-align: left; }
     .slide.dark .table th, .slide.dark .table td { border-bottom-color: rgba(255,255,255,0.1); }
     .table th { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.6; font-weight: 500; }
-    .table td.num { font-family: 'Fraunces', Georgia, serif; font-size: 28px; font-weight: 500; letter-spacing: -0.02em; }
+    .table td.num { font-family: 'Inter', Georgia, serif; font-size: 28px; font-weight: 500; letter-spacing: -0.02em; }
     .marker { display: flex; align-items: center; gap: 8px; }
     .marker .num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; color: var(--accent); }
     ul.clean { list-style: none; }
@@ -106,7 +106,7 @@
     }
     .slide.dark .cta { background: var(--paper-2); color: var(--ink); }
     .slide.accent .cta { background: var(--ink); color: var(--paper-2); }
-    .quote { font-family: 'Fraunces', Georgia, serif; font-size: 44px; line-height: 1.2; font-style: italic; }
+    .quote { font-family: 'Inter', Georgia, serif; font-size: 44px; line-height: 1.2; font-style: italic; }
     .quote::before { content: '\u201c'; }
     .quote::after { content: '\u201d'; }
     .attrib { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 32px; opacity: 0.6; }
@@ -138,7 +138,7 @@
   <div style="position:absolute; top:48px; left:96px; display:flex; align-items:center; gap:14px;">
     <div class="mark"><span>B</span></div>
     <div>
-      <div style="font-family:'Fraunces',serif; font-size:24px; font-weight:600; letter-spacing:-0.02em;">BAZ</div>
+      <div style="font-family:'Inter',serif; font-size:24px; font-weight:600; letter-spacing:-0.02em;">BAZ</div>
       <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.6; margin-top:2px;">Marketing Agency</div>
     </div>
   </div>
@@ -150,11 +150,11 @@
   <div style="position:absolute; bottom:80px; left:96px; right:96px; display:flex; justify-content:space-between; align-items:flex-end;">
     <div>
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.5;">Prepared for</div>
-      <div style="font-family:'Fraunces',serif; font-size:22px; margin-top:6px;">[Client name]</div>
+      <div style="font-family:'Inter',serif; font-size:22px; margin-top:6px;">[Client name]</div>
     </div>
     <div style="text-align:right;">
       <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.5;">Date</div>
-      <div style="font-family:'Fraunces',serif; font-size:22px; margin-top:6px;">[Date]</div>
+      <div style="font-family:'Inter',serif; font-size:22px; margin-top:6px;">[Date]</div>
     </div>
   </div>
 </section>
@@ -217,27 +217,27 @@
   <h2 class="display-2" style="max-width:1000px; margin-bottom:48px;">Five steps. One senior per engagement.</h2>
   <div class="grid" style="gap:0; border-top:1px solid rgba(0,0,0,0.1);">
     <div style="display:grid; grid-template-columns: 80px 1fr 1fr; gap:32px; padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
-      <div style="font-family:'Fraunces',serif; font-size:40px; color:var(--accent); font-weight:500;">01</div>
+      <div style="font-family:'Inter',serif; font-size:40px; color:var(--accent); font-weight:500;">01</div>
       <div><h3 class="display-3" style="font-size:24px;">Audit</h3><p class="body" style="margin-top:8px; opacity:0.7;">Funnel, attribution, channel mix, ICP, content velocity.</p></div>
       <div class="small">Day 1–14</div>
     </div>
     <div style="display:grid; grid-template-columns: 80px 1fr 1fr; gap:32px; padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
-      <div style="font-family:'Fraunces',serif; font-size:40px; color:var(--accent); font-weight:500;">02</div>
+      <div style="font-family:'Inter',serif; font-size:40px; color:var(--accent); font-weight:500;">02</div>
       <div><h3 class="display-3" style="font-size:24px;">Plan</h3><p class="body" style="margin-top:8px; opacity:0.7;">90-day roadmap, owners, exit criteria, forecast.</p></div>
       <div class="small">Day 15–21</div>
     </div>
     <div style="display:grid; grid-template-columns: 80px 1fr 1fr; gap:32px; padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
-      <div style="font-family:'Fraunces',serif; font-size:40px; color:var(--accent); font-weight:500;">03</div>
+      <div style="font-family:'Inter',serif; font-size:40px; color:var(--accent); font-weight:500;">03</div>
       <div><h3 class="display-3" style="font-size:24px;">Ship</h3><p class="body" style="margin-top:8px; opacity:0.7;">Creative, content, paid, SEO, lifecycle — every week.</p></div>
       <div class="small">Day 22–75</div>
     </div>
     <div style="display:grid; grid-template-columns: 80px 1fr 1fr; gap:32px; padding:24px 0; border-bottom:1px solid rgba(0,0,0,0.1);">
-      <div style="font-family:'Fraunces',serif; font-size:40px; color:var(--accent); font-weight:500;">04</div>
+      <div style="font-family:'Inter',serif; font-size:40px; color:var(--accent); font-weight:500;">04</div>
       <div><h3 class="display-3" style="font-size:24px;">Measure</h3><p class="body" style="margin-top:8px; opacity:0.7;">Server-side tracking, attribution model, exec dashboard.</p></div>
       <div class="small">Day 30, 60, 90</div>
     </div>
     <div style="display:grid; grid-template-columns: 80px 1fr 1fr; gap:32px; padding:24px 0;">
-      <div style="font-family:'Fraunces',serif; font-size:40px; color:var(--accent); font-weight:500;">05</div>
+      <div style="font-family:'Inter',serif; font-size:40px; color:var(--accent); font-weight:500;">05</div>
       <div><h3 class="display-3" style="font-size:24px;">Scale or refund</h3><p class="body" style="margin-top:8px; opacity:0.7;">If we miss the forecast, month four is free.</p></div>
       <div class="small">Day 91</div>
     </div>
@@ -257,17 +257,17 @@
   <div class="grid grid-3">
     <div style="border-top:2px solid var(--accent); padding-top:24px;">
       <div class="pill" style="margin-bottom:24px;"><span class="dot"></span>ViralVista · DTC</div>
-      <div style="font-family:'Fraunces',serif; font-size:64px; font-weight:500; letter-spacing:-0.03em; line-height:1;">1.8 → 4.6</div>
+      <div style="font-family:'Inter',serif; font-size:64px; font-weight:500; letter-spacing:-0.03em; line-height:1;">1.8 → 4.6</div>
       <p class="body" style="margin-top:8px; opacity:0.7;">ROAS lifted in 90 days via creative matrix, server-side attribution, and a UGC engine.</p>
     </div>
     <div style="border-top:2px solid var(--accent); padding-top:24px;">
       <div class="pill" style="margin-bottom:24px;"><span class="dot"></span>Northwind · FinTech</div>
-      <div style="font-family:'Fraunces',serif; font-size:64px; font-weight:500; letter-spacing:-0.03em; line-height:1;">0 → 480K</div>
+      <div style="font-family:'Inter',serif; font-size:64px; font-weight:500; letter-spacing:-0.03em; line-height:1;">0 → 480K</div>
       <p class="body" style="margin-top:8px; opacity:0.7;">Monthly organic sessions in 14 months. Programmatic SEO engine + 8 industry placements.</p>
     </div>
     <div style="border-top:2px solid var(--accent); padding-top:24px;">
       <div class="pill" style="margin-bottom:24px;"><span class="dot"></span>EngageEra · B2B SaaS</div>
-      <div style="font-family:'Fraunces',serif; font-size:64px; font-weight:500; letter-spacing:-0.03em; line-height:1;">+318%</div>
+      <div style="font-family:'Inter',serif; font-size:64px; font-weight:500; letter-spacing:-0.03em; line-height:1;">+318%</div>
       <p class="body" style="margin-top:8px; opacity:0.7;">New MRR in 6 months. PQL scoring, lifecycle in Customer.io, paid + content engine.</p>
     </div>
   </div>

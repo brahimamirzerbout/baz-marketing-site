@@ -8,9 +8,9 @@ Business cards, letterhead, email signatures, and presentations using the BlackS
 
 ### Front
 - Background: `#0e0e0e` (ink)
-- Mesh gradient: Radial violet glow from top-right at 0.06 opacity
-- Wordmark: Top-left, mark (48px) + "BAZ" (32px Fraunces 500)
-- Violet accent line: 80px wide, 2px tall, below wordmark
+- Mesh gradient: Radial cyan glow from top-right at 0.06 opacity
+- Wordmark: Top-left, mark (48px) + "BAZ" (32px Inter 500)
+- Cyan accent line: 80px wide, 2px tall, below wordmark
 - Name: Inter 500, 20px, `#f5f1ea` (paper)
 - Title: Inter 400, 13px, `#a3a3a3` (ink-400)
 - Contact: Inter 400, 12px, `#737373` (ink-500)
@@ -18,13 +18,13 @@ Business cards, letterhead, email signatures, and presentations using the BlackS
 
 ### Back
 - Background: `#0e0e0e` (ink)
-- Large centered mark: 160px squircle, violet fill
+- Large centered mark: 160px squircle, cyan fill
 - Tagline: JetBrains Mono 9px, `#525252`, tracking 2.5px, uppercase
 
 ### Print Specs
 - Paper: 350gsm uncoated, matte finish
 - Color: CMYK conversion
-  - Violet: CMYK 68, 76, 0, 0
+  - Cyan: CMYK 68, 76, 0, 0
   - Ink: CMYK 0, 0, 0, 96
   - Paper text: CMYK 0, 0, 0, 0 (white/flood coat)
 
@@ -33,9 +33,9 @@ Business cards, letterhead, email signatures, and presentations using the BlackS
 ## Letterhead (US Letter 8.5"×11" / 2550×3300px @ 300dpi)
 
 - Background: `#f5f1ea` (paper)
-- Top-left: Mark (64px squircle) + "BAZ" (36px Fraunces 500) + subtitle
+- Top-left: Mark (64px squircle) + "BAZ" (36px Inter 500) + subtitle
 - Top-right: Contact info, Inter 10px, `#737373`
-- Bottom: Violet accent line 1.5px, full width
+- Bottom: Cyan accent line 1.5px, full width
 - Footer: Tagline, JetBrains Mono 8px, `#a3a3a3`
 - Content area: 1 inch margins all sides
 - Print: 120gsm premium paper, matching paper tone
@@ -47,7 +47,7 @@ Business cards, letterhead, email signatures, and presentations using the BlackS
 - Background: `#f5f1ea` (paper)
 - Left: Mark squircle (56px) + name/title line
 - Contact details below in Inter 11px, `#737373`
-- Violet accent line across full width
+- Cyan accent line across full width
 - Tagline below line in JetBrains Mono 9px, `#a3a3a3`
 
 ---
@@ -56,19 +56,19 @@ Business cards, letterhead, email signatures, and presentations using the BlackS
 
 ### Title Slide
 - Background: `#0e0e0e` (ink)
-- Mesh gradient: Radial violet glow from center-top
+- Mesh gradient: Radial cyan glow from center-top
 - Grid pattern: 40px grid at 0.03 opacity
-- Eyebrow: JetBrains Mono 13px, violet, tracking 2.5px
-- Title: Fraunces 300, 96px, paper
+- Eyebrow: JetBrains Mono 13px, cyan, tracking 2.5px
+- Title: Inter 300, 96px, paper
 - Subtitle: Inter 400, 22px, ink-500
-- Violet accent line: 160px wide, 2px tall
+- Cyan accent line: 160px wide, 2px tall
 - Ghost mark: Bottom-right, 0.05 opacity
 
 ### Content Slide
 - Background: `#f5f1ea` (paper)
 - Grid pattern: 40px grid at 0.03 opacity
-- Eyebrow: JetBrains Mono 13px, violet
-- Heading: Fraunces 400, 64px, ink-900
+- Eyebrow: JetBrains Mono 13px, cyan
+- Heading: Inter 400, 64px, ink-900
 - Body: Inter 400, 20px, ink-600
 - Bottom rule: `#f0ebe0` 1px
 - Ghost mark: Bottom-right, 0.05 opacity

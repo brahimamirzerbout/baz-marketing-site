@@ -15,10 +15,10 @@ description: Quick reference for the BAZ Next.js 14 project structure. Use when 
 ```
 baz/
 ├── app/                        # Next.js 14 App Router
-│   ├── globals.css              # Æther design tokens (Fibonacci × hue-260°)
+│   ├── globals.css              # Midnight Terminal tokens (cyan seed 187/90)
 │   ├── aether-theme.css         # Surface layers, typography, components
 │   ├── aether-monochrome.css   # Warm monochrome palette
-│   ├── layout.tsx               # Root layout (Fraunces + Inter + Mono)
+│   ├── layout.tsx               # Root layout (Inter + JetBrains Mono)
 │   ├── page.tsx                 # Homepage
 │   ├── login/                   # Auth pages
 │   ├── console/                 # Admin console
@@ -63,12 +63,12 @@ baz/
 │   └── baz.db                   # SQLite database (166 leads, 132 users)
 ├── public/
 │   ├── fonts/                   # Local WOFF2 fonts (fraunces, inter, jetbrains-mono)
-│   ├── favicon.svg              # Red #ff3b2f B mark
+│   ├── favicon.svg              # Midnight Terminal B mark (gold signature + cyan dot)
 │   └── og/                      # OG image assets
 ├── assets/brand/
-│   ├── logo/                    # Logo assets (RED #ff3b2f system, not Aurelian)
+│   ├── logo/                    # Logo assets (cyan #22D3EE mark + gold signature)
 │   └── README.md                # Brand kit index
-├── tailwind.config.ts           # Æther tokens (violet, Fibonacci, Fraunces)
+├── tailwind.config.ts           # Midnight Terminal tokens (cyan seed 187/90, monochrome)
 ├── next.config.mjs               # Next.js config
 └── .env.local                    # Environment variables
 ```

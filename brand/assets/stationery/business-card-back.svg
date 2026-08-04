@@ -5,8 +5,8 @@
 
   <!-- Large centered mark -->
   <g transform="translate(445, 230)">
-    <rect x="0" y="0" width="160" height="160" rx="35" fill="#8b5cf6"/>
-    <text x="80" y="122" font-family="Fraunces, Georgia, serif" font-size="124" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-4">B</text>
+    <rect x="0" y="0" width="160" height="160" rx="35" fill="#22D3EE"/>
+    <text x="80" y="122" font-family="Inter, Georgia, serif" font-size="124" font-weight="600" fill="#020617" text-anchor="middle" letter-spacing="-4">B</text>
   </g>
 
   <!-- Tagline -->

@@ -8,8 +8,8 @@ App icons for iOS, Android, PWA splash screens, and favicons.
 
 The master app icon features:
 - **Background:** `#0e0e0e` (ink) squircle with `rx="224"`
-- **Glow:** Subtle radial violet gradient at 0.15 opacity from center-top
-- **Letterform:** Large "B" in Fraunces 600, `#8b5cf6` (violet-500), centered
+- **Glow:** Subtle radial cyan gradient at 0.15 opacity from center-top
+- **Letterform:** Large "B" in Inter 600, `#22D3EE` (cyan-500), centered
 
 ### Export Sizes from Master
 
@@ -61,7 +61,7 @@ The app icon uses a super-elliptical squircle. For SVG export, approximate with 
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0e0e0e",
-  "theme_color": "#8b5cf6",
+  "theme_color": "#22D3EE",
   "icons": [
     { "src": "/icons/icon-1024.png", "sizes": "1024x1024", "type": "image/png" },
     { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
@@ -87,6 +87,6 @@ The app icon uses a super-elliptical squircle. For SVG export, approximate with 
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#8b5cf6">
+<meta name="theme-color" content="#22D3EE">
 <meta name="msapplication-TileColor" content="#0e0e0e">
 ```

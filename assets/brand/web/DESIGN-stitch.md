@@ -18,7 +18,7 @@ colors:
   surface-tint: '#e7c274'
   primary: '#e7c274'
   on-primary: '#402d00'
-  primary-container: '#c8a55a'
+  primary-container: '#22D3EE'
   on-primary-container: '#513b00'
   inverse-primary: '#765a16'
   secondary: '#b5c8e1'
@@ -49,7 +49,7 @@ colors:
   on-background: '#e9e1d8'
   surface-variant: '#38342e'
   gold-dark: '#8D6B2E'
-  charcoal: '#1F2933'
+  charcoal: '#020617'
   sand: '#E8E4E0'
   stone: '#B0AAA5'
   white: '#FFFFFF'
@@ -120,16 +120,16 @@ The palette is dark-first with high-contrast metallic accents.
 
 | Token    | Hex       | Role |
 |----------|-----------|------|
-| Gold     | `#C8A55A` | Primary accent. Brand mark, call-to-action buttons, key stats, eyebrows. |
+| Gold     | `#22D3EE` | Primary accent. Brand mark, call-to-action buttons, key stats, eyebrows. |
 | Gold-dark| `#8D6B2E` | Gradient start / shadows. |
-| Charcoal | `#1F2933` | Base background. |
+| Charcoal | `#020617` | Base background. |
 | Navy     | `#24364A` | Secondary background / depth. |
 | Sand     | `#E8E4E0` | Primary text on dark. |
 | Stone    | `#B0AAA5` | Muted text / body. |
 | White    | `#FFFFFF` | Headings / maximum contrast. |
 
 **Rules:**
-- **Section Rhythm:** Alternate Charcoal (`#1F2933`) and Navy (`#24364A`) for dark sections. Use White/Light Gray for editorial light sections.
+- **Section Rhythm:** Alternate Charcoal (`#020617`) and Navy (`#24364A`) for dark sections. Use White/Light Gray for editorial light sections.
 - **Accent Discipline:** Gold is the *only* saturated color. 
 - **Hairlines:** Dividers use `border-white/10` on dark backgrounds.
 
@@ -142,7 +142,7 @@ The palette is dark-first with high-contrast metallic accents.
 
 ### Patterns
 - **Hero H1:** Outfit, Uppercase, `text-7xl`, `tracking-tight`.
-- **Eyebrow:** `text-sm font-semibold tracking-[0.3em] uppercase text-[#C8A55A]`.
+- **Eyebrow:** `text-sm font-semibold tracking-[0.3em] uppercase text-[#22D3EE]`.
 - **Labels:** Wide letter-spacing (`0.2em+`) for small caps.
 
 ---
@@ -158,7 +158,7 @@ The palette is dark-first with high-contrast metallic accents.
 ## 4. Components
 
 - **Nav:** Fixed, transparent → solid charcoal with backdrop-blur. 
-- **Primary Button:** Gold gradient (`#8D6B2E` to `#C8A55A`), white text, square corners (4px).
+- **Primary Button:** Gold gradient (`#8D6B2E` to `#22D3EE`), white text, square corners (4px).
 - **Secondary Button:** Transparent, gold border, gold text.
 - **Cards:** Subtle borders (`border-white/10`), no shadows, elegant typography.
 - **Logo Watermarks:** Ghostly "BAZ" script at 6% opacity behind Hero and Contact headings only.

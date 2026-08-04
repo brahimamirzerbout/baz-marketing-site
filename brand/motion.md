@@ -120,7 +120,7 @@ a:hover {
 }
 ```
 
-- Ring color: `var(--accent)` (violet)
+- Ring color: `var(--accent)` (cyan)
 - Ring width: 2px
 - Ring offset: 2px
 - Offset color: Matches background
@@ -211,8 +211,8 @@ The `<Magnetic>` component:
 
 BAZ sites use a custom cursor that:
 - Hides the default cursor over interactive elements
-- Shows a larger circle with violet border on hover
-- Shows a filled violet circle on CTA hover
+- Shows a larger circle with cyan border on hover
+- Shows a filled cyan circle on CTA hover
 - Uses `data-cursor="cta"` attribute on hover targets
 
 ```css

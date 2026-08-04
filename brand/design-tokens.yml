@@ -1,13 +1,15 @@
 # BAZ Design Tokens — YAML Format
 # Single source of truth for all design values
-# BlackSwan Design System × Fibonacci × Da Vinci × Material 3
+# Midnight Terminal: monochrome base + cyan #22D3EE functional signal + gold signature mark
+# Fibonacci × Da Vinci × Material 3
 
 seed:
-  hue: 270          # Violet — the BAZ accent
-  saturation: 85%    # High saturation for brand vibrancy (Æther spec)
-  lightness: 50%     # Balanced lightness
+  hue: 187          # Cyan — the BAZ functional signal
+  saturation: 90%    # High saturation for the functional accent
+  lightness: 53%     # #22D3EE family
 
 colors:
+  # ── Monochrome base (ink ramp) — surfaces, text, borders ──
   ink:
     900: "#0e0e0e"
     800: "#1a1a1a"
@@ -15,49 +17,48 @@ colors:
     500: "#737373"
     400: "#a3a3a3"
 
-  paper:
-    default: "#f5f1ea"
-    50: "#faf7f1"
-    100: "#f0ebe0"
-    200: "#e0d8cc"
-    300: "#c9bfb0"
+  # ── Midnight canvas family (dark-mode base) ──
+  midnight: "#020617"
 
-  accent:
-    default: "hsl(270, 85%, 72%)"
-    50: "hsl(270, 100%, 97%)"
-    100: "hsl(270, 100%, 94%)"
-    200: "hsl(270, 100%, 88%)"
-    300: "hsl(270, 100%, 81%)"
-    400: "hsl(270, 85%, 76%)"
-    500: "hsl(270, 85%, 72%)"
-    600: "hsl(270, 80%, 64%)"
-    700: "hsl(270, 75%, 55%)"
-    800: "hsl(270, 70%, 42%)"
-    900: "hsl(270, 65%, 35%)"
-    gold: "#f9a01f"
-    red: "#ff3b2f"
+  # ── Functional signal — cyan (links, focus, nav, selection, metrics) ──
+  signal:
+    default: "#22D3EE"
+    50: "#ecfeff"
+    100: "#cffafe"
+    200: "#a5f3fc"
+    300: "#67e8f9"
+    400: "#22d3ee"
+    500: "#06b6d4"
+    600: "#0891b2"
+    700: "#0e7490"
+    800: "#155e75"
+    900: "#164e63"
 
-  violet:
-    50: "#f5f0ff"
-    100: "#ebe3ff"
-    200: "#d5c7ff"
-    300: "#baabff"
-    400: "#9985ff"
-    500: "#8b5cf6"
-    600: "#7c3aed"
-    700: "#6d28d9"
-    800: "#5b21b6"
-    900: "#4c1d95"
+  # ── Signature gold — the MARK only (favicon / signature lockup). Never an accent/CTA. ──
+  signature-gold:
+    light: "#F7E3A8"
+    mid: "#C29B5B"
+    dark: "#8C6A30"
+    gradient: "linear-gradient(180deg, #F7E3A8 0%, #C29B5B 55%, #8C6A30 100%)"
+
+  # ── Depth — canonical indigo, reserved (not active on the public site) ──
+  depth: "#818CF8"
 
   semantic:
-    success: "hsl(152, 68%, 38%)"
+    success: "#10B981"   # metrics only, sparingly
     warning: "hsl(38, 92%, 45%)"
-    danger: "hsl(0, 78%, 50%)"
-    info: "hsl(270, 85%, 72%)"
+    danger: "#ef4444"
+    info: "#22D3EE"
+
+  # RETIRED accents — do not reintroduce:
+  #   violet #8b5cf6 / hsl(270,85%,72%)
+  #   flat gold #C8A55A / #E7C274 / #f9a01f
+  #   orange #F2572B / #ff5b1f
+  #   red mark #ff3b2f
 
 typography:
   fontFamilies:
-    display: "'Fraunces', 'Iowan Old Style', 'Noto Serif', Georgia, serif"
+    display: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
     sans: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
     mono: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace"
 
@@ -134,9 +135,11 @@ spacing:
   56: "14rem"
   64: "16rem"
 
+# Corners — square by default (public site). rounded-full ONLY for pills/badges/avatars.
+# Fibonacci radii below are reference values for IDE components, not the public site.
 radius:
-  # Fibonacci scale (primary)
   none: "0"
+  full: "9999px"
   fib3: "3px"
   fib5: "5px"
   fib8: "8px"
@@ -145,8 +148,6 @@ radius:
   fib34: "34px"
   fib55: "55px"
   fib89: "89px"
-  full: "9999px"
-  # BlackSwan base scale (secondary)
   xs: "0.125rem"
   sm: "0.25rem"
   md: "0.5rem"

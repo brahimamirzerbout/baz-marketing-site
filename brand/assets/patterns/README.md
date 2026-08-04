@@ -47,17 +47,17 @@ Use on: All sections for subtle organic texture. Repeats at 200px.
 ```
 Use on: Alternative to grid pattern for lighter texture
 
-### Violet Gradient (CTAs)
+### Cyan Gradient (CTAs)
 ```css
-.bg-violet-gradient {
-  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #9985ff 100%);
+.bg-cyan-gradient {
+  background: linear-gradient(135deg, #0891b2 0%, #22D3EE 50%, #22d3ee 100%);
 }
 ```
 Use on: Primary CTA buttons, hero accents
 
-### Violet Shimmer (decorative)
+### Cyan Shimmer (decorative)
 ```css
-.bg-violet-shimmer {
+.bg-cyan-shimmer {
   background: linear-gradient(
     90deg,
     rgba(139, 92, 246, 0.15) 0%,
@@ -97,5 +97,5 @@ Use on: Divider lines, animated accents, hover states
 |---------|---------------|-------------------|
 | Grid | `#0e0e0e` on paper, `#f5f1ea` on ink | 0.03–0.06 |
 | Dots | `#0e0e0e` on paper, `#f5f1ea` on ink | 0.04–0.08 |
-| Mesh | `#8b5cf6` (violet-500) | 0.08–0.15 |
+| Mesh | `#22D3EE` (cyan-500) | 0.08–0.15 |
 | Grain | N/A (noise filter) | 0.03, mix-blend: overlay |

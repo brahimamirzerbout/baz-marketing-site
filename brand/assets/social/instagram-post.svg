@@ -3,13 +3,13 @@
   <!-- Paper background, centered wordmark, 35% padding, editorial style -->
   <defs>
     <linearGradient id="ig-mesh" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.06"/>
-      <stop offset="100%" stop-color="#f5f1ea" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
   <!-- Paper background -->
-  <rect width="1080" height="1080" fill="#f5f1ea"/>
+  <rect width="1080" height="1080" fill="#020617"/>
   <rect width="1080" height="1080" fill="url(#ig-mesh)"/>
 
   <!-- Grid pattern -->
@@ -31,21 +31,21 @@
 
   <!-- Content area — centered with generous padding (35%) -->
   <!-- Eyebrow -->
-  <text x="540" y="380" font-family="JetBrains Mono, monospace" font-size="13" font-weight="400" fill="#8b5cf6" letter-spacing="2.5" text-anchor="middle" text-transform="uppercase">● BRAND &amp; IDENTITY</text>
+  <text x="540" y="380" font-family="JetBrains Mono, monospace" font-size="13" font-weight="400" fill="#22D3EE" letter-spacing="2.5" text-anchor="middle" text-transform="uppercase">● BRAND &amp; IDENTITY</text>
 
   <!-- Headline -->
-  <text x="540" y="480" font-family="Fraunces, Georgia, serif" font-size="72" font-weight="300" fill="#0e0e0e" letter-spacing="-3" text-anchor="middle">Brand &amp; Buzz.</text>
+  <text x="540" y="480" font-family="Inter, Georgia, serif" font-size="72" font-weight="300" fill="#0e0e0e" letter-spacing="-3" text-anchor="middle">Brand &amp; Buzz.</text>
 
   <!-- Supporting text -->
   <text x="540" y="540" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="400" fill="#525252" text-anchor="middle">We make brands unignorable.</text>
 
-  <!-- Violet accent line -->
-  <rect x="470" y="580" width="140" height="2" fill="#8b5cf6" rx="1"/>
+  <!-- Cyan accent line -->
+  <rect x="470" y="580" width="140" height="2" fill="#22D3EE" rx="1"/>
 
   <!-- Mark — bottom center -->
   <g transform="translate(500, 700)">
-    <rect x="0" y="0" width="80" height="80" rx="18" fill="#8b5cf6"/>
-    <text x="40" y="60" font-family="Fraunces, Georgia, serif" font-size="62" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-2">B</text>
+    <rect x="0" y="0" width="80" height="80" rx="18" fill="#22D3EE"/>
+    <text x="40" y="60" font-family="Inter, Georgia, serif" font-size="62" font-weight="600" fill="#020617" text-anchor="middle" letter-spacing="-2">B</text>
   </g>
 
   <!-- URL -->

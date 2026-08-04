@@ -36,7 +36,7 @@ The BAZ brand has the following assets across `baz/assets/brand/`:
 
 ## 2. Logo Philosophy
 
-The BAZ wordmark uses **Fraunces** in display weight with tight tracking. It is editorial, confident, and unmistakable. The wordmark is not decorative — it is structural. It anchors the page and sets the tone.
+The BAZ wordmark uses **Inter** in display weight with tight tracking. It is editorial, confident, and unmistakable. The wordmark is not decorative — it is structural. It anchors the page and sets the tone.
 
 The **mark** (icon) is used in constrained contexts: favicons, app icons, avatars, and navigation badges. It must always be recognizable at 16px.
 
@@ -71,16 +71,16 @@ The icon mark requires a minimum padding of **25% of its rendered width** on all
 | Paper sections | `#0e0e0e` (ink-900) | `#f5f1ea` (paper) |
 | White sections | `#0e0e0e` (ink-900) | `#ffffff` (white) |
 | Ink sections | `#f5f1ea` (paper) | `#0e0e0e` (ink-900) |
-| Violet accent | `hsl(270, 85%, 72%)` | `#0e0e0e` (ink-900) |
+| Cyan accent | `hsl(187, 85%, 72%)` | `#0e0e0e` (ink-900) |
 | Monochrome print | Black | White |
 | Single-color | `#0e0e0e` | Transparent/White |
 
 ### ❌ Prohibited Color Uses
-- **Never** apply violet as the wordmark color on paper backgrounds (insufficient contrast)
+- **Never** apply cyan as the wordmark color on paper backgrounds (insufficient contrast)
 - **Never** apply gradient fills to the wordmark
 - **Never** apply drop shadows or outer glows to the wordmark
 - **Never** place the wordmark over complex photography without a scrim overlay
-- **Never** use the gold accent (#f9a01f) as the wordmark color
+- **Never** use gold as the wordmark fill — gold is the favicon signature mark only (metallic `#F7E3A8→#C29B5B→#8C6A30`)
 
 ---
 
@@ -104,7 +104,7 @@ The icon mark requires a minimum padding of **25% of its rendered width** on all
 2. Rotate the wordmark at any angle
 3. Add outlines, strokes, or borders around the wordmark
 4. Place the wordmark on patterned or noisy backgrounds
-5. Change the wordmark font (it must always be Fraunces)
+5. Change the wordmark font (it must always be Inter)
 6. Apply text effects (bevel, emboss, neon glow)
 7. Use the wordmark as a repeating pattern element
 8. Place other logos or marks within the clear zone
@@ -132,7 +132,7 @@ The icon mark requires a minimum padding of **25% of its rendered width** on all
 ┌──────────────────────────────────────────┐
 │                                          │
 │        BAZ                               │
-│        (Fraunces 300, 96px)             │
+│        (Inter 300, 96px)             │
 │                                          │
 │   Brand & Buzz. We make brands           │
 │   unignorable.                           │
@@ -157,7 +157,7 @@ The icon mark requires a minimum padding of **25% of its rendered width** on all
 ### 7.4 App Icon / Social Avatar
 - Use `baz-mark.svg` inside a squircle container
 - Background: `#0e0e0e` (ink)
-- Mark color: `hsl(270, 85%, 72%)` (violet) or `#f5f1ea` (paper)
+- Mark color: `hsl(187, 85%, 72%)` (cyan) or `#f5f1ea` (paper)
 - Rounded corners: Fibonacci radius-55 (55px)
 
 ---
@@ -197,7 +197,7 @@ The icon mark requires a minimum padding of **25% of its rendered width** on all
 
 For print, convert HEX to CMYK:
 - `#0e0e0e` → CMYK: 0, 0, 0, 96
-- `hsl(270, 85%, 72%)` → CMYK: 68, 76, 0, 0
+- `hsl(187, 85%, 72%)` → CMYK: 68, 76, 0, 0
 
 ---
 

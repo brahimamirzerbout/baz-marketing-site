@@ -9,12 +9,12 @@
   <!-- Subtle radial glow -->
   <defs>
     <radialGradient id="app-glow" cx="50%" cy="40%" r="50%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.15"/>
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#0e0e0e" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#app-glow)"/>
 
   <!-- B letterform -->
-  <text x="512" y="720" font-family="Fraunces, Georgia, serif" font-size="620" font-weight="600" fill="#8b5cf6" text-anchor="middle" letter-spacing="-20">B</text>
+  <text x="512" y="720" font-family="Inter, Georgia, serif" font-size="620" font-weight="600" fill="#22D3EE" text-anchor="middle" letter-spacing="-20">B</text>
 </svg>

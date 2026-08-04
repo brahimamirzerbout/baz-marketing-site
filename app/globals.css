@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 /* ============================================================
-   BAZ — Stitch Gold Design System
-   Premium, dark, architectural, editorial, confident.
-   Gold accent (seed-hue: 42). Warm off-white text.
+   BAZ — Midnight Terminal Design System
+   Monochrome base + cyan #22D3EE functional signal + gold signature mark.
+   Cyan seed (seed-hue: 187, seed-sat: 90%) via app/color-layer.css.
    ============================================================ */
 
 :root {

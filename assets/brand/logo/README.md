@@ -1,6 +1,6 @@
 # BAZ Logo Assets
 
-This directory contains the canonical BAZ logo assets. All files use the **Æther Design System** with violet accent `#8b5cf6` (hsl(270, 85%, 72%)).
+This directory contains the canonical BAZ logo assets. All files use the **Æther Design System** with cyan accent `#22D3EE` (hsl(187, 85%, 72%)).
 
 ---
 
@@ -8,13 +8,13 @@ This directory contains the canonical BAZ logo assets. All files use the **Æthe
 
 | File | Description | Background | Use |
 |------|------------|-----------|-----|
-| `baz-mark.svg` | Icon mark — violet squircle with paper "B" | Violet `#8b5cf6` | Favicons, avatars, nav badges, app icons |
-| `baz-mark-inverse.svg` | Inverse mark — paper squircle with violet "B" | Paper `#f5f1ea` | Dark backgrounds, watermarks |
-| `baz-mark-ghost.svg` | Ghost mark — same as primary, use at opacity 0.06–0.10 | Violet `#8b5cf6` | Hero/contact watermarks |
+| `baz-mark.svg` | Icon mark — cyan squircle with paper "B" | Cyan `#22D3EE` | Favicons, avatars, nav badges, app icons |
+| `baz-mark-inverse.svg` | Inverse mark — paper squircle with cyan "B" | Paper `#020617` | Dark backgrounds, watermarks |
+| `baz-mark-ghost.svg` | Ghost mark — same as primary, use at opacity 0.06–0.10 | Cyan `#22D3EE` | Hero/contact watermarks |
 | `baz-wordmark.svg` | Primary wordmark — mark + "BAZ" + subtitle | Transparent | Light/paper backgrounds (default) |
 | `baz-wordmark-mono.svg` | Monochrome wordmark — ink-900 only | Transparent | Print, single-color, dark-on-light |
 | `baz-wordmark-reverse.svg` | Reverse wordmark — paper text on dark | Transparent | Ink/dark backgrounds |
-| `baz-favicon.svg` | Simplified mark for browser tabs | Violet `#8b5cf6` | Favicon 16–64px |
+| `baz-favicon.svg` | Simplified mark for browser tabs | Cyan `#22D3EE` | Favicon 16–64px |
 
 ---
 
@@ -22,14 +22,14 @@ This directory contains the canonical BAZ logo assets. All files use the **Æthe
 
 | Element | Value | Notes |
 |---------|-------|-------|
-| Mark background | `#8b5cf6` | Violet-500 |
-| Mark letter | `#f5f1ea` | Paper |
+| Mark background | `#22D3EE` | Cyan-500 |
+| Mark letter | `#020617` | Paper |
 | Wordmark (light bg) | `#0e0e0e` | Ink-900 |
-| Wordmark (dark bg) | `#f5f1ea` | Paper |
+| Wordmark (dark bg) | `#020617` | Paper |
 | Subtitle (light bg) | `#737373` | Ink-500 |
 | Subtitle (dark bg) | `#a3a3a3` | Ink-400 |
-| Inverse mark bg | `#f5f1ea` | Paper |
-| Inverse mark letter | `#8b5cf6` | Violet-500 |
+| Inverse mark bg | `#020617` | Paper |
+| Inverse mark letter | `#22D3EE` | Cyan-500 |
 
 ---
 
@@ -56,11 +56,11 @@ This directory contains the canonical BAZ logo assets. All files use the **Æthe
 
 - ❌ Never apply gradient fills to the wordmark
 - ❌ Never apply drop shadows or outer glows
-- ❌ Never use violet wordmark text on paper backgrounds (contrast fails AA)
-- ❌ Never use gold (#f9a01f) or red (#ff3b2f) as the primary accent
+- ❌ Never use cyan wordmark text on paper backgrounds (contrast fails AA)
+- ❌ Never use gold (#22D3EE) or red (#22D3EE) as the primary accent
 - ❌ Never rotate, stretch, or compress the wordmark
 - ❌ Never place over complex photography without a scrim overlay
-- ❌ Never use the old red mark (#ff3b2f) — always use violet (#8b5cf6)
+- ❌ Never use the old red mark (#22D3EE) — always use cyan (#22D3EE)
 
 ---
 

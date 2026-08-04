@@ -11,7 +11,7 @@ BAZ's visual identity channels the authority of premium editorial publications �
 - Absolute typographic clarity
 - Vast margins of negative space
 - Deliberate contrast between organic handwritten forms and rigid geometric grids
-- A restrained color palette where violet is the singular accent
+- A restrained color palette where cyan is the singular accent
 
 ### 1.2 Algorithmic Consistency
 The BlackSwan Design System ensures no arbitrary values. Every color, every space, every radius is computed from three seed variables. This eliminates "designer drift" — if two elements look slightly different, one of them is wrong.
@@ -19,8 +19,8 @@ The BlackSwan Design System ensures no arbitrary values. Every color, every spac
 ### 1.3 Structural Functionalism
 Aesthetic form follows corporate function. Every interaction must feel fast, deliberate, and premium. Decorative elements that don't serve information hierarchy are removed.
 
-### 1.4 Violet as Accent, Never Foundation
-The violet accent `hsl(270, 85%, 72%)` is a premium signature — it commands attention precisely because it's used sparingly. It appears on:
+### 1.4 Cyan as Accent, Never Foundation
+The cyan accent `hsl(187, 85%, 72%)` is a premium signature — it commands attention precisely because it's used sparingly. It appears on:
 - Primary CTAs
 - Active navigation states
 - Focus rings
@@ -31,7 +31,7 @@ It must **never** be used as:
 - Large background fills
 - Body text color
 - Card backgrounds
-- Section backgrounds (except `ink`-tone hero sections with violet as a highlight)
+- Section backgrounds (except `ink`-tone hero sections with cyan as a highlight)
 
 ---
 
@@ -96,10 +96,10 @@ BAZ implements a 5-tier surface system:
 
 | Tier | CSS Variable | Light | Dark | Use |
 |------|-------------|-------|------|-----|
-| 0 | `--bg` | `#f5f1ea` (paper) | `hsl(270, 8%, 6%)` | Page background |
-| 1 | `--bg-muted` | `#faf7f1` | `hsl(270, 6%, 9%)` | Muted sections |
-| 2 | `--bg-subtle` | `#f0ebe0` | `hsl(270, 5%, 14%)` | Cards on paper |
-| 3 | `--bg-emphasis` | `#e0d8cc` | `hsl(270, 2%, 22%)` | Elevated cards |
+| 0 | `--bg` | `#f5f1ea` (paper) | `hsl(187, 8%, 6%)` | Page background |
+| 1 | `--bg-muted` | `#faf7f1` | `hsl(187, 6%, 9%)` | Muted sections |
+| 2 | `--bg-subtle` | `#f0ebe0` | `hsl(187, 5%, 14%)` | Cards on paper |
+| 3 | `--bg-emphasis` | `#e0d8cc` | `hsl(187, 2%, 22%)` | Elevated cards |
 | 4 | `--surface-inverse` | `#0e0e0e` | `#f5f1ea` | Inverted sections |
 
 ---
@@ -134,20 +134,20 @@ BAZ uses the BlackSwan Design System for components — **never shadcn/ui**. All
 
 ### ✅ Do
 - Use `ink` (#0e0e0e) and `paper` (#f5f1ea) as foundational canvases
-- Pair the BAZ wordmark with structured Fraunces/Inter typography
+- Pair the BAZ wordmark with structured Inter/Inter typography
 - Maintain 120px+ macro whitespace between sections
-- Use violet `hsl(270, 85%, 72%)` as the singular accent for CTAs and highlights
+- Use cyan `hsl(187, 85%, 72%)` as the singular accent for CTAs and highlights
 - Apply Fibonacci radii (3, 5, 8, 13, 21…) for organic curvature
-- Use subtle 1px violet rules as section dividers
+- Use subtle 1px cyan rules as section dividers
 - Use the magnetic CTA pattern for hero buttons
 
 ### ❌ Don't
-- Use violet as a background fill for large areas
+- Use cyan as a background fill for large areas
 - Apply drop shadows, outer glows, or heavy reflections to the wordmark
 - Mix gold (#f9a01f) and red (#ff3b2f) as simultaneous accents
 - Use shadcn/ui components — always use BlackSwan
 - Use arbitrary 4px/8px/12px radius values — stick to Fibonacci
-- Use Playfair Display (use Fraunces instead)
+- Use Playfair Display (use Inter instead)
 - Use Tailwind v4 syntax (use v3 only)
 
 ---
@@ -194,4 +194,4 @@ Background: `paper` with `ink-100` 1px dividers between cells.
 │                                                  │
 └─────────────────────────────────────────────────┘
 ```
-White/violet text on ink. No gradients.
+White/cyan text on ink. No gradients.

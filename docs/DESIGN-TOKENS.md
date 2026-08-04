@@ -1,6 +1,6 @@
 # BAZ — Design Tokens (Unified)
 
-The visual language of the site, merging **BlackSwan monochrome gold**, **Stitch Material 3**, and the **protocol layer** (Fraunces/Inter/JetBrains Mono + Fibonacci radii).
+The visual language of the site, merging **Midnight Terminal (monochrome + cyan signal + gold signature)**, **Midnight Terminal**, and the **protocol layer** (Inter/Inter/JetBrains Mono + Fibonacci radii).
 
 > Source of truth: `brand/css/variables-unified.css` (all three systems unified)
 > Brand voice: `docs/BRAND-BRIEF.md`
@@ -22,10 +22,10 @@ The visual language of the site, merging **BlackSwan monochrome gold**, **Stitch
 
 | Role | Font | Size | Tracking | Line height |
 |---|---|---|---|---|
-| Display `h1` (hero) | Fraunces (display) | `clamp(3.5rem, 7vw, 6rem)` | `-0.04em` | `0.95` |
-| Display XL | Fraunces | `clamp(2.75rem, 5.5vw, 4.5rem)` | `-0.035em` | `1.0` |
-| Display L (`h2` hero) | Fraunces | `clamp(2rem, 4vw, 3rem)` | `-0.03em` | `1.05` |
-| Display M | Fraunces | `clamp(1.5rem, 2.5vw, 2rem)` | `-0.02em` | `1.15` |
+| Display `h1` (hero) | Inter (display) | `clamp(3.5rem, 7vw, 6rem)` | `-0.04em` | `0.95` |
+| Display XL | Inter | `clamp(2.75rem, 5.5vw, 4.5rem)` | `-0.035em` | `1.0` |
+| Display L (`h2` hero) | Inter | `clamp(2rem, 4vw, 3rem)` | `-0.03em` | `1.05` |
+| Display M | Inter | `clamp(1.5rem, 2.5vw, 2rem)` | `-0.02em` | `1.15` |
 | Body lead | Inter | `clamp(1.125rem, 2vw, 1.5rem)` | normal | `leading-relaxed` |
 | Body | Inter | `15–16px` | normal | normal |
 | Eyebrow | JetBrains Mono | `11px` uppercase | `0.18em` | normal |
@@ -48,7 +48,7 @@ Fonts are self-hosted in `public/fonts/` via `next/font/local`. CSS variables: `
 
 | Token | Value | Use |
 |---|---|---|
-| `--baz-gold` | `#C8A55A` | Primary accent, CTAs, eyebrows, stats |
+| `--baz-gold` | `#C29B5B` | Primary accent, CTAs, eyebrows, stats |
 | `--baz-gold-dark` | `#8D6B2E` | Gradient start, shadows |
 | `--baz-charcoal` | `#1F2933` | Base background |
 | `--baz-navy` | `#24364A` | Secondary background / depth |
@@ -91,7 +91,7 @@ Fonts are self-hosted in `public/fonts/` via `next/font/local`. CSS variables: `
 
 ## Components
 
-- **Primary Button**: Gold gradient (`#8D6B2E` to `#C8A55A`), white text, Fibonacci radius
+- **Primary Button**: Gold gradient (`#8D6B2E` to `#C29B5B`), white text, Fibonacci radius
 - **Secondary Button**: Transparent, gold border, gold text
 - **Cards**: Subtle borders (`border-white/10` on dark, `border-paper-100` on light)
 - **Logo Watermarks**: Ghostly "BAZ" script at 6% opacity behind hero headings
@@ -104,7 +104,7 @@ Fonts are self-hosted in `public/fonts/` via `next/font/local`. CSS variables: `
 - **Scroll Reveal**: `<Reveal>` component with fade-up
 - **Magnetic CTA**: `<Magnetic strength={0.3}>` on primary CTA
 - **Hover**: Subtle lift (`-2px`) and shadow increase
-- **Custom cursor**: `<Cursor />` with violet/gold highlight
+- **Custom cursor**: `<Cursor />` with cyan/gold highlight
 
 ---
 

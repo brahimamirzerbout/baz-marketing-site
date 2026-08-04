@@ -1,6 +1,6 @@
 # BAZ Social Media Asset Guide
 
-All social assets use the BlackSwan Design System. Violet accent `#8b5cf6`, ink `#0e0e0e`, paper `#f5f1ea`.
+All social assets use the BlackSwan Design System. Cyan accent `#22D3EE`, ink `#0e0e0e`, paper `#f5f1ea`.
 
 ---
 
@@ -10,18 +10,18 @@ All social assets use the BlackSwan Design System. Violet accent `#8b5cf6`, ink 
 ```
 ┌──────────────────────────────────────────┐
 │                                          │
-│   ● EYEBROW (violet, JetBrains Mono)    │
+│   ● EYEBROW (cyan, JetBrains Mono)    │
 │                                          │
 │   Headline Here                           │
-│   (Fraunces 300, 64px, ink-900)         │
+│   (Inter 300, 64px, ink-900)         │
 │                                          │
 │   Supporting text goes here              │
 │   (Inter 400, 16px, ink-500)            │
 │                                          │
 │                                          │
-│   [Violet CTA Button]                    │
+│   [Cyan CTA Button]                    │
 │                                          │
-│   ─── violet line ───                    │
+│   ─── cyan line ───                    │
 │   [BAZ mark]    bazagency.com            │
 └──────────────────────────────────────────┘
 ```
@@ -30,9 +30,9 @@ All social assets use the BlackSwan Design System. Violet accent `#8b5cf6`, ink 
 - Paper background `#f5f1ea` for light posts
 - Ink background `#0e0e0e` for dark posts
 - 35% padding on all sides around content
-- Eyebrow always starts with `●` in violet
+- Eyebrow always starts with `●` in cyan
 - Maximum 3 lines of body copy
-- CTA button: violet fill, paper text, `rounded-full`
+- CTA button: cyan fill, paper text, `rounded-full`
 - Mark at bottom, small, not dominant
 
 ---
@@ -48,12 +48,12 @@ All social assets use the BlackSwan Design System. Violet accent `#8b5cf6`, ink 
 │                              │
 │   Brand &                    │
 │   Buzz.                      │
-│   (Fraunces 300, 88px)      │
+│   (Inter 300, 88px)      │
 │                              │
 │   Subtitle text               │
 │   (Inter 400, 20px)          │
 │                              │
-│   ─── violet line ───        │
+│   ─── cyan line ───        │
 │                              │
 │   [START YOUR PROJECT →]    │
 │                              │
@@ -78,10 +78,10 @@ All social assets use the BlackSwan Design System. Violet accent `#8b5cf6`, ink 
 
 ### Rules
 - Ink background `#0e0e0e`
-- Mesh gradient from left, violet glow at 0.08–0.10 opacity
+- Mesh gradient from left, cyan glow at 0.08–0.10 opacity
 - Wordmark left-aligned, mark right-aligned
-- Tagline in Fraunces 24px below wordmark
-- Violet accent line (120px wide, 2px tall) below tagline
+- Tagline in Inter 24px below wordmark
+- Cyan accent line (120px wide, 2px tall) below tagline
 
 ---
 
@@ -89,10 +89,10 @@ All social assets use the BlackSwan Design System. Violet accent `#8b5cf6`, ink 
 
 ### Rules
 - Ink background `#0e0e0e`
-- Mesh gradient from right, violet glow at 0.08 opacity
+- Mesh gradient from right, cyan glow at 0.08 opacity
 - Wordmark left-aligned at 80px from left
 - Subtitle "MARKETING VENTURES AGENCY" in JetBrains Mono, 14px, tracking 2px
-- Tagline in Fraunces 20px
+- Tagline in Inter 20px
 - Mark right-aligned
 - Minimal, editorial
 

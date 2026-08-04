@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BAZ — BlackSwan Design System · Violet Seed</title>
+  <title>BAZ — BlackSwan Design System · Cyan Seed</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════════════════
        BAZ — BlackSwan Design System Showcase
-       Violet Seed · Fibonacci × Da Vinci × Material 3
+       Cyan Seed · Fibonacci × Da Vinci × Material 3
        ═══════════════════════════════════════════════════════════ */
     :root {
       --seed-hue: 270;
@@ -30,15 +30,15 @@
       --color-primary-80: hsl(var(--seed-hue), var(--seed-sat), 22%);
       --color-primary-90: hsl(var(--seed-hue), var(--seed-sat), 12%);
 
-      /* Violet Accents (fixed for BAZ) */
-      --violet-50: #f5f0ff; --violet-100: #ebe3ff; --violet-200: #d5c7ff;
-      --violet-300: #baabff; --violet-400: #9985ff; --violet-500: #8b5cf6;
-      --violet-600: #7c3aed; --violet-700: #6d28d9; --violet-800: #5b21b6;
-      --violet-900: #4c1d95;
+      /* Cyan Accents (fixed for BAZ) */
+      --cyan-50: #ecfeff; --cyan-100: #cffafe; --cyan-200: #a5f3fc;
+      --cyan-300: #67e8f9; --cyan-400: #22d3ee; --cyan-500: #22D3EE;
+      --cyan-600: #0891b2; --cyan-700: #0e7490; --cyan-800: #155e75;
+      --cyan-900: #4c1d95;
 
-      --accent: #8b5cf6;
-      --accent-600: #7c3aed;
-      --accent-700: #6d28d9;
+      --accent: #22D3EE;
+      --accent-600: #0891b2;
+      --accent-700: #0e7490;
 
       /* BAZ Fixed Palette */
       --ink-900: #0e0e0e; --ink-800: #1a1a1a; --ink-600: #525252;
@@ -52,7 +52,7 @@
 
       /* Typography */
       --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-serif: 'Fraunces', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
+      --font-serif: 'Inter', 'Iowan Old Style', 'Noto Serif', Georgia, serif;
       --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
       --font-display: var(--font-serif);
 
@@ -139,8 +139,8 @@
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+        radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
     }
     .hero-grid {
       position: absolute; inset: 0; opacity: 0.04;
@@ -248,7 +248,7 @@
     .card p { color: var(--ink-500); font-size: 0.875rem; line-height: 1.6; }
 
     .card-highlight {
-      background: var(--violet-50); border: 1px solid var(--violet-200);
+      background: var(--cyan-50); border: 1px solid var(--cyan-200);
       border-radius: var(--r13); padding: var(--sp-6);
       transition: all var(--dur-normal) var(--ease);
     }
@@ -261,7 +261,7 @@
       letter-spacing: 0.12em; text-transform: uppercase;
       padding: 3px 10px; border-radius: var(--rfull);
     }
-    .badge-violet { background: var(--violet-100); color: var(--violet-700); }
+    .badge-cyan { background: var(--cyan-100); color: var(--cyan-700); }
     .badge-success { background: hsl(152, 68%, 93%); color: hsl(152, 68%, 30%); }
     .badge-warning { background: hsl(38, 92%, 93%); color: hsl(38, 80%, 28%); }
 
@@ -269,11 +269,11 @@
     .divider { height: 1px; background: var(--paper-100); margin: var(--sp-16) 0; }
     .divider-ink { height: 1px; background: rgba(245,241,234,0.08); margin: var(--sp-16) 0; }
 
-    /* ━━━ VIOLET SHIMMER LINE ━━━ */
+    /* ━━━ CYAN SHIMMER LINE ━━━ */
     .shimmer-line {
       height: 2px; border-radius: 9999px;
       background: linear-gradient(90deg,
-        rgba(139,92,246,0.15) 0%, rgba(139,92,246,0.4) 50%, rgba(139,92,246,0.15) 100%);
+        rgba(34,211,238,0.15) 0%, rgba(34,211,238,0.4) 50%, rgba(34,211,238,0.15) 100%);
       margin: var(--sp-6) 0;
     }
 
@@ -381,9 +381,9 @@
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
     <div class="hero-content container">
-      <span class="eyebrow" style="color: #8b5cf6;">BlackSwan Design System</span>
+      <span class="eyebrow" style="color: #22D3EE;">BlackSwan Design System</span>
       <h1>Brand <em>&</em><br>Buzz.</h1>
-      <p class="subtitle">We make brands unignorable. One seed — <code style="color:#8b5cf6;">--seed-hue: 270</code> — recomposes everything.</p>
+      <p class="subtitle">We make brands unignorable. One seed — <code style="color:#22D3EE;">--seed-hue: 270</code> — recomposes everything.</p>
       <div class="ctas">
         <a href="#palette" class="btn btn-primary">Explore the Palette →</a>
         <a href="#logos" class="btn btn-outline-ink">View Logos</a>
@@ -421,21 +421,21 @@
     <section class="section-paper" id="palette" aria-label="Color Palette">
       <div class="container">
         <span class="eyebrow">Color Palette</span>
-        <h2 style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:400; letter-spacing:var(--tracking-tight); margin-bottom:var(--sp-8);">Violet is the <em style="color:var(--accent);">seed</em>.</h2>
+        <h2 style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:400; letter-spacing:var(--tracking-tight); margin-bottom:var(--sp-8);">Cyan is the <em style="color:var(--accent);">seed</em>.</h2>
 
-        <!-- Violet Spectrum -->
-        <h3 style="font-family:var(--font-sans); font-size:1.25rem; font-weight:500; margin-bottom:var(--sp-4); color:var(--ink-500);">Violet Spectrum</h3>
+        <!-- Cyan Spectrum -->
+        <h3 style="font-family:var(--font-sans); font-size:1.25rem; font-weight:500; margin-bottom:var(--sp-4); color:var(--ink-500);">Cyan Spectrum</h3>
         <div class="swatch-grid" style="margin-bottom:var(--sp-8);">
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-50)"></div><div class="swatch-info"><div class="swatch-name">50</div><div class="swatch-val">#f5f0ff</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-100)"></div><div class="swatch-info"><div class="swatch-name">100</div><div class="swatch-val">#ebe3ff</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-200)"></div><div class="swatch-info"><div class="swatch-name">200</div><div class="swatch-val">#d5c7ff</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-300)"></div><div class="swatch-info"><div class="swatch-name">300</div><div class="swatch-val">#baabff</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-400)"></div><div class="swatch-info"><div class="swatch-name">400</div><div class="swatch-val">#9985ff</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-500); border:2px solid var(--accent)"></div><div class="swatch-info"><div class="swatch-name">500 ★</div><div class="swatch-val">#8b5cf6</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-600)"></div><div class="swatch-info"><div class="swatch-name">600</div><div class="swatch-val">#7c3aed</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-700)"></div><div class="swatch-info"><div class="swatch-name">700</div><div class="swatch-val">#6d28d9</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-800)"></div><div class="swatch-info"><div class="swatch-name">800</div><div class="swatch-val">#5b21b6</div></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:var(--violet-900)"></div><div class="swatch-info"><div class="swatch-name">900</div><div class="swatch-val">#4c1d95</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-50)"></div><div class="swatch-info"><div class="swatch-name">50</div><div class="swatch-val">#ecfeff</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-100)"></div><div class="swatch-info"><div class="swatch-name">100</div><div class="swatch-val">#cffafe</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-200)"></div><div class="swatch-info"><div class="swatch-name">200</div><div class="swatch-val">#a5f3fc</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-300)"></div><div class="swatch-info"><div class="swatch-name">300</div><div class="swatch-val">#67e8f9</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-400)"></div><div class="swatch-info"><div class="swatch-name">400</div><div class="swatch-val">#22d3ee</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-500); border:2px solid var(--accent)"></div><div class="swatch-info"><div class="swatch-name">500 ★</div><div class="swatch-val">#22D3EE</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-600)"></div><div class="swatch-info"><div class="swatch-name">600</div><div class="swatch-val">#0891b2</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-700)"></div><div class="swatch-info"><div class="swatch-name">700</div><div class="swatch-val">#0e7490</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-800)"></div><div class="swatch-info"><div class="swatch-name">800</div><div class="swatch-val">#155e75</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cyan-900)"></div><div class="swatch-info"><div class="swatch-name">900</div><div class="swatch-val">#4c1d95</div></div></div>
         </div>
 
         <!-- Ink + Paper -->
@@ -462,16 +462,16 @@
         <!-- Gradients -->
         <h3 style="font-family:var(--font-sans); font-size:1.25rem; font-weight:500; margin-bottom:var(--sp-4); color:var(--ink-500);">Gradients</h3>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:var(--sp-4); margin-bottom:var(--sp-4);">
-          <div style="background:linear-gradient(135deg,#8b5cf6 0%,#7c3aed 50%,#6d28d9 100%); border-radius:var(--r13); padding:var(--sp-8); color:white;">
-            <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:var(--sp-2); opacity:0.7;">Violet Gradient</div>
+          <div style="background:linear-gradient(135deg,#22D3EE 0%,#0891b2 50%,#0e7490 100%); border-radius:var(--r13); padding:var(--sp-8); color:white;">
+            <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:var(--sp-2); opacity:0.7;">Cyan Gradient</div>
             <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:300;">Primary CTA</div>
           </div>
-          <div style="background:linear-gradient(90deg,rgba(139,92,246,0.15) 0%,rgba(139,92,246,0.4) 50%,rgba(139,92,246,0.15) 100%); border-radius:var(--r13); padding:var(--sp-8); color:var(--ink-900);">
-            <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:var(--sp-2); color:var(--ink-500);">Violet Shimmer</div>
+          <div style="background:linear-gradient(90deg,rgba(34,211,238,0.15) 0%,rgba(34,211,238,0.4) 50%,rgba(34,211,238,0.15) 100%); border-radius:var(--r13); padding:var(--sp-8); color:var(--ink-900);">
+            <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:var(--sp-2); color:var(--ink-500);">Cyan Shimmer</div>
             <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:300;">Border & Divider</div>
           </div>
-          <div style="background:radial-gradient(ellipse at 50% 0%,rgba(139,92,246,0.15) 0%,#0e0e0e 70%); border-radius:var(--r13); padding:var(--sp-8); color:#f5f1ea;">
-            <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:var(--sp-2); color:#8b5cf6;">Ink → Violet</div>
+          <div style="background:radial-gradient(ellipse at 50% 0%,rgba(34,211,238,0.15) 0%,#0e0e0e 70%); border-radius:var(--r13); padding:var(--sp-8); color:#f5f1ea;">
+            <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:var(--sp-2); color:#22D3EE;">Ink → Cyan</div>
             <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:300;">Hero Background</div>
           </div>
         </div>
@@ -482,14 +482,14 @@
     <section class="section-white" aria-label="Typography">
       <div class="container">
         <span class="eyebrow">Typography</span>
-        <h2 style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:400; letter-spacing:var(--tracking-tight); margin-bottom:var(--sp-8);">Fraunces × Inter × JetBrains Mono</h2>
+        <h2 style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:400; letter-spacing:var(--tracking-tight); margin-bottom:var(--sp-8);">Inter × Inter × JetBrains Mono</h2>
 
         <div class="type-row">
           <span class="eyebrow" style="margin-bottom:0;">Display Hero</span>
           <div style="font-family:var(--font-display); font-size:clamp(2.5rem,7vw,4.5rem); font-weight:300; line-height:0.95; letter-spacing:-0.04em;">
             Brand & Buzz.
           </div>
-          <div class="type-meta">Fraunces 300 · clamp(2.5rem, 7vw, 4.5rem) · tracking -0.04em · leading 0.95</div>
+          <div class="type-meta">Inter 300 · clamp(2.5rem, 7vw, 4.5rem) · tracking -0.04em · leading 0.95</div>
         </div>
 
         <div class="type-row">
@@ -497,7 +497,7 @@
           <div style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:400; line-height:1.05; letter-spacing:-0.03em;">
             Powering Your Path To Growth
           </div>
-          <div class="type-meta">Fraunces 400 · clamp(2rem, 4vw, 3rem) · tracking -0.03em · leading 1.05</div>
+          <div class="type-meta">Inter 400 · clamp(2rem, 4vw, 3rem) · tracking -0.03em · leading 1.05</div>
         </div>
 
         <div class="type-row">
@@ -505,7 +505,7 @@
           <div style="font-family:var(--font-display); font-size:2rem; font-weight:500; line-height:1.15; letter-spacing:-0.02em;">
             Six pillars of growth
           </div>
-          <div class="type-meta">Fraunces 500 · 2rem · tracking -0.02em · leading 1.15</div>
+          <div class="type-meta">Inter 500 · 2rem · tracking -0.02em · leading 1.15</div>
         </div>
 
         <div class="type-row">
@@ -521,7 +521,7 @@
           <div style="font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent);">
             ● Brand & Identity
           </div>
-          <div class="type-meta">JetBrains Mono 400 · 11px · tracking 0.18em · uppercase · violet accent</div>
+          <div class="type-meta">JetBrains Mono 400 · 11px · tracking 0.18em · uppercase · cyan accent</div>
         </div>
 
         <div class="type-row">
@@ -539,30 +539,30 @@
       <div class="container">
         <span class="eyebrow">Logo System</span>
         <h2 style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:400; letter-spacing:var(--tracking-tight); margin-bottom:var(--sp-4);">The <em style="color:var(--accent);">mark</em>.</h2>
-        <p style="color:var(--ink-500); max-width:40rem; margin-bottom:var(--sp-8);">Fraunces 600 letterform in a Fibonacci squircle. Violet on paper. Paper on ink. Never stretched, rotated, or re-colored.</p>
+        <p style="color:var(--ink-500); max-width:40rem; margin-bottom:var(--sp-8);">Inter 600 letterform in a Fibonacci squircle. Cyan on paper. Paper on ink. Never stretched, rotated, or re-colored.</p>
 
         <div class="logo-grid">
           <div class="logo-card">
             <div class="logo-preview paper" style="flex-direction:column;">
-              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#8b5cf6"/><text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text></svg>
+              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#22D3EE"/><text x="60" y="88" font-family="Inter, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text></svg>
             </div>
-            <div class="logo-info"><code>Primary Mark — Violet on Paper</code></div>
+            <div class="logo-info"><code>Primary Mark — Cyan on Paper</code></div>
           </div>
           <div class="logo-card">
             <div class="logo-preview ink" style="flex-direction:column;">
-              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#8b5cf6"/><text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text></svg>
+              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#22D3EE"/><text x="60" y="88" font-family="Inter, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text></svg>
             </div>
-            <div class="logo-info"><code>Primary Mark — Violet on Ink</code></div>
+            <div class="logo-info"><code>Primary Mark — Cyan on Ink</code></div>
           </div>
           <div class="logo-card">
             <div class="logo-preview ink" style="flex-direction:column;">
-              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#f5f1ea"/><text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#8b5cf6" text-anchor="middle" letter-spacing="-3">B</text></svg>
+              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#f5f1ea"/><text x="60" y="88" font-family="Inter, Georgia, serif" font-size="92" font-weight="600" fill="#22D3EE" text-anchor="middle" letter-spacing="-3">B</text></svg>
             </div>
             <div class="logo-info"><code>Inverse Mark — Paper on Ink</code></div>
           </div>
           <div class="logo-card">
             <div class="logo-preview paper" style="flex-direction:column;">
-              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#8b5cf6" opacity="0.08"/><text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#8b5cf6" opacity="0.08" text-anchor="middle" letter-spacing="-3">B</text></svg>
+              <svg width="80" height="80" viewBox="0 0 120 120"><rect width="120" height="120" rx="26" fill="#22D3EE" opacity="0.08"/><text x="60" y="88" font-family="Inter, Georgia, serif" font-size="92" font-weight="600" fill="#22D3EE" opacity="0.08" text-anchor="middle" letter-spacing="-3">B</text></svg>
             </div>
             <div class="logo-info"><code>Ghost Mark — 8% opacity watermark</code></div>
           </div>
@@ -573,19 +573,19 @@
           <div class="logo-grid">
             <div class="logo-card">
               <div class="logo-preview paper" style="flex-direction:column;">
-                <svg width="260" height="80" viewBox="0 0 400 120"><rect x="0" y="0" width="120" height="120" rx="26" fill="#8b5cf6"/><text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text><text x="148" y="78" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="500" fill="#0e0e0e" letter-spacing="-2">BAZ</text><text x="148" y="104" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#737373" letter-spacing="3">MARKETING VENTURES</text></svg>
+                <svg width="260" height="80" viewBox="0 0 400 120"><rect x="0" y="0" width="120" height="120" rx="26" fill="#22D3EE"/><text x="60" y="88" font-family="Inter, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text><text x="148" y="78" font-family="Inter, Georgia, serif" font-size="64" font-weight="500" fill="#0e0e0e" letter-spacing="-2">BAZ</text><text x="148" y="104" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#737373" letter-spacing="3">MARKETING VENTURES</text></svg>
               </div>
               <div class="logo-info"><code>Primary — Paper background</code></div>
             </div>
             <div class="logo-card">
               <div class="logo-preview ink" style="flex-direction:column;">
-                <svg width="260" height="80" viewBox="0 0 400 120"><rect x="0" y="0" width="120" height="120" rx="26" fill="#f5f1ea"/><text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#8b5cf6" text-anchor="middle" letter-spacing="-3">B</text><text x="148" y="78" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="500" fill="#f5f1ea" letter-spacing="-2">BAZ</text><text x="148" y="104" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#a3a3a3" letter-spacing="3">MARKETING VENTURES</text></svg>
+                <svg width="260" height="80" viewBox="0 0 400 120"><rect x="0" y="0" width="120" height="120" rx="26" fill="#f5f1ea"/><text x="60" y="88" font-family="Inter, Georgia, serif" font-size="92" font-weight="600" fill="#22D3EE" text-anchor="middle" letter-spacing="-3">B</text><text x="148" y="78" font-family="Inter, Georgia, serif" font-size="64" font-weight="500" fill="#f5f1ea" letter-spacing="-2">BAZ</text><text x="148" y="104" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#a3a3a3" letter-spacing="3">MARKETING VENTURES</text></svg>
               </div>
               <div class="logo-info"><code>Reverse — Ink background</code></div>
             </div>
             <div class="logo-card">
               <div class="logo-preview paper" style="flex-direction:column;">
-                <svg width="260" height="80" viewBox="0 0 400 120"><text x="60" y="80" font-family="Fraunces, Georgia, serif" font-size="120" font-weight="500" fill="#0e0e0e" text-anchor="middle" letter-spacing="-4">B</text><text x="200" y="78" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="500" fill="#0e0e0e" letter-spacing="-2">BAZ</text><text x="200" y="104" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#0e0e0e" letter-spacing="3">MARKETING VENTURES</text></svg>
+                <svg width="260" height="80" viewBox="0 0 400 120"><text x="60" y="80" font-family="Inter, Georgia, serif" font-size="120" font-weight="500" fill="#0e0e0e" text-anchor="middle" letter-spacing="-4">B</text><text x="200" y="78" font-family="Inter, Georgia, serif" font-size="64" font-weight="500" fill="#0e0e0e" letter-spacing="-2">BAZ</text><text x="200" y="104" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" fill="#0e0e0e" letter-spacing="3">MARKETING VENTURES</text></svg>
               </div>
               <div class="logo-info"><code>Monochrome — Print / single-color</code></div>
             </div>
@@ -632,8 +632,8 @@
         <!-- Badges -->
         <h3 style="font-family:var(--font-sans); font-size:1.25rem; font-weight:500; margin-bottom:var(--sp-4);">Badges</h3>
         <div style="display:flex; gap:var(--sp-3); flex-wrap:wrap; margin-bottom:var(--sp-8);">
-          <span class="badge badge-violet">● Brand & Identity</span>
-          <span class="badge badge-violet">● Performance Marketing</span>
+          <span class="badge badge-cyan">● Brand & Identity</span>
+          <span class="badge badge-cyan">● Performance Marketing</span>
           <span class="badge badge-success">● Active</span>
           <span class="badge badge-warning">● Pending</span>
         </div>
@@ -648,9 +648,9 @@
             <div style="margin-top:var(--sp-4);"><a href="#" style="color:var(--accent); font-weight:500; font-size:0.875rem;">Learn more →</a></div>
           </div>
           <div class="card-highlight">
-            <span class="badge badge-violet" style="margin-bottom:var(--sp-3);">● Featured</span>
+            <span class="badge badge-cyan" style="margin-bottom:var(--sp-3);">● Featured</span>
             <h4 style="font-family:var(--font-display); font-size:1.25rem; font-weight:500; letter-spacing:-0.02em; margin-bottom:var(--sp-2);">Performance Marketing</h4>
-            <p style="color:var(--violet-700); font-size:0.875rem; line-height:1.6;">Paid social, paid search, programmatic, CRO. Speed is a feature.</p>
+            <p style="color:var(--cyan-700); font-size:0.875rem; line-height:1.6;">Paid social, paid search, programmatic, CRO. Speed is a feature.</p>
             <div style="margin-top:var(--sp-4);"><a href="#" class="btn btn-primary" style="padding:var(--sp-2) var(--sp-4); height:auto; font-size:13px;">Get Started</a></div>
           </div>
           <div class="card">
@@ -666,11 +666,11 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--sp-4); margin-bottom:var(--sp-8);">
           <div>
             <label style="font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:var(--sp-2);">● Your Name</label>
-            <input type="text" placeholder="Full name" style="width:100%; padding:var(--sp-3) var(--sp-4); border:1px solid var(--paper-100); border-radius:var(--r5); font-family:var(--font-sans); font-size:0.875rem; background:white; color:var(--ink-900); outline:none; transition:border-color var(--dur-normal) var(--ease);" onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#f0ebe0'">
+            <input type="text" placeholder="Full name" style="width:100%; padding:var(--sp-3) var(--sp-4); border:1px solid var(--paper-100); border-radius:var(--r5); font-family:var(--font-sans); font-size:0.875rem; background:white; color:var(--ink-900); outline:none; transition:border-color var(--dur-normal) var(--ease);" onfocus="this.style.borderColor='#22D3EE'" onblur="this.style.borderColor='#f0ebe0'">
           </div>
           <div>
             <label style="font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:var(--sp-2);">● Email Address</label>
-            <input type="email" placeholder="email@bazagency.com" style="width:100%; padding:var(--sp-3) var(--sp-4); border:1px solid var(--paper-100); border-radius:var(--r5); font-family:var(--font-sans); font-size:0.875rem; background:white; color:var(--ink-900); outline:none; transition:border-color var(--dur-normal) var(--ease);" onfocus="this.style.borderColor='#8b5cf6'" onblur="this.style.borderColor='#f0ebe0'">
+            <input type="email" placeholder="email@bazagency.com" style="width:100%; padding:var(--sp-3) var(--sp-4); border:1px solid var(--paper-100); border-radius:var(--r5); font-family:var(--font-sans); font-size:0.875rem; background:white; color:var(--ink-900); outline:none; transition:border-color var(--dur-normal) var(--ease);" onfocus="this.style.borderColor='#22D3EE'" onblur="this.style.borderColor='#f0ebe0'">
           </div>
         </div>
       </div>
@@ -691,7 +691,7 @@
           </div>
           <!-- Mesh -->
           <div class="pattern-card" style="background:var(--ink-900);">
-            <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 30% 40%, rgba(139,92,246,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(139,92,246,0.08) 0%, transparent 40%);"></div>
+            <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 30% 40%, rgba(34,211,238,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(34,211,238,0.08) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:var(--sp-3); left:var(--sp-3); background:rgba(14,14,14,0.8); backdrop-filter:blur(8px); color:#f5f1ea; font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:3px;">Mesh · ink sections</div>
           </div>
           <!-- Dots -->
@@ -699,9 +699,9 @@
             <div style="position:absolute; inset:0; background-image:radial-gradient(circle, rgba(14,14,14,0.06) 1px, transparent 1px); background-size:16px 16px;"></div>
             <div style="position:absolute; bottom:var(--sp-3); left:var(--sp-3); background:rgba(14,14,14,0.8); backdrop-filter:blur(8px); color:#f5f1ea; font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:3px;">Dots · alt texture</div>
           </div>
-          <!-- Violet shimmer -->
+          <!-- Cyan shimmer -->
           <div class="pattern-card" style="background:white; display:flex; align-items:center; justify-content:center;">
-            <div style="width:80%; height:2px; background:linear-gradient(90deg, rgba(139,92,246,0.15) 0%, rgba(139,92,246,0.6) 50%, rgba(139,92,246,0.15) 100%); border-radius:9999px;"></div>
+            <div style="width:80%; height:2px; background:linear-gradient(90deg, rgba(34,211,238,0.15) 0%, rgba(34,211,238,0.6) 50%, rgba(34,211,238,0.15) 100%); border-radius:9999px;"></div>
             <div style="position:absolute; bottom:var(--sp-3); left:var(--sp-3); background:rgba(14,14,14,0.8); backdrop-filter:blur(8px); color:#f5f1ea; font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 10px; border-radius:3px;">Shimmer · dividers</div>
           </div>
         </div>
@@ -711,9 +711,9 @@
     <!-- ═══ INK SECTION ═══ -->
     <section class="section-ink" aria-label="Dark Section">
       <div class="container" style="position:relative;">
-        <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, rgba(139,92,246,0.12) 0%, transparent 50%); pointer-events:none;"></div>
+        <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, rgba(34,211,238,0.12) 0%, transparent 50%); pointer-events:none;"></div>
         <div style="position:relative; z-index:2;">
-          <span class="eyebrow" style="color:#baabff;">Dark Mode</span>
+          <span class="eyebrow" style="color:#67e8f9;">Dark Mode</span>
           <h2 style="font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); font-weight:300; line-height:1.05; letter-spacing:-0.03em; margin-bottom:var(--sp-4);">
             Brands are verbs,<br>not <em style="color:var(--accent);">nouns</em>.
           </h2>
@@ -799,12 +799,12 @@
     <!-- ═══ FOOTER ═══ -->
     <footer style="background:var(--ink-900); color:rgba(245,241,234,0.6); padding:var(--sp-16) 0 var(--sp-8);">
       <div class="container">
-        <div style="border-top:1px solid rgba(139,92,246,0.15); padding-top:var(--sp-8);">
+        <div style="border-top:1px solid rgba(34,211,238,0.15); padding-top:var(--sp-8);">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--sp-4);">
             <div>
-              <svg width="48" height="48" viewBox="0 0 120 120" style="margin-bottom:var(--sp-3);"><rect width="120" height="120" rx="26" fill="#8b5cf6"/><text x="60" y="88" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text></svg>
+              <svg width="48" height="48" viewBox="0 0 120 120" style="margin-bottom:var(--sp-3);"><rect width="120" height="120" rx="26" fill="#22D3EE"/><text x="60" y="88" font-family="Inter, Georgia, serif" font-size="92" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-3">B</text></svg>
               <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(245,241,234,0.4);">
-                ● BlackSwan Design System · Violet Seed · 42 assets
+                ● BlackSwan Design System · Cyan Seed · 42 assets
               </div>
             </div>
             <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(245,241,234,0.3);">

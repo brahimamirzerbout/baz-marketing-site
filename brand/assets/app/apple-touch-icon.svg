@@ -3,7 +3,7 @@
   <!-- Mark on ink, rounded squircle -->
   <defs>
     <radialGradient id="touch-glow" cx="50%" cy="40%" r="50%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12"/>
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#0e0e0e" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -13,6 +13,6 @@
   <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#touch-glow)"/>
 
   <!-- Mark -->
-  <rect x="130" y="130" width="252" height="252" rx="55" fill="#8b5cf6"/>
-  <text x="256" y="330" font-family="Fraunces, Georgia, serif" font-size="196" font-weight="600" fill="#f5f1ea" text-anchor="middle" letter-spacing="-6">B</text>
+  <rect x="130" y="130" width="252" height="252" rx="55" fill="#22D3EE"/>
+  <text x="256" y="330" font-family="Inter, Georgia, serif" font-size="196" font-weight="600" fill="#020617" text-anchor="middle" letter-spacing="-6">B</text>
 </svg>

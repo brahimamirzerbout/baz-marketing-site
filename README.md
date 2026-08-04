@@ -5,7 +5,7 @@
 
 Production-ready marketing site for **BAZ Marketing Agency**, built per the S-tier master prompt. Inspired by Power Digital's data-first growth model and Baz Marketing's outsourced-partner positioning, original to BAZ.
 
-- **Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS · Google Fonts (Inter + Fraunces + JetBrains Mono)
+- **Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS · Google Fonts (Inter + JetBrains Mono)
 - **Render mode:** Static / SSG with `generateStaticParams`; server actions for the lead form
 - **Analytics:** First-party event layer (`lib/analytics.ts`) + optional GA4 via `NEXT_PUBLIC_GA4_ID`
 - **No build step** for content — copy lives in typed TS modules under `content/`
@@ -103,7 +103,7 @@ Each entry in `content/services.ts` is the full payload that drives its detail p
 
 ## Design system
 
-- **Type:** Fraunces (display) · Inter (body) · JetBrains Mono (numerics). All loaded via `next/font` with `display: swap`.
+- **Type:** Inter (display + body) · JetBrains Mono (numerics). Loaded via `next/font` with `display: swap`.
 - **Palette:** Paper `#faf7f2` / `#f5f1ea`, Ink `#0e0e10`, Accent `#ff3b2f`. Defined as Tailwind tokens.
 - **Motion:** `cubic-bezier(.2,.7,.2,1)` everywhere; reveal-on-scroll via `IntersectionObserver` (no library); marquee via pure CSS; reduced-motion safe.
 - **Components:** `Button` (variants + sizes + auto-tracking), `Card`, `Badge`, `Section` (tones + sizes), `Eyebrow`/`SectionHeading`/`SectionLede`.

@@ -12,16 +12,16 @@ BAZ is committed to meeting **WCAG 2.2 Level AA** across all digital products. T
 |---------|-------------|-------------------|
 | Normal text (< 18px) | 4.5:1 | `ink-600` (#525252) on `paper` (#f5f1ea) = 6.3:1 ✅ |
 | Large text (≥ 18px bold or ≥ 24px) | 3:1 | `ink-500` (#737373) on `paper` (#f5f1ea) = 4.6:1 ✅ |
-| UI components & graphical objects | 3:1 | Violet accent on ink = 5.9:1 ✅ |
-| Focus indicators | 3:1 | Violet ring on paper = 5.2:1 ✅ |
+| UI components & graphical objects | 3:1 | Cyan accent on ink = 5.9:1 ✅ |
+| Focus indicators | 3:1 | Cyan ring on paper = 5.2:1 ✅ |
 
 ### Known Contrast Failures (AVOID)
 
 | Foreground | Background | Ratio | Status |
 |-----------|------------|-------|--------|
-| `violet-500` on `paper` | `#8b5cf6` on `#f5f1ea` | 3.7:1 | ❌ Fails AA normal text |
+| `cyan-500` on `paper` | `#22D3EE` on `#f5f1ea` | 3.7:1 | ❌ Fails AA normal text |
 | `ink-400` on `paper` | `#a3a3a3` on `#f5f1ea` | 2.9:1 | ❌ Fails AA |
-| `paper` on `violet-500` | `#f5f1ea` on `#8b5cf6` | 3.7:1 | ❌ Fails AA normal text |
+| `paper` on `cyan-500` | `#f5f1ea` on `#22D3EE` | 3.7:1 | ❌ Fails AA normal text |
 
 ### Safe Color Pairings
 
@@ -30,10 +30,10 @@ BAZ is committed to meeting **WCAG 2.2 Level AA** across all digital products. T
 | `ink-900` on `paper` | 17.2:1 | ✅ All text |
 | `paper` on `ink-900` | 17.2:1 | ✅ All text (dark sections) |
 | `white` on `ink-900` | 18.1:1 | ✅ All text |
-| `violet-500` on `ink-900` | 5.9:1 | ✅ All text |
+| `cyan-500` on `ink-900` | 5.9:1 | ✅ All text |
 | `ink-600` on `paper` | 6.3:1 | ✅ All text |
 | `ink-500` on `paper` | 4.6:1 | ✅ Large text + UI |
-| `violet-300` on `ink-900` | 9.4:1 | ✅ All text (accent on dark) |
+| `cyan-300` on `ink-900` | 9.4:1 | ✅ All text (accent on dark) |
 
 ---
 
@@ -45,7 +45,7 @@ Every interactive element must display a visible focus indicator on `:focus-visi
 ```css
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--ring-color),    /* violet ring */
+  box-shadow: 0 0 0 2px var(--ring-color),    /* cyan ring */
               0 0 0 4px var(--ring-offset-color); /* background offset */
 }
 ```
@@ -203,7 +203,7 @@ Minimum 8px (`space-2`) between adjacent interactive elements to prevent acciden
 | Success | Green | ✓ Checkmark | Solid fill |
 | Warning | Amber | ⚠ Triangle | Striped fill |
 | Error | Red | ✕ Circle | Dotted fill |
-| Info | Violet | ℹ Circle | Solid fill |
+| Info | Cyan | ℹ Circle | Solid fill |
 
 ### Color Blindness Simulation
 Test all designs against:

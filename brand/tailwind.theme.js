@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // BAZ — BlackSwan Monochrome Design System (Violet Seed: --seed-hue: 270)
+  // BAZ — BlackSwan Monochrome Design System (Cyan Seed: --seed-hue: 270)
   // Fibonacci × Da Vinci × Material 3
   // Change --seed-hue to rebrand the entire cascade
   // Tailwind v3 Theme Extension
@@ -25,35 +25,35 @@ module.exports = {
           300: '#c9bfb0',
         },
 
-        // Violet accent (BlackSwan monochrome — seed-hue: 41)
+        // Cyan accent (BlackSwan monochrome — seed-hue: 41)
         accent: {
-          DEFAULT: 'hsl(270, 85%, 52%)',
-          50: 'hsl(270, 85%, 97%)',
-          100: 'hsl(270, 85%, 93%)',
-          200: 'hsl(270, 85%, 82%)',
-          300: 'hsl(270, 85%, 72%)',
-          400: 'hsl(270, 85%, 62%)',
-          500: 'hsl(270, 85%, 52%)',
-          600: 'hsl(270, 85%, 42%)',
-          700: 'hsl(270, 85%, 32%)',
-          800: 'hsl(270, 85%, 22%)',
-          900: 'hsl(270, 85%, 12%)',
-          violet: '#b87adb',
+          DEFAULT: 'hsl(187, 85%, 52%)',
+          50: 'hsl(187, 85%, 97%)',
+          100: 'hsl(187, 85%, 93%)',
+          200: 'hsl(187, 85%, 82%)',
+          300: 'hsl(187, 85%, 72%)',
+          400: 'hsl(187, 85%, 62%)',
+          500: 'hsl(187, 85%, 52%)',
+          600: 'hsl(187, 85%, 42%)',
+          700: 'hsl(187, 85%, 32%)',
+          800: 'hsl(187, 85%, 22%)',
+          900: 'hsl(187, 85%, 12%)',
+          cyan: '#22D3EE',
           red: '#ff3b2f',
         },
 
-        // Violet monochrome spectrum (seed-hue: 41)
-        violet: {
-          50: 'hsl(270, 85%, 97%)',
-          100: 'hsl(270, 85%, 93%)',
-          200: 'hsl(270, 85%, 82%)',
-          300: 'hsl(270, 85%, 72%)',
-          400: 'hsl(270, 85%, 62%)',
-          500: 'hsl(270, 85%, 52%)',
-          600: 'hsl(270, 85%, 42%)',
-          700: 'hsl(270, 85%, 32%)',
-          800: 'hsl(270, 85%, 22%)',
-          900: 'hsl(270, 85%, 12%)',
+        // Cyan monochrome spectrum (seed-hue: 41)
+        cyan: {
+          50: 'hsl(187, 85%, 97%)',
+          100: 'hsl(187, 85%, 93%)',
+          200: 'hsl(187, 85%, 82%)',
+          300: 'hsl(187, 85%, 72%)',
+          400: 'hsl(187, 85%, 62%)',
+          500: 'hsl(187, 85%, 52%)',
+          600: 'hsl(187, 85%, 42%)',
+          700: 'hsl(187, 85%, 32%)',
+          800: 'hsl(187, 85%, 22%)',
+          900: 'hsl(187, 85%, 12%)',
         },
 
         // Semantic
@@ -64,7 +64,7 @@ module.exports = {
 
       // ── Fonts ───────────────────────────────────────────────
       fontFamily: {
-        display: ['Fraunces', 'Iowan Old Style', 'Noto Serif', 'Georgia', 'serif'],
+        display: ['Inter', 'Iowan Old Style', 'Noto Serif', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'Cascadia Code', 'ui-monospace', 'monospace'],
       },

@@ -9,7 +9,7 @@ Only **2 files** changed (all other modified files in the repo are pre-existing 
 ## Token remap summary (globals.css :root)
 | Token | Before | After (Fibonacci × Da Vinci) |
 |---|---|---|
-| --accent | oklch(0.65 0.22 25) | hsl(270, 85%, 72%) violet (golden-angle brand) |
+| --accent | oklch(0.65 0.22 25) | hsl(187, 85%, 72%) cyan (golden-angle brand) |
 | --destructive | oklch(0.704 0.191 22.216) | hsl(8, 80%, 58%) |
 | --success / --warning / --info | oklch(...) | hsl(145/38/210, …) golden-angle |
 | --radius | 0.625rem | 8px (F6) + --radius-sm 5 / --radius-lg 13 / --radius-xl 21 |
@@ -30,7 +30,7 @@ Only **2 files** changed (all other modified files in the repo are pre-existing 
 
 ## tailwind.config.ts
 - borderRadius xl/2xl/3xl (0.875/1.25/1.75rem) → 21/34/55px; +sm 5 / md 13
-- boxShadow soft/lift/ring → Fibonacci blur/spread @ 0.377/0.233 + violet glow
+- boxShadow soft/lift/ring → Fibonacci blur/spread @ 0.377/0.233 + cyan glow
 - fontSize display-* endpoints → Fibonacci (144/89/55/34px); +fib-* scale (8→89, line-height×φ)
 - keyframes fade-up → 13px translateY; pulse-dot 50% → 0.377
 - animation fade-up 0.6s → 610ms float; pulse-dot 1.6s → 1597ms

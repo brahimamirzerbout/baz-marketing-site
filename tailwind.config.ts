@@ -11,7 +11,7 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Stitch Design System — Gold seed hue 42 (CSS variable tokens)
+        // Midnight Terminal — cyan seed 187/90 (CSS variable tokens); gold = signature mark only
         ink: {
           DEFAULT: 'var(--ink)',
           0: 'var(--ink-0)',

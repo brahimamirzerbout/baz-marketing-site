@@ -14,34 +14,34 @@ $paper-100: #f0ebe0;
 $paper-200: #e0d8cc;
 $paper-300: #c9bfb0;
 
-// ── Accent (Violet) ──
-$accent: hsl(270, 85%, 72%);
-$accent-50: hsl(270, 100%, 97%);
-$accent-100: hsl(270, 100%, 94%);
-$accent-200: hsl(270, 100%, 88%);
-$accent-300: hsl(270, 100%, 81%);
-$accent-400: hsl(270, 85%, 76%);
-$accent-500: hsl(270, 85%, 72%);
-$accent-600: hsl(270, 80%, 64%);
-$accent-700: hsl(270, 75%, 55%);
-$accent-800: hsl(270, 70%, 42%);
-$accent-900: hsl(270, 65%, 35%);
+// ── Accent (Cyan) ──
+$accent: hsl(187, 85%, 72%);
+$accent-50: hsl(187, 100%, 97%);
+$accent-100: hsl(187, 100%, 94%);
+$accent-200: hsl(187, 100%, 88%);
+$accent-300: hsl(187, 100%, 81%);
+$accent-400: hsl(187, 85%, 76%);
+$accent-500: hsl(187, 85%, 72%);
+$accent-600: hsl(187, 80%, 64%);
+$accent-700: hsl(187, 75%, 55%);
+$accent-800: hsl(187, 70%, 42%);
+$accent-900: hsl(187, 65%, 35%);
 
 // ── Secondary Accents (use sparingly) ──
-$accent-gold: #f9a01f;
+$accent-gold: #C29B5B;
 $accent-red: #ff3b2f;
 
-// ── Violet Spectrum ──
-$violet: (
+// ── Cyan Spectrum ──
+$cyan: (
   '50': #f5f0ff,
   '100': #ebe3ff,
   '200': #d5c7ff,
   '300': #baabff,
-  '400': #9985ff,
-  '500': #8b5cf6,
-  '600': #7c3aed,
-  '700': #6d28d9,
-  '800': #5b21b6,
+  '400': #22d3ee,
+  '500': #22D3EE,
+  '600': #0891b2,
+  '700': #0e7490,
+  '800': #155e75,
   '900': #4c1d95,
 );
 
@@ -49,12 +49,12 @@ $violet: (
 $success: hsl(152, 68%, 38%);
 $warning: hsl(38, 92%, 45%);
 $danger: hsl(0, 78%, 50%);
-$info: hsl(270, 85%, 72%);
+$info: hsl(187, 85%, 72%);
 
 // ── Gradients ──
-$gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
-$gradient-accent-shimmer: linear-gradient(90deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.4) 50%, rgba(139, 92, 246, 0.15) 100%);
-$gradient-ink-violet: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.15) 0%, #0e0e0e 70%);
+$gradient-accent: linear-gradient(135deg, #22D3EE 0%, #0891b2 50%, #0e7490 100%);
+$gradient-accent-shimmer: linear-gradient(90deg, rgba(34, 211, 238, 0.15) 0%, rgba(34, 211, 238, 0.4) 50%, rgba(34, 211, 238, 0.15) 100%);
+$gradient-ink-cyan: radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.15) 0%, #0e0e0e 70%);
 $gradient-paper: linear-gradient(180deg, #faf7f1 0%, #f5f1ea 50%, #f0ebe0 100%);
 
 // ── BlackSwan Seed ──

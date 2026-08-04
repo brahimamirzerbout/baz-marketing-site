@@ -7,13 +7,13 @@ Open Graph images for social media sharing previews.
 ## Master OG Image (1200×630)
 
 - **Background:** `#0e0e0e` (ink)
-- **Overlay:** Mesh gradient (violet radial from top-left at 0.08 opacity)
+- **Overlay:** Mesh gradient (cyan radial from top-left at 0.08 opacity)
 - **Grid:** 40px lines at 0.04 opacity
 - **Content:**
-  - Eyebrow: `● BRAND & BUZZ` in JetBrains Mono 11px, violet, tracking 2.5px
-  - Headline: "BAZ" in Fraunces 300, 96px, paper
+  - Eyebrow: `● BRAND & BUZZ` in JetBrains Mono 11px, cyan, tracking 2.5px
+  - Headline: "BAZ" in Inter 300, 96px, paper
   - Subtitle: "Marketing Ventures Agency" in Inter 400, 20px, ink-500
-  - Violet accent line: 200px wide, 2px tall
+  - Cyan accent line: 200px wide, 2px tall
   - Mark: Bottom-right, 60px squircle
   - URL: Bottom-right, JetBrains Mono 11px, ink-600
 
@@ -46,14 +46,14 @@ export default async function OgImage({ params }) {
         <p style={{
           fontFamily: 'JetBrains Mono',
           fontSize: 13,
-          color: '#8b5cf6',
+          color: '#22D3EE',
           letterSpacing: '2.5px',
           textTransform: 'uppercase',
         }}>
           ● {params.section}
         </p>
         <h1 style={{
-          fontFamily: 'Fraunces',
+          fontFamily: 'Inter',
           fontSize: 96,
           fontWeight: 300,
           color: '#f5f1ea',
@@ -73,7 +73,7 @@ export default async function OgImage({ params }) {
         <div style={{
           width: 200,
           height: 2,
-          background: '#8b5cf6',
+          background: '#22D3EE',
           marginTop: 40,
           borderRadius: 1,
         }}/>

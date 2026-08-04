@@ -72,7 +72,7 @@ const PALETTE = [
 const TYPE = [
   {
     name: "Display",
-    family: "Fraunces",
+    family: "Inter",
     cssVar: "font-display",
     usage: "Editorial moments, H1/H2, hero copy, big numbers.",
     weight: "500–700",

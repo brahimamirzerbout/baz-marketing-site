@@ -1,6 +1,6 @@
 # BAZ Brand Assets — Export Sizes & Specifications
 
-All assets use the BlackSwan Design System (violet `#8b5cf6`, Fraunces/Inter/JetBrains Mono, Fibonacci radii).
+All assets use the BlackSwan Design System (cyan `#22D3EE`, Inter/Inter/JetBrains Mono, Fibonacci radii).
 
 ---
 
@@ -69,11 +69,11 @@ All assets use the BlackSwan Design System (violet `#8b5cf6`, Fraunces/Inter/Jet
 | Pattern | Use | Source |
 |---------|-----|--------|
 | Grid pattern | Background overlay on paper sections, opacity 0.03–0.06 | `patterns/grid-pattern.svg` |
-| Mesh gradient | Radial violet glow on ink sections, opacity 0.08–0.15 | `patterns/mesh-gradient.svg` |
+| Mesh gradient | Radial cyan glow on ink sections, opacity 0.08–0.15 | `patterns/mesh-gradient.svg` |
 | Paper grain | Noise texture overlay, opacity 0.03, mix-blend-mode: overlay | `patterns/paper-grain.svg` |
 | Dot pattern | Subtle dot grid for paper sections, opacity 0.04–0.08 | `patterns/dot-pattern.svg` |
-| Violet gradient | CTA backgrounds, accent fills | `patterns/violet-gradient.svg` |
-| Violet shimmer | Decorative borders, animated accents | `patterns/violet-shimmer.svg` |
+| Cyan gradient | CTA backgrounds, accent fills | `patterns/cyan-gradient.svg` |
+| Cyan shimmer | Decorative borders, animated accents | `patterns/cyan-shimmer.svg` |
 
 ---
 
