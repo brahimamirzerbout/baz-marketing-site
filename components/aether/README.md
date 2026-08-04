@@ -30,7 +30,7 @@ import {
 The UI is pure dark by default — no white mode, no light theme.
 All colors are monochrome (zinc/neutral). The eye rests in darkness.
 
-To reveal functional accent colors (violet, emerald, amber, red, blue):
+To reveal functional accent colors (cyan, emerald, amber, red, blue):
 
 ```tsx
 const [colorsOn, setColorsOn] = useState(false)
