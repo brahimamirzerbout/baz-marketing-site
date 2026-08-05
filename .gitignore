@@ -39,8 +39,8 @@ coverage/
 # Vercel
 .vercel
 
-# Local data (DB, leads, runtime state)
-data/
+# Local data (DB, leads, runtime state) — root only; do NOT swallow app/api/data or lib/data
+/data/
 *.db
 *.db-shm
 *.db-wal
