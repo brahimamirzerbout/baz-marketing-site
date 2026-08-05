@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
  * This is what /portal/[id] hits to render the lead's "what happens next" view.
  */
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-  const guard = rateLimit(req, { key: "portal-lookup", limit: 30, windowMs: 60_000 });
+  const guard = await rateLimit(req, { key: "portal-lookup", limit: 30, windowMs: 60_000 });
   if (!guard.ok) {
     return NextResponse.json(
       { ok: false, error: "rate_limited" },

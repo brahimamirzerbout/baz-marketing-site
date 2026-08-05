@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
   const { user } = await readSessionFromCookies();
   // Authenticated users: bucket by user.id. Anonymous: bucket by IP.
-  const guard = rateLimit(req, {
+  const guard = await rateLimit(req, {
     key: "agents-run",
     limit: 20,
     windowMs: 60_000,

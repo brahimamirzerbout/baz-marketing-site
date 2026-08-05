@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
  */
 export async function POST(req: NextRequest) {
   // 10 leads / minute / IP — stops spam, allows legitimate bursts
-  const guard = rateLimit(req, { key: "lead-create", limit: 10, windowMs: 60_000 });
+  const guard = await rateLimit(req, { key: "lead-create", limit: 10, windowMs: 60_000 });
   if (!guard.ok) {
     return NextResponse.json(
       { ok: false, error: "rate_limited" },

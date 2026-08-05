@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
  * 6. Returns { ok: true }
  */
 export async function POST(req: NextRequest) {
-  const guard = rateLimit(req, {
+  const guard = await rateLimit(req, {
     key: "battle-card-request",
     limit: 5,
     windowMs: 60_000,
