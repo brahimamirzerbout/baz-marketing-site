@@ -13,6 +13,7 @@ import { ScrollReveal } from '@/components/marketing/ScrollReveal';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { AetherBackground } from '@/components/ui/AetherBackground';
+import { DeferredScripts } from '@/components/ui/DeferredScripts';
 import { AuthErrorHandler } from '@/components/AuthErrorHandler';
 import './globals.css';
 import './aether-theme.css';
@@ -110,7 +111,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');})();`,
           }}
         />
-        <AetherBackground />
+        <DeferredScripts>
+          <AetherBackground />
+        </DeferredScripts>
         <ThemeProvider>
           <a href="#main" className="skip">Skip to content</a>
           {/* Cursor removed */}
@@ -119,10 +122,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <CookieBanner />
           <ScrollReveal />
-          <Analytics />
-          <VercelAnalytics />
-          <SpeedInsights />
-          <SmoothScroll />
+          <DeferredScripts>
+            <Analytics />
+            <VercelAnalytics />
+            <SpeedInsights />
+            <SmoothScroll />
+          </DeferredScripts>
         </ThemeProvider>
 
         <script
