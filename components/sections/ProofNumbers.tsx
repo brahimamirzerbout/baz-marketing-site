@@ -11,6 +11,9 @@ import { Badge } from "@/components/ui/Badge";
 
 export function ProofNumbers() {
   const top = caseStudies.slice(0, 3);
+  // Cialdini Code: show nothing rather than fabricate. The proof strip is
+  // hidden entirely until signed case studies exist (content/case-studies.ts).
+  if (top.length === 0) return null;
   return (
     <section className="bg-background relative overflow-hidden">
       <div className="container mx-auto py-12 md:py-16">
