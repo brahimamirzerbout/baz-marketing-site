@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Suspense } from "react";
 import {
   Hero,
@@ -15,7 +14,6 @@ import {
   MarketingHubBanner,
   ProofNumbers,
   ReadNext,
-  PipelineTicker,
   StickyCta,
   RefocusManifesto,
 } from "@/components/sections";

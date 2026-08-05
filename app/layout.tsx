@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Metadata, Viewport } from 'next';
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -112,14 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <AetherBackground />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          themes={["dark"]}
-          storageKey="baz:theme"
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <a href="#main" className="skip">Skip to content</a>
           {/* Cursor removed */}
           <Header />
