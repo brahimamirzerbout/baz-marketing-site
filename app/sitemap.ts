@@ -128,13 +128,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cityIndustryRoutes,
     ...matrixLeafRoutes,
     ...industryServiceRoutes,
-    { url: `${base}/admin/canva`, lastModified: now, changeFrequency: "monthly", priority: 0.2 },
-    {
-      url: `${base}/admin/analytics`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.2,
-    },
-    { url: `${base}/admin/monitors`, lastModified: now, changeFrequency: "always", priority: 0.1 },
+    // /admin/* intentionally excluded — robots.ts disallows /admin/ for every
+    // crawler, so it must not appear in the sitemap (sitemap ⊆ crawlable surface).
   ];
 }
