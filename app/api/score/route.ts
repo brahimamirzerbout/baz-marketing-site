@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
  * Returns: { score, intent, reasons, recommendedAction, plan }
  */
 export async function POST(req: NextRequest) {
-  const guard = rateLimit(req, { key: "score-preview", limit: 60, windowMs: 60_000 });
+  const guard = await rateLimit(req, { key: "score-preview", limit: 60, windowMs: 60_000 });
   if (!guard.ok) {
     return NextResponse.json(
       { ok: false, error: "rate_limited" },

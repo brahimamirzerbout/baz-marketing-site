@@ -1,17 +1,17 @@
 /**
- * BAZ — Rate limiter (pluggable store).
+ * BAZ — Rate limiter (pluggable, async store).
  *
- * Defaults to an in-memory store (single-process). On Vercel serverless,
- * swap the backend by calling `setRateLimitStore(new VercelKvRateLimitStore())`
- * from a startup path (e.g., a Next.js instrumentation hook or a module
- * init guarded by `process.env.KV_REST_API_URL`).
+ * Defaults to an in-memory store (single-process, per-instance on Vercel).
+ * Set UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN to auto-switch to a
+ * shared Upstash Redis store (global limits across instances, fail-open on
+ * outage). `rateLimit()` is async — callers must `await` it.
  *
  * Consumer API (`rateLimit`, `rateLimitHeaders`, `rateLimitedResponse`)
- * is unchanged.
+ * is otherwise unchanged.
  */
 
 import { NextResponse } from "next/server";
-import { getRateLimitStore, type Bucket } from "./rate-limit-store";
+import { getRateLimitStore, MemoryRateLimitStore, type Bucket } from "./rate-limit-store";
 
 interface RateLimitOpts {
   key: string;
@@ -20,13 +20,13 @@ interface RateLimitOpts {
   userId?: string;
 }
 
-export function rateLimit(
+export async function rateLimit(
   req: Request,
   opts: RateLimitOpts,
-): { ok: true; remaining: number; resetAt: number } | { ok: false; retryAfter: number } {
+): Promise<{ ok: true; remaining: number; resetAt: number } | { ok: false; retryAfter: number }> {
   if (process.env.NODE_ENV === "production") {
     const store = getRateLimitStore();
-    if (store instanceof (require("./rate-limit-store").MemoryRateLimitStore || Object)) {
+    if (store instanceof MemoryRateLimitStore) {
       // Surface the per-instance warning once per cold start on Vercel.
       if (!(globalThis as any).__baz_rate_limit_warned) {
         (globalThis as any).__baz_rate_limit_warned = true;
@@ -44,12 +44,12 @@ export function rateLimit(
   const k = `${opts.key}:${opts.userId ?? ip}`;
   const now = Date.now();
   const store = getRateLimitStore();
-  let existing = store.get(k);
+  let existing = await store.get(k);
 
   if (!existing || existing.resetAt < now) {
     const next: Bucket = { count: 1, resetAt: now + opts.windowMs };
-    store.set(k, next);
-    store.prune(now);
+    await store.set(k, next);
+    await store.prune(now);
     return { ok: true, remaining: opts.limit - 1, resetAt: now + opts.windowMs };
   }
 
@@ -58,7 +58,7 @@ export function rateLimit(
   }
 
   const next: Bucket = { ...existing, count: existing.count + 1 };
-  store.set(k, next);
+  await store.set(k, next);
   return { ok: true, remaining: opts.limit - next.count, resetAt: next.resetAt };
 }
 
