@@ -72,6 +72,31 @@ for (const d of SCAN_DIRS) {
   try { walk(join(ROOT, d)); } catch { /* ignore missing dirs */ }
 }
 
+// ── Proof provenance audit (Cialdini Code) ────────────────────────────────
+// Composite proof points in content/services.ts are gated out of production
+// by lib/proof-provenance.ts. Surface how many remain unsigned so the team
+// can replace them with real, client-approved outcomes before launch.
+{
+  const servicesFile = join(ROOT, 'content', 'services.ts');
+  try {
+    const txt = readFileSync(servicesFile, 'utf8');
+    const lines = txt.split(/\n/);
+    // `client:` object fields = total proof points; skip JSDoc // and * comment lines.
+    const isComment = (l) => /^\s*(\*|\/\/)/.test(l);
+    const total = lines.filter((l) => !isComment(l) && /^\s*client:\s*"/.test(l)).length;
+    const signed = lines.filter((l) => !isComment(l) && /provenance:\s*"signed"/.test(l)).length;
+    const composite = total - signed;
+    if (total > 0) {
+      findings.push({
+        file: servicesFile,
+        line: 0,
+        kind: 'composite-proof',
+        text: `${composite}/${total} proof points are composite (not yet "signed"). Replace with real client outcomes before launch.`,
+      });
+    }
+  } catch { /* file may not exist */ }
+}
+
 if (findings.length === 0) {
   console.log('✅ No placeholders found.');
   process.exit(0);

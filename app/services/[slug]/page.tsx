@@ -14,6 +14,8 @@ import { ServiceLeadForm } from "@/components/marketing/ServiceLeadForm";
 import { caseStudies } from "@/content/case-studies";
 import { services, getService } from "@/content/services";
 import { buildMetadata, jsonLd, faqLd, breadcrumbLd, serviceLd } from "@/lib/seo";
+import { publicProof, isCompositeProof, SHOW_COMPOSITE_PROOF } from "@/lib/proof-provenance";
+import { site } from "@/lib/site";
 
 type Params = { params: { slug: string } };
 
@@ -40,6 +42,11 @@ export function generateMetadata({ params }: Params): Metadata {
 export default function ServiceDetailPage({ params }: Params) {
   const service = getService(params.slug);
   if (!service) notFound();
+
+  // Provenance gate (lib/proof-provenance.ts): production renders only signed
+  // proof; composites are gated to dev/preview. With none signed, the section
+  // shows the NDA substitute instead of fabricated client metrics (Cialdini Code).
+  const visibleProof = publicProof(service.proof);
 
   // Match a service to case studies whose `services` array contains the
   // service's primary name token (first meaningful word) OR a configured
@@ -155,23 +162,50 @@ export default function ServiceDetailPage({ params }: Params) {
             <SectionHeading>Recent outcomes.</SectionHeading>
           </div>
         </div>
-        <ul className="grid md:grid-cols-2 gap-4">
-          {service.proof.map((p, i) => (
-            <li
-              key={p.client + i}
-              className="reveal bg-card rounded-2xl border border-border p-6 md:p-7"
-              style={{ animationDelay: `${i * 80}ms` }}
+        {visibleProof.length > 0 ? (
+          <ul className="grid md:grid-cols-2 gap-4">
+            {visibleProof.map((p, i) => (
+              <li
+                key={p.client + i}
+                className="reveal bg-card rounded-2xl border border-border p-6 md:p-7"
+                style={{ animationDelay: `${i * 80}ms` }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-muted-foreground">{p.client}</p>
+                    {SHOW_COMPOSITE_PROOF && isCompositeProof(p) && (
+                      <span className="font-mono uppercase tracking-[0.14em] text-[10px] text-muted-foreground/70 border border-border rounded-full px-2 py-0.5">
+                        representative example
+                      </span>
+                    )}
+                  </div>
+                  <p className="font-display text-3xl font-medium tracking-[-0.03em] text-accent">
+                    {p.metric}
+                  </p>
+                </div>
+                <p className="text-[15px] text-foreground leading-relaxed">{p.detail}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          // Doctrine-compliant authority substitute (Cialdini Code): never
+          // show fabricated client metrics. Active-engagement outcomes are
+          // shared under NDA, in the strategy call, scoped to the buyer's stage.
+          <div className="max-w-2xl">
+            <p className="text-[15px] text-muted-foreground leading-relaxed">
+              Outcomes from active engagements are shared under NDA. In the
+              strategy call we walk through two comparable engagements scoped to
+              your stage and channel — real numbers, named clients, with
+              permission.
+            </p>
+            <a
+              href={site.bookOrMailto}
+              className="inline-flex items-center mt-6 h-11 px-5 rounded-full border border-border hover:border-foreground font-medium text-foreground transition-colors"
             >
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm text-muted-foreground">{p.client}</p>
-                <p className="font-display text-3xl font-medium tracking-[-0.03em] text-accent">
-                  {p.metric}
-                </p>
-              </div>
-              <p className="text-[15px] text-foreground leading-relaxed">{p.detail}</p>
-            </li>
-          ))}
-        </ul>
+              {service.cta.primary}
+            </a>
+          </div>
+        )}
       </Section>
 
       {relatedCases.length > 0 && (

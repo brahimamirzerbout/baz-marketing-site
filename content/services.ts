@@ -8,7 +8,12 @@ import type { Service } from "@/types";
  *
  * Each entry is the full payload that drives its service detail page.
  * Proof points use representative composites based on real engagement
- * patterns. Real client metrics must replace these before public launch.
+ * patterns. By default the public site does NOT render composite proof —
+ * lib/proof-provenance.ts gates it (default-composite, signed-opt-in), so
+ * composite points show only in dev/preview (NEXT_PUBLIC_SHOW_COMPOSITE_PROOF)
+ * and are replaced on production by the NDA substitute. To ship a real,
+ * client-approved outcome, add `provenance: "signed"` to that proof point —
+ * only with written client permission (Cialdini Code: never fake proof).
  *
  * Each service follows the same operator-grade structure:
  *   - Pillar (owned / earned / paid / data / platform)

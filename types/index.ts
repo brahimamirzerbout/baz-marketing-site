@@ -9,7 +9,10 @@ export type Service = {
   deliverables: string[];
   kpis: { label: string; value: string }[];
   process: { step: number; title: string; desc: string }[];
-  proof: { client: string; metric: string; detail: string }[];
+  // Provenance gate (lib/proof-provenance.ts). Default-undefined = composite
+  // (representative; never rendered as a real client result in production).
+  // Add `provenance: "signed"` only with written client permission.
+  proof: { client: string; metric: string; detail: string; provenance?: "signed" | "composite" }[];
   faqs: { q: string; a: string }[];
   cta: { primary: string; secondary?: string };
 };

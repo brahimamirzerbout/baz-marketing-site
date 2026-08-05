@@ -1,7 +1,39 @@
 import { testimonials } from "@/content/testimonials";
+import { site } from "@/lib/site";
 import { Section, Eyebrow, SectionHeading, SectionLede } from "@/components/ui/Section";
 
+/**
+ * Cialdini Code: no fabricated social proof. Until signed client quotes
+ * exist (content/testimonials.ts is empty by default), the section renders
+ * the senior-partner authority substitute — references on request, under
+ * NDA — never a curated quote wall with invented clients. When real
+ * testimonials land, the count is rendered honestly (no hardcoded "Five").
+ */
 export function Testimonials() {
+  if (testimonials.length === 0) {
+    return (
+      <Section tone="white" size="lg">
+        <div className="grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-7">
+            <Eyebrow>In their words</Eyebrow>
+            <SectionHeading>What senior-team actually feels like.</SectionHeading>
+            <SectionLede>
+              Client references are shared on request and under NDA. In the
+              strategy call we connect you with a comparable client at your
+              stage — a real conversation, not a curated quote wall.
+            </SectionLede>
+            <a
+              href={site.bookOrMailto}
+              className="inline-flex items-center mt-6 h-11 px-5 rounded-full border border-border hover:border-foreground font-medium text-foreground transition-colors"
+            >
+              Request a reference call
+            </a>
+          </div>
+        </div>
+      </Section>
+    );
+  }
+
   return (
     <Section tone="white" size="lg">
       <div className="grid lg:grid-cols-12 gap-10 mb-14">
@@ -9,8 +41,9 @@ export function Testimonials() {
           <Eyebrow>In their words</Eyebrow>
           <SectionHeading>What senior-team actually feels like.</SectionHeading>
           <SectionLede>
-            Five clients on what changed when they stopped working with generalist pods and started
-            working with partners. Every metric is named.
+            {testimonials.length} clients on what changed when they stopped
+            working with generalist pods and started working with partners. Every
+            metric is named.
           </SectionLede>
         </div>
       </div>
