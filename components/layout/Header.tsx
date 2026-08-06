@@ -61,7 +61,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors inline-flex items-center gap-1.5"
+              className="relative px-2 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-md hover:bg-muted transition-colors inline-flex items-center gap-1.5"
             >
               {item.label}
               {(item as { badge?: React.ReactNode }).badge && (
