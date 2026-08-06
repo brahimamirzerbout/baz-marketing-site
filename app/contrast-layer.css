@@ -30,3 +30,12 @@
 section.bg-primary.text-foreground {
   background-color: var(--ink-0) !important;     /* oklch(0) — true black */
 }
+
+/* text-accent was resolving to --accent (oklch 0.18 ≈ #121212) → invisible on
+   the near-black body (Lighthouse contrast 1.12, fails WCAG 4.5:1). The
+   monochrome design intends accent TEXT to read as the light brand ink, not
+   the dark --accent token (which is for button backgrounds). Route
+   .text-accent → ink-800 (oklch 0.85 ≈ #d9d9d9, ≈10:1 on the oklch(0.04)
+   body) so eyebrows / labels / lede copy become visible again. bg-accent
+   buttons are untouched (dark bg + light text already reads well). */
+.text-accent { color: var(--ink-800) !important; }

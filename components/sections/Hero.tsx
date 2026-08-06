@@ -55,7 +55,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
             animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.05 }}
-            className="display-xl text-[clamp(3rem,9vw,9rem)] text-ink-1000 max-w-5xl"
+            className="display-xl text-[clamp(3rem,8vw,6rem)] text-ink-1000 max-w-6xl"
           >
             <span className="block">{v.headline}</span>
             <span className="block bg-gradient-to-b from-ink-1000 via-ink-800 to-ink-500 bg-clip-text text-transparent">{v.tagline}</span>
@@ -70,7 +70,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
                 variant="secondary"
                 size="lg"
                 trackAs="hero_book_call"
-                className="rounded-full px-8 py-4 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white bg-brand"
+                className="rounded-full px-8 py-4 text-xs font-display font-semibold uppercase tracking-[0.2em] text-ink bg-brand"
               >
                 Book a growth call
                 <span aria-hidden className="ml-2">→</span>

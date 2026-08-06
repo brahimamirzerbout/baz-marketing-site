@@ -18,7 +18,7 @@ const variants: Record<Variant, string> = {
   primary:
     "bg-white text-ink",
   secondary:
-    "bg-brand text-white",
+    "bg-brand text-ink",
   ghost: "bg-transparent text-sand",
   outline: "bg-transparent text-sand border border-white/20",
   soft: "bg-panel text-sand",

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { Metadata, Viewport } from 'next';
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -14,6 +13,7 @@ import { ScrollReveal } from '@/components/marketing/ScrollReveal';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { AetherBackground } from '@/components/ui/AetherBackground';
+import { DeferredScripts } from '@/components/ui/DeferredScripts';
 import { AuthErrorHandler } from '@/components/AuthErrorHandler';
 import './globals.css';
 import './aether-theme.css';
@@ -111,15 +111,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');})();`,
           }}
         />
-        <AetherBackground />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          themes={["dark"]}
-          storageKey="baz:theme"
-          disableTransitionOnChange
-        >
+        <DeferredScripts>
+          <AetherBackground />
+        </DeferredScripts>
+        <ThemeProvider>
           <a href="#main" className="skip">Skip to content</a>
           {/* Cursor removed */}
           <Header />
@@ -127,10 +122,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <CookieBanner />
           <ScrollReveal />
-          <Analytics />
-          <VercelAnalytics />
-          <SpeedInsights />
-          <SmoothScroll />
+          <DeferredScripts>
+            <Analytics />
+            <VercelAnalytics />
+            <SpeedInsights />
+            <SmoothScroll />
+          </DeferredScripts>
         </ThemeProvider>
 
         <script
