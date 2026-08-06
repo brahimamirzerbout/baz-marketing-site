@@ -63,7 +63,7 @@ export function buildMetadata({
  * Apply alongside `metadata` in each page or layout.
  */
 export const viewport = {
-  themeColor: "#020617", // Midnight Terminal — mobile chrome matches bg
+  themeColor: "#0A0A0A", // Æther + Gold — mobile chrome matches neutral bg
   width: "device-width",
   initialScale: 1,
   colorScheme: "dark",

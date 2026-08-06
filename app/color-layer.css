@@ -1,15 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════════
    BAZ — COLOR LAYER   (imported LAST in app/layout.tsx → always wins)
    ───────────────────────────────────────────────────────────────────
-   MODE: MIDNIGHT TERMINAL — electric cyan (seed 187/90) on seed-driven
-   near-black, ultraviolet depth accent. The public marketing
-   site reads on hierarchy + type + contrast alone — no hue crutch.
+   MODE: ÆTHER + GOLD — stitch gold (seed 42/85) on seed-driven
+   near-black, darker-gold depth accent. The public marketing
+   site reads on hierarchy + type + contrast alone — minimal hue.
 
-   ── TO RE-ADD COLOR LATER (expert edits ONLY this file): ──
+   ── TO RECOLOR (expert edits ONLY this file): ──
      Brand accent — set the seed (recolors primary, neutrals, borders,
      and the Aether dark-surface ramp coherently):
-        --seed-hue: 42;  --seed-sat: 90%;   →  electric cyan
-        --seed-hue: 42;   --seed-sat: 85%;   →  stitch gold
+        --seed-hue: 42;  --seed-sat: 85%;   →  stitch gold (current)
+        --seed-hue: 42;  --seed-sat: 0%;    →  Æther monochrome
      Functional states (optional — can stay neutral):
         --success-hue / --success-sat   (e.g. 142 / 60%  → green)
         --warning-hue / --warning-sat   (e.g. 38  / 90%  → amber)
@@ -22,11 +22,11 @@
   /* ── BRAND SEED (0/0 = pure greyscale) ──
      Drives --color-primary, the neutral ramp, borders, and the Aether
      darkness layers below. The whole public site follows this one seed. */
-  --seed-hue: 42;      /* brand hue retained — sat 0% = Æther/Hub monochrome look now; set --seed-sat > 0 to restore color */
+  --seed-hue: 42;      /* stitch gold (42/85) — set --seed-sat 0% for pure Æther monochrome */
   --seed-sat: 85%;
   --seed-sat-dark: 85%;
 
-  /* Midnight depth — ultraviolet secondary (overrides --brand2) */
+  /* Midnight depth — darker-gold secondary (overrides --brand2) */
   --brand2: var(--color-primary-70);
 
   /* ── FUNCTIONAL STATE KNOBS (neutral by default) ── */
@@ -117,5 +117,5 @@
   --shadow-glow: 0 0 0 1px oklch(1 0 0 / 8%), 0 20px 60px -20px oklch(0 0 0 / 80%);
 }
 
-/* Selection rides the brand token (gray now, accent when color returns) */
+/* Selection rides the brand token (stitch gold) */
 ::selection { background: var(--brand); color: #fff; }

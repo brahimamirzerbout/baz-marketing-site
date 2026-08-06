@@ -8,11 +8,11 @@ The public site is **black & white by design**. Color is a single, deliberate la
 ---
 
 ## 1. The one thing to know first
-**Color is controlled by a single file: `app/color-layer.css`.** It is imported **last** in `app/layout.tsx`, so it always wins. To re-add color, change two numbers there:
+**Color is controlled by a single file: `app/color-layer.css`.** It is imported **last** in `app/layout.tsx`, so it always wins. To recolor, change two numbers there:
 
 ```css
---seed-hue: 187;  --seed-sat: 90%;   /* electric cyan  */
---seed-hue: 42;   --seed-sat: 85%;   /* stitch gold    */
+--seed-hue: 42;  --seed-sat: 85%;   /* stitch gold (current)  */
+--seed-hue: 42;  --seed-sat: 0%;    /* Æther monochrome       */
 ```
 
 The seed recolors **everything** coherently: the primary ramp, the neutral ramp, borders, the Aether dark-surface ramp, the text ramp, and the branding gradients/glow. Functional **state** colors (success/warning/danger/info) have their own hue/sat knobs in the same file. One file, two numbers for the brand — zero rework elsewhere.

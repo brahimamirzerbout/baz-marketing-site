@@ -21,7 +21,7 @@ export function GET(_req: Request, { params }: { params: { slug: string } }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#020617",
+          backgroundColor: "#0A0A0A",
           color: "#f5f5f4",
           padding: "72px",
           fontFamily: "sans-serif",
@@ -36,7 +36,7 @@ export function GET(_req: Request, { params }: { params: { slug: string } }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#020617",
+              color: "#0A0A0A",
               fontWeight: 700,
               fontSize: "24px",
             }}

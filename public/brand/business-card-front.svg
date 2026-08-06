@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 600" width="1050" height="600" role="img" aria-label="BAZventures — business card (front)">
   <title>BAZventures — business card front (3.5 × 2 in @ 300dpi)</title>
-  <rect width="1050" height="600" fill="#020617"/>
-  <rect x="60" y="60" width="930" height="480" fill="none" stroke="#22D3EE" stroke-width="1.5" opacity="0.4"/>
-  <rect x="90" y="110" width="110" height="110" fill="#22D3EE"/>
-  <text x="145" y="200" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="76" font-weight="700" fill="#020617" text-anchor="middle" letter-spacing="-2">B</text>
-  <text x="230" y="180" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="58" font-weight="600" fill="#F8FAFC" letter-spacing="-1.5">BAZventures</text>
-  <text x="230" y="216" font-family="JetBrains Mono, ui-monospace, monospace" font-size="16" font-weight="500" fill="#22D3EE" letter-spacing="3">SENIOR-PARTNER GROWTH AGENCY</text>
-  <text x="90" y="470" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="500" fill="#F8FAFC">Brahim ZERBOUT</text>
-  <text x="90" y="504" font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" font-weight="400" fill="#94A3B8">Founder · growth strategy, CRM, performance web</text>
-  <text x="960" y="504" font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" font-weight="500" fill="#22D3EE" text-anchor="end">bazventures.app</text>
+  <rect width="1050" height="600" fill="#0A0A0A"/>
+  <rect x="60" y="60" width="930" height="480" fill="none" stroke="#EEB32B" stroke-width="1.5" opacity="0.4"/>
+  <rect x="90" y="110" width="110" height="110" fill="#EEB32B"/>
+  <text x="145" y="200" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="76" font-weight="700" fill="#0A0A0A" text-anchor="middle" letter-spacing="-2">B</text>
+  <text x="230" y="180" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="58" font-weight="600" fill="#FAFAFA" letter-spacing="-1.5">BAZventures</text>
+  <text x="230" y="216" font-family="JetBrains Mono, ui-monospace, monospace" font-size="16" font-weight="500" fill="#EEB32B" letter-spacing="3">SENIOR-PARTNER GROWTH AGENCY</text>
+  <text x="90" y="470" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="500" fill="#FAFAFA">Brahim ZERBOUT</text>
+  <text x="90" y="504" font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" font-weight="400" fill="#9A9A9A">Founder · growth strategy, CRM, performance web</text>
+  <text x="960" y="504" font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" font-weight="500" fill="#EEB32B" text-anchor="end">bazventures.app</text>
 </svg>

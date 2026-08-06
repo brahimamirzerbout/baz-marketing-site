@@ -11,7 +11,7 @@
 - CI/CD via GitHub Actions (test → deploy preview → deploy production)
 
 ## Design — Black & White Color System
-- **B&W by default.** Color is a single expert-editable layer: `app/color-layer.css` (imported **last** in `app/layout.tsx` → always wins). Set `--seed-hue`/`--seed-sat` there to recolor the whole site (e.g. cyan `187/90%`, gold `42/85%`). One file, two numbers.
+- **B&W by default.** Color is a single expert-editable layer: `app/color-layer.css` (imported **last** in `app/layout.tsx` → always wins). Set `--seed-hue`/`--seed-sat` there to recolor the whole site (e.g. gold `42/85%`). One file, two numbers.
 - **Dark mode only** — `ThemeProvider` forces `dark` (`forcedTheme="dark"`, `enableSystem={false}`). Background/text are seed-driven neutrals (currently greyscale).
 - **4-layer CSS stack:** `globals.css` → `aether-theme.css` → `aether-monochrome.css` → `color-layer.css` (last wins). Full map in `DESIGN-SYSTEM.md`.
 - **Fonts:** Outfit (display), Poppins (body), JetBrains Mono (code/metrics).

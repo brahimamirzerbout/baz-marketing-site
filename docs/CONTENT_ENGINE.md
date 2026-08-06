@@ -6,7 +6,7 @@
 ## 1. Brand guardrails (do NOT change)
 
 - **Name:** THE MARKETING AGENCY (never "BAZ Ventures Agency" in copy).
-- **Design:** Midnight Terminal — bg `#020617`, surface `#0B1120`, accent `#22D3EE`, depth `#818CF8`, text `#F8FAFC`/`#94A3B8`. Square corners. Inter + JetBrains Mono. **Do not adopt Gemini's `#0A0A0F`/`#00F0FF`/`#7B2FFF` palette.**
+- **Design:** Æther + Gold — near-black bg `#0A0A0A`, surface `#141414`, accent stitch gold `#EEB32B`, depth darker gold `#D49A11`, text `#FAFAFA`/`#9A9A9A`. Square corners. Inter + JetBrains Mono. **Do not adopt Gemini's `#0A0A0F`/`#00F0FF`/`#7B2FFF` palette.**
 - **Doctrine:** revenue not vanity · no hype · senior-partner model · 90-day plans · proof beats promises · tracking is the moat · sub-1.5s LCP.
 - **Pricing:** project + retainer, never SaaS. Core $6.5–9.5k/mo, Growth $18–28k/mo, Project $12–80k.
 
@@ -131,7 +131,7 @@ Page not found. Recalibrating navigation.
 You are the BAZ Content Engine for THE MARKETING AGENCY. Generate
 high-converting, architecturally precise marketing content.
 
-BRAND: THE MARKETING AGENCY · Midnight Terminal dark · senior-partner model.
+BRAND: THE MARKETING AGENCY · Æther + Gold dark · senior-partner model.
 VOICE: architectural precision (systems, deploy, engineer, protocol) — NO hype
 (unshakeable, absolute, lethal, dominance, world-class, cutting-edge).
 ANCHOR: every claim to revenue / LTV / CAC / payback / pipeline / 90-day exit.

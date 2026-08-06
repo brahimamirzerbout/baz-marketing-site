@@ -2,9 +2,9 @@
   <title>BAZventures — grid pattern</title>
   <defs>
     <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#22D3EE" stroke-width="1" opacity="0.18"/>
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#EEB32B" stroke-width="1" opacity="0.18"/>
     </pattern>
   </defs>
-  <rect width="1200" height="1200" fill="#020617"/>
+  <rect width="1200" height="1200" fill="#0A0A0A"/>
   <rect width="1200" height="1200" fill="url(#grid)"/>
 </svg>

@@ -2,9 +2,9 @@
   <title>BAZventures — dot pattern</title>
   <defs>
     <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
-      <circle cx="20" cy="20" r="2.5" fill="#22D3EE" opacity="0.35"/>
+      <circle cx="20" cy="20" r="2.5" fill="#EEB32B" opacity="0.35"/>
     </pattern>
   </defs>
-  <rect width="1200" height="1200" fill="#020617"/>
+  <rect width="1200" height="1200" fill="#0A0A0A"/>
   <rect width="1200" height="1200" fill="url(#dots)"/>
 </svg>

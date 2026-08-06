@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="BAZventures">
   <title>BAZventures</title>
-  <rect width="120" height="120" fill="#020617"/>
-  <text x="60" y="86" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="78" font-weight="700" fill="#22D3EE" text-anchor="middle" letter-spacing="-2">B</text>
+  <rect width="120" height="120" fill="#0A0A0A"/>
+  <text x="60" y="86" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="78" font-weight="700" fill="#EEB32B" text-anchor="middle" letter-spacing="-2">B</text>
 </svg>

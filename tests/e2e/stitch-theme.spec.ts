@@ -1,17 +1,17 @@
 import { test, expect } from "@playwright/test";
 
 /**
- * Stitch theme — visual/design regression for the BAZventures Midnight Terminal system.
+ * Stitch theme — visual/design regression for the BAZventures Æther + Gold system.
  *
- * The public site is rebranded to Midnight Terminal: electric-cyan seed
- * (--seed-hue 187 / --seed-sat 90%) via app/color-layer.css, Inter typography,
- * midnight background (#020617), BAZventures wordmark. These tests verify the
- * design renders as intended: cyan brand (not the old gold), Inter, no gold
- * leaks, BAZventures wordmark, key pages 200.
+ * The public site is Æther + Gold: stitch-gold seed (--seed-hue 42 /
+ * --seed-sat 85%) via app/color-layer.css, Inter typography, neutral
+ * near-black background, BAZventures wordmark. These tests verify the
+ * design renders as intended: gold brand (not the old electric cyan),
+ * Inter, no cyan/midnight leaks, BAZventures wordmark, key pages 200.
  */
 
-test.describe("Stitch theme — BAZventures Midnight Terminal design", () => {
-  test("color layer is electric cyan (Midnight Terminal seed)", async ({ page }) => {
+test.describe("Stitch theme — BAZventures Æther + Gold design", () => {
+  test("color layer is stitch gold (Æther + Gold seed)", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     const hue = await page.evaluate(() =>
@@ -20,33 +20,38 @@ test.describe("Stitch theme — BAZventures Midnight Terminal design", () => {
     const sat = await page.evaluate(() =>
       getComputedStyle(document.documentElement).getPropertyValue("--seed-sat").trim(),
     );
-    expect(hue, "--seed-hue must be 187 (cyan)").toBe("187");
-    expect(sat, "--seed-sat must be 90%").toBe("90%");
+    expect(hue, "--seed-hue must be 42 (gold)").toBe("42");
+    expect(sat, "--seed-sat must be 85%").toBe("85%");
   });
 
-  test("brand token is cyan, not the old Stitch gold", async ({ page }) => {
+  test("brand token is not the old electric cyan", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     const brand = await page.evaluate(() =>
       getComputedStyle(document.documentElement).getPropertyValue("--brand").trim().toLowerCase(),
     );
-    expect(brand, "--brand must not be the old Stitch gold").not.toContain("e7c274");
-    expect(brand, "--brand must not carry a gold hue").not.toMatch(/hsl\(42/);
+    expect(brand, "--brand must not be the old electric cyan").not.toContain("#22d3ee");
+    expect(brand, "--brand must not carry a cyan seed").not.toContain("187");
   });
 
-  test("homepage renders with a dark midnight background", async ({ page }) => {
+  test("homepage renders with a dark neutral (non-blue) background", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
-    const bg = await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor);
+    const bg = await page.evaluate(() => {
+      const de = getComputedStyle(document.documentElement).backgroundColor;
+      if (de && de !== "rgba(0, 0, 0, 0)" && de !== "transparent") return de;
+      return getComputedStyle(document.body).backgroundColor;
+    });
     const m = bg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
     expect(m, `background should be rgb(), got: ${bg}`).not.toBeNull();
     const [, r, g, b] = m!;
     expect(Number(r), "R channel dark").toBeLessThan(30);
     expect(Number(g), "G channel dark").toBeLessThan(30);
-    expect(Number(b), "B channel dark (midnight)").toBeLessThan(40);
+    expect(Number(b), "B channel dark").toBeLessThan(30);
+    expect(Math.abs(Number(r) - Number(b)), "neutral (no blue tint)").toBeLessThan(10);
   });
 
-  test("typography is Inter (Midnight Terminal font swap)", async ({ page }) => {
+  test("typography is Inter (Æther + Gold font)", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     const ff = await page.evaluate(() => getComputedStyle(document.body).fontFamily);
@@ -58,46 +63,47 @@ test.describe("Stitch theme — BAZventures Midnight Terminal design", () => {
     await expect(page).toHaveTitle(/BAZventures/);
   });
 
-  test("theme-color meta is midnight (#020617)", async ({ page }) => {
+  test("theme-color meta is neutral near-black (#0A0A0A)", async ({ page }) => {
     await page.goto("/");
     const content = await page.locator('meta[name="theme-color"]').getAttribute("content");
-    expect(content).toBe("#020617");
+    expect(content).toBe("#0A0A0A");
   });
 
-  test("favicon is not the old gold/violet", async ({ page }) => {
+  test("favicon is stitch gold, not the old cyan/violet", async ({ page }) => {
     const res = await page.goto("/favicon.svg");
     expect(res?.status()).toBe(200);
-    const svg = (await res?.text()) ?? "";
-    expect(svg, "favicon must not be the old gold").not.toContain("#C8A55A");
+    const svg = ((await res?.text()) ?? "").toLowerCase();
+    expect(svg, "favicon must be stitch gold").toContain("#eeb32b");
+    expect(svg, "favicon must not be the old electric cyan").not.toContain("#22d3ee");
     expect(svg, "favicon must not be violet").not.toContain("#8b5cf6");
+    expect(svg, "favicon must not be the old gold").not.toContain("#c8a55a");
   });
 
-  test("header uses the BAZventures wordmark (no legacy gold SVG)", async ({ page }) => {
+  test("header uses the BAZventures wordmark (no legacy cyan SVG)", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     const header = page.locator("header");
     await expect(header.getByRole("link").filter({ hasText: "BAZventures" })).toBeVisible();
     const legacyImg = await page.locator('header img[src*="baz-wordmark"]').count();
-    expect(legacyImg, "header must not use the legacy gold wordmark SVG").toBe(0);
+    expect(legacyImg, "header must not use the legacy cyan wordmark SVG").toBe(0);
   });
 
-  test("footer uses the BAZventures wordmark (no legacy gold SVG)", async ({ page }) => {
+  test("footer uses the BAZventures wordmark (no legacy cyan SVG)", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
     const footer = page.locator("footer");
     await expect(footer.getByRole("link").filter({ hasText: "BAZventures" })).toBeVisible();
     const legacyImg = await page.locator('footer img[src*="baz-wordmark"]').count();
-    expect(legacyImg, "footer must not use the legacy gold wordmark SVG").toBe(0);
+    expect(legacyImg, "footer must not use the legacy cyan wordmark SVG").toBe(0);
   });
 
-  test("no gold leaks into the rendered homepage DOM", async ({ page }) => {
+  test("no cyan or midnight-blue leaks into the rendered homepage DOM", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
-    const html = await page.content();
-    expect(html).not.toContain("#E7C274");
-    expect(html).not.toContain("#C8A55A");
-    expect(html).not.toContain("#ff5b1f");
-    expect(html).not.toContain("#F2572B");
+    const html = (await page.content()).toLowerCase();
+    expect(html).not.toContain("#22d3ee");
+    expect(html).not.toContain("#818cf8");
+    expect(html).not.toContain("#020617");
   });
 
   // --- Key public pages render 200 ---

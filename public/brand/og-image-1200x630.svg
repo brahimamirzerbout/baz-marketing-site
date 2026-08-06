@@ -2,19 +2,19 @@
   <title>BAZventures — OG image 1200×630</title>
   <defs>
     <radialGradient id="mt-glow" cx="78%" cy="22%" r="55%">
-      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#EEB32B" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="1200" height="630" fill="#020617"/>
+  <rect width="1200" height="630" fill="#0A0A0A"/>
   <rect width="1200" height="630" fill="url(#mt-glow)"/>
   <!-- Lockup -->
-  <rect x="80" y="80" width="84" height="84" fill="#22D3EE"/>
-  <text x="122" y="148" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="58" font-weight="700" fill="#020617" text-anchor="middle" letter-spacing="-1.5">B</text>
-  <text x="184" y="142" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="40" font-weight="600" fill="#F8FAFC" letter-spacing="-1">BAZventures</text>
+  <rect x="80" y="80" width="84" height="84" fill="#EEB32B"/>
+  <text x="122" y="148" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="58" font-weight="700" fill="#0A0A0A" text-anchor="middle" letter-spacing="-1.5">B</text>
+  <text x="184" y="142" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="40" font-weight="600" fill="#FAFAFA" letter-spacing="-1">BAZventures</text>
   <!-- Headline -->
-  <text x="80" y="360" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="76" font-weight="600" fill="#F8FAFC" letter-spacing="-2">Add $200K+ pipeline in 90 days.</text>
-  <rect x="80" y="402" width="120" height="6" fill="#22D3EE"/>
-  <text x="80" y="470" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#94A3B8" letter-spacing="-0.5">Senior-partner growth agency · or pay nothing for month four.</text>
-  <text x="80" y="566" font-family="JetBrains Mono, ui-monospace, monospace" font-size="22" font-weight="500" fill="#22D3EE" letter-spacing="2">bazventures.app</text>
+  <text x="80" y="360" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="76" font-weight="600" fill="#FAFAFA" letter-spacing="-2">Add $200K+ pipeline in 90 days.</text>
+  <rect x="80" y="402" width="120" height="6" fill="#EEB32B"/>
+  <text x="80" y="470" font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif" font-size="34" font-weight="400" fill="#9A9A9A" letter-spacing="-0.5">Senior-partner growth agency · or pay nothing for month four.</text>
+  <text x="80" y="566" font-family="JetBrains Mono, ui-monospace, monospace" font-size="22" font-weight="500" fill="#EEB32B" letter-spacing="2">bazventures.app</text>
 </svg>

@@ -7,12 +7,12 @@ import { StatusBar, Terminal } from "@/components/structure/index";
 /**
  * BAZventures Design System — living showcase.
  *
- * Renders every Midnight-Terminal-compatible Stitch React component (the
+ * Renders every Æther + Gold Stitch React component (the
  * previously-dead aether kit — now wired in) and the full brand asset library.
  * The components resolve to --aether-* tokens, which app/color-layer.css
- * drives from the electric-cyan seed (187/90), so they render in the live
- * Midnight Terminal palette. The brand assets are the legacy Stitch palette
- * (gold/violet) and are shown as-is pending a cyan recolor pass.
+ * drives from the stitch-gold seed (42/85), so they render in the live
+ * Æther + Gold palette. The brand assets are the Æther + Gold palette
+ * (gold on near-black) and are shown as-is, rendered live.
  */
 
 const ASSETS: { src: string; label: string }[] = [
@@ -64,8 +64,8 @@ export function DesignSystemShowcase() {
             Every Stitch component, every asset — rendered live.
           </h1>
           <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed">
-            The Midnight Terminal component kit (Æther) and the full brand asset library, rendered in the
-            live electric-cyan theme. Nothing here is dead code — it&apos;s all wired in.
+            The Æther component kit and the full brand asset library, rendered in the
+            live stitch-gold theme. Nothing here is dead code — it&apos;s all wired in.
           </p>
         </div>
       </section>
@@ -186,21 +186,21 @@ export function DesignSystemShowcase() {
       <Section id="structure" eyebrow="Structure · 06" title="Command-center components">
         <Row label="Status bar">
           <div className="w-full">
-            <StatusBar left="main" center="BAZventures · Midnight Terminal" right="cyan 187/90" />
+            <StatusBar left="main" center="BAZventures · Æther + Gold" right="gold 42/85" />
           </div>
         </Row>
         <Row label="Terminal">
           <div className="w-full">
-            <Terminal isOpen onToggle={() => {}} lines={["baz> init midnight-terminal", "→ seed 187/90 (electric cyan)", "→ ok", "baz>"]} />
+            <Terminal isOpen onToggle={() => {}} lines={["baz> init aether-gold", "→ seed 42/85 (stitch gold)", "→ ok", "baz>"]} />
           </div>
         </Row>
       </Section>
 
       {/* Asset library */}
-      <Section id="assets" eyebrow="Brand · 07" title="Asset library (legacy Stitch palette)">
+      <Section id="assets" eyebrow="Brand · 07" title="Asset library (Æther + Gold)">
         <p className="text-sm text-muted-foreground max-w-2xl">
-          Every brand asset, surfaced. These SVGs are the legacy Stitch palette (gold/violet) —
-          shown as-is pending a cyan recolor pass to match Midnight Terminal.
+          Every brand asset, surfaced. These SVGs are the Æther + Gold palette (gold on near-black) —
+          rendered live.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {ASSETS.map((a) => (
@@ -218,7 +218,7 @@ export function DesignSystemShowcase() {
       <section className="border-t border-border py-12 px-6">
         <div className="container">
           <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            BAZventures design system · rendered live · Midnight Terminal
+            BAZventures design system · rendered live · Æther + Gold
           </p>
         </div>
       </section>
