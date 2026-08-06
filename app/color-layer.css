@@ -108,8 +108,8 @@
   --input: oklch(1 0 0 / 10%);
   --ring: oklch(1 0 0 / 30%);
   --ink: oklch(0.04 0 0);             /* body bg (baz body uses var(--ink)) */
-  --brand: oklch(0.85 0 0);          /* accent text/links → ink-800 */
-  --brand2: oklch(0.7 0 0);
+  --brand: hsl(var(--seed-hue), var(--seed-sat), 55%);   /* stitch gold — accent/links/CTA fill (seed 42/85) */
+  --brand2: hsl(var(--seed-hue), var(--seed-sat), 45%);  /* darker gold — secondary accent */
   --panel: oklch(0.08 0 0);
   --panel-2: oklch(0.13 0 0);
   --sand: oklch(0.98 0 0);

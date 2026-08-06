@@ -70,7 +70,7 @@ export function Hero({ variant }: { variant?: HeroVariant } = {}) {
                 variant="secondary"
                 size="lg"
                 trackAs="hero_book_call"
-                className="rounded-full px-8 py-4 text-xs font-display font-semibold uppercase tracking-[0.2em] text-white bg-brand"
+                className="rounded-full px-8 py-4 text-xs font-display font-semibold uppercase tracking-[0.2em] text-ink bg-brand"
               >
                 Book a growth call
                 <span aria-hidden className="ml-2">→</span>
