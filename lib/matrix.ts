@@ -11,10 +11,13 @@ import { cities } from "@/content/locations";
  * quality threshold to avoid thin/doorway penalties.
  *
  * Gating rules:
- *  - Leaf (city×industry×service) and city×industry: publish when the city has
- *    >=2 unique local observations and the composed body clears the word threshold.
+ *  - Leaf (city×industry×service) and city×industry: publish ONLY for launch
+ *    cities (content/locations.ts `launch: true`) AND when the city has >=2
+ *    unique local observations AND the composed body clears the word threshold.
+ *    Non-launch cities' leaves/city×industry 404 — prevents 1,296 templated
+ *    pages from acting as doorway content (the documented rollout intent).
  *  - Industry×service (no city): only the top-6 launch services.
- *  - City overview: always publishable.
+ *  - City overview: always publishable (legit local landing, not doorway).
  * Anything not `publishable` is excluded from generateStaticParams AND forced
  * noindex by the route.
  */
@@ -340,8 +343,12 @@ export function matrixLeaves(): MatrixPage[] {
     for (const industry of industries)
       for (const service of services) {
         const p = compose({ industry, service, city });
+        // Launch-gated: only launch cities (Dubai/London/NY) get indexable
+        // leaves. `!!` coerces so the `publishable: boolean` type stays clean.
         p.publishable =
-          city.localProof.length >= 2 && p.bodyWords >= MIN_BODY_WORDS;
+          !!city.launch &&
+          city.localProof.length >= 2 &&
+          p.bodyWords >= MIN_BODY_WORDS;
         out.push(p);
       }
   return out;
@@ -363,8 +370,11 @@ export function cityIndustryPages(): MatrixPage[] {
   for (const city of cities)
     for (const industry of industries) {
       const p = compose({ industry, city });
+      // Launch-gated: only launch cities get indexable city×industry pages.
       p.publishable =
-        city.localProof.length >= 2 && p.bodyWords >= MIN_BODY_WORDS;
+        !!city.launch &&
+        city.localProof.length >= 2 &&
+        p.bodyWords >= MIN_BODY_WORDS;
       out.push(p);
     }
   return out;
